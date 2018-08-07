@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.api;
+package no.nav.pam.annonsemottak.stilling.api;
 
 public class PathDefinition {
 

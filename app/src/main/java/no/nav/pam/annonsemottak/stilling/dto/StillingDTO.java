@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.dto;
+package no.nav.pam.annonsemottak.stilling.dto;
 
 import com.fasterxml.jackson.annotation.*;
 import org.joda.time.DateTime;
