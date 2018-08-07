@@ -3,24 +3,24 @@ server:
 application:
   version: @project.version@
 spring:
-#  datasource:
-#    url: ${PAM_ADDB_URL:jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))))}
-#    username: ${PAM_ADDB_USERNAME:pamad}
-#    password: ${PAM_ADDB_PASSWORD:pamad}
-#  jpa:
-#    database-platform: org.hibernate.dialect.Oracle10gDialect
-#    properties:
-#      hibernate:
-#       generate_statistics: true
-#       cache:
-#          use_second_level_cache: true
-#          use_query_cache: true
-#          region:
-#            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
-#    hibernate:
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#      ddl-auto: none
+  datasource:
+    url: jdbc:h2:mem:testdb;Mode=PostgreSQL
+    platform: h2
+    continue-on-error: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+       generate_statistics: true
+       cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
   profiles:
     active: prod
   flyway:

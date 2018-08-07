@@ -1,20 +1,18 @@
 server:
   port: 9016
 spring:
-#  jpa:
-#    database-platform: org.hibernate.dialect.Oracle10gDialect
-#    properties:
-#      hibernate:
-#       generate_statistics: true
-#       cache:
-#          use_second_level_cache: true
-#          use_query_cache: true
-#          region:
-#            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
-#    hibernate:
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#      ddl-auto: none
+  datasource:
+    url: jdbc:h2:mem:testdb;Mode=PostgreSQL
+    platform: h2
+    continue-on-error: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        current_session_contextclass: org.springframework.orm.hibernate5.SpringSessionContext
+    open-in-view: true
   profiles:
     active: test
   flyway:
