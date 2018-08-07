@@ -1,0 +1,2043 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:f="http://xmlns.finn.no/opensearch/1.0"
+      xmlns:os="http://a9.com/-/spec/opensearch/1.1/"
+      xmlns:age="http://purl.org/atompub/age/1.0" xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0"
+      xmlns:media="http://search.yahoo.com/mrss/" xmlns:georss="http://www.georss.org/georss"
+      xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:SzeCCiX08nQk0zyde86iwnwbNnq9RzCt</id>
+    <title>Fulltidsjobb</title>
+    <subtitle>Siste døgn, Jobb</subtitle>
+    <updated>2017-03-01T13:16:55.991Z</updated>
+    <author>
+        <name>FINN.no</name>
+    </author>
+    <link href="https://cache.api.finn.no/iad/search/job-full-time/?age=1&amp;sort=0" rel="self"/>
+    <link href="https://cache.api.finn.no/iad/search/job-full-time/?age=1&amp;sort=0" rel="first"/>
+    <link href="https://cache.api.finn.no/iad/search/job-full-time/?age=1&amp;sort=0&amp;page=17" rel="last"/>
+    <link href="https://cache.api.finn.no/iad/search/job-full-time/?age=1&amp;sort=0&amp;page=2" rel="next"/>
+    <link href="https://cache.api.finn.no/iad/promoted/job-full-time?age=1&amp;sort=0&amp;rows=1" rel="promoted"/>
+    <link href="https://cache.api.finn.no/iad/search/job-full-time//description" rel="search"
+          type="application/opensearchdescription+xml"/>
+    <f:template href="https://cache.api.finn.no/iad/user/{userId}/ads/stored" rel="urn:finn:search:stored"/>
+    <category scheme="urn:finn:search:type" label="Fulltidsjobb" term="job-full-time"/>
+    <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="6" f:filter="0.1" title="Analyse"/>
+        <f:Query role="subset" totalResults="24" f:filter="0.9999" title="Annet"/>
+        <f:Query role="subset" totalResults="8" f:filter="0.2" title="Arkitekt og planlegging">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="7" f:filter="1.2.3" title="Anleggsgartner"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.2.7" title="Landskapsarkitekt"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="5" f:filter="0.3" title="Arkivar og bibliotekar"/>
+        <f:Query role="subset" totalResults="3" f:filter="0.77" title="Barnehage">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.77.211" title="Barnehagelærer"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.77.212" title="Pedagogisk leder"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="3" f:filter="0.70" title="Barnevernspedagog"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.4" title="Brannvern"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.5" title="Brukerstøtte/support"/>
+        <f:Query role="subset" totalResults="24" f:filter="0.6" title="Butikkansatt"/>
+        <f:Query role="subset" totalResults="8" f:filter="0.78" title="Butikksjef"/>
+        <f:Query role="subset" totalResults="6" f:filter="0.7" title="Design">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.7.13" title="Grafisk"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.7.14" title="Illustrasjon"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.7.15" title="Industri"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.7.18" title="Layout"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.7.19" title="Møbel"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.7.20" title="Web"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="5" f:filter="0.8" title="Dokumentasjon"/>
+        <f:Query role="subset" totalResults="4" f:filter="0.9" title="Driftsoperatør/vaktmester"/>
+        <f:Query role="subset" totalResults="3" f:filter="0.11" title="Forhandling"/>
+        <f:Query role="subset" totalResults="5" f:filter="0.12" title="Forretningsutvikling og strategi"/>
+        <f:Query role="subset" totalResults="6" f:filter="0.13" title="Forskning/Stipendiat"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.82" title="Foto, lyd og lys"/>
+        <f:Query role="subset" totalResults="2" f:filter="0.81" title="Franchise"/>
+        <f:Query role="subset" totalResults="25" f:filter="0.16" title="Helsepersonell">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="2" f:filter="1.16.57" title="Bioingeniør"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.16.33" title="Fysioterapeut"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.16.34" title="Helsefagarbeider/hjelpepleier"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.16.196" title="Helsesekretær"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.16.36" title="Optiker"/>
+                <f:Query role="subset" totalResults="6" f:filter="1.16.37" title="Psykolog"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.16.38" title="Radiograf"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.16.39" title="Tannhelse"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.16.40" title="Vernepleier/miljøterapeut"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1" f:filter="0.17" title="HMS"/>
+        <f:Query role="subset" totalResults="3" f:filter="0.76" title="Hotell og overnatting">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.76.206" title="Resepsjon"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.76.209" title="Service/servering"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="5" f:filter="0.41" title="HR, personal og rekruttering"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.18" title="Hudpleie"/>
+        <f:Query role="subset" totalResults="59" f:filter="0.19" title="Håndverker">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="2" f:filter="1.19.222" title="Andre montører"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.19.215" title="Asfaltarbeid"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.19.44" title="Blikkenslager/tak"/>
+                <f:Query role="subset" totalResults="5" f:filter="1.19.45" title="Bygg/Anleggsleder"/>
+                <f:Query role="subset" totalResults="7" f:filter="1.19.46" title="Elektriker"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.19.214" title="Elektronikkmontør"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.19.216" title="Hjelpearbeider"/>
+                <f:Query role="subset" totalResults="6" f:filter="1.19.48" title="Maler/Tapeserer"/>
+                <f:Query role="subset" totalResults="6" f:filter="1.19.49" title="Mekaniker"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.19.50" title="Murer/Flislegger"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.19.51" title="Murmester"/>
+                <f:Query role="subset" totalResults="5" f:filter="1.19.52" title="Rørlegger"/>
+                <f:Query role="subset" totalResults="6" f:filter="1.19.53" title="Snekker/Tømrer"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.19.219" title="Sveiser"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.19.221" title="Ventilasjonstekniker"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="36" f:filter="0.20" title="Ingeniør">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="5" f:filter="1.20.61" title="Bygge- og anleggsteknikk"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.20.63" title="Elektronikk"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.20.64" title="Geomatikk"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.20.67" title="Marinteknikk / Naval architecture"/>
+                <f:Query role="subset" totalResults="12" f:filter="1.20.69" title="Mekanisk"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.20.70" title="Oppmåling og kartlegging"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.20.71" title="Rør/struktur"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.20.58" title="Subsea"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.20.75" title="Vann- og miljøteknikk"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.20.77" title="Vassdrag"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.20.78" title="VVS- og klimateknikk"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="3" f:filter="0.21" title="Innkjøp/forhandling"/>
+        <f:Query role="subset" totalResults="7" f:filter="0.22" title="IT drift og vedlikehold">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="4" f:filter="1.22.80" title="Drift/Operations"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.22.81" title="IT-support"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="17" f:filter="0.23" title="IT utvikling">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.23.82" title="Database"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.23.83" title="Front-end"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.23.84" title="IT-sikkerhet"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.23.87" title="QA/Testing"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.23.85" title="Systemarkitekt"/>
+                <f:Query role="subset" totalResults="11" f:filter="1.23.86" title="Utvikler (generell)"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1" f:filter="0.71" title="Journalist"/>
+        <f:Query role="subset" totalResults="17" f:filter="0.24" title="Jurist">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.24.89" title="Advokat"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.24.90" title="Advokatfullmektig"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="14" f:filter="0.25" title="Konsulent"/>
+        <f:Query role="subset" totalResults="16" f:filter="0.26" title="Kontor og administrasjon">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="3" f:filter="1.26.96" title="Kontorarbeid"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.26.225" title="Personlig assistent"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.26.97" title="Resepsjon"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.26.99" title="Sentralbord"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="6" f:filter="0.27" title="Koordinering"/>
+        <f:Query role="subset" totalResults="17" f:filter="0.28" title="Kundeservice"/>
+        <f:Query role="subset" totalResults="2" f:filter="0.29" title="Kurs og opplæring"/>
+        <f:Query role="subset" totalResults="3" f:filter="0.30" title="Kvalitetssikring"/>
+        <f:Query role="subset" totalResults="19" f:filter="0.32" title="Ledelse"/>
+        <f:Query role="subset" totalResults="2" f:filter="0.33" title="Lege">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.33.114" title="LIS"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.33.116" title="Psykiater"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="30" f:filter="0.31" title="Logistikk og lager">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="11" f:filter="1.31.227" title="Lagermedarbeider"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.31.226" title="SCM og logistikk"/>
+                <f:Query role="subset" totalResults="9" f:filter="1.31.228" title="Truckfører"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="5" f:filter="0.34" title="Markedsfører"/>
+        <f:Query role="subset" totalResults="4" f:filter="0.35" title="Maskinfører og -operatør"/>
+        <f:Query role="subset" totalResults="6" f:filter="0.36" title="Mat og servering">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.36.123" title="Bartender"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.36.125" title="Hovmester"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.36.127" title="Kjøkkensjef"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.36.128" title="Servitør"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1" f:filter="0.37" title="Megler"/>
+        <f:Query role="subset" totalResults="10" f:filter="0.38" title="Mekanikk og installasjon"/>
+        <f:Query role="subset" totalResults="4" f:filter="0.40" title="Omsorg og sosialt arbeid"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.43" title="Planlegger"/>
+        <f:Query role="subset" totalResults="14" f:filter="0.46" title="Produksjon">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.46.10001"
+                         title="Produksjonsteknikk/Prosessteknikk"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="3" f:filter="0.47" title="Produktledelse"/>
+        <f:Query role="subset" totalResults="20" f:filter="0.48" title="Prosjektledelse"/>
+        <f:Query role="subset" totalResults="3" f:filter="0.45" title="PR og informasjon"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.49" title="Renhold"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.50" title="Revisjon og kontroll"/>
+        <f:Query role="subset" totalResults="25" f:filter="0.51" title="Rådgivning"/>
+        <f:Query role="subset" totalResults="4" f:filter="0.52" title="Saksbehandler"/>
+        <f:Query role="subset" totalResults="69" f:filter="0.53" title="Salg">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="18" f:filter="1.53.146" title="Løsningssalg"/>
+                <f:Query role="subset" totalResults="32" f:filter="1.53.147" title="Produktsalg"/>
+                <f:Query role="subset" totalResults="7" f:filter="1.53.148" title="Stands- og dørsalg"/>
+                <f:Query role="subset" totalResults="9" f:filter="1.53.149" title="Teknisk salg"/>
+                <f:Query role="subset" totalResults="9" f:filter="1.53.150" title="Telefonsalg"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="8" f:filter="0.54" title="Salgsledelse"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.57" title="Sikkerhet"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.85" title="Sjøfart">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.85.238" title="Matros"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="2" f:filter="0.72" title="Sosionom"/>
+        <f:Query role="subset" totalResults="14" f:filter="0.59" title="Sykepleier">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="1" f:filter="1.59.157" title="Anestesi"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.59.162" title="Jordmor"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.59.163" title="Kreft/onkologi"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="10" f:filter="0.60" title="Teknisk personell"/>
+        <f:Query role="subset" totalResults="8" f:filter="0.61" title="Teknisk service"/>
+        <f:Query role="subset" totalResults="1" f:filter="0.73" title="Tekstforfatter"/>
+        <f:Query role="subset" totalResults="15" f:filter="0.58" title="Transport og sjåfør"/>
+        <f:Query role="subset" totalResults="13" f:filter="0.64" title="Undervisning og pedagogikk">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="3" f:filter="1.64.171" title="Allmennlærer/kontaktlærer"/>
+                <f:Query role="subset" totalResults="5" f:filter="1.64.176" title="Lærer/Lektor"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.64.179" title="Professor"/>
+                <f:Query role="subset" totalResults="2" f:filter="1.64.180" title="Rektor / Ass. Rektor"/>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="38" f:filter="0.68" title="Økonomi og regnskap">
+            <f:filter name="occupation" title="Stilling" range="false">
+                <f:Query role="subset" totalResults="6" f:filter="1.68.188" title="Controller"/>
+                <f:Query role="subset" totalResults="4" f:filter="1.68.189" title="Lønn"/>
+                <f:Query role="subset" totalResults="9" f:filter="1.68.190" title="Regnskap"/>
+                <f:Query role="subset" totalResults="1" f:filter="1.68.191" title="Revisjon"/>
+                <f:Query role="subset" totalResults="3" f:filter="1.68.192" title="Økonomistyring og budsjettering"/>
+            </f:filter>
+        </f:Query>
+    </f:filter>
+    <f:filter name="industry" title="Bransje" range="false">
+        <f:Query role="subset" totalResults="22" f:filter="9999" title="Annet"/>
+        <f:Query role="subset" totalResults="1" f:filter="1" title="Arbeidstaker- og arbeidsgiverorganisasjoner"/>
+        <f:Query role="subset" totalResults="1" f:filter="12" title="Arkitektur, areal og interiør"/>
+        <f:Query role="subset" totalResults="3" f:filter="13" title="Arkiv og bibliotek"/>
+        <f:Query role="subset" totalResults="28" f:filter="2" title="Bank, finans og forsikring"/>
+        <f:Query role="subset" totalResults="11" f:filter="14" title="Barn, skole og undervisning"/>
+        <f:Query role="subset" totalResults="17" f:filter="16" title="Bil, kjøretøy og verksted"/>
+        <f:Query role="subset" totalResults="5" f:filter="15" title="Bil- og bildelproduksjon"/>
+        <f:Query role="subset" totalResults="53" f:filter="3" title="Butikk og varehandel"/>
+        <f:Query role="subset" totalResults="88" f:filter="4" title="Bygg og anlegg"/>
+        <f:Query role="subset" totalResults="15" f:filter="17" title="Drift og vedlikeholdstjenester"/>
+        <f:Query role="subset" totalResults="4" f:filter="19" title="Eiendom"/>
+        <f:Query role="subset" totalResults="10" f:filter="20" title="Elektronikk"/>
+        <f:Query role="subset" totalResults="6" f:filter="21" title="Event og arrangementer"/>
+        <f:Query role="subset" totalResults="4" f:filter="5" title="Farmasi og legemiddel"/>
+        <f:Query role="subset" totalResults="6" f:filter="25" title="Fiskeri og oppdrett"/>
+        <f:Query role="subset" totalResults="16" f:filter="22" title="Forskning, utdanning og vitenskap"/>
+        <f:Query role="subset" totalResults="3" f:filter="23" title="Forsvar og militær"/>
+        <f:Query role="subset" totalResults="7" f:filter="24" title="Grossisthandel import/eksport"/>
+        <f:Query role="subset" totalResults="44" f:filter="26" title="Helse og omsorg"/>
+        <f:Query role="subset" totalResults="6" f:filter="27" title="Hotell og overnatting"/>
+        <f:Query role="subset" totalResults="6" f:filter="28" title="HR, organisasjonsutvikling og rekruttering"/>
+        <f:Query role="subset" totalResults="12" f:filter="29" title="Håndverkstjenester"/>
+        <f:Query role="subset" totalResults="5" f:filter="30" title="Ideelle organisasjoner"/>
+        <f:Query role="subset" totalResults="23" f:filter="70" title="Industri og produksjon"/>
+        <f:Query role="subset" totalResults="2" f:filter="32" title="Internettbaserte tjenester"/>
+        <f:Query role="subset" totalResults="15" f:filter="65" title="IT"/>
+        <f:Query role="subset" totalResults="4" f:filter="33" title="IT - maskinvare"/>
+        <f:Query role="subset" totalResults="13" f:filter="8" title="IT - programvare"/>
+        <f:Query role="subset" totalResults="1" f:filter="9" title="Jordbruk og skogbruk"/>
+        <f:Query role="subset" totalResults="15" f:filter="10" title="Juridiske tjenester"/>
+        <f:Query role="subset" totalResults="2" f:filter="11" title="Kjemisk industri"/>
+        <f:Query role="subset" totalResults="27" f:filter="34" title="Konsulent og rådgivning"/>
+        <f:Query role="subset" totalResults="5" f:filter="35" title="Kraft og energi"/>
+        <f:Query role="subset" totalResults="6" f:filter="36" title="Kunst og kultur"/>
+        <f:Query role="subset" totalResults="2" f:filter="37" title="Luftfart"/>
+        <f:Query role="subset" totalResults="2" f:filter="69" title="Maritim og offshore"/>
+        <f:Query role="subset" totalResults="20" f:filter="39" title="Markedsføring og annonsering"/>
+        <f:Query role="subset" totalResults="8" f:filter="40" title="Matvareproduksjon og -industri"/>
+        <f:Query role="subset" totalResults="4" f:filter="41" title="Medie- og innholdsproduksjon"/>
+        <f:Query role="subset" totalResults="2" f:filter="42" title="Medisinsk utstyr og rekvisita"/>
+        <f:Query role="subset" totalResults="1" f:filter="43" title="Metaller og mineraler"/>
+        <f:Query role="subset" totalResults="1" f:filter="44" title="Miljøtjenester"/>
+        <f:Query role="subset" totalResults="3" f:filter="67" title="Museer, gallerier og kulturminne"/>
+        <f:Query role="subset" totalResults="24" f:filter="66" title="Offentlig administrasjon"/>
+        <f:Query role="subset" totalResults="22" f:filter="46" title="Olje og gass"/>
+        <f:Query role="subset" totalResults="4" f:filter="48" title="Organisasjoner"/>
+        <f:Query role="subset" totalResults="5" f:filter="49" title="Politi og sikkerhet"/>
+        <f:Query role="subset" totalResults="4" f:filter="50" title="PR, informasjon og kommunikasjon"/>
+        <f:Query role="subset" totalResults="8" f:filter="51" title="Reise og turisme"/>
+        <f:Query role="subset" totalResults="2" f:filter="52" title="Renovasjon og renhold"/>
+        <f:Query role="subset" totalResults="2" f:filter="53" title="Restaurant, mat og uteliv"/>
+        <f:Query role="subset" totalResults="1" f:filter="55" title="Shipping"/>
+        <f:Query role="subset" totalResults="1" f:filter="56" title="Storhusholdning og catering"/>
+        <f:Query role="subset" totalResults="2" f:filter="57" title="Tekstil"/>
+        <f:Query role="subset" totalResults="8" f:filter="58" title="Telekommunikasjon"/>
+        <f:Query role="subset" totalResults="37" f:filter="59" title="Transport og logistikk"/>
+        <f:Query role="subset" totalResults="2" f:filter="60" title="Trevareindustri"/>
+        <f:Query role="subset" totalResults="1" f:filter="6" title="Underholdning"/>
+        <f:Query role="subset" totalResults="2" f:filter="61" title="Velvære"/>
+        <f:Query role="subset" totalResults="2" f:filter="62" title="Verksindustri"/>
+        <f:Query role="subset" totalResults="6" f:filter="63" title="VVS"/>
+        <f:Query role="subset" totalResults="26" f:filter="64" title="Økonomi og regnskap"/>
+    </f:filter>
+    <f:filter name="job_sector" title="Sektor" range="false">
+        <f:Query role="subset" totalResults="4" f:filter="1816" title="Franchise/Selvstendig næringsdrivende"/>
+        <f:Query role="subset" totalResults="90" f:filter="1812" title="Offentlig"/>
+        <f:Query role="subset" totalResults="14" f:filter="1814" title="Organisasjoner"/>
+        <f:Query role="subset" totalResults="368" f:filter="1813" title="Privat"/>
+        <f:Query role="subset" totalResults="1" f:filter="1815" title="Samvirke"/>
+    </f:filter>
+    <f:filter name="application_deadline" title="Søknadsfrist" range="false">
+        <f:Query role="subset" totalResults="0" f:filter="1" title="Siste frist"/>
+        <f:Query role="subset" totalResults="11" f:filter="7" title="Under en uke"/>
+        <f:Query role="subset" totalResults="3" f:filter="3" title="Under tre døgn"/>
+    </f:filter>
+    <f:filter name="published" title="Publisert" range="false">
+        <f:Query f:selected="true" role="subset" title="Nye i dag" f:filter="1" totalResults="481"/>
+    </f:filter>
+    <f:filter name="extent" title="Heltid/deltid" range="false">
+        <f:Query role="subset" totalResults="35" f:filter="3942" title="Deltid"/>
+        <f:Query role="subset" totalResults="446" f:filter="3947" title="Heltid"/>
+    </f:filter>
+    <f:filter name="manager_role" title="Lederkategori" range="false">
+        <f:Query role="subset" totalResults="1" f:filter="6701" title="Direktør"/>
+        <f:Query role="subset" totalResults="5" f:filter="6719" title="Fagleder"/>
+        <f:Query role="subset" totalResults="23" f:filter="6702" title="Leder"/>
+    </f:filter>
+    <f:filter name="location" title="Område" range="false">
+        <f:Query role="subset" totalResults="479" f:filter="0.20001" title="Norge">
+            <f:filter name="location" title="Område" range="false">
+                <f:Query role="subset" totalResults="72" f:filter="1.20001.20003" title="Akershus">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="8" f:filter="2.20001.20003.20046" title="Asker"/>
+                        <f:Query role="subset" totalResults="10" f:filter="2.20001.20003.20045" title="Bærum"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20003.20049" title="Fet"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20003.20042" title="Frogn - Drøbak"/>
+                        <f:Query role="subset" totalResults="8" f:filter="2.20001.20003.20052" title="Lørenskog"/>
+                        <f:Query role="subset" totalResults="4" f:filter="2.20001.20003.20054" title="Nittedal"/>
+                        <f:Query role="subset" totalResults="27" f:filter="2.20001.20003.20053" title="Skedsmo"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20003.20048" title="Sørum"/>
+                        <f:Query role="subset" totalResults="4" f:filter="2.20001.20003.20056" title="Ullensaker"/>
+                        <f:Query role="subset" totalResults="5" f:filter="2.20001.20003.20039" title="Vestby - Son"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20003.20041" title="Ås"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="5" f:filter="1.20001.20010" title="Aust-Agder">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20010.20166" title="Arendal"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20010.20165" title="Grimstad"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20010.20171" title="Lillesand"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20010.20164" title="Risør"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="25" f:filter="1.20001.20007" title="Buskerud">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="10" f:filter="2.20001.20007.20110" title="Drammen"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20007.20116" title="Gol"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20007.20111" title="Kongsberg"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20007.20125" title="Lier"/>
+                        <f:Query role="subset" totalResults="6" f:filter="2.20001.20007.20124" title="Nedre Eiker"/>
+                        <f:Query role="subset" totalResults="4" f:filter="2.20001.20007.20112" title="Ringerike"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="3" f:filter="1.20001.20020" title="Finnmark">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20020.20441" title="Alta"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20020.20439" title="Hammerfest"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20020.20446" title="Nordkapp"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="8" f:filter="1.20001.20005" title="Hedmark">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20005.20073" title="Elverum"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20005.20082" title="Folldal"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20005.20063" title="Hamar"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20005.20062" title="Kongsvinger"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20005.20064" title="Ringsaker"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="53" f:filter="1.20001.20013" title="Hordaland">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20013.20243" title="Askøy"/>
+                        <f:Query role="subset" totalResults="47" f:filter="2.20001.20013.20220" title="Bergen"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20013.20242" title="Fjell"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20013.20236" title="Kvam"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20013.20246" title="Osterøy"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20013.20238" title="Samnanger"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="4" f:filter="1.20001.20015" title="Møre og Romsdal">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20015.20281" title="Kristiansund"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20015.20280" title="Molde"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20015.20282" title="Ålesund"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="11" f:filter="1.20001.20018" title="Nordland">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="7" f:filter="2.20001.20018.20367" title="Bodø"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20018.20383" title="Rana"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20018.20409" title="Sortland"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20018.20394" title="Steigen"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20018.20404" title="Vestvågøy"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="6" f:filter="1.20001.20017" title="Nord-Trøndelag">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20017.20365" title="Nærøy"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20017.20343" title="Steinkjer"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20017.20346" title="Stjørdal"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="9" f:filter="1.20001.20006" title="Oppland">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20006.20085" title="Gjøvik"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20006.20101" title="Gran"/>
+                        <f:Query role="subset" totalResults="5" f:filter="2.20001.20006.20084" title="Lillehammer"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20006.20091" title="Nord-Fron"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20006.20097" title="Østre Toten"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="155" f:filter="1.20001.20061" title="Oslo">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20061.20528" title="Bjerke"/>
+                        <f:Query role="subset" totalResults="7" f:filter="2.20001.20061.20507"
+                                 title="Bygdøy - Frogner"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20519" title="Bøler"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20515"
+                                 title="Ekeberg - Bekkelaget"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20061.20524" title="Furuset"/>
+                        <f:Query role="subset" totalResults="6" f:filter="2.20001.20061.20512" title="Gamle Oslo"/>
+                        <f:Query role="subset" totalResults="6" f:filter="2.20001.20061.20527" title="Grorud"/>
+                        <f:Query role="subset" totalResults="5" f:filter="2.20001.20061.20511"
+                                 title="Grünerløkka - Sofienberg"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20061.20523" title="Hellerud"/>
+                        <f:Query role="subset" totalResults="10" f:filter="2.20001.20061.20522"
+                                 title="Helsfyr - Sinsen"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20061.20520" title="Manglerud"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20532" title="Røa"/>
+                        <f:Query role="subset" totalResults="13" f:filter="2.20001.20061.20510"
+                                 title="Sagene - Torshov"/>
+                        <f:Query role="subset" totalResults="63" f:filter="2.20001.20061.20513" title="Sentrum"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20530" title="Sogn"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20525" title="Stovner"/>
+                        <f:Query role="subset" totalResults="7" f:filter="2.20001.20061.20509"
+                                 title="St.Hanshaugen - Ullevål"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20517"
+                                 title="Søndre Nordstrand"/>
+                        <f:Query role="subset" totalResults="7" f:filter="2.20001.20061.20533" title="Ullern"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20061.20508"
+                                 title="Uranienborg - Majorstuen"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20531" title="Vinderen"/>
+                        <f:Query role="subset" totalResults="10" f:filter="2.20001.20061.20521" title="Østensjø"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="40" f:filter="1.20001.20012" title="Rogaland">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20012.20194" title="Eigersund"/>
+                        <f:Query role="subset" totalResults="7" f:filter="2.20001.20012.20197" title="Haugesund"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20012.20201" title="Hå"/>
+                        <f:Query role="subset" totalResults="5" f:filter="2.20001.20012.20195" title="Sandnes"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20012.20205" title="Sola"/>
+                        <f:Query role="subset" totalResults="22" f:filter="2.20001.20012.20196" title="Stavanger"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20012.20203" title="Time"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="2" f:filter="1.20001.20014" title="Sogn og Fjordane">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20014.20262" title="Sogndal"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20014.20279" title="Stryn"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="30" f:filter="1.20001.20016" title="Sør-Trøndelag">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20326" title="Bjugn"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20016.20319" title="Hemne"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20330" title="Oppdal"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20016.20334" title="Røros"/>
+                        <f:Query role="subset" totalResults="21" f:filter="2.20001.20016.20318" title="Trondheim"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20342" title="Tydal"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20323" title="Ørland"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="7" f:filter="1.20001.20009" title="Telemark">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20009.20150" title="Bamble"/>
+                        <f:Query role="subset" totalResults="4" f:filter="2.20001.20009.20146" title="Porsgrunn"/>
+                        <f:Query role="subset" totalResults="2" f:filter="2.20001.20009.20147" title="Skien"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="8" f:filter="1.20001.20019" title="Troms">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="8" f:filter="2.20001.20019.20413" title="Tromsø"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="19" f:filter="1.20001.20008" title="Vestfold">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20008.20138" title="Hof"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20008.20132" title="Holmestrand"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20008.20131" title="Horten"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20008.20135" title="Larvik"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20008.20143" title="Nøtterøy"/>
+                        <f:Query role="subset" totalResults="9" f:filter="2.20001.20008.20134" title="Sandefjord"/>
+                        <f:Query role="subset" totalResults="5" f:filter="2.20001.20008.20133" title="Tønsberg"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="8" f:filter="1.20001.20011" title="Vest-Agder">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="6" f:filter="2.20001.20011.20179" title="Kristiansand"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20011.20189" title="Lindesnes"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20011.20180" title="Mandal"/>
+                    </f:filter>
+                </f:Query>
+                <f:Query role="subset" totalResults="16" f:filter="1.20001.20002" title="Østfold">
+                    <f:filter name="location" title="Område" range="false">
+                        <f:Query role="subset" totalResults="4" f:filter="2.20001.20002.20024" title="Fredrikstad"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20002.20025" title="Hvaler"/>
+                        <f:Query role="subset" totalResults="6" f:filter="2.20001.20002.20022" title="Moss"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20002.20034" title="Rakkestad"/>
+                        <f:Query role="subset" totalResults="1" f:filter="2.20001.20002.20035" title="Råde"/>
+                        <f:Query role="subset" totalResults="3" f:filter="2.20001.20002.20023" title="Sarpsborg"/>
+                    </f:filter>
+                </f:Query>
+            </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="2" f:filter="0.20534" title="Utlandet"/>
+    </f:filter>
+    <f:filter name="job_duration" title="Ansettelsesform" range="false">
+        <f:Query role="subset" totalResults="46" f:filter="3952" title="Engasjement"/>
+        <f:Query role="subset" totalResults="358" f:filter="3951" title="Fast"/>
+        <f:Query role="subset" totalResults="1" f:filter="8900" title="Lærling"/>
+        <f:Query role="subset" totalResults="15" f:filter="8099" title="Prosjekt"/>
+        <f:Query role="subset" totalResults="3" f:filter="3954" title="Selvstendig næringsdrivende"/>
+        <f:Query role="subset" totalResults="6" f:filter="1816" title="Sommer/Sesong"/>
+        <f:Query role="subset" totalResults="2" f:filter="8098" title="Trainee"/>
+        <f:Query role="subset" totalResults="49" f:filter="3659" title="Vikariat"/>
+    </f:filter>
+    <f:sort template="https://cache.api.finn.no/iad/search/job-full-time/?age=1&amp;sort={f:sort?}&amp;lat={geo:lat?}&amp;lon={geo:lon?}">
+        <os:Query role="f:sort" f:sort="0" title="Mest relevant" f:selected="true"/>
+        <os:Query role="f:sort" f:sort="1" title="Publisert"/>
+        <os:Query role="f:sort" f:sort="2" title="Arbeidsgiver"/>
+        <os:Query role="f:sort" f:sort="4" title="Sted"/>
+        <os:Query role="f:sort" f:sort="99" title="Nærmest"/>
+    </f:sort>
+    <os:totalResults>481</os:totalResults>
+    <finn:stats name="NOOFJOBPOSITIONS">
+        <finn:stat type="sum">1096.0</finn:stat>
+        <finn:stat type="count">481</finn:stat>
+        <finn:stat type="min">1.0</finn:stat>
+        <finn:stat type="max">20.0</finn:stat>
+        <finn:stat type="missing">0</finn:stat>
+        <finn:stat type="mean">2.2785862785862787</finn:stat>
+        <finn:stat type="stddev">2.902825289936455</finn:stat>
+    </finn:stats>
+    <entry>
+        <id>urn:id:91696867</id>
+        <title>Landmåler - Ryfast</title>
+        <updated>2017-03-01T13:15:00.000Z</updated>
+        <published>2017-03-01T13:15:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91696867</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="1"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696867" rel="self"/>
+        <link href="https://www.finn.no/91696867" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">58.9624 5.7134</georss:point>
+        <finn:location>
+            <finn:city>Stavanger</finn:city>
+        </finn:location>
+        <author>
+            <name>Personalhuset Staffing Group</name>
+            <uri>https://cache.api.finn.no/iad/organization/1117069714</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1117069714/iad_3683987384689373882personalhuset-staffing-group.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Landmåler"/>
+            <finn:field name="company">
+                <finn:field name="name" value="M3 Anlegg AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1117069714/iad_3683987384689373882personalhuset-staffing-group.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="Snarest"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Stavanger</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Ingeniør, Arkitekt og planlegging"/>
+                    <finn:field name="specialization" value="Geomatikk, Landskapsarkitekt"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bygg og anlegg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696757</id>
+        <title>Logistikkoperatør</title>
+        <updated>2017-03-01T13:13:00.000Z</updated>
+        <published>2017-03-01T13:14:00.000Z</published>
+        <age:expires>2017-03-15T22:59:00.000Z</age:expires>
+        <dc:identifier>91696757</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="2"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696757" rel="self"/>
+        <link href="https://www.finn.no/91696757" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">58.1458 7.99381</georss:point>
+        <finn:location>
+            <finn:city>Kristiansand S</finn:city>
+        </finn:location>
+        <author>
+            <name>KELLY SERVICES NORGE AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1065466276</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1065466276/iad_53007642185677955431101412_kellylogo_ny_356.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Logistikkoperatør"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Kelly Services"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1065466276/iad_53007642185677955431101412_kellylogo_ny_356.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="15.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Kristiansand S</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Logistikk og lager"/>
+                    <finn:field name="specialization" value="Lagermedarbeider"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Transport og logistikk</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695869</id>
+        <title>Søker dyktige malere</title>
+        <updated>2017-03-01T13:13:00.000Z</updated>
+        <published>2017-03-01T13:14:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91695869</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="3"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695869" rel="self"/>
+        <link href="https://www.finn.no/91695869" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">61.2299 7.1005</georss:point>
+        <finn:location>
+            <finn:city>Sogndal</finn:city>
+        </finn:location>
+        <author>
+            <name>Randstad Bergen AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/-4500</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/-4500/iad_2080707712771883637print-randstad_logo_stacked_color.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Maler"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Randstad Bergen AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/-4500/iad_2080707712771883637print-randstad_logo_stacked_color.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="snarest"/>
+            <finn:field name="no_of_positions" value="5"/>
+            <finn:field name="workplaces">
+                <finn:value>Sogndal</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Håndverker"/>
+                    <finn:field name="specialization" value="Maler/Tapeserer"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bygg og anlegg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696646</id>
+        <title>Nye utfordringer?</title>
+        <updated>2017-03-01T13:11:00.000Z</updated>
+        <published>2017-03-01T13:12:00.000Z</published>
+        <age:expires>2017-03-31T21:59:00.000Z</age:expires>
+        <dc:identifier>91696646</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="4"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696646" rel="self"/>
+        <link href="https://www.finn.no/91696646" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.74296 10.21361</georss:point>
+        <finn:location>
+            <finn:city>Drammen</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/6/916/966/46_-390074268.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Match Bemanning AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1369675731</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1369675731/medium_marchbemanningas_3843080638106239495.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Bas Elektro"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Match Bemanning AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1369675731/medium_marchbemanningas_3843080638106239495.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="0104.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Drammen</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Håndverker"/>
+                    <finn:field name="specialization" value="Elektriker"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bygg og anlegg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696627</id>
+        <title>Dyktig sveiser søkes i Ringsaker.</title>
+        <updated>2017-03-01T13:11:00.000Z</updated>
+        <published>2017-03-01T13:11:00.000Z</published>
+        <age:expires>2017-03-31T21:59:00.000Z</age:expires>
+        <dc:identifier>91696627</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="5"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696627" rel="self"/>
+        <link href="https://www.finn.no/91696627" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">60.7953 11.07259</georss:point>
+        <finn:location>
+            <finn:city>Hamar</finn:city>
+        </finn:location>
+        <author>
+            <name>Adecco Bygg og Industri</name>
+            <uri>https://cache.api.finn.no/iad/organization/53879592</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/53879592/iad_3874984669013775828adecco_logo_ny.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Dyktig sveiser søkes i Ringsaker."/>
+            <finn:field name="company">
+                <finn:field name="name" value="Adecco"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/53879592/iad_3874984669013775828adecco_logo_ny.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="31.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Hamar</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Produksjon, Produksjon"/>
+                    <finn:field name="specialization" value="Produksjon, Produksjon"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Drift og vedlikeholdstjenester</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696629</id>
+        <title>Supply Chain Manager Norlux As</title>
+        <updated>2017-03-01T13:16:00.000Z</updated>
+        <published>2017-03-01T13:11:00.000Z</published>
+        <age:expires>2017-03-20T22:59:00.000Z</age:expires>
+        <dc:identifier>91696629</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="6"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696629" rel="self"/>
+        <link href="https://www.finn.no/91696629" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.2233 10.2984</georss:point>
+        <finn:location>
+            <finn:city>Stokke</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/9/916/966/29_-2003955869.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Adecco</name>
+            <uri>https://cache.api.finn.no/iad/organization/1135577397</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1135577397/iad_5916228901786764684adecco_logo_ny.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Supply Chain Manager"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Norlux As"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1135577397/iad_5916228901786764684adecco_logo_ny.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="20.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Stokke</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Logistikk og lager"/>
+                    <finn:field name="specialization" value="Logistikk og lager"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Transport og logistikk</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696507</id>
+        <title>Vil du jobbe som Key Account Manager i Skandinavias ledende selskap for talegjenkjenning?</title>
+        <updated>2017-03-01T13:09:00.000Z</updated>
+        <published>2017-03-01T13:10:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91696507</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="7"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696507" rel="self"/>
+        <link href="https://www.finn.no/91696507" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.95187 10.76728</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/7/916/965/07_953873497.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Capus AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1627379952</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1627379952/iad_6920298972400719754image002.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Key Account Manager"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Max Manus AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1627379952/iad_6920298972400719754image002.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="14. mars"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Salg, IT utvikling, Salgsledelse"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>IT - maskinvare, IT, IT - programvare</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696424</id>
+        <title>Godt betalt salgsjobb i internasjonalt selskap -Bergen</title>
+        <updated>2017-03-01T13:09:00.000Z</updated>
+        <published>2017-03-01T13:10:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91696424</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="8"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696424" rel="self"/>
+        <link href="https://www.finn.no/91696424" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">60.3967 5.31201</georss:point>
+        <finn:location>
+            <finn:city>Bergen</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/logo/2017/3/1/4/916/964/24_-1147801221.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>eRecruit</name>
+            <uri>https://cache.api.finn.no/iad/organization/1646570325</uri>
+            <media:content url="https://images.finncdn.no/mmo//logo/2017/3/1/4/916/964/24_-1147801221.png"
+                           type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Security Expert"/>
+            <finn:field name="company">
+                <finn:field name="name" value="eRecruit"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//logo/2017/3/1/4/916/964/24_-1147801221.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="27.03.2017"/>
+            <finn:field name="no_of_positions" value="5"/>
+            <finn:field name="workplaces">
+                <finn:value>Bergen</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Salg, Salg, Salg"/>
+                    <finn:field name="specialization" value="Salg, Stands- og dørsalg, Produktsalg"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Politi og sikkerhet, Markedsføring og annonsering</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696546</id>
+        <title>SERVICEMEDARBEIDERE - RENHOLD</title>
+        <updated>2017-03-01T13:10:00.000Z</updated>
+        <published>2017-03-01T13:10:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91696546</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="9"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696546" rel="self"/>
+        <link href="https://www.finn.no/91696546" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">63.4681 10.9234</georss:point>
+        <finn:location>
+            <finn:city>Stjørdal</finn:city>
+        </finn:location>
+        <author>
+            <name>Personalhuset Staffing Group</name>
+            <uri>https://cache.api.finn.no/iad/organization/1117069714</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1117069714/iad_3683987384689373882personalhuset-staffing-group.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Servicemedarbeider"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Personalhuset Staffing Group AS, Trondheim"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1117069714/iad_3683987384689373882personalhuset-staffing-group.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="Løpende vurdering av søkere"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Stjørdal</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Renhold, Renhold"/>
+                    <finn:field name="specialization" value="Renhold, Renhold"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Renovasjon og renhold</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696447</id>
+        <title>MAXBO Hønefoss dyktige og resultatorienterte ekstrahjelper</title>
+        <updated>2017-03-01T13:08:00.000Z</updated>
+        <published>2017-03-01T13:09:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91696447</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="10"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696447" rel="self"/>
+        <link href="https://www.finn.no/91696447" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">60.1483 10.25589</georss:point>
+        <finn:location>
+            <finn:city>Hønefoss</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/7/916/964/47_-1676363021.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Maxbo</name>
+            <uri>https://cache.api.finn.no/iad/organization/907335915</uri>
+            <media:content url="https://images.finncdn.no/mmo//2017/3/1/7/916/964/47_-1676363021.png" type="image/png"
+                           medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="company">
+                <finn:field name="name" value="Løvenskiold"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/1/7/916/964/47_-1676363021.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="22.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Hønefoss</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Butikkansatt, Salg"/>
+                    <finn:field name="specialization" value="Butikkansatt, Produktsalg"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Butikk og varehandel</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696491</id>
+        <title>Leder digitalt forsikringssalg</title>
+        <updated>2017-03-01T13:09:00.000Z</updated>
+        <published>2017-03-01T13:09:00.000Z</published>
+        <age:expires>2017-03-20T22:59:00.000Z</age:expires>
+        <dc:identifier>91696491</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="11"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696491" rel="self"/>
+        <link href="https://www.finn.no/91696491" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.91479 10.75183</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/1/916/964/91_380966399.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>SpareBank 1 Forsikring AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1094062444</uri>
+            <media:content url="https://images.finncdn.no/mmo//2017/3/1/1/916/964/91_380966399.png" type="image/png"
+                           medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Leder digitalt forsikringssalg"/>
+            <finn:field name="company">
+                <finn:field name="name" value="SpareBank 1 Alliansen"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/1/1/916/964/91_380966399.png</finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="19.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Ledelse, Salgsledelse, Salg"/>
+                    <finn:field name="specialization" value="Ledelse, Salgsledelse, Salg"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bank, finans og forsikring</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91696349</id>
+        <title>Lærling i kontor- og administrasjonsfaget ved LOs distriktskontor i Nord-Trøndelag</title>
+        <updated>2017-03-01T13:06:00.000Z</updated>
+        <published>2017-03-01T13:07:00.000Z</published>
+        <age:expires>2017-03-23T22:59:00.000Z</age:expires>
+        <dc:identifier>91696349</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="12"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91696349" rel="self"/>
+        <link href="https://www.finn.no/91696349" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="8">64.01982 11.49213</georss:point>
+        <finn:location>
+            <finn:city>Steinkjer</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/9/916/963/49_-668206603.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Landsorganisasjonen i Norge</name>
+            <uri>https://cache.api.finn.no/iad/organization/1208631905</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1208631905/iad_38123786059818935symbol_web.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Lærling"/>
+            <finn:field name="company">
+                <finn:field name="name" value="LO - Distriktskontor Nord-Trøndelag"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1208631905/iad_38123786059818935symbol_web.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="22.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Steinkjer</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Annet"/>
+                    <finn:field name="specialization" value="Annet"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Arbeidstaker- og arbeidsgiverorganisasjoner</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91692298</id>
+        <title>Erfaring med saksbehandling?</title>
+        <updated>2017-03-01T13:07:00.000Z</updated>
+        <published>2017-03-01T13:07:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91692298</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="13"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91692298" rel="self"/>
+        <link href="https://www.finn.no/91692298" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.91671 10.79882</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/logo/2017/3/1/8/916/922/98_-828046063.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Ditt Tiltak AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1856011285</uri>
+            <media:content url="https://images.finncdn.no/mmo//logo/2017/3/1/8/916/922/98_-828046063.png"
+                           type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Saksbehandler"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Ditt Tiltak"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//logo/2017/3/1/8/916/922/98_-828046063.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="Snarest"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general">Barnevernspedagog, Omsorg og sosialt arbeid, Sosionom</finn:field>
+                    <finn:field name="specialization">Barnevernspedagog, Omsorg og sosialt arbeid, Sosionom</finn:field>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg, Konsulent og rådgivning, Offentlig administrasjon</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695025</id>
+        <title>Pedagogisk leder 100% fast og vikariat</title>
+        <updated>2017-03-01T13:07:00.000Z</updated>
+        <published>2017-03-01T13:04:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91695025</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="14"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695025" rel="self"/>
+        <link href="https://www.finn.no/91695025" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">58.18848 7.9254</georss:point>
+        <finn:location>
+            <finn:city>Kristiansand S</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/5/916/950/25_-594784509.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Fædrelandsvennen</name>
+            <uri>https://cache.api.finn.no/iad/organization/45</uri>
+            <media:content url="https://images.finncdn.no/mmo//2017/3/1/5/916/950/25_-594784509.png" type="image/png"
+                           medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="2 Pedagogisk ledere 100% fast og vikariat"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Strai Barnehage"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/1/5/916/950/25_-594784509.png</finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="16.03.2017"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Kristiansand S</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Barnehage"/>
+                    <finn:field name="specialization" value="Pedagogisk leder"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Barn, skole og undervisning</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695237</id>
+        <title>Havfisk søker etter Mannskapssjef</title>
+        <updated>2017-03-01T13:10:00.000Z</updated>
+        <published>2017-03-01T13:00:00.000Z</published>
+        <age:expires>2017-04-12T12:00:00.000Z</age:expires>
+        <dc:identifier>91695237</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="true"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Lederjobb" term="job-management"/>
+        <category scheme="urn:finn:search:list:index" term="15"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-management/91695237" rel="self"/>
+        <link href="https://www.finn.no/91695237" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">62.47155 6.1559</georss:point>
+        <finn:location>
+            <finn:city>Ålesund</finn:city>
+        </finn:location>
+        <media:content height="342" medium="image" width="1600"
+                       url="https://images.finncdn.no/mmo/2017/3/vertical-1/01/7/916/952/37_2044531327.png"
+                       type="image/jpeg"/>
+        <author>
+            <name>Privat</name>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-management">
+            <finn:field name="job_title" value="Mannskapssjef"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Havfisk AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo//2017/3/vertical-1/01/7/916/952/37_2044531327.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="2017-03-15"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Ålesund</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Annet"/>
+                    <finn:field name="specialization" value="Annet"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Fiskeri og oppdrett</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:69999530</id>
+        <title>Yrkesdykker</title>
+        <updated>2017-03-01T12:59:00.000Z</updated>
+        <published>2017-03-01T12:59:00.000Z</published>
+        <age:expires>2017-04-12T11:59:00.000Z</age:expires>
+        <dc:identifier>69999530</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="true"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="16"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/69999530" rel="self"/>
+        <link href="https://www.finn.no/69999530" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.20536 9.60652</georss:point>
+        <finn:location>
+            <finn:city>Skien</finn:city>
+        </finn:location>
+        <media:content height="89" medium="image" width="204"
+                       url="https://images.finncdn.no/mmo/2016/1/vertical-1/20/0/699/995/30_1689721384.png"
+                       type="image/jpeg"/>
+        <author>
+            <name>Privat</name>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Yrkesdykker"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Ancistrus AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo//2016/1/vertical-1/20/0/699/995/30_1689721384.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Skien</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Annet"/>
+                    <finn:field name="specialization" value="Annet"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Drift og vedlikeholdstjenester</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695492</id>
+        <title>Demonstrasjonsmedarbeider i Trondheim</title>
+        <updated>2017-03-01T12:57:00.000Z</updated>
+        <published>2017-03-01T12:58:00.000Z</published>
+        <age:expires>2017-04-07T21:59:00.000Z</age:expires>
+        <dc:identifier>91695492</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Deltidsstilling" term="job-part-time"/>
+        <category scheme="urn:finn:search:list:index" term="17"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-part-time/91695492" rel="self"/>
+        <link href="https://www.finn.no/91695492" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">63.43098 10.41098</georss:point>
+        <finn:location>
+            <finn:city>Trondheim</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/logo/2017/3/1/2/916/954/92_-1353512021.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Mersalg Demonstrasjonstjenester AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1609975710</uri>
+            <media:content url="https://images.finncdn.no/mmo//logo/2017/3/1/2/916/954/92_-1353512021.png"
+                           type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-part-time">
+            <finn:field name="job_title" value="Demonstrasjonsmedarbeider i Trondheim"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Mersalg Demonstrasjonstjenester AS"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//logo/2017/3/1/2/916/954/92_-1353512021.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="07.04.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Trondheim</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Salg"/>
+                    <finn:field name="specialization" value="Produktsalg"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Butikk og varehandel</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695576</id>
+        <title>Tankbilsjåfører.</title>
+        <updated>2017-03-01T12:54:00.000Z</updated>
+        <published>2017-03-01T12:55:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91695576</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="18"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695576" rel="self"/>
+        <link href="https://www.finn.no/91695576" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">67.2974 14.40941</georss:point>
+        <finn:location>
+            <finn:city>Bodø</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/logo/2017/3/1/6/916/955/76_1243162699.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Hoyer Norway AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1966323043</uri>
+            <media:content url="https://images.finncdn.no/mmo//logo/2017/3/1/6/916/955/76_1243162699.png"
+                           type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Sjåfør"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Hoyer Norway AS"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//logo/2017/3/1/6/916/955/76_1243162699.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="20.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Bodø</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Transport og sjåfør"/>
+                    <finn:field name="specialization" value="Transport og sjåfør"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Transport og logistikk</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695556</id>
+        <title>Avdelingsleder psykisk helse</title>
+        <updated>2017-03-01T12:53:00.000Z</updated>
+        <published>2017-03-01T12:53:00.000Z</published>
+        <age:expires>2017-03-25T22:59:00.000Z</age:expires>
+        <dc:identifier>91695556</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Lederjobb" term="job-management"/>
+        <category scheme="urn:finn:search:list:index" term="19"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-management/91695556" rel="self"/>
+        <link href="https://www.finn.no/91695556" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.75103 10.02739</georss:point>
+        <finn:location>
+            <finn:city>Mjøndalen</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/6/916/955/56_-42270693.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Nedre Eiker kommune</name>
+            <uri>https://cache.api.finn.no/iad/organization/375787281</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/375787281/nek-logo_riktig_gul_copy_4024223314138990724.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-management">
+            <finn:field name="job_title" value="Avdelingsleder psykisk helse"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Nedre Eiker kommune - Helsetjenester"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/375787281/nek-logo_riktig_gul_copy_4024223314138990724.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="24.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Mjøndalen</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Helsepersonell"/>
+                    <finn:field name="specialization" value="Helsepersonell"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695029</id>
+        <title>Leder for Serviceteamet</title>
+        <updated>2017-03-01T12:53:00.000Z</updated>
+        <published>2017-03-01T12:53:00.000Z</published>
+        <age:expires>2017-04-12T11:53:00.000Z</age:expires>
+        <dc:identifier>91695029</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="true"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Lederjobb" term="job-management"/>
+        <category scheme="urn:finn:search:list:index" term="20"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-management/91695029" rel="self"/>
+        <link href="https://www.finn.no/91695029" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">60.26898 6.01065</georss:point>
+        <finn:location>
+            <finn:city>Strandebarm</finn:city>
+        </finn:location>
+        <media:content height="870" medium="image" width="1289"
+                       url="https://images.finncdn.no/mmo/2017/3/vertical-1/01/9/916/950/29_365956736.png"
+                       type="image/jpeg"/>
+        <author>
+            <name>Privat</name>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-management">
+            <finn:field name="job_title" value="Leder for Serviceteamet"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Lingalaks AS"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/vertical-1/01/9/916/950/29_365956736.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="2017-03-15"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Strandebarm</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Teknisk service, Teknisk personell, Ledelse"/>
+                    <finn:field name="specialization" value="Teknisk service, Teknisk personell, Ledelse"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Fiskeri og oppdrett</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695508</id>
+        <title>Seniorkonsulent: Utvikler, Team Lead, Test Manager</title>
+        <updated>2017-03-01T12:52:00.000Z</updated>
+        <published>2017-03-01T12:52:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91695508</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="21"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695508" rel="self"/>
+        <link href="https://www.finn.no/91695508" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.9119 10.75691</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/8/916/955/08_306250723.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Access Professionals</name>
+            <uri>https://cache.api.finn.no/iad/organization/328900017</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/328900017/iad_204432017387704080access_professional_icon-1_web___2_.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Seniorkonsulent IT"/>
+            <finn:field name="company">
+                <finn:field name="name" value="ROMERIKE IT CONSULTING AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/328900017/iad_204432017387704080access_professional_icon-1_web___2_.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="09.04.2017"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="IT utvikling, IT utvikling, IT utvikling"/>
+                    <finn:field name="specialization" value="Systemarkitekt, Front-end, QA/Testing"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Konsulent og rådgivning, IT, IT - programvare</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695463</id>
+        <title>Helsesekretær / medisinsk sekretær</title>
+        <updated>2017-03-01T12:51:00.000Z</updated>
+        <published>2017-03-01T12:51:00.000Z</published>
+        <age:expires>2017-03-18T22:59:00.000Z</age:expires>
+        <dc:identifier>91695463</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="22"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695463" rel="self"/>
+        <link href="https://www.finn.no/91695463" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.9329 10.9964</georss:point>
+        <finn:location>
+            <finn:city>Lørenskog</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/3/916/954/63_-1314648013.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Akershus Universitetssykehus HF</name>
+            <uri>https://cache.api.finn.no/iad/organization/1035363383</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1035363383/iad_3114434523749424445ny_logo_april_2016.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Helsesekretær / medisinsk sekretær"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Akershus universitetssykehus HF - Gastro Merkantil"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1035363383/iad_3114434523749424445ny_logo_april_2016.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="17.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Lørenskog</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Helsepersonell"/>
+                    <finn:field name="specialization" value="Helsesekretær"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694444</id>
+        <title>Offensiv og kundeorientert Bruktbilselger</title>
+        <updated>2017-03-01T12:51:00.000Z</updated>
+        <published>2017-03-01T12:51:00.000Z</published>
+        <age:expires>2017-03-22T22:59:00.000Z</age:expires>
+        <dc:identifier>91694444</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="23"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91694444" rel="self"/>
+        <link href="https://www.finn.no/91694444" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">63.36577 10.37576</georss:point>
+        <finn:location>
+            <finn:city>Tiller</finn:city>
+        </finn:location>
+        <author>
+            <name>Sulland Trondheim AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/631056750</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/631056750/iad_7832842921503761682sulland_logo_2013_medium.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Bruktbilselger"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Sulland Trondheim"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/631056750/iad_7832842921503761682sulland_logo_2013_medium.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="22.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Tiller</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Salg"/>
+                    <finn:field name="specialization" value="Produktsalg"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bil, kjøretøy og verksted</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91695475</id>
+        <title>Søker sykepleiere til flere ulike sommervikariater</title>
+        <updated>2017-03-01T12:51:00.000Z</updated>
+        <published>2017-03-01T12:51:00.000Z</published>
+        <age:expires>2017-04-07T21:59:00.000Z</age:expires>
+        <dc:identifier>91695475</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="24"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91695475" rel="self"/>
+        <link href="https://www.finn.no/91695475" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.9108 10.73261</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <author>
+            <name>Adecco Helse AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1193413708</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1193413708/iad_4755828002713554046adecco_logo_ny.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Sykepleier"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Adecco Helse"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1193413708/iad_4755828002713554046adecco_logo_ny.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="07.04.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Sykepleier, Sykepleier"/>
+                    <finn:field name="specialization" value="Sykepleier, Sykepleier"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91691274</id>
+        <title>Kongsberg bibliotek søker fagleder på barneavdelingen</title>
+        <updated>2017-03-01T12:48:00.000Z</updated>
+        <published>2017-03-01T12:48:00.000Z</published>
+        <age:expires>2017-03-12T22:59:00.000Z</age:expires>
+        <dc:identifier>91691274</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="25"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91691274" rel="self"/>
+        <link href="https://www.finn.no/91691274" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.6649 9.64506</georss:point>
+        <finn:location>
+            <finn:city>Kongsberg</finn:city>
+        </finn:location>
+        <author>
+            <name>Kongsberg Kommune</name>
+            <uri>https://cache.api.finn.no/iad/organization/829215404</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/829215404/iad_4612832443893417928a4s_logo_kk.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Fagleder bibliotek"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Kongsberg kommune"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/829215404/iad_4612832443893417928a4s_logo_kk.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="12.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Kongsberg</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Arkivar og bibliotekar, Ledelse"/>
+                    <finn:field name="specialization" value="Arkivar og bibliotekar, Ledelse"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Arkiv og bibliotek</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694224</id>
+        <title>God erfaring fra byggebransjen?</title>
+        <updated>2017-03-01T12:48:00.000Z</updated>
+        <published>2017-03-01T12:48:00.000Z</published>
+        <age:expires>2017-03-20T22:59:00.000Z</age:expires>
+        <dc:identifier>91694224</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="26"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91694224" rel="self"/>
+        <link href="https://www.finn.no/91694224" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.7601 9.9549</georss:point>
+        <finn:location>
+            <finn:city>Steinberg</finn:city>
+        </finn:location>
+        <author>
+            <name>Ingeniør Compagniet AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/348937822</uri>
+            <media:content url="https://images.finncdn.no/mmo/logo/result/348937822/iad_7221360806756407754image002.png"
+                           type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Prosjektleder -Bygg"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Ingeniør Compagniet"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/348937822/iad_7221360806756407754image002.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="20.03.2017"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Steinberg</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Ingeniør, Prosjektledelse"/>
+                    <finn:field name="specialization" value="Bygge- og anleggsteknikk, Prosjektledelse"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Bygg og anlegg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694940</id>
+        <title>Vi søker Tankbilsjåfør til vår avdeling Isachsen Energi</title>
+        <updated>2017-03-01T12:42:00.000Z</updated>
+        <published>2017-03-01T12:42:00.000Z</published>
+        <age:expires>2017-04-11T21:59:00.000Z</age:expires>
+        <dc:identifier>91694940</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="27"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91694940" rel="self"/>
+        <link href="https://www.finn.no/91694940" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">59.75578 10.0855</georss:point>
+        <finn:location>
+            <finn:city>Solbergelva</finn:city>
+        </finn:location>
+        <author>
+            <name>Isachsen Anlegg</name>
+            <uri>https://cache.api.finn.no/iad/organization/1391554615</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/1391554615/iad_7646916855436353465isachsen_logo_utgavea_bruk__2_.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Tanbilsjåfør"/>
+            <finn:field name="company">
+                <finn:field name="name" value="ISACHSEN GRUPPEN AS"/>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/1391554615/iad_7646916855436353465isachsen_logo_utgavea_bruk__2_.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="Snarest"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Solbergelva</finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Transport og logistikk</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694733</id>
+        <title>Seniorrådgiver</title>
+        <updated>2017-03-01T12:41:00.000Z</updated>
+        <published>2017-03-01T12:42:00.000Z</published>
+        <age:expires>2017-03-19T22:59:00.000Z</age:expires>
+        <dc:identifier>91694733</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="28"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91694733" rel="self"/>
+        <link href="https://www.finn.no/91694733" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">60.39333 5.32389</georss:point>
+        <finn:location>
+            <finn:city>Bergen</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/3/916/947/33_-1836650298.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Norsk Sykepleierforbund Avd Hovedkontor</name>
+            <uri>https://cache.api.finn.no/iad/organization/2010475917</uri>
+            <media:content url="https://images.finncdn.no/mmo//2017/3/1/3/916/947/33_-1836650298.png" type="image/png"
+                           medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="Seniorrådgiver"/>
+            <finn:field name="company">
+                <finn:field name="name" value="Norsk Sykepleierforbund"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/1/3/916/947/33_-1836650298.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="19.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Bergen</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Rådgivning"/>
+                    <finn:field name="specialization" value="Rådgivning"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg, Organisasjoner</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694832</id>
+        <title>Assistent til kvinne med MS søkes</title>
+        <updated>2017-03-01T12:40:00.000Z</updated>
+        <published>2017-03-01T12:40:00.000Z</published>
+        <age:expires>2017-04-12T21:59:00.000Z</age:expires>
+        <dc:identifier>91694832</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Deltidsstilling" term="job-part-time"/>
+        <category scheme="urn:finn:search:list:index" term="29"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-part-time/91694832" rel="self"/>
+        <link href="https://www.finn.no/91694832" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="5">59.913 10.74171</georss:point>
+        <finn:location>
+            <finn:city>Oslo</finn:city>
+        </finn:location>
+        <media:content url="https://images.finncdn.no/mmo/2017/3/1/2/916/948/32_1325072111.png" type="image/jpeg"
+                       medium="image"/>
+        <author>
+            <name>Assistermeg AS</name>
+            <uri>https://cache.api.finn.no/iad/organization/1929993023</uri>
+            <media:content url="https://images.finncdn.no/mmo//2017/3/1/2/916/948/32_1325072111.png" type="image/png"
+                           medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-part-time">
+            <finn:field name="job_title" value="Personlig assistent"/>
+            <finn:field name="company">
+                <finn:field name="name" value="AssisterMeg AS Oslo"/>
+                <finn:field name="logo">https://images.finncdn.no/mmo//2017/3/1/2/916/948/32_1325072111.png</finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="10.04.2017"/>
+            <finn:field name="no_of_positions" value="2"/>
+            <finn:field name="workplaces">
+                <finn:value>Oslo</finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+    <entry>
+        <id>urn:id:91694602</id>
+        <title>100% fast stilling som psykologspesialist</title>
+        <updated>2017-03-01T12:37:00.000Z</updated>
+        <published>2017-03-01T12:37:00.000Z</published>
+        <age:expires>2017-03-22T22:59:00.000Z</age:expires>
+        <dc:identifier>91694602</dc:identifier>
+        <category scheme="urn:finn:ad:private" term="false"/>
+        <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+        <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+        <category scheme="urn:finn:search:list:index" term="30"/>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/91694602" rel="self"/>
+        <link href="https://www.finn.no/91694602" rel="alternate" type="text/html"/>
+        <georss:point finn:accuracy="9">58.95224 5.73249</georss:point>
+        <finn:location>
+            <finn:city>Stavanger</finn:city>
+        </finn:location>
+        <author>
+            <name>Helse Stavanger HF SUS STAVANGER</name>
+            <uri>https://cache.api.finn.no/iad/organization/265087467</uri>
+            <media:content
+                    url="https://images.finncdn.no/mmo/logo/result/265087467/iad_586723131589323030logo_helse_stavanger_norsk_positiv_windows.png"
+                    type="image/png" medium="image">
+                <media:category scheme="urn:finn:logo:type">LIST</media:category>
+            </media:content>
+        </author>
+        <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+            <finn:field name="job_title" value="100% fast stilling som psykologspesialist"/>
+            <finn:field name="company">
+                <finn:field name="name">Helse Stavanger HF - Seksjon akutt og intensiv psykiatri, Akutt sengepost C1
+                </finn:field>
+                <finn:field name="logo">
+                    https://images.finncdn.no/mmo/logo/result/265087467/iad_586723131589323030logo_helse_stavanger_norsk_positiv_windows.png
+                </finn:field>
+            </finn:field>
+            <finn:field name="application_deadline" value="21.03.2017"/>
+            <finn:field name="no_of_positions" value="1"/>
+            <finn:field name="workplaces">
+                <finn:value>Stavanger</finn:value>
+            </finn:field>
+            <finn:field name="occupations">
+                <finn:value>
+                    <finn:field name="general" value="Helsepersonell"/>
+                    <finn:field name="specialization" value="Psykolog"/>
+                </finn:value>
+            </finn:field>
+            <finn:field name="industry">
+                <finn:value>Helse og omsorg</finn:value>
+            </finn:field>
+        </finn:adata>
+    </entry>
+</feed>

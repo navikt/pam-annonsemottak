@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<entry
+        xmlns="http://www.w3.org/2005/Atom"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/"
+        xmlns:f="http://xmlns.finn.no/opensearch/1.0"
+        xmlns:os="http://a9.com/-/spec/opensearch/1.1/"
+        xmlns:age="http://purl.org/atompub/age/1.0"
+        xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0"
+        xmlns:media="http://search.yahoo.com/mrss/"
+        xmlns:app="http://www.w3.org/2007/app"
+        xmlns:georss="http://www.georss.org/georss">
+    <id>urn:id:105360823</id>
+    <title>Regnskapsmedarbeider</title>
+    <updated>2017-10-02T10:28:00.000Z</updated>
+    <published>2017-09-29T12:59:00.000Z</published>
+    <dc:dateSubmitted>2017-09-29T12:59:00.000Z</dc:dateSubmitted>
+    <age:expires>2017-11-10T22:59:00.000Z</age:expires>
+    <app:edited>2017-10-02T10:28:00.000Z</app:edited>
+    <dc:identifier>105360823</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:type" label="Fulltidsjobb" term="job-full-time"/>
+    <category scheme="urn:finn:ad:status" label="Aktiv" term="activated"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/105360823" rel="self"/>
+    <link href="https://www.finn.no/105360823" rel="alternate"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/105360823/statistics"
+          rel="http://api.finn.no/relations/statistics"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/105360823/tipafriend" rel="urn:finn:ad:tipafriend"/>
+    <link href="https://www.randstad.no/JobPageRedirect.ashx?Reference=201086225&amp;Jobsite=Finn&amp;Brand=RandstadNO"
+          rel="http://api.finn.no/relations/apply">
+        <finn:category scheme="urn:finn:category:link" term="DESKTOP"/>
+    </link>
+    <georss:point finn:accuracy="9">60.468135833740234 5.335062503814697</georss:point>
+    <finn:location>
+        <finn:address>Litleåsvegen 41</finn:address>
+        <finn:postal-code>5132</finn:postal-code>
+        <finn:city>Nyborg</finn:city>
+        <finn:country>Norge</finn:country>
+        <media:content
+                url="https://maptiles.finncdn.no/staticmap?lat=60.468136&amp;lng=5.3350625&amp;zoom=14&amp;size=400x300&amp;maptype=norwayVector&amp;showPin=true"
+                type="image/png" medium="image"/>
+        <link href="https://kart.finn.no/?finnkode=105360823&amp;lat=60.468136&amp;lng=5.3350625&amp;mapType=finnvector&amp;showPin=1&amp;bl=1"
+              rel="urn:finn:map:type:finnvector"/>
+        <link href="https://kart.finn.no/?finnkode=105360823&amp;lat=60.468136&amp;lng=5.3350625&amp;mapType=finnhybrid&amp;showPin=1&amp;bl=1"
+              rel="urn:finn:map:type:finnhybrid"/>
+        <link href="https://kart.finn.no/?finnkode=105360823&amp;lat=60.468136&amp;lng=5.3350625&amp;mapType=norortho&amp;showPin=1&amp;bl=1"
+              rel="urn:finn:map:type:norortho"/>
+    </finn:location>
+    <media:content url="https://images.finncdn.no/dynamic/default/2017/10/2/3/105/360/823_1965618946.png"
+                   type="image/png" medium="image">
+        <media:category scheme="urn:finn:attachments">LOGO</media:category>
+    </media:content>
+    <media:content url="http://logo.proffice.com/images/Fett_%c3%98konomi_AS.png" type="image/png" medium="image">
+        <media:category scheme="urn:finn:attachments">LOGO</media:category>
+    </media:content>
+    <author>
+        <name>Randstad AS for kunde</name>
+        <uri>https://cache.api.finn.no/iad/organization/475853253</uri>
+        <dc:identifier>475853253</dc:identifier>
+        <link href="https://cache.api.finn.no/iad/organization/475853253/profileinfo" rel="urn:finn:org:profile"/>
+        <link href="https://cache.api.finn.no/iad/organization/475853253/subscription" rel="subscription"/>
+        <finn:externalref>PDUtenlogo</finn:externalref>
+    </author>
+    <finn:contact role="organisation" title="Senior Consultant">
+        <name>Yngvild Hjetland</name>
+        <email>yngvild.hjetland@randstad.no</email>
+        <finn:phone-number type="work">+47 938 55 766</finn:phone-number>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/105360823/contact?index=147bcf3fe3c10443af8bcfa966ce3103"
+              rel="http://api.finn.no/relations/contact"/>
+    </finn:contact>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+        <finn:field name="advertiser_reference" value="201086225"/>
+        <finn:field name="application_deadline" value="snarest"/>
+        <finn:field name="application_label" value="201086225"/>
+        <finn:field name="company">
+            <finn:field name="name">Fett Økonomi AS</finn:field>
+            <finn:field name="ingress">Fett Økonomi AS er et lite regnskapskontor med få, men kloke og kjappe hoder.
+                &lt;br/>&lt;br/>Vi leverer:&lt;br/>&lt;br/>LØNNSOMHET&lt;br/>Det er mer lønnsomt at du bruker tiden din
+                på det du kan best, uten å måtte slite med regnskap og tidsfrister. Det kan du overlate til oss.&lt;br/>&lt;br/>GODE
+                ØKONOMISKE STYRINGSVERKTØY.&lt;br/>Dette gjør vi ved å kombinere Kompetanse, Kvalitet og Kommunikasjon.&lt;br/>&lt;br/>KUNDETILFREDSHET.&lt;br/>Hver
+                og en av våre kunder er aller mest viktig for oss, noe vi viser gjennom fleksibilitet, engasjement og
+                interesse for kundenes virksomhet og utvikling.&lt;br/>&lt;br/>TILLIT.&lt;br/>Vår kunder skal sove godt
+                om natten, i trygg forvisning om at de har den trygghet de trenger for at regnskaps- og
+                økonomifunksjonen deres er godt ivaretatt.
+            </finn:field>
+            <finn:field name="logo">http://logo.proffice.com/images/Fett_%c3%98konomi_AS.png</finn:field>
+        </finn:field>
+        <finn:field name="duration" value="Vikariat"/>
+        <finn:field name="external_ad_id" value="201086225"/>
+        <finn:field name="general_text">
+            <finn:value>
+                <finn:field name="value">&lt;p>For vår oppdragsgiver Fett Økonomi søker vi regnskapsfører til langvarig
+                    engasjement. &lt;/p>&lt;p>Fett Økonomi har 3 ansatte og holder til i Litleåsvegen på Nyborg i Åsane.
+                    En av medarbeiderne skal snart ut i barselpermisjon, og i den forbindelse er vi nå på jakt etter en
+                    dyktig erstatter for henne. &lt;/p>&lt;p>I Fett Økonomi vil du bli del av et arbeidsmiljø med gode
+                    og kompetente kollegaer. Fett Økonomi utfører bistand innen regnskapsfaglige kjernetjenester, i
+                    tillegg til å drive med rådgivningstjenester og utleie av egne medarbeidere til kundens
+                    økonomi/regnskapsavdeling.&lt;/p>&lt;p>&lt;b>Ønskede kvalifikasjoner: &lt;/b>&lt;/p>&lt;p>Vi søker
+                    en kjapp og effektiv regnskapsfører. Arbeidsoppgaver vil bl.a være punching, avstemming,
+                    rapportering (både til kunde og til det offentlige), lønnsbehandling, fakturering og løpende kontakt
+                    med kunder. &lt;/p>&lt;p>Vi er på jakt etter deg som er selvstendig, uredd og har bein i nesa. Du er
+                    samtidig en person som kan være ydmyk og forståelsesfull, og du har et positivt vesen. Du er en
+                    smilende bidragsyter til et godt arbeidsmiljø, og er en person som får tingene gjort. &lt;/p>&lt;p>Vi
+                    verdsetter kandidater som er &lt;b>selvgående og strukturerte&lt;/b>, som har &lt;b>høy
+                    arbeidskapasitet &lt;/b>og &lt;b>god arbeidsmoral&lt;/b>. &lt;/p>&lt;p>&lt;b>Det er også ønskelig at
+                    du har:&lt;/b>&lt;br />&lt;br />Utdannelse innen regnskap eller økonomi &lt;br />&lt;b>Minimum 2 års
+                    erfaring med regnskapsføring&lt;/b>, fra regnskapsbyrå eller fra bedrift &lt;br />God tallforståelse
+                    og gode analytiske evner &lt;br />Gode kommunikative evner på norsk og at du behersker norsk som
+                    arbeidsspråk, både skriftlig og muntlig &lt;br />Kjennskap til &lt;b>Microsoft Dynamics Navision
+                    &lt;/b>er en fordel. Du er effektiv og kjapp på tastaturet, og benytter hurtigtaster og
+                    tidsbesparende funksjoner i systemene vi bruker. &lt;/p>&lt;p>Dette er en 80-100% stilling med
+                    oppstart etter avtale.Vi anbefaler både autoriserte og ikke-autoriserte å søke. &lt;/p>&lt;p>Alle
+                    henvendelser til stillingen bes rettes til Yngvild Hjetland hos Randstad på telefon 93855766. Vi
+                    behandler søknader fortløpende. &lt;/p>
+                </finn:field>
+            </finn:value>
+        </finn:field>
+        <finn:field name="industry">
+            <finn:value>Økonomi og regnskap</finn:value>
+        </finn:field>
+        <finn:field name="job_title">Regnskapsmedarbeider</finn:field>
+        <finn:field name="keywords">
+            <finn:value>regnskapsmedarbeider</finn:value>
+            <finn:value>regnskap a-å</finn:value>
+            <finn:value>regnskapskonsulent</finn:value>
+        </finn:field>
+        <finn:field name="occupations">
+            <finn:value>
+                <finn:field name="general">Økonomi og regnskap</finn:field>
+                <finn:field name="specialization">Regnskap</finn:field>
+            </finn:value>
+        </finn:field>
+        <finn:field name="provider_id" value="1393943089"/>
+        <finn:field name="sector" value="Privat"/>
+        <finn:field name="situation" value="Bergen"/>
+        <finn:field name="workplaces">
+            <finn:value>Litleåsvegen 41</finn:value>
+            <finn:value>5132 Nyborg</finn:value>
+        </finn:field>
+        undefined
+    </finn:adata>
+    undefined
+</entry>

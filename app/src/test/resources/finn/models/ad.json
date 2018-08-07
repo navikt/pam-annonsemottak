@@ -1,0 +1,341 @@
+{
+  "href": "https://cache.api.finn.no/iad/ad/model/job-full-time",
+  "title": "job-full-time",
+  "field-definitions": [
+    {
+      "name": "advertiser_reference",
+      "description": "Annonsørens referanse",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "application_address",
+      "description": "Post sendes",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "application_deadline",
+      "description": "Frist",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "application_email",
+      "description": "Søk via epost",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "application_label",
+      "description": "Søknad merkes",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "categories",
+      "description": "Jobbkategorier",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "complex",
+      "children": [
+        {
+          "name": "main",
+          "description": "Hovedkategori",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "sub",
+          "description": "Underkategori",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "description": "Firma",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "complex",
+      "children": [
+        {
+          "name": "name",
+          "description": "Navn",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "html"
+        },
+        {
+          "name": "ingress",
+          "description": "Om firmaet",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "html"
+        },
+        {
+          "name": "url",
+          "description": "Nettside",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "facebook_url",
+          "description": "Bedriften på Facebook",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "linkedin_url",
+          "description": "Bedriften på Linkedin",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "twitter",
+          "description": "Bedriftens Twitter handle",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "twitter_url",
+          "description": "Bedriften på Twitter",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "logo",
+          "description": "Logo",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "description",
+      "description": "Beskrivelse",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "duration",
+      "description": "Varighet",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "extent",
+      "description": "Omfang",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "external_ad_id",
+      "description": "Ekstern annonse id",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "general_text",
+      "description": "General text",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "complex",
+      "children": [
+        {
+          "name": "title",
+          "description": "Title",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "description": "Value",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "html"
+        }
+      ]
+    },
+    {
+      "name": "industry",
+      "description": "Industri",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "job_title",
+      "description": "Tittel",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "keywords",
+      "description": "Nøkkelord",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "manager_role",
+      "description": "Lederkategori",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "no_of_positions",
+      "description": "Antall stillinger",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "occupations",
+      "description": "",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "complex",
+      "children": [
+        {
+          "name": "general",
+          "description": "Generell",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        },
+        {
+          "name": "specialization",
+          "description": "Spesialisering",
+          "mandatory": false,
+          "multi-value": false,
+          "searchable": false,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "provider_id",
+      "description": "Kilde",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "number"
+    },
+    {
+      "name": "refer",
+      "description": "Referer til Finn i din søknad",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "role",
+      "description": "Rolle",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "salary",
+      "description": "Lønn",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "sector",
+      "description": "Sektor",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "situation",
+      "description": "Sted",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "start_date",
+      "description": "Tiltredelse",
+      "mandatory": false,
+      "multi-value": false,
+      "searchable": false,
+      "type": "string"
+    },
+    {
+      "name": "workplaces",
+      "description": "Arbeidssteder",
+      "mandatory": false,
+      "multi-value": true,
+      "searchable": false,
+      "type": "string"
+    }
+  ],
+  "price-definitions": [],
+  "links": [
+    {
+      "href": "https://cache.api.finn.no/iad/ad/job-full-time/new",
+      "rel": "new-ad"
+    }
+  ]
+}

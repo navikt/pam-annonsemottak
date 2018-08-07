@@ -1,0 +1,123 @@
+{
+  "took": 5,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 9.650586,
+    "hits": [
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3410158",
+        "_score": 9.650586,
+        "_source": {
+          "id": 3410158,
+          "transaction_type": 11,
+          "category_id": 11,
+          "company_id": 3293873,
+          "company": {
+            "address": {
+              "primary_address": "Biskop Gunnerus gt. 14",
+              "secondary_address": "",
+              "post_code": "0001",
+              "post_location": "Oslo",
+              "geography": "Norge/Oslo/Sentrum"
+            },
+            "id": 3293873,
+            "media": [
+              {
+                "type": 2,
+                "position": 1,
+                "title": "Ikke oppgitt",
+                "description": "Ikke oppgitt",
+                "reference": "3d/5f/3d5fc498f8b05915daaf3ea22fbab4f7"
+              }
+            ],
+            "title": "",
+            "category": "Firmaer/Internt",
+            "contacts": [],
+            "homepage": "http://www.karriere.no"
+          },
+          "address": {
+            "primary_address": "",
+            "secondary_address": "",
+            "post_code": "8800",
+            "post_location": "Sandnessjøen",
+            "geography": "Norge/Nordland/Alstahaug"
+          },
+          "adObject_category": {
+            "name": "Annet",
+            "full_name": "Stilling/Annet",
+            "type": "Annet",
+            "parent": 10
+          },
+          "adObject_categories": [],
+          "status": 1,
+          "category": "Stilling/Annet",
+          "title": "Tankbilsjåfør",
+          "publish_from_time": "2017-10-17T00:00:00Z",
+          "publish_to_time": "2017-10-31T00:00:00Z",
+          "system_created_time": "2017-10-17T08:35:43Z",
+          "created_by": "iadifjob",
+          "created_time": "2017-10-17T08:35:43Z",
+          "system_modified_time": "2017-10-17T08:38:07Z",
+          "modified_by": "iadifjob",
+          "modified_time": "2017-10-17T08:35:43Z",
+          "contacts": [],
+          "media": [
+            {
+              "type": 2,
+              "position": 1,
+              "title": "5610ec03-d699-407f-bb8b-0b1749f37add.jpeg",
+              "reference": "5d/b2/5db27b154fa7b0d5fbe567eb1fa01d0c"
+            }
+          ],
+          "primary_logo": {
+            "title": "5610ec03-d699-407f-bb8b-0b1749f37add.jpeg",
+            "reference": "5d/b2/5db27b154fa7b0d5fbe567eb1fa01d0c"
+          },
+          "attributes": {
+          },
+          "text": [
+            {
+              "label": "Beskrivelse",
+              "value": "<p>Minol består av 42 dieselanlegg/bensinstasjoner fra Oppdal til Kirkenes. Fem kystanlegg, og transportører som dekker hele Nord-Norge. Minol er en avdeling i Boreal Transport Nord AS, som er en ledende aktør innen kollektiv transport i Nord- Norge. </p> <p> <b><strong>I Boreal Sjø AS, avd. Minol har vi ledig stilling som:</strong></b></p> <p><b><strong>  <b><strong>Tankbilsjåfør</strong></b></strong></b></p><p><strong><br /></strong></p> <p>Stillingen gjelder utkjøring og distribusjon av bulkprodukter fortrinnsvis i området Bodø/Salten.</p> <p>Vi ønsker en sjåfør som med frihet under ansvar styrer det meste av dagen selv, og slik betjener kundene på best mulig måte. Som den initiativrike<em><strong> </strong></em>og kundevennlige personen du er vil det ikke være noe problem å arbeide lange dager når det er påkrevd.</p><p><br /></p> <p> <b><strong>Kandidater til stillingen har:</strong></b></p> <ul><li><b><strong></strong>Erfaring med kjøring av stor bil – fortrinnsvis tankbil</b></li><li><b>Førerkort kl. CE / ADR tankbevis<strong></strong></b></li></ul> <p> <b><strong>Vi kan tilby:</strong></b></p><ul><li><b><b><strong></strong></b>Lønn etter avtale<b></b></b></li><li>Arbeidssted Bodø</li></ul><p><br /></p><p>Spørsmål om stillingen kan rettes til driftsleder Bjørn Inge Aune tlf. 990 11 001 eller Leder for Minol Roger Theimann 957 71 508</p><p> </p><p>Søknad sendes til Boreal Sjø AS på e-post til soknad.sjo@boreal.no</p><p> </p>"
+            }
+          ],
+          "bookings": [
+            {
+              "date_from": "2017-10-17T00:00:00Z",
+              "date_to": "2017-10-31T00:00:00Z",
+              "product": "prospectus",
+              "publications": [
+                "www.fremover.no",
+                "www.an.no",
+                "www.ta.no",
+                "www.tb.no",
+                "www.ba.no",
+                "www.ranablad.no",
+                "www.hardanger-folkeblad.no",
+                "www.lofot-tidende.no",
+                "www.oa.no",
+                "www.tk.no",
+                "www.nordhordland.no",
+                "www.ifinnmark.no",
+                "www.nordlys.no",
+                "www.lofotposten.no",
+                "www.rb.no",
+                "www.helg.no",
+                "www.dt.no"
+              ],
+              "ext_booking_id": null
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

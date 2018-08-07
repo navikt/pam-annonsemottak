@@ -1,0 +1,131 @@
+{
+  "took": 5,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 9.650586,
+    "hits": [
+      {
+        "_index" : "classified_idx_1508230255511",
+        "_type" : "ads",
+        "_id" : "3418086",
+        "_score" : null,
+        "_source" : {
+          "id" : 3418086,
+          "transaction_type" : 11,
+          "category_id" : 11,
+          "company_id" : 3418092,
+          "company" : {
+            "address" : {
+              "primary_address" : "",
+              "secondary_address" : null,
+              "post_code" : "",
+              "post_location" : null,
+              "geography" : ""
+            },
+            "id" : 3418092,
+            "media" : [ ],
+            "title" : "Røgeberg Maskin AS",
+            "category" : "Firmaer/Stillingsutlysere",
+            "contacts" : [ ]
+          },
+          "address" : {
+            "primary_address" : "",
+            "secondary_address" : null,
+            "post_code" : "3513",
+            "post_location" : "Hønefoss",
+            "geography" : "Norge/Buskerud/Ringerike"
+          },
+          "adObject_category" : {
+            "name" : "Annet",
+            "full_name" : "Stilling/Annet",
+            "type" : "Annet",
+            "parent" : 10
+          },
+          "adObject_categories" : [ ],
+          "status" : 1,
+          "category" : "Stilling/Butikk",
+          "title" : "BUTIKK OG SERVICEMEDARBEIDER",
+          "publish_from_time" : "2017-12-09T00:00:00Z",
+          "publish_to_time" : "2017-12-22T23:59:59Z",
+          "system_created_time" : "2017-12-08T14:14:18Z",
+          "created_by" : "atex",
+          "created_time" : "2017-12-08T14:14:18Z",
+          "system_modified_time" : "2017-12-11T08:38:21Z",
+          "modified_by" : "AdM:542",
+          "modified_time" : "2017-12-08T14:14:18Z",
+          "contacts" : [ {
+            "mobile" : "40407316",
+            "name" : "Jarle",
+            "description" : null,
+            "email" : ""
+          } ],
+          "media" : [ {
+            "type" : 5,
+            "position" : 1,
+            "title" : "",
+            "reference" : "94/11/9411dd29abe8a8f364c243d6d9576b68"
+          }, {
+            "type" : 2,
+            "position" : 1,
+            "title" : "Ikke oppgitt",
+            "description" : "Ikke oppgitt",
+            "reference" : "d2/3c/d23ce6ed4e25ea47bfa2f2a663438fc8"
+          } ],
+          "primary_logo" : {
+            "title" : "Ikke oppgitt",
+            "description" : "Ikke oppgitt",
+            "reference" : "d2/3c/d23ce6ed4e25ea47bfa2f2a663438fc8"
+          },
+          "attributes" : {
+            "positiontitle" : "BUTIKK OG SERVICEMEDARBEIDER",
+            "employerhomepage" : "",
+            "workhours" : "Heltid",
+            "applicationdue" : "22.12.2017",
+            "positioncount" : 1,
+            "viewings" : [ ],
+            "engagementtype" : "Fast",
+            "employerdescription" : "<p>Røgeberg Maskin AS er en velrenommert butikk i den landsdekkende TOOLS-kjeden. Vi har drevet i bransjen siden 1979, og er totalt 8 ansatte. Vi omsetter årlig for ca. 25 Mill NOK. Forretningen ligger i Ankersgaten 16, Hønefoss.</p>",
+            "starttime" : "",
+            "salary" : "",
+            "applicationtag" : "",
+            "viewingtimes" : [ ],
+            "features" : [ ],
+            "applicationemail" : "jarle@rogebergmaskin.no",
+            "lead_publication" : "",
+            "applicationmail" : "",
+            "applicationurl" : "",
+            "employer" : "Røgeberg Maskin AS",
+            "whitelabel" : "",
+            "worksector" : "Privat",
+            "worklocation" : "",
+            "viewingintervals" : [ ]
+          },
+          "text" : [ {
+            "label" : "Beskrivelse",
+            "value" : "<p><b>BUTIKK OG SERVICEMEDARBEIDER</b> søkes.<br />Vi søker en selger / servicemekaniker til vår butikk i Hønefoss.</p>\r\n<p>Arbeidet vil bestå av service og reparasjoner på produktene vi selv selger, men vil også medføre jobbing med salg i butikken. Den vi ansetter må ha erfaring i reparasjon og feilsøking av både mekaniske og elektriske produkter. Personen må kunne arbeide selvstendig og være kundeorientert.</p>\r\n<p>Servicemekanikeren vil ha en utfordrende og variert jobb i et uformelt, ungdommelig miljø.</p>\r\n<p>Skriftlig søknad med CV sendes på e-post til Jarle Nymoen på jarle@rogebergmaskin.no via &quot;Søk på Stilling&quot;-knappen - innen 22.12.2017<br /><br />Har du spørsmål om stillingen, så kan du ringe Jarle på 40407316 eller Bjørn på 40 40 73 10</p>"
+          } ],
+          "bookings" : [ {
+            "date_from" : "2017-12-09T00:00:00Z",
+            "date_to" : "2017-12-22T00:00:00Z",
+            "product" : "prospectus",
+            "publications" : [ "www.ringblad.no" ],
+            "ext_booking_id" : null
+          }, {
+            "date_from" : "2017-12-09T00:00:00Z",
+            "date_to" : "2017-12-22T23:59:59Z",
+            "product" : "jobcarousel",
+            "publications" : [ "www.ringblad.no" ],
+            "ext_booking_id" : null
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

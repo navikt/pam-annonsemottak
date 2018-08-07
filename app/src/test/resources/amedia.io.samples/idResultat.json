@@ -1,0 +1,114 @@
+{
+  "took": 28,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0
+  },
+  "hits": {
+    "total": 640,
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3357133",
+        "_score": null,
+        "sort": [
+          1483443972000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3360213",
+        "_score": null,
+        "sort": [
+          1485353828000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3361940",
+        "_score": null,
+        "sort": [
+          1486369257000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3361941",
+        "_score": null,
+        "sort": [
+          1486369379000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3361942",
+        "_score": null,
+        "sort": [
+          1486369530000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3361943",
+        "_score": null,
+        "sort": [
+          1486369682000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3367175",
+        "_score": null,
+        "sort": [
+          1491616800000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3383722",
+        "_score": null,
+        "sort": [
+          1495792937000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3390783",
+        "_score": null,
+        "sort": [
+          1498269600000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3390791",
+        "_score": null,
+        "sort": [
+          1498269600000
+        ]
+      },
+      {
+        "_index": "classified_idx_1508230255511",
+        "_type": "ads",
+        "_id": "3390786",
+        "_score": null,
+        "sort": [
+          1498269600000
+        ]
+      }
+    ]
+  }
+}
