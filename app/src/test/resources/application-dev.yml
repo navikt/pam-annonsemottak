@@ -1,0 +1,60 @@
+server:
+  port: 9016
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb;Mode=PostgreSQL
+    platform: h2
+    continue-on-error: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+       generate_statistics: true
+       cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+  profiles:
+    active: prod
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus", "metrics"]
+scheduler:
+  enabled: true
+dexi:
+  url: https://api.dexi.io
+  api:
+    username: d08c223f-5d1c-42f8-8321-f4fd24781ebb
+    password: f22d4ac240ffbbeec3ba78dd9
+amedia:
+  url: https://bed.api.no/api/pipek/v2/classified/search
+finn:
+  api:
+    password: soGbgSxHtQ6rN1vl
+proxy:
+  url: http://155.55.60.117:8088
+solr:
+  url: https://itjenester-t1.oera.no/stilling-solr/
+  core: 'maincore'
