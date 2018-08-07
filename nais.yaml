@@ -1,0 +1,37 @@
+name: pam-annonsemottak
+image: repo.adeo.no:5443/pam-annonsemottak
+replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+prometheus:
+    enabled: true
+    path: /actuator/prometheus
+port: 9001
+healthcheck:
+    liveness:
+      initialDelay: 60
+      path: /isAlive
+    readiness:
+      initialDelay: 60
+      path: /isReady
+resources:
+    limits:
+      cpu: 2000m
+      memory: 1000Mi
+    requests:
+      cpu: 500m
+      memory: 500Mi
+fasitResources:
+  used:
+  - alias: "driftproxy"
+    resourceType: baseurl
+  - alias: "janzz.rest"
+    resourceType: credential
+  - alias: "pam-adDb"
+    resourceType: datasource
+  - alias: "StillingsokES"
+    resourceType: baseurl
+  - alias: "annonsemottak.feed"
+    resourceType: baseurl
+

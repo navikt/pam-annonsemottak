@@ -1,0 +1,59 @@
+server:
+  port: 9016
+application:
+  version: @project.version@
+spring:
+#  datasource:
+#    url: ${PAM_ADDB_URL:jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))))}
+#    username: ${PAM_ADDB_USERNAME:pamad}
+#    password: ${PAM_ADDB_PASSWORD:pamad}
+#  jpa:
+#    database-platform: org.hibernate.dialect.Oracle10gDialect
+#    properties:
+#      hibernate:
+#       generate_statistics: true
+#       cache:
+#          use_second_level_cache: true
+#          use_query_cache: true
+#          region:
+#            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      ddl-auto: none
+  profiles:
+    active: prod
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus", "metrics"]
+scheduler:
+  enabled: true
+dexi:
+  url: ${DEXI_URL}
+  api:
+    username: ${DEXI_API_USERNAME}
+    password: ${DEXI_API_PASSWORD}
+amedia:
+  url: https://bed.api.no/api/pipek/v2/classified/search
+finn:
+  api:
+    password: ${FINN_API_PASSWORD}
+proxy:
+  url: ${PROXY_URL}
+solr:
+  url: ${SOLR_URL}
+  core: 'maincore'

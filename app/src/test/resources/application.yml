@@ -1,0 +1,43 @@
+server:
+  port: 9016
+spring:
+#  jpa:
+#    database-platform: org.hibernate.dialect.Oracle10gDialect
+#    properties:
+#      hibernate:
+#       generate_statistics: true
+#       cache:
+#          use_second_level_cache: true
+#          use_query_cache: true
+#          region:
+#            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      ddl-auto: none
+  profiles:
+    active: test
+  flyway:
+    enabled: false
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: false
+scheduler:
+  enabled: false
+dexi:
+  url: ${DEXI_URL}
+  api:
+    username: ${DEXI_API_USERNAME}
+    password: ${DEXI_API_PASSWORD}
+amedia:
+  url: http://localhost:7010/api/pipek/v2/classified/search
+finn:
+  api:
+    password: ${FINN_API_PASSWORD}
+proxy:
+  url: ${PROXY_URL}
+solr:
+  url: ${SOLR_URL}
+  core: 'maincore'
