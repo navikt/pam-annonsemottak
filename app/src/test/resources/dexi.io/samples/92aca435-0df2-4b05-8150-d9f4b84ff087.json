@@ -1,0 +1,53 @@
+{
+  "headers": [
+    "Annonsetittel",
+    "AnnonseURL",
+    "Annonsetekst",
+    "Annonsor",
+    "Antall stillinger",
+    "Arbeidsgiver",
+    "Arbeidsgiveromtale",
+    "Arbeidspraak",
+    "Bransjer",
+    "Arbeidssted",
+    "Fagfelt",
+    "Fylke",
+    "HeltidDeltid",
+    "Kilde",
+    "Kontaktinfo",
+    "Mottatt dato",
+    "Referansenummer",
+    "Soknadsfrist",
+    "Soknadslenke",
+    "Tiltredelse",
+    "Type stilling",
+    "error"
+  ],
+  "rows": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "Failed to load url:https://www.bergen.kommune.no/jobb/ledigestillinger [Connection refused]"
+    ]
+  ],
+  "totalRows": 1
+}
