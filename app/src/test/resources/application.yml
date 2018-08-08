@@ -8,15 +8,11 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: none
-    properties:
-      hibernate:
-        current_session_contextclass: org.springframework.orm.hibernate5.SpringSessionContext
-    open-in-view: true
   profiles:
     active: test
-  flyway:
-    enabled: false
 management:
   metrics:
     export:
@@ -31,11 +27,5 @@ dexi:
     password: ${DEXI_API_PASSWORD}
 amedia:
   url: http://localhost:7010/api/pipek/v2/classified/search
-finn:
-  api:
-    password: ${FINN_API_PASSWORD}
 proxy:
   url: ${PROXY_URL}
-solr:
-  url: ${SOLR_URL}
-  core: 'maincore'
