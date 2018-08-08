@@ -2,7 +2,7 @@ package no.nav.pam.annonsemottak.stilling.rest;
 
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.api.PathDefinition;
-import no.nav.pam.annonsemottak.dto.StillingDTO;
+import no.nav.pam.annonsemottak.stilling.rest.dto.StillingDTO;
 import no.nav.pam.annonsemottak.stilling.*;
 import no.nav.pam.annonsemottak.stilling.rest.payloads.*;
 import org.slf4j.Logger;
