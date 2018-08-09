@@ -1,8 +1,9 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
-import org.joda.time.DateTime;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
     private String medium = StillingTestdataBuilder.class.getSimpleName();
     private String url;
     private String externalId;
-    private DateTime systemModifiedDate = null;
+    private LocalDateTime systemModifiedDate = null;
 
     public static StillingTestdataBuilder stilling() {
         return new StillingTestdataBuilder();
@@ -39,7 +40,7 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
         stilling.tittel = "Stillingstittel";
         stilling.arbeidssted = "Sted";
         stilling.arbeidsgiver = "Navn på arbeidsgiver";
-        stilling.utløpsdato = DateTime.now().plusMonths(1).toString("dd/MM/yyyy");
+        stilling.utløpsdato = LocalDateTime.now().plusMonths(1).format(DateTimeFormatter.ofPattern("dd/M/yyyy"));
         stilling.arbeidsgiverbeskrivelse = "Beskrivelse av arbeidsgiver";
         stilling.stillingstekst = "Arbeidsbeskrivelse";
         stilling.url = "https://jobb.tu.no/jobs/teknisk-sektor/51342-gode-kunnskaper-om-vei-og-jernbaneplanlegging-i-by";
@@ -148,7 +149,7 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
         return this;
     }
 
-    public StillingTestdataBuilder systemModifiedDate(DateTime date) {
+    public StillingTestdataBuilder systemModifiedDate(LocalDateTime date) {
         this.systemModifiedDate = date;
         return this;
     }

@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import org.hamcrest.Matchers;
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -101,7 +101,7 @@ public class StillingRepositoryTest {
     public void stilling_publisert_skal_bare_kunne_settes_en_gang() {
         final String externalID = java.util.UUID.randomUUID().toString();
         Stilling stilling = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
-        stilling.setPublished(new DateTime());
+        stilling.setPublished(LocalDateTime.now());
 
         stillingRepository.save(stilling);
         Stilling lastetStilling = stillingRepository.findByKildeAndMediumAndExternalId(
@@ -110,7 +110,7 @@ public class StillingRepositoryTest {
         assertNotNull(lastetStilling);
 
         try {
-            lastetStilling.setPublished(new DateTime());
+            lastetStilling.setPublished(LocalDateTime.now());
             fail("Det skal ikke være lov å sette published for andre gang");
         } catch (IllegalArgumentException e) {
             // Dette er ok
@@ -124,7 +124,7 @@ public class StillingRepositoryTest {
         OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(Collections.singletonMap("status", "2"));
         brandNew.oppdaterMed(saksbehandlingCommand); // Sets published date to "now" and status to GODKJENT
 
-        final DateTime published = brandNew.getPublished();
+        final LocalDateTime published = brandNew.getPublished();
         assertNotNull(brandNew.getPublished());
 
         final String uuid = brandNew.getUuid();

@@ -1,9 +1,9 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -209,7 +209,7 @@ public class StillingTest {
         String format = "dd.MM.yyyy";
 
         Stilling stilling = enkelStilling().utløpsdato("12.12.2518").build();
-        assertThat(stilling.getExpires().toString(DateTimeFormat.forPattern(format)),
-                is(equalTo(DateTime.now().plusDays(10).toString(DateTimeFormat.forPattern(format)))));
+        assertThat(stilling.getExpires().format(DateTimeFormatter.ofPattern(format)),
+                is(equalTo(LocalDateTime.now().plusDays(10).format(DateTimeFormatter.ofPattern(format)))));
     }
 }
