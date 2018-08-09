@@ -142,7 +142,7 @@ public class FinnAdMapperTest {
     public void externalPublishDateShouldBeMapped() throws  Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
-            assertEquals("2017-03-02T15:01:00Z", stilling.getProperties().get(PropertyNames.EXTERNAL_PUBLISH_DATE));
+            assertEquals("2017-03-02T15:01:00", stilling.getProperties().get(PropertyNames.EXTERNAL_PUBLISH_DATE));
         }
     }
 

@@ -2,27 +2,32 @@ package no.nav.pam.annonsemottak.annonsemottak;
 
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import static java.time.temporal.ChronoField.YEAR_OF_ERA;
+
 public class GenericDateParser {
 
     private static Map<String, String> dateFormatMap = new HashMap();
 
     static {
-        //dateFormatMap.put("^\\d{2,}\\.\\d{2,}\\.\\d{4}$", "dd.M.yyyy");
-        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}$","dd.MM");
-        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}\\.\\d{2,4}$", "dd.M.yy");
         dateFormatMap.put("^\\d{4}\\.\\d{1,2}\\.\\d{1,2}$", "yyyy.M.dd");
-        dateFormatMap.put("^\\d{1,2}\\.[a-z]+$", "dd.MMM");
-        dateFormatMap.put("^\\d{1,2}\\.[a-z]+\\.\\d{2,4}$", "dd.MMM.yy");
+        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}\\.\\d{2,4}$", "dd.M.[yyyy][yy]");
+        dateFormatMap.put("^\\d{1,2}\\.[a-z]+\\.\\d{2,4}$", "dd.[LLLL][LLL].[yyyy][yy]");
+
+        // No year dates, default to the current year
+        dateFormatMap.put("^\\d{1,2}\\.[a-z]+$", "dd.[LLLL][LLL]");
+        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}$","dd.M");
     }
 
     /**
@@ -30,7 +35,7 @@ public class GenericDateParser {
      * @param rawDate
      * @return
      */
-    public static DateTime parseDate(String rawDate) {
+    public static LocalDateTime parseDate(String rawDate) {
         if (rawDate==null) {
             return null;
         }
@@ -39,11 +44,14 @@ public class GenericDateParser {
         if (!format.isPresent()) {
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormat.forPattern(dateFormatMap.get(format.get()))
-                .withLocale(new Locale("no"))
-                .withDefaultYear(DateTime.now().getYear());  //Default year is the current year.
 
-        return formatter.parseDateTime(dateString);
+        // NOTE: uuuu - year of era, yyyy - year. Defaulting will cause conflict if year of era is already set
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern(dateFormatMap.get(format.get()))
+                .parseDefaulting(YEAR_OF_ERA,  ZonedDateTime.now().getYear())
+                .toFormatter(Locale.forLanguageTag("no"));
+
+        return LocalDate.parse(dateString, formatter).atStartOfDay();
     }
 
     // Sanitize possible date string into a parseable dd.MM.yyyy format

@@ -7,7 +7,6 @@ import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
 import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -16,6 +15,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +44,7 @@ public class FinnServiceTest {
     public void shouldFilterNewAndUpdatedForSave() throws FinnConnectorException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
 
         //Last run yesterday
-        ExternalRun externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), DateTime.now().minusDays(1));
+        ExternalRun externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), LocalDateTime.now().minusDays(1));
         when(mockedExternalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString())).thenReturn(externalRun);
 
         Set<FinnAdHead> searchResult = new HashSet<>();
@@ -55,10 +55,10 @@ public class FinnServiceTest {
 //        searchResult.add(generateAdHeadWithDates("4", DateTime.now(), DateTime.now(), DateTime.now().plusMonths(1))); // New ad
 
         // TODO: Temporary dates with 4 day delay. Switch back to commented lines, once the 4 day delay is disabled.
-        searchResult.add(generateAdHeadWithDates("1", DateTime.now().minusDays(3), DateTime.now(), DateTime.now().plusMonths(1))); // Existing but changed
-        searchResult.add(generateAdHeadWithDates("2", DateTime.now().minusDays(1), DateTime.now().minusDays(2), DateTime.now().plusMonths(1))); // Existing
-        searchResult.add(generateAdHeadWithDates("3", DateTime.now().minusDays(1), DateTime.now().minusDays(3), DateTime.now().plusMonths(1))); // Existing
-        searchResult.add(generateAdHeadWithDates("4", DateTime.now(), DateTime.now(), DateTime.now().plusMonths(1))); // New ad
+        searchResult.add(generateAdHeadWithDates("1", LocalDateTime.now().minusDays(3), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // Existing but changed
+        searchResult.add(generateAdHeadWithDates("2", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(3), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
 
         when(mockedConnector.fetchSearchResult("TEST")).thenReturn(searchResult);
 
@@ -79,10 +79,10 @@ public class FinnServiceTest {
         when(mockedExternalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString())).thenReturn(null);
 
         Set<FinnAdHead> searchResult = new HashSet<>();
-        searchResult.add(generateAdHeadWithDates("1", DateTime.now().minusDays(2), DateTime.now(), DateTime.now().plusMonths(1))); // Existing but changed
-        searchResult.add(generateAdHeadWithDates("2", DateTime.now().minusDays(2), DateTime.now().minusDays(2), DateTime.now().plusMonths(1))); // Existing
-        searchResult.add(generateAdHeadWithDates("3", DateTime.now().minusDays(2), DateTime.now().minusDays(2), DateTime.now().plusMonths(1))); // Existing
-        searchResult.add(generateAdHeadWithDates("4", DateTime.now(), DateTime.now(), DateTime.now().plusMonths(1))); // New ad
+        searchResult.add(generateAdHeadWithDates("1", LocalDateTime.now().minusDays(2), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // Existing but changed
+        searchResult.add(generateAdHeadWithDates("2", LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
         when(mockedConnector.fetchSearchResult("TEST")).thenReturn(searchResult);
 
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
@@ -93,7 +93,7 @@ public class FinnServiceTest {
     }
 
 
-    private FinnAdHead generateAdHeadWithDates(String externalId, DateTime published, DateTime updated, DateTime expires) {
+    private FinnAdHead generateAdHeadWithDates(String externalId, LocalDateTime published, LocalDateTime updated, LocalDateTime expires) {
         FinnAdHead adHead = new FinnAdHead();
         adHead.setId(externalId);
         adHead.setPublished(published);

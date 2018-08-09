@@ -11,13 +11,13 @@ import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -52,17 +52,17 @@ public class FinnService {
         String[] collections = collection == null ? KNOWN_COLLECTIONS : new String[]{collection};
 
         //Retrieve the date for last successful run
-        DateTime lastRun;
+        LocalDateTime lastRun;
         long start = System.currentTimeMillis();
         LOG.info("starting finn fetch {} ", Arrays.toString(collections));
         ExternalRun externalRun = externalRunsService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString());
         if (externalRun != null && externalRun.getLastRun() != null) {
             lastRun = externalRun.getLastRun();
-            externalRun.setLastRun(DateTime.now());
+            externalRun.setLastRun(LocalDateTime.now());
         } else {
             LOG.info("First time fetching ads from FINN");
             lastRun = null;
-            externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), DateTime.now());
+            externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), LocalDateTime.now());
         }
 
 

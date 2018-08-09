@@ -1,7 +1,8 @@
 package no.nav.pam.annonsemottak.annonsemottak.finn;
 
 import okhttp3.HttpUrl;
-import org.joda.time.DateTime;
+
+import java.time.LocalDateTime;
 
 /**
  * Represents ad entry from Finn search result
@@ -11,9 +12,9 @@ public class FinnAdHead {
     private String id;
     private String title;
     private HttpUrl link;
-    private DateTime published;
-    private DateTime updated;
-    private DateTime expires;
+    private LocalDateTime published;
+    private LocalDateTime updated;
+    private LocalDateTime expires;
 
     public FinnAdHead() {
 
@@ -43,27 +44,27 @@ public class FinnAdHead {
         this.link = link;
     }
 
-    public DateTime getPublished() {
+    public LocalDateTime getPublished() {
         return published;
     }
 
-    public void setPublished(DateTime published) {
+    public void setPublished(LocalDateTime published) {
         this.published = published;
     }
 
-    public DateTime getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(DateTime updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
 
-    public DateTime getExpires() {
+    public LocalDateTime getExpires() {
         return expires;
     }
 
-    public void setExpires(DateTime expires) {
+    public void setExpires(LocalDateTime expires) {
         this.expires = expires;
     }
 

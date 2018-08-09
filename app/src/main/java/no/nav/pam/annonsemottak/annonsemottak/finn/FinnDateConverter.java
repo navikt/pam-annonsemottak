@@ -1,27 +1,32 @@
 package no.nav.pam.annonsemottak.annonsemottak.finn;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Converts date strings from FINN API
  */
 public class FinnDateConverter {
 
-    public static final String FINN_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    public static final String FINN_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss[.SSS]Z";
 
 
-    public static DateTime convertDate(String date) {
-        if(StringUtils.isBlank(date)){
+    public static LocalDateTime convertDate(String date) {
+        if (StringUtils.isBlank(date)) {
             return null;
         }
 
-        return new DateTime(date).toDateTime(DateTimeZone.UTC);
+        date = date.replace("Z", "+0000");
+        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(FINN_DATE_PATTERN));
     }
 
-    public static String toString(DateTime date) {
-        return date.toString(DateTimeFormat.forPattern(FINN_DATE_PATTERN)).replace("+0000", "Z");
+    public static String toString(LocalDateTime date) {
+
+        String dateValue = date.atZone(ZoneId.of("Z"))
+                .format(DateTimeFormatter.ofPattern(FINN_DATE_PATTERN));
+        return dateValue.replace("+0000", "Z");
     }
 }

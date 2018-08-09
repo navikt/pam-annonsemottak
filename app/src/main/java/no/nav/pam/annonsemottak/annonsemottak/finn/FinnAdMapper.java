@@ -8,10 +8,10 @@ import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FinnAdMapper {
@@ -105,8 +105,7 @@ public class FinnAdMapper {
         keyValueMap.put(PropertyNames.UPDATED_DATE, ad.getUpdated());
         keyValueMap.put("submitted", ad.getDateSubmitted());
         // Expires date has been assigned to Stilling expires field
-        keyValueMap.put(PropertyNames.EXTERNAL_PUBLISH_DATE, ISODateTimeFormat.dateTimeNoMillis().print(
-                FinnDateConverter.convertDate(ad.getPublished())));
+        keyValueMap.put(PropertyNames.EXTERNAL_PUBLISH_DATE, FinnDateConverter.convertDate(ad.getPublished()).format(DateTimeFormatter.ISO_DATE_TIME));
         keyValueMap.put("edited", ad.getEdited());
         // What should be in identifier is used in Stilling.getExternalId, see constructor.
         keyValueMap.put("private", String.valueOf(ad.isPrivate()));
