@@ -4,13 +4,13 @@ package no.nav.pam.annonsemottak.annonsemottak.scheduler.deactivate;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +35,12 @@ public class DeactivateService {
 
         for (Stilling s : activeAds) {
             if (s.getExpires() != null) {
-                if (s.getExpires().isBeforeNow()) {
+                if (s.getExpires().isBefore(LocalDateTime.now())) {
                     s.deactivate();
                     expiredAds.add(s);
                 }
             } else {
-                if(s.getCreated().plusDays(EXPIRES_IN_DAYS).isAfter(DateTime.now())){
+                if(s.getCreated().plusDays(EXPIRES_IN_DAYS).isAfter(LocalDateTime.now())){
                     s.deactivate();
                     expiredAds.add(s);
                 }

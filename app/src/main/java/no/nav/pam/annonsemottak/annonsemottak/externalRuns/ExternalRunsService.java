@@ -1,12 +1,12 @@
 package no.nav.pam.annonsemottak.annonsemottak.externalRuns;
 
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 
 @Component
 public class ExternalRunsService {
@@ -27,9 +27,9 @@ public class ExternalRunsService {
         return externalRun;
     }
 
-    public DateTime findLastRunForRunName(String externalRunName){
+    public LocalDateTime findLastRunForRunName(String externalRunName){
         LOG.info("Running findLastRunForRunName for {}", externalRunName);
-        DateTime lastRun = externalRunRepository.findLastRunForRunName(externalRunName);
+        LocalDateTime lastRun = externalRunRepository.findLastRunForRunName(externalRunName);
 
         return lastRun;
     }

@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.stilling.rest.dto;
 
 import com.fasterxml.jackson.annotation.*;
-import org.joda.time.DateTime;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +24,8 @@ public class StillingDTO {
     private String medium;
     private String orgNummer;
     private Integer antallStillinger;
-    private DateTime publiserFra;
-    private DateTime sistePubliseringsDato;
+    private LocalDateTime publiserFra;
+    private LocalDateTime sistePubliseringsDato;
 
     public String getStatus() {
         return status;
@@ -128,20 +128,20 @@ public class StillingDTO {
     }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    public DateTime getPubliserFra() {
+    public LocalDateTime getPubliserFra() {
         return publiserFra;
     }
 
-    public void setPubliserFra(DateTime publiserFra) {
+    public void setPubliserFra(LocalDateTime publiserFra) {
         this.publiserFra = publiserFra;
     }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    public DateTime getSistePubliseringsDato() {
+    public LocalDateTime getSistePubliseringsDato() {
         return sistePubliseringsDato;
     }
 
-    public void setSistePubliseringsDato(DateTime sistePubliseringsDato) {
+    public void setSistePubliseringsDato(LocalDateTime sistePubliseringsDato) {
         this.sistePubliseringsDato = sistePubliseringsDato;
     }
 

@@ -5,7 +5,6 @@ import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,7 @@ public class AnnonseFangstServiceTest {
         Stilling s2 = enkelStilling().kilde(kilde).medium(medium).externalId("2").arbeidsgiver("nav.no").tittel("frontend").saksbehandler("Tuan").build();
         Stilling s3 = enkelStilling().kilde(kilde).medium(medium).externalId("3").arbeidsgiver("nav.no").tittel("systemutvikler").build();
         Stilling s4 = enkelStilling().kilde(kilde).medium(medium).externalId("4").arbeidsgiver("nav.no").tittel("tester")
-                .utlopsdato(DateTime.now().minusDays(2).toString("dd/MM/yyyy")).build();
+                .utlopsdato(LocalDateTime.now().minusDays(2).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).build();
 
         stillingRepository.save(s1);
         stillingRepository.save(s2);

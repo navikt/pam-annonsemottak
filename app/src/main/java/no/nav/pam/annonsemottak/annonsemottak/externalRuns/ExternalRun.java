@@ -1,10 +1,8 @@
 package no.nav.pam.annonsemottak.annonsemottak.externalRuns;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "EXTERNALRUN")
@@ -21,8 +19,7 @@ public class ExternalRun {
 
     private String medium;
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime lastRun;
+    private LocalDateTime lastRun;
 
     /**
      Default constructor for Hibernate
@@ -30,13 +27,13 @@ public class ExternalRun {
     protected ExternalRun() {
     }
 
-    public ExternalRun(String name, String medium, DateTime lastRun){
+    public ExternalRun(String name, String medium, LocalDateTime lastRun){
         this.name = name;
         this.medium = medium;
         this.lastRun = lastRun;
     }
 
-    public ExternalRun(Long id, String name, String medium, DateTime lastRun){
+    public ExternalRun(Long id, String name, String medium, LocalDateTime lastRun){
         this.id = id;
         this.name = name;
         this.medium = medium;
@@ -51,11 +48,11 @@ public class ExternalRun {
         this.medium = medium;
     }
 
-    public DateTime getLastRun() {
+    public LocalDateTime getLastRun() {
         return lastRun;
     }
 
-    public void setLastRun(DateTime lastRun) {
+    public void setLastRun(LocalDateTime lastRun) {
         this.lastRun = lastRun;
     }
 

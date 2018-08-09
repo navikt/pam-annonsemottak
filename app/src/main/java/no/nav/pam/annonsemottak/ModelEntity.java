@@ -1,9 +1,7 @@
 package no.nav.pam.annonsemottak;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class ModelEntity {
@@ -13,14 +11,12 @@ public class ModelEntity {
     @Column
     private Long id;
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime created = DateTime.now();
+    private LocalDateTime created = LocalDateTime.now();
 
     private String createdBy;
     private String createdByDisplayName;
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime updated = DateTime.now();
+    private LocalDateTime updated = LocalDateTime.now();
 
     private String updatedBy;
     private String updatedByDisplayName;
@@ -44,7 +40,7 @@ public class ModelEntity {
             setUpdatedBy(userName);
             setUpdatedByDisplayName(userDisplayName);
         } else {
-            setUpdated(DateTime.now());
+            setUpdated(LocalDateTime.now());
             setUpdatedBy(userName);
             setUpdatedByDisplayName(userDisplayName);
         }
@@ -54,11 +50,11 @@ public class ModelEntity {
         return id == null;
     }
 
-    public DateTime getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(DateTime created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
@@ -70,11 +66,11 @@ public class ModelEntity {
         this.createdBy = createdBy;
     }
 
-    public DateTime getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(DateTime updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
 

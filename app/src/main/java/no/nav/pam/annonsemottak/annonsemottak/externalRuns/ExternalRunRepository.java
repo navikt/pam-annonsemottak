@@ -1,10 +1,11 @@
 package no.nav.pam.annonsemottak.annonsemottak.externalRuns;
 
 
-import org.joda.time.DateTime;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.time.LocalDateTime;
 
 
 public interface ExternalRunRepository extends PagingAndSortingRepository<ExternalRun, Long>, JpaSpecificationExecutor<ExternalRun> {
@@ -14,6 +15,6 @@ public interface ExternalRunRepository extends PagingAndSortingRepository<Extern
     ExternalRun findByNameAndMedium(String name, String medium);
 
     @Query("select ex.lastRun from ExternalRun ex where ex.name = ?1")
-    DateTime findLastRunForRunName(String name);
+    LocalDateTime findLastRunForRunName(String name);
 
 }

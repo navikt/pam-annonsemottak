@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +63,7 @@ public class DexiAnnonseFangstService {
         Map<String, Stilling> activeMap = activeList.stream().collect(Collectors.toMap(Stilling::getExternalId, Function.identity()));
         for (Stilling active : activeList) {
             if(!receiveMap.containsKey(active.getExternalId())) {
-                if(active.getExpires().isBeforeNow()){
+                if(active.getExpires().isBefore(LocalDateTime.now())){
                     active.deactivate();
                     result.getExpiredList().add(active);
                 }

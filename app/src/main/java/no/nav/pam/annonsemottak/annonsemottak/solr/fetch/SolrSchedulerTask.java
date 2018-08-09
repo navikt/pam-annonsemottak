@@ -5,8 +5,6 @@ import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
 import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class SolrSchedulerTask {
     public void saveLatestAdsFromStillingsolr() {
         try {
             ExternalRun externalRun = externalRunsService.retrieveExternalRun(Kilde.STILLINGSOLR.value());
-            DateTime lastRun = getLastRunFromExternalRun(externalRun);
+            LocalDateTime lastRun = getLastRunFromExternalRun(externalRun);
 
             List<Stilling> newStillinger = solrFetchService.saveNewStillingerFromSolr(lastRun);
 
@@ -53,21 +52,21 @@ public class SolrSchedulerTask {
         }
     }
 
-    private DateTime getLastRunFromExternalRun(ExternalRun externalRun) {
-        DateTime lastRun = null;
+    private LocalDateTime getLastRunFromExternalRun(ExternalRun externalRun) {
+        LocalDateTime lastRun = null;
 
         if (externalRun != null) {
             lastRun = externalRun.getLastRun();
         }
         if (lastRun == null) {
-            lastRun = new DateTime("2017-01-01T00:00:00Z");
+            lastRun = LocalDateTime.parse("2017-01-01T00:00:00Z");
         }
 
-        return lastRun.withZone(DateTimeZone.UTC);
+        return lastRun;
     }
 
     private void saveNewLastRun(String latestRegDato, ExternalRun externalRun) {
-        DateTime lastRegistered = new DateTime(latestRegDato);
+        LocalDateTime lastRegistered = LocalDateTime.parse(latestRegDato);
 
         if (externalRun == null) {
             externalRun = new ExternalRun(Kilde.STILLINGSOLR.value(), Kilde.STILLINGSOLR.value(), lastRegistered);

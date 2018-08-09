@@ -9,13 +9,12 @@ import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -54,7 +53,7 @@ public class SolrFetchService {
                 ")";
     }
 
-    public List<Stilling> saveNewStillingerFromSolr(DateTime since) {
+    public List<Stilling> saveNewStillingerFromSolr(LocalDateTime since) {
         List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since));
 
         SensuClient.sendEvent(
@@ -65,7 +64,7 @@ public class SolrFetchService {
         return savedStillinger;
     }
 
-    List<Stilling> searchForNewStillinger(DateTime since) {
+    List<Stilling> searchForNewStillinger(LocalDateTime since) {
         SolrQuery solrQuery = buildSolrQueryForSearch(since);
         QueryResponse response = solrRepository.query(solrQuery);
         SolrDocumentList result = response.getResults();
@@ -99,7 +98,7 @@ public class SolrFetchService {
                 .collect(Collectors.toList());
     }
 
-    private SolrQuery buildSolrQueryForSearch(DateTime since) {
+    private SolrQuery buildSolrQueryForSearch(LocalDateTime since) {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
 
@@ -115,8 +114,8 @@ public class SolrFetchService {
         return solrQuery;
     }
 
-    private String buildFilterQueryRegDato(DateTime since) {
-        String newDate = since.withZone(DateTimeZone.UTC).toString();
+    private String buildFilterQueryRegDato(LocalDateTime since) {
+        String newDate = since.toString();
         return "[" + newDate + " TO *]";
     }
 

@@ -6,15 +6,12 @@ import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.IllegalSaksbehandlingCommandException;
 import no.nav.pam.annonsemottak.stilling.OppdaterSaksbehandlingCommand;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames.*;
@@ -25,9 +22,9 @@ class StillingSolrBeanMapper {
 
     static Stilling mapToStilling(StillingSolrBean solrBean) {
         String medium = solrBean.getKildetekst();
-        DateTime expires = new DateTime(solrBean.getSistePubliseringsdato()).withZone(DateTimeZone.UTC);
-        DateTime published = new DateTime(solrBean.getPubliseresFra()).withZone(DateTimeZone.UTC);
-        DateTime regDato = new DateTime(solrBean.getRegDato()).withZone(DateTimeZone.UTC);
+        LocalDateTime expires = dateToLocalDateTime(solrBean.getSistePubliseringsdato());
+        LocalDateTime published = dateToLocalDateTime(solrBean.getPubliseresFra());
+        LocalDateTime regDato = dateToLocalDateTime(solrBean.getRegDato());
 
         Map<String, String> properties = new HashMap<>();
         properties.put(ANTALL_STILLINGER, fieldToString(solrBean.getAntallStillinger()));
@@ -68,7 +65,7 @@ class StillingSolrBeanMapper {
                 solrBean.getArbeidsgivernavn(),
                 HtmlToMarkdownConverter.parse(solrBean.getBedriftspresentasjon()),
                 HtmlToMarkdownConverter.parse(solrBean.getStillingsbeskrivelse()),
-                new DateTime(solrBean.getSoknadsfrist()).withZone(DateTimeZone.UTC).toString(),
+                dateToLocalDateTime(solrBean.getSoknadsfrist()).toString(),
                 Kilde.STILLINGSOLR.value(),
                 medium,
                 "",
@@ -113,5 +110,9 @@ class StillingSolrBeanMapper {
         return list.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(" "));
+    }
+
+    private static LocalDateTime dateToLocalDateTime(Date date){
+       return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }

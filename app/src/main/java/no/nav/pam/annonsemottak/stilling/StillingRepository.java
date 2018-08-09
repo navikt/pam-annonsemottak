@@ -1,12 +1,12 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface StillingRepository extends PagingAndSortingRepository<Stilling, Long>, JpaSpecificationExecutor<Stilling> {
@@ -31,7 +31,7 @@ public interface StillingRepository extends PagingAndSortingRepository<Stilling,
     Long numberOfActiv(String saksbehandler, Status status);
 
     @Query("select s from Stilling s where s.updated >= ?1")
-    Page<Stilling> findUpdatedAfter(DateTime updateDate, Pageable pageable);
+    Page<Stilling> findUpdatedAfter(LocalDateTime updateDate, Pageable pageable);
 
     List<Stilling> findByKildeAndAnnonseStatus(String kilde, AnnonseStatus status);
 }

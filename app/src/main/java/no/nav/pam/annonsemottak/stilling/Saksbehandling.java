@@ -2,11 +2,11 @@ package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.collect.ImmutableMap;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
-import org.joda.time.DateTime;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -34,7 +34,7 @@ public class Saksbehandling {
             SensuClient.sendEvent("stillingStatusEndret.event", Collections.emptyMap(), ImmutableMap.of("status", command.getStatus().get().name()));
             this.status = command.getStatus().get();
             if (this.status == Status.GODKJENT && stilling.getPublished() == null)
-                stilling.setPublished(new DateTime());
+                stilling.setPublished(LocalDateTime.now());
         }
         if (command.getSaksbehandler().isPresent()) {
             this.saksbehandler = command.getSaksbehandler().get().asString();

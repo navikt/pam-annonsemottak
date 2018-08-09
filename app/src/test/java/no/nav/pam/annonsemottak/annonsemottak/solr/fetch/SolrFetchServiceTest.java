@@ -7,13 +7,13 @@ import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class SolrFetchServiceTest {
     private static final int ID = 1;
     private static final String KILDE = "nav.no";
     private static final String ARBEIDSGIVER = "Arbeid AS";
-    private static final DateTime DATO = DateTime.now();
+    private static final LocalDateTime DATO = LocalDateTime.now();
 
     private SolrFetchService solrFetchService;
 

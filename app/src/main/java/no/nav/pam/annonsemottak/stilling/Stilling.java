@@ -5,12 +5,11 @@ import com.google.common.hash.Hashing;
 import no.nav.pam.annonsemottak.ModelEntity;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -65,17 +64,15 @@ public class Stilling extends ModelEntity {
     private String externalId;
 
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime published = null;
+    private LocalDateTime published = null;
 
     @Enumerated(EnumType.STRING)
     private AnnonseStatus annonseStatus = AnnonseStatus.AKTIV;
 
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime expires = DateTime.now().plusDays(10);
+    private LocalDateTime expires = LocalDateTime.now().plusDays(10);
 
     @Transient
-    private DateTime systemModifiedDate;
+    private LocalDateTime systemModifiedDate;
 
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "PROPERTIES_KEY")
@@ -121,7 +118,7 @@ public class Stilling extends ModelEntity {
             String applicationDeadline,
             String kilde,
             String medium,
-            DateTime expires,
+            LocalDateTime expires,
             Map<String, String> properties
     ) {
         this(jobTitle, jobLocation, employerName, employerDescription,
@@ -134,7 +131,7 @@ public class Stilling extends ModelEntity {
     // very big constructor, fix later.
     public Stilling(String stillingstittel, String arbeidssted, String arbeidsgiver, String arbeidsgiveromtale,
                     String annonsetekst, String søknadsfrist, String kilde, String medium, String url, String externalId,
-                    DateTime expires, Map<String, String> metaData, DateTime systemModifiedDate) {
+                    LocalDateTime expires, Map<String, String> metaData, LocalDateTime systemModifiedDate) {
         this.uuid = UUID.randomUUID().toString();
         this.title = stillingstittel;
         this.place = arbeidssted;
@@ -147,7 +144,7 @@ public class Stilling extends ModelEntity {
         this.url = url;
         this.externalId = externalId;
         this.properties = metaData;
-        if (expires != null && expires.isBefore(DateTime.now().plusMonths(MAX_EXPIRY_LIMIT))) {
+        if (expires != null && expires.isBefore(LocalDateTime.now().plusMonths(MAX_EXPIRY_LIMIT))) {
             this.expires = expires;
         } else {
             // temporally only for back compatibility, will remove this as soon as expires is no longer null in database.
@@ -268,11 +265,11 @@ public class Stilling extends ModelEntity {
         return url;
     }
 
-    public DateTime getExpires() {
+    public LocalDateTime getExpires() {
         return expires;
     }
 
-    public DateTime getSystemModifiedDate() {
+    public LocalDateTime getSystemModifiedDate() {
         return systemModifiedDate;
     }
 
@@ -315,11 +312,11 @@ public class Stilling extends ModelEntity {
         this.saksbehandling.rejectBecauseOfCapasity();
     }
 
-    public DateTime getPublished() {
+    public LocalDateTime getPublished() {
         return published;
     }
 
-    public void setPublished(DateTime published) {
+    public void setPublished(LocalDateTime published) {
         if (this.published != null)
             throw new IllegalArgumentException("Published er allerede satt. Kan ikke overskrives");
         this.published = published;

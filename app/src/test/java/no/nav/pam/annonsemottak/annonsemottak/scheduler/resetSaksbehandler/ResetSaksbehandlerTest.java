@@ -4,10 +4,10 @@ import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Status;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +26,8 @@ public class ResetSaksbehandlerTest {
         ads.add(0, enkelStilling().saksbehandler("Saksbehandler 1").status(Status.UNDER_ARBEID).build());
         ads.add(1, enkelStilling().saksbehandler("Saksbehandler 2").status(Status.UNDER_ARBEID).build());
         ads.add(2, enkelStilling().status(Status.MOTTATT).build());
-        ads.get(0).setUpdated(DateTime.now().minusDays(1));
-        ads.get(1).setUpdated(DateTime.now().minusDays(8));
+        ads.get(0).setUpdated(LocalDateTime.now().minusDays(1));
+        ads.get(1).setUpdated(LocalDateTime.now().minusDays(8));
 
         StillingRepository mockedStillingRepository = mock(StillingRepository.class);
         when(mockedStillingRepository.findBySaksbehandlingStatusAndAnnonseStatus(Status.UNDER_ARBEID, AnnonseStatus.AKTIV)).thenReturn(ads);

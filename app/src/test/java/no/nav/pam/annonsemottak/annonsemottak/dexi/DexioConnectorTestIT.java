@@ -5,12 +5,12 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.stilling
 @Transactional
 public class DexioConnectorTestIT {
 
-    @Inject
+    @Autowired
     DexiConnector dexiConnector;
 
     private String annonsetekst = "Annonsetekst";

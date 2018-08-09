@@ -6,6 +6,7 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class StillingSolrBeanMapperTest {
                 .contains(solrBean.getBedriftspresentasjon());
         softly.assertThat(stilling.getAnnonsetekst())
                 .contains(solrBean.getStillingsbeskrivelse());
-        softly.assertThat(stilling.getExpires().getMillis())
+        softly.assertThat(stilling.getExpires().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli())
                 .isEqualTo(solrBean.getSoknadsfrist().getTime());
         softly.assertThat(stilling.getKilde()).isEqualTo("stillingsolr");
         softly.assertThat(stilling.getMedium()).isEqualTo(solrBean.getKildetekst());

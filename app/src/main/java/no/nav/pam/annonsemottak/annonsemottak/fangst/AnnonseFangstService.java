@@ -3,13 +3,13 @@ package no.nav.pam.annonsemottak.annonsemottak.fangst;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class AnnonseFangstService {
             if (!allActiveExternalIds.contains(active.getExternalId())) {
 
                 // An ad can be manually deleted in source or have expired
-                if (active.getExpires() != null && active.getExpires().isBefore(DateTime.now())) {
+                if (active.getExpires() != null && active.getExpires().isBefore(LocalDateTime.now())) {
                     LOG.debug("Ad {} with expiration date {} has expired", active.getExternalId(), active.getExpires());
                     active.deactivate();
                     annonseResult.getExpiredList().add(active);

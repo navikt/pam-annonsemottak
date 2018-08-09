@@ -7,7 +7,6 @@ import no.nav.pam.annonsemottak.annonsemottak.solr.fetch.SolrFetchService;
 import no.nav.pam.annonsemottak.annonsemottak.solr.fetch.StillingSolrBeanFieldNames;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class SolrSearchInternal {
     @PostMapping(path = "/fetch/since/{time}")
     public ResponseEntity fetchStillinger(@PathVariable("time") String time) {
         LOG.debug("Starting saving new stillinger from solr since {}", time);
-        List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(new DateTime(time));
+        List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(LocalDateTime.parse(time));
         LOG.debug("Finished saving stillinger");
         return ResponseEntity.ok(solrBeans);
     }

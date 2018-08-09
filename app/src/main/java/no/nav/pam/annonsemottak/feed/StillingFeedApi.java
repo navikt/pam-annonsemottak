@@ -6,7 +6,6 @@ import no.nav.pam.annonsemottak.stilling.Arbeidsgiver;
 import no.nav.pam.annonsemottak.stilling.Kommentarer;
 import no.nav.pam.annonsemottak.stilling.Merknader;
 import no.nav.pam.annonsemottak.stilling.Saksbehandler;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -49,7 +51,8 @@ public class StillingFeedApi {
             Pageable pageable) {
 
         if (millis > 0) {
-            DateTime updatedDate = new DateTime(millis);
+            Instant instant = Instant.ofEpochMilli(millis);
+            LocalDateTime updatedDate = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
             LOG.info("Fetching feed for ads updates after " + updatedDate.toString());
 
             return ResponseEntity.ok(

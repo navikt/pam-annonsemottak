@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class ResetSaksbehandlerService {
 
         if (ads != null) {
             List<Stilling> resetList = ads.stream()
-                    .filter(s -> s.getUpdated().plusDays(RESET_AFTER_DAYS).isBeforeNow())
+                    .filter(s -> s.getUpdated().plusDays(RESET_AFTER_DAYS).isBefore(LocalDateTime.now()))
                     .collect(Collectors.toList());
 
             for (Stilling s : resetList) {
