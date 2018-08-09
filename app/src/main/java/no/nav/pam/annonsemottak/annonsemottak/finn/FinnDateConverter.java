@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Converts date strings from FINN API
  */
-public class FinnDateConverter {
+class FinnDateConverter {
 
     public static final String FINN_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss[.SSS]Z";
 
