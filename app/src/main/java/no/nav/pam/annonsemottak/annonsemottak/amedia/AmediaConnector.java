@@ -6,11 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * Kaller amedia sitt Api
@@ -28,7 +28,7 @@ public class AmediaConnector {
         this.apiEndpoint = amediaEndpoint;
     }
 
-    JsonNode hentData(DateTime sistModifisert, boolean medDetaljer, int resultSize) {
+    JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
         try {
             return executeRequest(createRequest(
                 apiEndpoint + new AmediaRequestParametere(sistModifisert, medDetaljer, resultSize)

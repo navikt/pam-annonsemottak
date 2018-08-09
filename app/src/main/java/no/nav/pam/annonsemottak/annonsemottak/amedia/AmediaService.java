@@ -11,13 +11,12 @@ import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,7 +86,7 @@ public class AmediaService {
     private void saveLastRun(ExternalRun externalRun, List<Stilling> returnerteStillinger) {
         returnerteStillinger.stream()
             .map(Stilling::getSystemModifiedDate)
-            .max((a1, a2) -> DateTimeComparator.getInstance().compare(a1, a2))
+            .max(LocalDateTime::compareTo)
             .ifPresent(dateTime -> {
                 ExternalRun er = new ExternalRun(
                     externalRun != null ? externalRun.getId() : null,
@@ -126,8 +125,8 @@ public class AmediaService {
         return annonseResult;
     }
 
-    private DateTime getLastRun(ExternalRun externalRun) {
-        DateTime lastRun;
+    private LocalDateTime getLastRun(ExternalRun externalRun) {
+        LocalDateTime lastRun;
         if (externalRun != null && externalRun.getLastRun() != null) {
             lastRun = externalRun.getLastRun();
         } else {
@@ -138,7 +137,7 @@ public class AmediaService {
         return lastRun;
     }
 
-    private List<Stilling> hentAmediaData(DateTime sisteModifiserteDato) {
+    private List<Stilling> hentAmediaData(LocalDateTime sisteModifiserteDato) {
         return AmediaResponseMapper
             .mapResponse(amediaConnector.hentData(sisteModifiserteDato, true, MAXANTALl_TREFF));
     }

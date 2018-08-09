@@ -9,9 +9,10 @@ import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -70,12 +71,12 @@ class AmediaStillingMapper {
         }
         String url = (!StringUtils.isBlank(text(attributes.path("applicationurl")))) ? text(attributes.path("applicationurl")) : null;
         String externalId = text(stilling.get("_id"));
-        DateTime expires = AmediaDateConverter
+        LocalDateTime expires = AmediaDateConverter
                 .convertDate(amediaFieldTransformer.hentListeSomJsonnoder(bookings).stream()
                         .map(b -> text(b.get("date_to")))
                         .max(String::compareTo).orElse(""));
 
-        DateTime systemModifiedTime = AmediaDateConverter
+        LocalDateTime systemModifiedTime = AmediaDateConverter
                 .convertDate(text(source.get("system_modified_time")));
 
         Stilling stilling = new Stilling(
@@ -127,7 +128,7 @@ class AmediaStillingMapper {
                 .distinct()
                 .collect(Collectors.joining(","));
 
-        DateTime published = AmediaDateConverter
+        LocalDateTime published = AmediaDateConverter
                 .convertDate(amediaFieldTransformer.hentListeSomJsonnoder(bookings).stream()
                         .map(b -> text(b.get("date_from")))
                         .max(String::compareTo).orElse(""));
@@ -145,7 +146,7 @@ class AmediaStillingMapper {
                         PropertyNames.CREATED_DATE, text(source.get("created_time")),
                         "system_modified", text(source.get("system_modified_time")),
                         PropertyNames.UPDATED_DATE, text(source.get("modified_time")),
-                        PropertyNames.EXTERNAL_PUBLISH_DATE, ISODateTimeFormat.dateTimeNoMillis().print(published),
+                        PropertyNames.EXTERNAL_PUBLISH_DATE, published.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT),
                         PropertyNames.LOCATION_ADDRESS, text(address.get("primary_address")),
                         "secondary_address", text(address.get("secondary_address")),
                         PropertyNames.LOCATION_POSTCODE, text(address.get("post_code")),

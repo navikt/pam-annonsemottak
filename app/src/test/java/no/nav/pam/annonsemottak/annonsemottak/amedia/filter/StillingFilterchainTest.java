@@ -3,9 +3,10 @@ package no.nav.pam.annonsemottak.annonsemottak.amedia.filter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.assertj.core.api.SoftAssertions;
-import org.joda.time.DateTime;
 import org.junit.Test;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class StillingFilterchainTest {
                 .stillingstekst(
                     "ved å klikke på &quot;Søk på Stilling&quot;-knappen til høyre på denne siden.")
                 .url("aaawww.blabla.noaaa")
-                .systemModifiedDate(new DateTime(1))
+                .systemModifiedDate(Instant.ofEpochMilli(1).atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .build(),
             new StillingTestdataBuilder()
                 .tittel("filtreres ikke pga at den har link i tillegg til knappetekst")
@@ -28,7 +29,7 @@ public class StillingFilterchainTest {
                 .stillingstekst(
                     "ved å klikke på &quot;Søk på Stilling&quot;-knappen til høyre på denne siden.")
                 .url("aaawww.webcruiter.noaaa")
-                .systemModifiedDate(new DateTime(1))
+                .systemModifiedDate(Instant.ofEpochMilli(2).atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .build(),
 
             new StillingTestdataBuilder()
@@ -36,7 +37,7 @@ public class StillingFilterchainTest {
                 .arbeidsgiver("arb2")
                 .stillingstekst(
                     "ved å klikke på &quot;Søk på Stilling&quot;-knappen til høyre på denne siden.")
-                .systemModifiedDate(new DateTime(2))
+                .systemModifiedDate(Instant.ofEpochMilli(3).atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .build(),
 
             new StillingTestdataBuilder()
@@ -44,7 +45,7 @@ public class StillingFilterchainTest {
                 .arbeidsgiver("arb3")
                 .stillingstekst("for lite tekst")
                 .url("")
-                .systemModifiedDate(new DateTime(3))
+                .systemModifiedDate(Instant.ofEpochMilli(4).atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .build(),
             new StillingTestdataBuilder()
                 .tittel("ikke filtrering pga tekst")
@@ -52,7 +53,7 @@ public class StillingFilterchainTest {
                 .stillingstekst(
                     "Mer enn 30 tegn --------------------------------------------------------")
                 .url("lenke")
-                .systemModifiedDate(new DateTime(4))
+                .systemModifiedDate(Instant.ofEpochMilli(4).atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .build()
 
         );

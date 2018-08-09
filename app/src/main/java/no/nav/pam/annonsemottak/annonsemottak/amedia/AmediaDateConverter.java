@@ -1,9 +1,10 @@
 package no.nav.pam.annonsemottak.annonsemottak.amedia;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Converts date strings from Amedia API
@@ -13,22 +14,24 @@ class AmediaDateConverter {
     private static final String AMEDIA_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZ";
 
 
-    static DateTime convertDate(String date) {
+    static LocalDateTime convertDate(String date) {
         if (StringUtils.isBlank(date)) {
             return null;
         }
 
-        return new DateTime(date, DateTimeZone.UTC);
+        date = date.replace("Z", "+0000");
+        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN));
     }
 
-    static String toStringUrlEncoded(DateTime date) {
-        return date.toString(DateTimeFormat.forPattern(AMEDIA_DATE_PATTERN))
-            .replace("+0000", "Z")
-            .replace(":", "%5C:");
+    static String toStringUrlEncoded(LocalDateTime date) {
+
+        String dateValue = date.atZone(ZoneId.of("Z")).format(DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN));
+        return dateValue
+                .replace("+0000", "Z")
+                .replace(":", "%5C:");
     }
 
-    static DateTime getInitialDate() {
-        return new DateTime(1900, 1, 1, 0, 0, 0, DateTimeZone.UTC);
+    static LocalDateTime getInitialDate() {
+        return LocalDateTime.of(1900, 1, 1, 0, 0, 0);
     }
-
 }

@@ -2,12 +2,12 @@ package no.nav.pam.annonsemottak.annonsemottak.amedia;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.text.StrSubstitutor;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,7 +28,7 @@ public class AmediaRequestParametere {
     private final String maxAntallTreff;
     private final String medInnhold;
 
-    public AmediaRequestParametere(DateTime sisteModifiedDate, boolean medInnhold, int resultSize) {
+    public AmediaRequestParametere(LocalDateTime sisteModifiedDate, boolean medInnhold, int resultSize) {
         this.sisteModifiedDate = modifisertDatoMedBuffertid(sisteModifiedDate);
         this.transactionType = DEFAULT_TRANSACTION_TYPE;
         this.sortering = DEFAULT_SORTERING;
@@ -75,7 +75,7 @@ public class AmediaRequestParametere {
     /*
         Legger inn en buffer
      */
-    private String modifisertDatoMedBuffertid(DateTime sisteModifiserteDato) {
+    private String modifisertDatoMedBuffertid(LocalDateTime sisteModifiserteDato) {
         if (sisteModifiserteDato == null) {
             return AmediaDateConverter.toStringUrlEncoded(AmediaDateConverter.getInitialDate());
         }

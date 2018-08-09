@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.annonsemottak.amedia;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,7 @@ public class AmediaRequestParametereTest {
 
     @Test
     public void kanOppretteEnParamterStrengMedAlleVerdier() {
-        DateTime sistModifisert = new DateTime(2017, 10, 20, 11, 0, 0, DateTimeZone.UTC);
+        LocalDateTime sistModifisert = LocalDateTime.of(2017, 10, 20, 11, 0, 0);
         AmediaRequestParametere parametere = new AmediaRequestParametere(sistModifisert, true, 200);
 
         assertThat(parametere.asString()).isEqualTo(
@@ -28,7 +28,7 @@ public class AmediaRequestParametereTest {
 
     @Test
     public void utenInhhold() {
-        DateTime sistModifisert = new DateTime(2017, 10, 20, 11, 0, 0, DateTimeZone.UTC);
+        LocalDateTime sistModifisert = LocalDateTime.of(2017, 10, 20, 11, 0, 0);
         AmediaRequestParametere parametere = new AmediaRequestParametere(sistModifisert, false,
             200);
 
