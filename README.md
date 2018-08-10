@@ -11,7 +11,7 @@ mvn clean install
 cd war
 mvn spring-boot:run -Dspring.profiles.active=dev -Dspring.config.location=${user.home}/pamannonsemmotak-dev.yml
 ```
-```
+
 #### Intellij
 Run>Edit configurations
 Add new configurations, choose maven
