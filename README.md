@@ -8,7 +8,7 @@ App som henter annonser fra andre kilder som Finn, Amedia, Dexi (web-crawl)
 #### Backend
 ```
 mvn clean install
-cd war
+cd app
 mvn spring-boot:run -Dspring.profiles.active=dev -Dspring.config.location=${user.home}/pamannonsemmotak-dev.yml
 ```
 
