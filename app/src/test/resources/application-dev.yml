@@ -44,17 +44,18 @@ management:
 scheduler:
   enabled: true
 dexi:
-  url: https://api.dexi.io
+  url: ${DEXI_URL}
   api:
-    username: d08c223f-5d1c-42f8-8321-f4fd24781ebb
-    password: f22d4ac240ffbbeec3ba78dd9
+    username: ${DEXI_API_USERNAME}
+    password: ${DEXI_API_PASSWORD}
 amedia:
-  url: https://bed.api.no/api/pipek/v2/classified/search
+  url: ${FINN_API_PASSWORD:https://bed.api.no/api/pipek/v2/classified/search}
 finn:
-  api:
-    password: soGbgSxHtQ6rN1vl
+  api:
+    password: ${FINN_API_PASSWORD}
 proxy:
-  url: http://155.55.60.117:8088
+  url: ${DRIFTPROXY_URL}
 solr:
-  url: https://itjenester-t1.oera.no/stilling-solr/
+  url: ${STILLING_SOLR_URL}
   core: 'maincore'
+
