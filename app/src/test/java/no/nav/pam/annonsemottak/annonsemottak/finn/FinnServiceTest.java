@@ -56,8 +56,8 @@ public class FinnServiceTest {
 
         // TODO: Temporary dates with 4 day delay. Switch back to commented lines, once the 4 day delay is disabled.
         searchResult.add(generateAdHeadWithDates("1", LocalDateTime.now().minusDays(3), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // Existing but changed
-        searchResult.add(generateAdHeadWithDates("2", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
-        searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(3), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("2", LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
+        searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(3), LocalDateTime.now().minusDays(3), LocalDateTime.now().plusMonths(1))); // Existing
         searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
 
         when(mockedConnector.fetchSearchResult("TEST")).thenReturn(searchResult);

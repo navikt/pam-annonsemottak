@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -76,8 +75,8 @@ public class FinnService {
             Set<FinnAdHead> filteredAdHeads = searchResult.stream()
                     //TODO: temporarily switched off, replaced with 1 days ads
                     //.filter(adHead -> adHead.getPublished().compareTo(lastRun) >= 0 || adHead.getUpdated().compareTo(lastRun) >= 0)
-                    .filter(adHead -> adHead.getPublished().toLocalDate().isEqual(LocalDate.now().minusDays(1))
-                            || adHead.getUpdated().toLocalDate().isEqual(LocalDate.now().minusDays(1)))
+                    .filter(adHead -> adHead.getPublished().toLocalDate().isAfter(lastRun.minusDays(1).toLocalDate())
+                            || adHead.getUpdated().toLocalDate().isAfter(lastRun.minusDays(1).toLocalDate()))
                     .collect(Collectors.toSet());
             LOG.debug("Filtered search results from Finn. Found {} new and changed ads since last run on {}",
                     filteredAdHeads.size(), lastRun.toString());
