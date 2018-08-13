@@ -6,6 +6,7 @@ import no.nav.pam.annonsemottak.stilling.Arbeidsgiver;
 import no.nav.pam.annonsemottak.stilling.Kommentarer;
 import no.nav.pam.annonsemottak.stilling.Merknader;
 import no.nav.pam.annonsemottak.stilling.Saksbehandler;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import javax.inject.Inject;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -47,9 +49,19 @@ public class StillingFeedApi {
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity getFeed(
-            @RequestParam(value = "millis", required = false, defaultValue = "0") long millis,
+            @Deprecated @RequestParam(value = "millis", required = false, defaultValue = "0") long millis,
+            @RequestParam(value = "timestamp", required = false) String timestamp,
             Pageable pageable) {
 
+        if (timestamp != null) {
+            return getFeedByTimestamp(timestamp, pageable);
+        } else {
+            return getFeedByMillis(millis, pageable);
+        }
+    }
+
+    @Deprecated
+    private ResponseEntity getFeedByMillis(long millis, Pageable pageable) {
         if (millis > 0) {
             Instant instant = Instant.ofEpochMilli(millis);
             LocalDateTime updatedDate = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
@@ -59,6 +71,28 @@ public class StillingFeedApi {
                     stillingFeedService.findStillingUpdatedAfter(updatedDate, pageable).map(objectMapper::valueToTree)
             );
 
+        } else {
+            LOG.info("Fetching feed for all ads");
+
+            return ResponseEntity.ok(
+                    stillingFeedService.findAllActive(pageable).map(objectMapper::valueToTree)
+            );
+        }
+    }
+
+    private ResponseEntity getFeedByTimestamp(String timestamp, Pageable pageable) {
+        if (StringUtils.isNotBlank(timestamp)) {
+            try {
+                LocalDateTime lastUpdatedDate = LocalDateTime.parse(timestamp);
+                LOG.info("Fetching feed for ads updates after " + lastUpdatedDate.toString());
+
+                return ResponseEntity.ok(
+                        stillingFeedService.findStillingUpdatedAfter(lastUpdatedDate, pageable).map(objectMapper::valueToTree)
+                );
+            } catch (DateTimeParseException dte) {
+                LOG.error("Error parsing the given timestamp {}", timestamp);
+                return ResponseEntity.badRequest().build();
+            }
         } else {
             LOG.info("Fetching feed for all ads");
 
