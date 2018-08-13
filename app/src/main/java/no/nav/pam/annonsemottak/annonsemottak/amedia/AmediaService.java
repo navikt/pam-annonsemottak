@@ -5,8 +5,8 @@ import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.filter.StillingFilterchain;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
@@ -30,16 +30,16 @@ public class AmediaService {
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
     private final AmediaConnector amediaConnector;
     private final AnnonseFangstService annonseFangstService;
-    private final ExternalRunsService externalRunsService;
+    private final ExternalRunService externalRunService;
 
 
     @Inject
     public AmediaService(AmediaConnector amediaConnector,
-        AnnonseFangstService annonseFangstService,
-        ExternalRunsService externalRunsService) {
+                         AnnonseFangstService annonseFangstService,
+                         ExternalRunService externalRunService) {
         this.amediaConnector = amediaConnector;
         this.annonseFangstService = annonseFangstService;
-        this.externalRunsService = externalRunsService;
+        this.externalRunService = externalRunService;
     }
 
     public ResultsOnSave saveLatestResults() {
@@ -47,7 +47,7 @@ public class AmediaService {
 
         LOG.info("Starting amedia fetch {} ");
 
-        ExternalRun externalRun = externalRunsService
+        ExternalRun externalRun = externalRunService
             .findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
 
         List<String> alleStillingIDerFraAmedia = AmediaResponseMapper.mapEksternIder(
@@ -94,7 +94,7 @@ public class AmediaService {
                     Medium.AMEDIA.toString(),
                     dateTime);
                 LOG.info("Amedia lagrer externalrun {}", er.getLastRun());
-                externalRunsService.save(er);
+                externalRunService.save(er);
             });
     }
 

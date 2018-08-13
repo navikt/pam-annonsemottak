@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.externalRuns;
+package no.nav.pam.annonsemottak.annonsemottak.externalRun;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

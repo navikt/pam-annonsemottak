@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.externalRuns;
+package no.nav.pam.annonsemottak.annonsemottak.externalRun;
 
 
 import org.slf4j.Logger;
@@ -9,14 +9,14 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 
 @Component
-public class ExternalRunsService {
+public class ExternalRunService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ExternalRunsService.class);
+    private final static Logger LOG = LoggerFactory.getLogger(ExternalRunService.class);
 
     private final ExternalRunRepository externalRunRepository;
 
     @Inject
-    public ExternalRunsService(ExternalRunRepository externalRunRepository){
+    public ExternalRunService(ExternalRunRepository externalRunRepository){
         this.externalRunRepository = externalRunRepository;
     }
 

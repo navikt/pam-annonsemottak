@@ -3,8 +3,8 @@ package no.nav.pam.annonsemottak.annonsemottak.finn;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import org.junit.Before;
@@ -27,14 +27,14 @@ public class FinnServiceTest {
     private FinnService finnService;
 
     private FinnConnector mockedConnector;
-    private ExternalRunsService mockedExternalRunService;
+    private ExternalRunService mockedExternalRunService;
     private AnnonseFangstService mockedAnnonseFangstService;
 
 
     @Before
     public void init() throws FinnConnectorException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
         mockedConnector = mock(FinnConnector.class);
-        mockedExternalRunService = mock(ExternalRunsService.class);
+        mockedExternalRunService = mock(ExternalRunService.class);
         mockedAnnonseFangstService = mock(AnnonseFangstService.class);
 
         finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService);

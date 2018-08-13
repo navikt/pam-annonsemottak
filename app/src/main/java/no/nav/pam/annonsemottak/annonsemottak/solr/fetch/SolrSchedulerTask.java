@@ -2,8 +2,8 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
 import net.javacrumbs.shedlock.core.SchedulerLock;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +24,19 @@ public class SolrSchedulerTask {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolrSchedulerTask.class);
     private final SolrFetchService solrFetchService;
-    private final ExternalRunsService externalRunsService;
+    private final ExternalRunService externalRunService;
 
     @Autowired
-    SolrSchedulerTask(SolrFetchService solrFetchService, ExternalRunsService externalRunsService) {
+    SolrSchedulerTask(SolrFetchService solrFetchService, ExternalRunService externalRunService) {
         this.solrFetchService = solrFetchService;
-        this.externalRunsService = externalRunsService;
+        this.externalRunService = externalRunService;
     }
 
     @Scheduled(cron = "0 0 8 * * *")
     @SchedulerLock(name = "saveLatestAdsFromStillingsolr")
     public void saveLatestAdsFromStillingsolr() {
         try {
-            ExternalRun externalRun = externalRunsService.retrieveExternalRun(Kilde.STILLINGSOLR.value());
+            ExternalRun externalRun = externalRunService.retrieveExternalRun(Kilde.STILLINGSOLR.value());
             LocalDateTime lastRun = getLastRunFromExternalRun(externalRun);
 
             List<Stilling> newStillinger = solrFetchService.saveNewStillingerFromSolr(lastRun);
@@ -74,6 +74,6 @@ public class SolrSchedulerTask {
             externalRun.setLastRun(lastRegistered);
         }
 
-        externalRunsService.save(externalRun);
+        externalRunService.save(externalRun);
     }
 }

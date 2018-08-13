@@ -5,8 +5,8 @@ import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRun;
-import no.nav.pam.annonsemottak.annonsemottak.externalRuns.ExternalRunsService;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
+import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
@@ -31,13 +31,13 @@ public class FinnService {
 
     private final FinnConnector connector;
     private final AnnonseFangstService finnAnnonseFangstService;
-    private final ExternalRunsService externalRunsService;
+    private final ExternalRunService externalRunService;
 
     @Inject
-    public FinnService(AnnonseFangstService finnAnnonseFangstService, FinnConnector connector, ExternalRunsService externalRunsService) {
+    public FinnService(AnnonseFangstService finnAnnonseFangstService, FinnConnector connector, ExternalRunService externalRunService) {
         this.finnAnnonseFangstService = finnAnnonseFangstService;
         this.connector = connector;
-        this.externalRunsService = externalRunsService;
+        this.externalRunService = externalRunService;
     }
 
     /**
@@ -54,7 +54,7 @@ public class FinnService {
         LocalDateTime lastRun;
         long start = System.currentTimeMillis();
         LOG.info("starting finn fetch {} ", Arrays.toString(collections));
-        ExternalRun externalRun = externalRunsService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString());
+        ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString());
         if (externalRun != null && externalRun.getLastRun() != null) {
             lastRun = externalRun.getLastRun();
             externalRun.setLastRun(LocalDateTime.now());
@@ -107,7 +107,7 @@ public class FinnService {
                 annonseResult.getExpiredList(), rest, annonseResult.getDuplicateList()));
 
         //Save new or update last run time
-        externalRunsService.save(externalRun);
+        externalRunService.save(externalRun);
 
         SensuClient.sendEvent("finnStillingerHentet.event", Collections.emptyMap(), ImmutableMap.of(
                 "total", searchResult.size(),
