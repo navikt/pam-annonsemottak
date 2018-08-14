@@ -50,7 +50,7 @@ public class StillingFeedApi {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity getFeed(
             @Deprecated @RequestParam(value = "millis", required = false, defaultValue = "0") long millis,
-            @RequestParam(value = "timestamp", required = false) String timestamp,
+            @RequestParam(value = "updatedSince", required = false) String timestamp,
             Pageable pageable) {
 
         if (timestamp != null) {
