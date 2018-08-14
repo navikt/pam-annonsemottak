@@ -53,52 +53,42 @@ public class StillingFeedApi {
             @RequestParam(value = "updatedSince", required = false) String timestamp,
             Pageable pageable) {
 
-        if (timestamp != null) {
+        if (StringUtils.isNotBlank(timestamp)) {
             return getFeedByTimestamp(timestamp, pageable);
-        } else {
+        } else if (millis > 0) {
             return getFeedByMillis(millis, pageable);
+        } else {
+            LOG.info("Fetching feed for all ads");
+
+            return ResponseEntity.ok(
+                    stillingFeedService.findAllActive(pageable).map(objectMapper::valueToTree)
+            );
         }
     }
 
     @Deprecated
     private ResponseEntity getFeedByMillis(long millis, Pageable pageable) {
-        if (millis > 0) {
-            Instant instant = Instant.ofEpochMilli(millis);
-            LocalDateTime updatedDate = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-            LOG.info("Fetching feed for ads updates after " + updatedDate.toString());
 
-            return ResponseEntity.ok(
-                    stillingFeedService.findStillingUpdatedAfter(updatedDate, pageable).map(objectMapper::valueToTree)
-            );
+        Instant instant = Instant.ofEpochMilli(millis);
+        LocalDateTime updatedDate = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LOG.info("Fetching feed for ads updates after " + updatedDate.toString());
 
-        } else {
-            LOG.info("Fetching feed for all ads");
-
-            return ResponseEntity.ok(
-                    stillingFeedService.findAllActive(pageable).map(objectMapper::valueToTree)
-            );
-        }
+        return ResponseEntity.ok(
+                stillingFeedService.findStillingUpdatedAfter(updatedDate, pageable).map(objectMapper::valueToTree)
+        );
     }
 
     private ResponseEntity getFeedByTimestamp(String timestamp, Pageable pageable) {
-        if (StringUtils.isNotBlank(timestamp)) {
-            try {
-                LocalDateTime lastUpdatedDate = LocalDateTime.parse(timestamp);
-                LOG.info("Fetching feed for ads updates after " + lastUpdatedDate.toString());
-
-                return ResponseEntity.ok(
-                        stillingFeedService.findStillingUpdatedAfter(lastUpdatedDate, pageable).map(objectMapper::valueToTree)
-                );
-            } catch (DateTimeParseException dte) {
-                LOG.error("Error parsing the given timestamp {}", timestamp);
-                return ResponseEntity.badRequest().build();
-            }
-        } else {
-            LOG.info("Fetching feed for all ads");
+        try {
+            LocalDateTime lastUpdatedDate = LocalDateTime.parse(timestamp);
+            LOG.info("Fetching feed for ads updates after " + lastUpdatedDate.toString());
 
             return ResponseEntity.ok(
-                    stillingFeedService.findAllActive(pageable).map(objectMapper::valueToTree)
+                    stillingFeedService.findStillingUpdatedAfter(lastUpdatedDate, pageable).map(objectMapper::valueToTree)
             );
+        } catch (DateTimeParseException dte) {
+            LOG.error("Error parsing the given timestamp {}", timestamp);
+            return ResponseEntity.badRequest().build();
         }
     }
 
