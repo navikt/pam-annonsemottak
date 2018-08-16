@@ -70,7 +70,7 @@ class StillingSolrBeanMapper {
                 medium,
                 "",
                 fieldToString(solrBean.getId()),
-                expires,
+                (solrBean.getSoknadsfrist() != null) ? dateToLocalDateTime(solrBean.getSoknadsfrist()) : expires,
                 properties,
                 null);
 
@@ -112,7 +112,7 @@ class StillingSolrBeanMapper {
                 .collect(Collectors.joining(" "));
     }
 
-    private static LocalDateTime dateToLocalDateTime(Date date){
-       return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    private static LocalDateTime dateToLocalDateTime(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }

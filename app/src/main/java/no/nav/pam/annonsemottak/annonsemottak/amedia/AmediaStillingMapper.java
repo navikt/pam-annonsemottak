@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.annonsemottak.amedia;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
@@ -90,7 +91,7 @@ class AmediaStillingMapper {
                 Medium.AMEDIA.toString(),
                 url,
                 externalId,
-                expires,
+                GenericDateParser.parse(soknadsfrist).orElse(expires),
                 getKeyValueMap(),
                 systemModifiedTime
         );

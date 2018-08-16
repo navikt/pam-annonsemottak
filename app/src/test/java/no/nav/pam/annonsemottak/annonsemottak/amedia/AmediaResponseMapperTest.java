@@ -82,7 +82,7 @@ public class AmediaResponseMapperTest {
         s.assertThat(stilling.getUrl())
             .isEqualTo("https://karriere.no/jobb/tankbilsjafor-572920.html");
         s.assertThat(stilling.getExternalId()).isEqualTo("3410158");
-        s.assertThat(stilling.getExpires()).isEqualTo(AmediaDateConverter.convertDate("2017-10-31T00:00:00Z"));
+        s.assertThat(stilling.getExpires()).isEqualTo(AmediaDateConverter.convertDate("2017-10-30T00:00:00Z"));  //soknadsfrist
         s.assertThat(stilling.getPublished()).isNull();
 
         Map<String, String> properties = stilling.getProperties();

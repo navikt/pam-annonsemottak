@@ -2,12 +2,15 @@ package no.nav.pam.annonsemottak.annonsemottak;
 
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -18,25 +21,32 @@ import static java.time.temporal.ChronoField.YEAR_OF_ERA;
 
 public class GenericDateParser {
 
+    private static final Logger LOG = LoggerFactory.getLogger(GenericDateParser.class);
+
     private static Map<String, String> dateFormatMap = new HashMap();
 
     static {
-        dateFormatMap.put("^\\d{4}\\.\\d{1,2}\\.\\d{1,2}$", "yyyy.M.dd");
-        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}\\.\\d{2,4}$", "dd.M.[yyyy][yy]");
-        dateFormatMap.put("^\\d{1,2}\\.[a-z]+\\.\\d{2,4}$", "dd.[LLLL][LLL].[yyyy][yy]");
+        dateFormatMap.put("^\\d{4}\\.\\d{1,2}\\.\\d{1,2}$", "yyyy.M.d");
+        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}\\.\\d{2,4}$", "d.M.[yyyy][yy]");
+        dateFormatMap.put("^\\d{1,2}\\.[a-z]+\\.\\d{2,4}$", "d.[LLLL][LLL].[yyyy][yy]");
 
         // No year dates, default to the current year
-        dateFormatMap.put("^\\d{1,2}\\.[a-z]+$", "dd.[LLLL][LLL]");
-        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}$","dd.M");
+        dateFormatMap.put("^\\d{1,2}\\.[a-z]+$", "d.[LLLL][LLL]");
+        dateFormatMap.put("^\\d{1,2}\\.\\d{1,2}$", "d.M");
     }
 
     /**
      * Attempts to parse a generic free text date
+     *
      * @param rawDate
      * @return
      */
-    public static LocalDateTime parseDate(String rawDate) {
-        if (rawDate==null) {
+    public static Optional<LocalDateTime> parse(String rawDate) {
+        return Optional.ofNullable(parseDate(rawDate));
+    }
+
+    private static LocalDateTime parseDate(String rawDate) {
+        if (rawDate == null) {
             return null;
         }
         String dateString = sanitize(rawDate);
@@ -48,10 +58,15 @@ public class GenericDateParser {
         // NOTE: uuuu - year of era, yyyy - year. Defaulting will cause conflict if year of era is already set
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .appendPattern(dateFormatMap.get(format.get()))
-                .parseDefaulting(YEAR_OF_ERA,  ZonedDateTime.now().getYear())
+                .parseDefaulting(YEAR_OF_ERA, ZonedDateTime.now().getYear())
                 .toFormatter(Locale.forLanguageTag("no"));
 
-        return LocalDate.parse(dateString, formatter).atStartOfDay();
+        try {
+            return LocalDate.parse(dateString, formatter).atStartOfDay();
+        } catch (DateTimeParseException e) {
+            LOG.error("Couldn't parse date {} returning null", rawDate);
+            return  null;
+        }
     }
 
     // Sanitize possible date string into a parseable dd.MM.yyyy format

@@ -51,7 +51,7 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
     @Override
     public Stilling build() {
         Stilling stilling = new Stilling(tittel, arbeidssted, arbeidsgiver, arbeidsgiverbeskrivelse,
-                stillingstekst, utløpsdato, kilde, medium, url, externalId, GenericDateParser.parseDate(utløpsdato), props != null ? props : new HashMap(), systemModifiedDate);
+                stillingstekst, utløpsdato, kilde, medium, url, externalId, GenericDateParser.parse(utløpsdato).orElse(null), props != null ? props : new HashMap(), systemModifiedDate);
         Map map = new HashMap();
         if (status != null) {
             map.put(STATUS, status.getKodeAsString());

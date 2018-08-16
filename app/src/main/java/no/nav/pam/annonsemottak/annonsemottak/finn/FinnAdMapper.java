@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.annonsemottak.finn;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
@@ -43,7 +44,8 @@ public class FinnAdMapper {
                 Medium.FINN.toString(),
                 ad.getUrl(),
                 ad.getIdentifier(),
-                FinnDateConverter.convertDate(ad.getExpires()),
+                GenericDateParser.parse(ad.getApplicationDeadline())
+                        .orElse(FinnDateConverter.convertDate(ad.getExpires())),
                 getKeyValueMap(ad),
                 null
         );

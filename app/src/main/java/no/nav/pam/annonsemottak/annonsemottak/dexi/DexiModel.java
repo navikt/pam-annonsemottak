@@ -75,7 +75,7 @@ class DexiModel {
                 robotName,
                 map.get(ANNONSEURL),
                 map.get(EXTERNALID),
-                GenericDateParser.parseDate(map.get(SOKNADSFRIST)),
+                GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null),
                 props,
                 null);
     }

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import java.io.Reader;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
@@ -19,6 +20,7 @@ public class FinnAdMapperTest {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final String AD1 = "src/test/resources/finn/samples/ad1.xml";
     private static final String AD2 = "src/test/resources/finn/samples/ad2.xml";
+    private static final String AD3 = "src/test/resources/finn/samples/ad3.xml";
 
     private final FinnConnector connector = new FinnConnector(null, null, null, 0);
 
@@ -162,6 +164,22 @@ public class FinnAdMapperTest {
             assertNotNull(stilling);
             assertEquals("11.03524", stilling.getProperties().get(PropertyNames.GEO_LONGITUDE));
             assertEquals("59.95626", stilling.getProperties().get(PropertyNames.GEO_LATITUDE));
+        }
+    }
+
+    @Test
+    public void expired_date_should_be_mapped_correctly() throws Exception {
+        try (Reader reader = FinnConnectorTest.getReader(AD1)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("2017-03-19", stilling.getExpires().format(DateTimeFormatter.ISO_DATE));
+        }
+
+        // Non parsable text = snarest. Use expired field
+        try (Reader reader = FinnConnectorTest.getReader(AD3)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("2017-11-10", stilling.getExpires().format(DateTimeFormatter.ISO_DATE));
         }
     }
 }
