@@ -6,7 +6,8 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
-import net.javacrumbs.shedlock.spring.SpringLockableTaskSchedulerFactory;
+import net.javacrumbs.shedlock.spring.ScheduledLockConfiguration;
+import net.javacrumbs.shedlock.spring.ScheduledLockConfigurationBuilder;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.AmediaConnector;
@@ -20,7 +21,7 @@ import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.*;
-import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -36,10 +37,12 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 
 @Configuration
+@EnableScheduling
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses = {Application.class})
 public class AppConfig {
@@ -168,8 +171,12 @@ public class AppConfig {
     }
 
     @Bean
-    public TaskScheduler taskScheduler(LockProvider lockProvider) {
-        return SpringLockableTaskSchedulerFactory.newLockableTaskScheduler(10, lockProvider);
+    public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider) {
+        return ScheduledLockConfigurationBuilder
+                .withLockProvider(lockProvider)
+                .withPoolSize(10)
+                .withDefaultLockAtMostFor(Duration.ofMinutes(10))
+                .build();
     }
 
     @Bean
