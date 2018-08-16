@@ -26,15 +26,9 @@ fasitResources:
   used:
   - alias: "driftproxy"
     resourceType: baseurl
-  - alias: "amedia"
-    resourceType: restservice
-  - alias: "dexi"
-    resourceType: restservice
   - alias: "dexi.api"
     resourceType: credential
   - alias: "finn.api"
     resourceType: credential
-  - alias: "stilling.solr"
-    resourceType: baseurl
   - alias: "annonsemottakDb"
     resourceType: datasource

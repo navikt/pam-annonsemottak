@@ -21,11 +21,11 @@ management:
 scheduler:
   enabled: false
 dexi:
-  url: ${DEXI_URL}
+  url: http://localhost/api.dexi.io
   api:
-    username: ${DEXI_API_USERNAME}
-    password: ${DEXI_API_PASSWORD}
+    username: dexi_username
+    password: dexi_password
 amedia:
   url: http://localhost:7010/api/pipek/v2/classified/search
 proxy:
-  url: ${PROXY_URL}
+  url: http://155.55.60.117:8088
