@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
-@Profile({"test"})
+@Profile({"wiremock"})
 @Configuration
 public class WireMockConfig {
 
