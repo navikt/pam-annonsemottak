@@ -32,6 +32,12 @@ public class ModelEntity {
     @PrePersist
     @PreUpdate
     protected void onMerge() {
+
+        //TODO: Remove this after migration from
+        if(getCreated() != null && getUpdated() != null){
+            return;
+        }
+
         String userName = "test1234";
         String userDisplayName = "Testuser Displayname";
         if (isNew()) {

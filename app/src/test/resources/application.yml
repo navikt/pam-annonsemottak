@@ -41,4 +41,4 @@ stillingfeed:
   poolsize: 10
   duration: 10
   scheduler:
-    enabled: true
+    enabled: false
