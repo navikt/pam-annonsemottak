@@ -7,7 +7,7 @@ replicas:
 prometheus:
     enabled: true
     path: /actuator/prometheus
-port: 9001
+port: 9016
 healthcheck:
     liveness:
       initialDelay: 60
