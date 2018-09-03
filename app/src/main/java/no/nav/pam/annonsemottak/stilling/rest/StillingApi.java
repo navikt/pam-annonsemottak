@@ -52,6 +52,7 @@ public class StillingApi {
         ADREG_PROPERTY_KEYS.put("arbeidsstedSted", PropertyNames.LOCATION_CITY);
         ADREG_PROPERTY_KEYS.put("arbeidsstedKomunne", PropertyNames.LOCATION_MUNICIPAL);
         ADREG_PROPERTY_KEYS.put("arbeidsstedFylke", PropertyNames.LOCATION_COUNTY);
+        ADREG_PROPERTY_KEYS.put("arbeidsstedLand", PropertyNames.LOCATION_COUNTRY);
         ADREG_PROPERTY_KEYS.put("stillingstittel", PropertyNames.STILLINGSTITTEL);
         ADREG_PROPERTY_KEYS.put("kommuneFylke", PropertyNames.FYLKE);
         ADREG_PROPERTY_KEYS.put("Antall", PropertyNames.ANTALL_STILLINGER);
