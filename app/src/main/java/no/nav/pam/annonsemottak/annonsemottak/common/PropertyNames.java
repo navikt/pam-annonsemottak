@@ -27,6 +27,8 @@ public class PropertyNames {
     public static final String LOCATION_ADDRESS = "location.address";
     public static final String LOCATION_CITY = "location.city";
     public static final String LOCATION_COUNTRY = "location.country";
+    public static final String LOCATION_MUNICIPAL = "location.municipal";
+    public static final String LOCATION_COUNTY = "location.county";
 
     public static final String CREATED_DATE = "created";
     public static final String UPDATED_DATE = "updated";

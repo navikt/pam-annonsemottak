@@ -7,7 +7,7 @@ replicas:
 prometheus:
     enabled: true
     path: /actuator/prometheus
-port: 9001
+port: 9016
 healthcheck:
     liveness:
       initialDelay: 60
@@ -30,5 +30,5 @@ fasitResources:
     resourceType: credential
   - alias: "finn.api"
     resourceType: credential
-  - alias: "annonsemottakDb"
+  - alias: "annonsemottakDB"
     resourceType: datasource
