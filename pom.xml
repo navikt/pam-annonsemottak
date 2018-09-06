@@ -26,6 +26,7 @@
         <wiremock.version>2.7.1</wiremock.version>
         <assertj.version>3.7.0</assertj.version>
         <shedlock.version>0.17.0</shedlock.version>
+        <logstash-logback-encoder.version>4.10</logstash-logback-encoder.version>
     </properties>
 
     <dependencyManagement>
@@ -83,6 +84,12 @@
                 <groupId>org.apache.solr</groupId>
                 <artifactId>solr-solrj</artifactId>
                 <version>4.10.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.version}</version>
             </dependency>
 
             <!-- Testing -->
