@@ -41,7 +41,7 @@ management:
       exposure:
         include: ["prometheus", "metrics"]
 scheduler:
-  enabled: true
+  enabled: false
 dexi:
   url: https://api.dexi.io
   api:
