@@ -30,5 +30,5 @@ fasitResources:
     resourceType: credential
   - alias: "finn.api"
     resourceType: credential
-  - alias: "annonsemottakDb"
+  - alias: "annonsemottakDB"
     resourceType: datasource
