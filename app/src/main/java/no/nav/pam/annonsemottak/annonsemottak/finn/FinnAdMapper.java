@@ -12,8 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FinnAdMapper {
@@ -33,7 +31,7 @@ public class FinnAdMapper {
             return null;
         }
 
-        Stilling s =  new Stilling(
+        Stilling s = new Stilling(
                 HtmlToMarkdownConverter.parse(ad.getTitle()).trim(),
                 ad.getLocation().getCity(),
                 getEmployer(ad),
@@ -108,7 +106,7 @@ public class FinnAdMapper {
         keyValueMap.put(PropertyNames.UPDATED_DATE, ad.getUpdated());
         keyValueMap.put("submitted", ad.getDateSubmitted());
         // Expires date has been assigned to Stilling expires field
-        keyValueMap.put(PropertyNames.EXTERNAL_PUBLISH_DATE, FinnDateConverter.convertDate(ad.getPublished()).atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT));
+        keyValueMap.put(PropertyNames.EXTERNAL_PUBLISH_DATE, ad.getPublished());
         keyValueMap.put("edited", ad.getEdited());
         // What should be in identifier is used in Stilling.getExternalId, see constructor.
         keyValueMap.put("private", String.valueOf(ad.isPrivate()));
@@ -131,7 +129,7 @@ public class FinnAdMapper {
         keyValueMap.put(PropertyNames.LOGO_URL_MAIN, ad.getAuthor().getUrlMainLogo());
 
         // Keys that are semantically common with other sources
-        if(ad.getGeoLocation() !=  null){
+        if (ad.getGeoLocation() != null) {
             keyValueMap.put(PropertyNames.GEO_LATITUDE, ad.getGeoLocation().getLatitude());
             keyValueMap.put(PropertyNames.GEO_LONGITUDE, ad.getGeoLocation().getLongitude());
         }
@@ -164,8 +162,8 @@ public class FinnAdMapper {
         return String.join(separator, elements);
     }
 
-    private static String toJsonString(Object o){
-        if(o == null) {
+    private static String toJsonString(Object o) {
+        if (o == null) {
             return null;
         }
 
