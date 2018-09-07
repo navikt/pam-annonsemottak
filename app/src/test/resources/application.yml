@@ -32,13 +32,3 @@ proxy:
 solr:
   url: http://localhost.solr
   core: 'maincore'
-
-#TODO: Remove after transition from PAM-STILLING is complete
-stillingfeed:
-  annonsemottak:
-    url: https://pamstilling-t1.oera.no/api/stillinger/feed/
-  pagesize: 10
-  poolsize: 10
-  duration: 10
-  scheduler:
-    enabled: false
