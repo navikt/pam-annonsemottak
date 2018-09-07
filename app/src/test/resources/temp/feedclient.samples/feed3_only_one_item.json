@@ -1,0 +1,51 @@
+{
+  "content": [
+    {
+      "id": 73896,
+      "created": 1513237119744,
+      "createdBy": "test1234",
+      "createdByDisplayName": "Testuser Displayname",
+      "updated": 1513237119744,
+      "updatedBy": "test1234",
+      "updatedByDisplayName": "Testuser Displayname",
+      "uuid": "897e5cda-6529-4bb4-bdf0-90474f0e74e6",
+      "kilde": "DEXI",
+      "medium": "www.norgesgruppen.no",
+      "hash": "e3a51b1b867dd47614485db953d2a6579492bf84a95ddaca3fb1f7ccaa875eba",
+      "url": "http://www.norgesgruppen.no/muligheter/ledige-stillinger/?advertId=1616",
+      "externalId": "http://www.norgesgruppen.no/muligheter/ledige-stillinger/?advertId=1616",
+      "published": null,
+      "annonseStatus": "AKTIV",
+      "expires": 1515625200000,
+      "systemModifiedDate": null,
+      "properties": {
+        "location.postalCode": "1470",
+        "location.address": "Testgate 5",
+        "Fylke": "Østfold",
+        "Arbeidstid": "Turnus",
+        "Kontaktinfo": "\" Navn: Karen Vestheim Telefon: 69 24 94 33 Stilling: Butikksjef \"",
+        "HeltidDeltid": "Deltid",
+        "Type stilling": "Fast ansettelse",
+        "Annonsor": "Norgesgruppen"
+      },
+      "status": "AVVIST",
+      "arbeidsgiveromtale": "KIWI minipris er en av landets mest ekspansive lavpriskjeder og omfatter over 650 butikker. I 2017 forventer vi en samlet omsetning på 35,4 milliarder kroner. Kjedekonseptet er faste, lave priser på alle varer og en kostnadseffektiv drift. KIWI minipris er med i NorgesGruppen som er Norges største dagligvaregruppering.\n\n",
+      "arbeidsgiver": "KIWI Tigerplassen",
+      "stillingstittel": "KIWI Tigerplassen søker etter butikkmedarbeider deltid 20 %",
+      "saksbehandler": "Eziz",
+      "kommentarer": "Duplikat av id: 9608306",
+      "merknader": "3",
+      "arbeidssted": "Moss",
+      "soeknadsfrist": "11.01.2018",
+      "annonsetekst": "Arbeidsoppgaver:\n* Hovedsakelig kassererarbeid\n* Kundebehandling\n* Varehåndtering\n* Forefallende butikkarbeid\n\nPersonlige egenskaper:\n* Må være fylt 18 år\n* Punktlig\n* Utadvendt og ærlig\n* Serviceinnstilt\n* Ryddig\n* Godt humør\n\nKvalifikasjoner:\n* Erfaring fra dagligvare er ønskelig, men ingen betingelse\n\nVi kan tilby:\n* Opplæring\n* Karrieremuligheter\n* Sosialt og trivelig arbeidsplass blant hyggelige kolleger\n\nNB! Vi gjør oppmerksom på at alle søknader må sendes inn via søknadskjema tilknyttet annonsen, samt at det meste av kommunikasjonen vedrørende stillingen vil skje per e-post.\n\n",
+      "new": false
+    }
+  ],
+  "size": 10,
+  "number": 1,
+  "sort": null,
+  "totalPages": 2,
+  "numberOfElements": 10,
+  "totalElements": 20,
+  "last": true
+}

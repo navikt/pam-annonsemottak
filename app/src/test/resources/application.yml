@@ -21,7 +21,7 @@ management:
 scheduler:
   enabled: false
 dexi:
-  url: http://localhost/api.dexi.io
+  url: http://localhost.dexi
   api:
     username: dexi_username
     password: dexi_password
@@ -29,3 +29,16 @@ amedia:
   url: http://localhost:7010/api/pipek/v2/classified/search
 proxy:
   url: http://155.55.60.117:8088
+solr:
+  url: http://localhost.solr
+  core: 'maincore'
+
+#TODO: Remove after transition from PAM-STILLING is complete
+stillingfeed:
+  annonsemottak:
+    url: https://pamstilling-t1.oera.no/api/stillinger/feed/
+  pagesize: 10
+  poolsize: 10
+  duration: 10
+  scheduler:
+    enabled: false

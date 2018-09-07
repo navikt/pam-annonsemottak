@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
+@ActiveProfiles({"test", "wiremock"})
 public class AmediaApiTest {
 
     static {
