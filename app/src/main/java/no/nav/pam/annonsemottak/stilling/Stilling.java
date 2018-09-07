@@ -5,6 +5,7 @@ import com.google.common.hash.Hashing;
 import no.nav.pam.annonsemottak.ModelEntity;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -52,8 +53,11 @@ public class Stilling extends ModelEntity {
     private String medium;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String employerDescription;
+
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String jobDescription;
 
     @NotNull

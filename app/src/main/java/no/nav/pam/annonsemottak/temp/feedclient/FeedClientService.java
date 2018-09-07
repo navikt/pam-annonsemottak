@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -70,7 +69,6 @@ public class FeedClientService {
         }
     }
 
-    @Transactional
     public void fetchAndSaveOneAd(String uuid) throws IOException {
 
         List<StillingFeedItem> feedList = feedConnector.fetchContentList(feedUrl + "/" + uuid, 0, StillingFeedItem.class);
