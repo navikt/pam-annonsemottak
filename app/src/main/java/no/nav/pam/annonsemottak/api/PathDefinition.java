@@ -9,4 +9,5 @@ public class PathDefinition {
     public static final String INTERNAL = "/internal";
     public static final String FINN = ANNONSEMOTTAK+"/finn";
     public static final String AMEDIA = ANNONSEMOTTAK+"/amedia";
+    public static final String POLARIS = ANNONSEMOTTAK+"/polaris";
 }

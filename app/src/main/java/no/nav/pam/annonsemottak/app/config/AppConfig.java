@@ -13,6 +13,7 @@ import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.annonsemottak.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
+import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
 import no.nav.pam.annonsemottak.temp.feedclient.FeedClientConfig;
@@ -170,6 +171,13 @@ public class AppConfig {
                                            @Value("${amedia.url}") String amediaUrl) {
 
         return new AmediaConnector(proxy, amediaUrl);
+    }
+
+    @Bean
+    public PolarisConnector polarisConnector(HttpClientProxy proxy,
+                                            @Value("${polaris.url:http://stilling.adresseavisen.no/api/}") String polarisUrl) {
+
+        return new PolarisConnector(proxy, polarisUrl);
     }
 
     @Bean
