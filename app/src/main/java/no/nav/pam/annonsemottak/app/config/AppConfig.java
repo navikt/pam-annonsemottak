@@ -160,8 +160,8 @@ public class AppConfig {
     @Bean
     public FinnConnector finnConnector(
             HttpClientProxy proxy,
-            @Value("${finn.service.document.url:https://cache.api.finn.no/iad}") String serviceDocumentUrl,
-            @Value("${finn.api.password:someboguskey}") String apiKey,
+            @Value("${finn.url}") String serviceDocumentUrl,
+            @Value("${finn.api.password}") String apiKey,
             @Value("${finn.polite.delay.millis:200}") int politeRequestDelayInMillis) {
         return new FinnConnector(proxy, serviceDocumentUrl, apiKey, politeRequestDelayInMillis);
     }
@@ -175,7 +175,7 @@ public class AppConfig {
 
     @Bean
     public PolarisConnector polarisConnector(HttpClientProxy proxy,
-                                            @Value("${polaris.url:https://stilling.adresseavisen.no/api/}") String polarisUrl) {
+                                            @Value("${polaris.url}") String polarisUrl) {
 
         return new PolarisConnector(proxy, polarisUrl);
     }

@@ -50,7 +50,10 @@ dexi:
     password: dexi_password
 amedia:
   url: http:/localhost/api/pipek/v2/classified/search
+polaris:
+  url: https://stilling.adresseavisen.no/api/
 finn:
+  url: https://cache.api.finn.no/iad
   api:
     password: finn_api_key
 proxy:

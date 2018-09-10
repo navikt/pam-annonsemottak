@@ -49,7 +49,10 @@ dexi:
     password: ${DEXI_API_PASSWORD:<dexi password>}
 amedia:
   url: https://bed.api.no/api/pipek/v2/classified/search
+polaris:
+  url: https://stilling.adresseavisen.no/api/
 finn:
+  url: https://cache.api.finn.no/iad
   api:
     password: ${FINN_API_PASSWORD:<finn api password>}
 proxy:
