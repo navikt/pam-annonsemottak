@@ -175,7 +175,7 @@ public class AppConfig {
 
     @Bean
     public PolarisConnector polarisConnector(HttpClientProxy proxy,
-                                            @Value("${polaris.url:http://stilling.adresseavisen.no/api/}") String polarisUrl) {
+                                            @Value("${polaris.url:https://stilling.adresseavisen.no/api/}") String polarisUrl) {
 
         return new PolarisConnector(proxy, polarisUrl);
     }
