@@ -42,6 +42,8 @@ public class StillingFeedService {
 
         List<Stilling> stillingList = new ArrayList();
         Stilling stilling = stillingRepository.findByUuid(uuid);
+        stilling.setJobDescription(MarkdownToHtmlConverter.parse(stilling.getAnnonsetekst()));
+        stilling.setEmployerDescription(MarkdownToHtmlConverter.parse(stilling.getArbeidsgiveromtale()));
 
         if (stilling != null) {
             stillingList.add(stilling);
@@ -51,6 +53,10 @@ public class StillingFeedService {
     }
 
     public Page<Stilling> findAllActive(Pageable pageable) {
-        return stillingRepository.findAll(pageable);
+        return stillingRepository.findAll(pageable).map(s -> {
+            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getAnnonsetekst()));
+            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getArbeidsgiveromtale()));
+            return s;
+        });
     }
 }
