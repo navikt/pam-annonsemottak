@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
@@ -142,6 +140,35 @@ public class StillingRepositoryTest {
         stored = stillingRepository.save(externallyUpdated);
 
         assertEquals(published, stored.getPublished());
+    }
+
+    @Test
+    public void saksbehandling_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
+        final String externalID = java.util.UUID.randomUUID().toString();
+        Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
+
+        final String uuid = brandNew.getUuid();
+
+        Map<String, String> updateMap = new HashMap<>();
+        updateMap.put("status", "2");
+        updateMap.put("saksbehandler", "System");
+        OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(updateMap);
+        brandNew.oppdaterMed(saksbehandlingCommand); // Approve ad as "System"
+
+        stillingRepository.save(brandNew);
+
+        // Simulate update on existing ad
+        Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
+
+        Stilling inDb = stillingRepository.findByUuid(uuid);
+        assertNotNull(inDb);
+        assertEquals(Status.GODKJENT, inDb.getStatus());
+
+        Stilling merged = externallyUpdated.merge(inDb);
+
+        assertEquals("System", merged.getSaksbehandler().get().asString());
+        assertEquals(Status.OPPDATERT, merged.getStatus());
+        assertEquals(AnnonseStatus.AKTIV, merged.getAnnonseStatus());
     }
 
     @Test
