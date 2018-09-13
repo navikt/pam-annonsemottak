@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class FeedClientScheduledTask {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedClientScheduledTask.class);
-    private static final String CRON = "0 */5 * * * *";
+    private static final String CRON = "0 * * * * *";
 
     @Value("${feed.scheduler.enabled}")
     private String schedulerEnabled;
