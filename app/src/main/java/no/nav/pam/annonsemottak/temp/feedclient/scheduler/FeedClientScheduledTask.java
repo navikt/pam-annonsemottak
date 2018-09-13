@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("!test")
-@ConditionalOnProperty(name = "stillingfeed.scheduler.enabled", matchIfMissing = true)
+@ConditionalOnProperty(name = "feed.scheduler.enabled", matchIfMissing = true)
 public class FeedClientScheduledTask {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedClientScheduledTask.class);
     private static final String CRON = "0 */5 * * * *";
 
-    @Value("${stillingfeed.scheduler.enabled}")
+    @Value("${feed.scheduler.enabled}")
     private String schedulerEnabled;
 
     private final FeedClientService feedClientService;

@@ -40,7 +40,7 @@ public class FeedClientService {
             FeedTaskService feedTaskService,
             FeedConnector feedConnector,
             MeterRegistry meterRegistry,
-            @Value("${stillingfeed.annonsemottak.url}") String feedUrl,
+            @Value("${feed.annonsemottak.url}") String feedUrl,
             StillingRepository stillingRepository) {
 
         this.feedTaskService = feedTaskService;

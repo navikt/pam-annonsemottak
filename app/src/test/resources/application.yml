@@ -40,7 +40,7 @@ solr:
   core: 'maincore'
 
 #TODO: Remove after transition from PAM-STILLING is complete
-stillingfeed:
+feed:
   annonsemottak:
     url: https://pamstilling-t1.oera.no/api/stillinger/feed/
   pagesize: 10
