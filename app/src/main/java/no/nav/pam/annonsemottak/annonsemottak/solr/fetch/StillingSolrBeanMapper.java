@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
+import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.IllegalSaksbehandlingCommandException;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,7 +50,7 @@ class StillingSolrBeanMapper {
 
         properties.put(StillingSolrBeanFieldNames.SOKNADSENDES, solrBean.getSoknadsendes());
         properties.put(StillingSolrBeanFieldNames.REG_DATO, regDato.toString());
-        properties.put(StillingSolrBeanFieldNames.PUBLISERES_FRA, published.toString());
+        properties.put(PropertyNames.PUBLISH_FROM_DATE, published.format(DateTimeFormatter.ISO_DATE_TIME));
         properties.put(StillingSolrBeanFieldNames.STILLINGSPROSENT, fieldToString(solrBean.getStillingsprosent()));
 
         properties.put(StillingSolrBeanFieldNames.LONNSINFO, fieldToString(solrBean.getLonnsinfo()));

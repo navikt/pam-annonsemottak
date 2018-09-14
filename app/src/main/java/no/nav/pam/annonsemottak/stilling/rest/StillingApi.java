@@ -1,9 +1,10 @@
 package no.nav.pam.annonsemottak.stilling.rest;
 
+import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.api.PathDefinition;
-import no.nav.pam.annonsemottak.stilling.rest.dto.StillingDTO;
 import no.nav.pam.annonsemottak.stilling.*;
+import no.nav.pam.annonsemottak.stilling.rest.dto.StillingDTO;
 import no.nav.pam.annonsemottak.stilling.rest.payloads.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.net.URI;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,7 +41,7 @@ public class StillingApi {
 
     private final StillingRepository stillingRepository;
 
-    // pam-adreg specific property names and corresponding local names
+    //TODO: pam-adreg specific property names and corresponding local names. Remove, once this function is moved to pam-adreg
     static {
         ADREG_PROPERTY_KEYS = new HashMap<>();
         ADREG_PROPERTY_KEYS.put("oppstart", PropertyNames.TILTREDELSE);
@@ -56,6 +60,7 @@ public class StillingApi {
         ADREG_PROPERTY_KEYS.put("stillingstittel", PropertyNames.STILLINGSTITTEL);
         ADREG_PROPERTY_KEYS.put("kommuneFylke", PropertyNames.FYLKE);
         ADREG_PROPERTY_KEYS.put("Antall", PropertyNames.ANTALL_STILLINGER);
+        ADREG_PROPERTY_KEYS.put("publiserFra", PropertyNames.PUBLISH_FROM_DATE);
 
         //TODO: Standardize contact info
     }
@@ -136,7 +141,7 @@ public class StillingApi {
     }
 
     private static void replacePropertyKeysBeforeSave(Map<String, String> properties) {
-        LOG.info("Replaces stillingsregistrering (pam-adreg) specific properties into standardized local property names");
+        LOG.debug("Replaces stillingsregistrering (pam-adreg) specific properties into standardized local property names");
         Set<String> foundKeys = properties.keySet().stream().filter(s -> ADREG_PROPERTY_KEYS.containsKey(s)).collect(Collectors.toSet());
 
         foundKeys.stream().forEach(s -> {
@@ -144,6 +149,10 @@ public class StillingApi {
             properties.put(ADREG_PROPERTY_KEYS.get(s), value);
             LOG.debug("Replaced property names from {} to {} on incoming ad", value, ADREG_PROPERTY_KEYS.get(s));
         });
+
+        // Convert date string to ISO_DATE_TIME formatted string
+        Optional<LocalDateTime> isoDate = GenericDateParser.parse(properties.get(PropertyNames.PUBLISH_FROM_DATE));
+        isoDate.ifPresent(value -> properties.put(PropertyNames.PUBLISH_FROM_DATE, value.format(DateTimeFormatter.ISO_DATE_TIME)));
     }
 
     @GetMapping(value = "/{uuid}", produces = APPLICATION_JSON_VALUE)
