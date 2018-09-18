@@ -33,7 +33,7 @@ public class Saksbehandling {
         if (command.getStatus().isPresent() && this.status != command.getStatus().get()) {
             SensuClient.sendEvent("stillingStatusEndret.event", Collections.emptyMap(), ImmutableMap.of("status", command.getStatus().get().name()));
             this.status = command.getStatus().get();
-            if (this.status == Status.GODKJENT && stilling.getPublished() == null)
+            if (this.status == Status.GODKJENT)
                 stilling.setPublished(LocalDateTime.now());
         }
         if (command.getSaksbehandler().isPresent()) {
