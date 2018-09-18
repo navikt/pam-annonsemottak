@@ -96,26 +96,6 @@ public class StillingRepositoryTest {
     }
 
     @Test
-    public void stilling_publisert_skal_bare_kunne_settes_en_gang() {
-        final String externalID = java.util.UUID.randomUUID().toString();
-        Stilling stilling = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
-        stilling.setPublished(LocalDateTime.now());
-
-        stillingRepository.save(stilling);
-        Stilling lastetStilling = stillingRepository.findByKildeAndMediumAndExternalId(
-                stilling.getKilde(), stilling.getMedium(), externalID);
-
-        assertNotNull(lastetStilling);
-
-        try {
-            lastetStilling.setPublished(LocalDateTime.now());
-            fail("Det skal ikke være lov å sette published for andre gang");
-        } catch (IllegalArgumentException e) {
-            // Dette er ok
-        }
-    }
-
-    @Test
     public void publiseringsdato_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
         final String externalID = java.util.UUID.randomUUID().toString();
         Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();

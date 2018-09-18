@@ -33,7 +33,6 @@ public class PropertyNames {
     public static final String CREATED_DATE = "created";
     public static final String UPDATED_DATE = "updated";
     public static final String EXTERNAL_PUBLISH_DATE = "externalPublishDate";
-    public static final String PUBLISH_FROM_DATE = "publishFrom";
 
     public static final String LOGO_URL_MAIN = "media.logo.url.main";
     public static final String LOGO_URL_LISTING = "media.logo.url.list";

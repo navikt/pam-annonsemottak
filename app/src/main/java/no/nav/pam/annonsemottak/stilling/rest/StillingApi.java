@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.stilling.rest;
 
-import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.stilling.*;
@@ -15,11 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.net.URI;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,7 +56,6 @@ public class StillingApi {
         ADREG_PROPERTY_KEYS.put("stillingstittel", PropertyNames.STILLINGSTITTEL);
         ADREG_PROPERTY_KEYS.put("kommuneFylke", PropertyNames.FYLKE);
         ADREG_PROPERTY_KEYS.put("Antall", PropertyNames.ANTALL_STILLINGER);
-        ADREG_PROPERTY_KEYS.put("publiserFra", PropertyNames.PUBLISH_FROM_DATE);
 
         //TODO: Standardize contact info
     }
@@ -119,12 +114,11 @@ public class StillingApi {
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
         );
         nonEmptyProperties.put("orgnr", ad.getOrgNummer());
-        nonEmptyProperties.put("publiserFra", ad.getPubliserFra().toString());
         nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
 
         replacePropertyKeysBeforeSave(nonEmptyProperties);
 
-        return new Stilling(
+        Stilling s = new Stilling(
                 ad.getUuid(),
                 ad.getEmployerName(),
                 ad.getEmployerDescription(),
@@ -138,6 +132,8 @@ public class StillingApi {
                 nonEmptyProperties
         );
 
+        s.setPublished(ad.getPubliserFra());
+        return s;
     }
 
     private static void replacePropertyKeysBeforeSave(Map<String, String> properties) {
@@ -149,10 +145,6 @@ public class StillingApi {
             properties.put(ADREG_PROPERTY_KEYS.get(s), value);
             LOG.debug("Replaced property names from {} to {} on incoming ad", value, ADREG_PROPERTY_KEYS.get(s));
         });
-
-        // Convert date string to ISO_DATE_TIME formatted string
-        Optional<LocalDateTime> isoDate = GenericDateParser.parse(properties.get(PropertyNames.PUBLISH_FROM_DATE));
-        isoDate.ifPresent(value -> properties.put(PropertyNames.PUBLISH_FROM_DATE, value.format(DateTimeFormatter.ISO_DATE_TIME)));
     }
 
     @GetMapping(value = "/{uuid}", produces = APPLICATION_JSON_VALUE)

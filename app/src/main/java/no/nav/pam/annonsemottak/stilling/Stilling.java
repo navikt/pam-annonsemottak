@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class Stilling extends ModelEntity {
 
     private static final int DEFAULT_EXPIRY_DAYS = 10;
-    private static final int MAX_EXPIRY_LIMIT  = 6;
+    private static final int MAX_EXPIRY_LIMIT = 6;
 
     private static final Set<String> NONIDENTIFYING_KEYS;
 
@@ -321,9 +321,8 @@ public class Stilling extends ModelEntity {
     }
 
     public void setPublished(LocalDateTime published) {
-        if (this.published != null)
-            throw new IllegalArgumentException("Published er allerede satt. Kan ikke overskrives");
-        this.published = published;
+        if (published != null)
+            this.published = published;
     }
 
     public AnnonseStatus getAnnonseStatus() {
@@ -340,9 +339,8 @@ public class Stilling extends ModelEntity {
         this.setId(stilling.getId());
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
-        if (this.getPublished() == null) { // Paranoid, avoid IAE in case something has already set published.. (What could possibly go wrong.)
-            this.setPublished(stilling.getPublished());
-        }
+        this.setPublished(stilling.getPublished());
+
         return this;
     }
 }
