@@ -54,7 +54,7 @@ public class HtmlSanitizerTest {
 
         String expected = "\t<p> Både tilfeldige timar/dagar og vikariat over lengre tid kan verte aktuelt.</p> " +
                 "<p> Vi ber alle som kan tenkje seg å arbeide med barn og unge om å kontakte einingane direkte:</p> " +
-                "<table> <tbody><tr><td> " +
+                "<table><tbody><tr><td> " +
                 "<p> BARNEHAGAR</p> </td><td> " +
                 "<p> SKULAR</p> </td></tr><tr><td> " +
                 "<p> <strong>Austefjord</strong>: Tlf 97423259</p> " +
@@ -72,7 +72,7 @@ public class HtmlSanitizerTest {
                 "<p> <strong>Dalsfjord</strong>:Tlf 70055064</p> " +
                 "<p> <strong>Folkestad: </strong>Tlf 70059620</p> " +
                 "<p> <strong>Volda ungdomsskule</strong>: Tlf 70074220</p> " +
-                "<p> <strong>Volda Læringssenter</strong>: Tlf 70078596</p> </td></tr></tbody> </table> " +
+                "<p> <strong>Volda Læringssenter</strong>: Tlf 70078596</p> </td></tr></tbody></table> " +
                 "<p>  </p> " +
                 "<p> De kan og kontakte opplæring og oppvekst i Volda kommune ved Nina Hovden Eidheim på epost: <a href=\"mailto:nina.hovden.eidheim&#64;volda.kommune.no\" rel=\"nofollow\">nina.hovden.eidheim&#64;volda.kommune.no</a></p> <p> Ved kontakt via epost: skriv litt om deg sjølv, bakgrunn, studier, kva aldersgruppe du ser føre deg å arbeide med, omfang mm.</p>";
 
