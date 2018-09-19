@@ -339,7 +339,6 @@ public class Stilling extends ModelEntity {
         this.setId(stilling.getId());
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
-        this.setPublished(stilling.getPublished());
 
         return this;
     }
