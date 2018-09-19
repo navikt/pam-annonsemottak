@@ -11,6 +11,7 @@ import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -113,7 +114,7 @@ public class FinnService {
                 "total", searchResult.size(),
                 //"new", annonseResult.getNewList().size(),
                 "new", rest.size(),
-                "rejected",  annonseResult.getModifyList().size() - rest.size(),
+                "rejected", annonseResult.getModifyList().size() - rest.size(),
                 "changed", annonseResult.getModifyList().size(),
                 "stopped", annonseResult.getStopList().size()));
 
@@ -121,30 +122,25 @@ public class FinnService {
     }
 
 
-    // TODO: Should be removed when temporary exclusion of webcruiter ads is not necessary
-    private boolean ifOneOfFilteredAds(Stilling stilling){
-        return (isWebcruiterAd(stilling) || isJobbNorgeAd(stilling) || isAdeccoAd(stilling));
+    // TODO: Should be removed when temporary exclusion of filtered ads is not necessary
+    private boolean ifOneOfFilteredAds(Stilling stilling) {
+        return (adEmployerContainsName(stilling, "adecco")
+                || adEmployerContainsName(stilling, "bane nor")
+                || adEmployerContainsName(stilling, "oslomet")
+                || adLinkSContainsName(stilling, "webcruiter")
+                || adLinkSContainsName(stilling, "jobbnorge"));
     }
 
-    // TODO: Should be removed when temporary exclusion of adecco ads is not necessary
-    private boolean isAdeccoAd(Stilling stilling){
-        if(stilling.getArbeidsgiver().isPresent()){
-            return stilling.getArbeidsgiver().get().asString().toUpperCase().contains("ADECCO");
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isWebcruiterAd(Stilling stilling){
-        if(stilling.getProperties().containsKey(PropertyNames.SOKNADSLENKE)){
-            return stilling.getProperties().get(PropertyNames.SOKNADSLENKE).contains("webcruiter");
+    private boolean adEmployerContainsName(Stilling stilling, String employerName) {
+        if (stilling.getArbeidsgiver().isPresent()) {
+            return StringUtils.containsIgnoreCase(stilling.getArbeidsgiver().get().asString(), employerName);
         }
         return false;
     }
 
-    private boolean isJobbNorgeAd(Stilling stilling){
-        if(stilling.getProperties().containsKey(PropertyNames.SOKNADSLENKE)){
-            return stilling.getProperties().get(PropertyNames.SOKNADSLENKE).contains("jobbnorge");
+    private boolean adLinkSContainsName(Stilling stilling, String name) {
+        if (stilling.getProperties().containsKey(PropertyNames.SOKNADSLENKE)) {
+            return stilling.getProperties().get(PropertyNames.SOKNADSLENKE).contains(name);
         }
         return false;
     }
