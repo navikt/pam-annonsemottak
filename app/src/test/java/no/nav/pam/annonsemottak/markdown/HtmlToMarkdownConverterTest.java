@@ -66,14 +66,14 @@ public class HtmlToMarkdownConverterTest {
                 "\n" +
                 "Stillingen har 20 % administrasjonstid i forbindelse med fagansvar.\n" +
                 "\n" +
-                "**Arbeidsoppgaver:**\n" +
+                "**Arbeidsoppgaver:**\n\n" +
                 "* Målrettet pleie og omsorg til pasientene ved skjermet enhet.\n" +
                 "* Fagansvar på skjermet enhet\n" +
                 "* Medisinansvar\n" +
                 "* Dokumentasjon\n" +
                 "* Stedfortreder for seksjonsleder ved sykehjemmet\n" +
                 "\n" +
-                "**Kvalifikasjonskrav:**\n" +
+                "**Kvalifikasjonskrav:**\n\n" +
                 "* Offentlig godkjent sykepleier med gjennomført ABC demens\n" +
                 "* Gode datakunnskaper\n" +
                 "* Må beherske skriftlig og muntlig norsk\n" +
@@ -90,8 +90,7 @@ public class HtmlToMarkdownConverterTest {
                 "\n" +
                 "Tilsetting skjer etter vanlig kommunale vilkår i samsvar med lov- og avtaleverk. Medlemskap i KLP. Lønn etter avtale. Som rekrutteringstiltak tilbyr Gjemnes kommune 10. års ansiennitet ved tiltredelse. Politiattest kreves.\n" +
                 "\n" +
-                "**Kontaktpersoner:** Nærmere opplysninger omkring stillingen kan du få ved å kontakte seksjonsleder Te 71291173/97546702\n" +
-                "\n";
+                "**Kontaktpersoner:** Nærmere opplysninger omkring stillingen kan du få ved å kontakte seksjonsleder Te 71291173/97546702\n";
 
         assertEquals(expected, HtmlToMarkdownConverter.parse(fragment));
     }
@@ -99,7 +98,7 @@ public class HtmlToMarkdownConverterTest {
     @Test
     public void should_parse_sample_html_2(){
         String fragment = "<div> Kvalifikasjonskrav:</div> <ul> <li> Utdanning som minimum barnevernspedagog eller sosionom&nbsp;</li> <li> Oppdatert kompetanse frå arbeid i kommunalt barnevern&nbsp;&nbsp;</li> <li> God kjennskap til Lov om barnevernstenester og anna relevant lovverk.</li> <li> Anna relevant praksis.</li> <li> Gode datakunnskapar.</li> <li> Førarkort klasse B</li> </ul> <div> Vi legg vekt på:</div> <ul> <li> God skriftleg og munnleg framstillingsevne</li> <li> Personlege eigenskapar som til dømes evne til samarbeid og kommunikasjon&nbsp;</li> <li> Evne til å arbeide både i team og sjølvstendig</li> <li> Evne til å bidra i ein lærande organisasjon</li> </ul> <div> Vi tilbyr:</div> <ul> <li> løn etter avtale i høve til kvalifikasjonar og kompetanse</li> <li> spennande utfordringar i eit utviklingsorientert miljø&nbsp;&nbsp;</li> <li> systematisk rettleiing</li> <li> løysingsorientert organisasjonskultur bygd på tillit og handlingsrom&nbsp;</li> <li> inkluderande arbeidslivsverksemd</li> <li> god pensjonsordning i KLP</li> </ul> <div> For nærare opplysningar ta kontakt med barnevernsjef Brynhild Solvang eller fagteamleiar Aina Øyehaug Opsvik</div> <div> &nbsp;</div> <div> <strong>Søknadsfrist: 24.11.17.&nbsp;</strong>ID 907</div> <div> &nbsp;</div> <div> Personlege eigenskapar vert tillagt stor vekt.</div> <div> &nbsp;</div> <div> Aktuelle søkarar vert innkalla til intervju.</div> <div> &nbsp;</div> <div> Volda kommune har god offentleg pensjonsordning i KLP</div> <div> &nbsp;</div> <div> Kommunen har nynorsk som administrasjonsspråk.<br> <br> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> Vi ber deg nytte det elektroniske søknadsskjemaet som du finn i lenke til høgre på sida,<br> eller her:&nbsp;<a class=\"InnholdLinkTekst InnholdLinkTekst \" href=\"https://kommune24-7.no/1519/bruker?retur=%2f1519%2f703102&amp;shortname=703102\" style=\"color: rgb(31, 124, 190); font-size: 0.9em;\">søknadskjema ledig stilling</a></div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> &nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> CV må fyllast ut i søknaden.<br> &nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> Attester og vitnemål skal leverast på førespurnad.&nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> &nbsp;</div> </div> <div> <strong>Om offentlege søkjarliste</strong></div> <div> I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.&nbsp;</div> <div> &nbsp;</div> ";
-        String expected = "Kvalifikasjonskrav:\n" +
+        String expected = "Kvalifikasjonskrav:\n\n" +
                 "* Utdanning som minimum barnevernspedagog eller sosionom\n" +
                 "* Oppdatert kompetanse frå arbeid i kommunalt barnevern\n" +
                 "* God kjennskap til Lov om barnevernstenester og anna relevant lovverk.\n" +
@@ -107,13 +106,13 @@ public class HtmlToMarkdownConverterTest {
                 "* Gode datakunnskapar.\n" +
                 "* Førarkort klasse B\n" +
                 "\n" +
-                "Vi legg vekt på:\n" +
+                "Vi legg vekt på:\n\n" +
                 "* God skriftleg og munnleg framstillingsevne\n" +
                 "* Personlege eigenskapar som til dømes evne til samarbeid og kommunikasjon\n" +
                 "* Evne til å arbeide både i team og sjølvstendig\n" +
                 "* Evne til å bidra i ein lærande organisasjon\n" +
                 "\n" +
-                "Vi tilbyr:\n" +
+                "Vi tilbyr:\n\n" +
                 "* løn etter avtale i høve til kvalifikasjonar og kompetanse\n" +
                 "* spennande utfordringar i eit utviklingsorientert miljø\n" +
                 "* systematisk rettleiing\n" +
@@ -133,14 +132,14 @@ public class HtmlToMarkdownConverterTest {
                 "CV må fyllast ut i søknaden.  \n" +
                 "Attester og vitnemål skal leverast på førespurnad.\n" +
                 "**Om offentlege søkjarliste**\n" +
-                "I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.\n\n";
+                "I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.\n";
         assertEquals(expected, HtmlToMarkdownConverter.parse(fragment));
     }
 
     @Test
     public void should_handle_markdown_in_html(){
         String fragment = "<p>\nHer er det masse tekst som ikke er html, men som har noe som er markdown [Klikk her](javascript:alert('xss')) og masse tekst her også\n</p>";
-        String expectedMarkdown = "Her er det masse tekst som ikke er html, men som har noe som er markdown \\[Klikk her\\](javascript:alert('xss')) og masse tekst her også\n\n";
+        String expectedMarkdown = "Her er det masse tekst som ikke er html, men som har noe som er markdown \\[Klikk her\\](javascript:alert('xss')) og masse tekst her også\n";
         assertEquals(expectedMarkdown, HtmlToMarkdownConverter.parse(fragment));
 
         String expectedHtml = "<p>Her er det masse tekst som ikke er html, men som har noe som er markdown [Klikk her](javascript:alert(&#39;xss&#39;)) og masse tekst her også</p>\n";

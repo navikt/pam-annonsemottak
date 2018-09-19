@@ -80,7 +80,7 @@ public class DexiModelTest {
 
         Stilling stilling = DexiModel.toStilling(map, "testRobot");
         assertNotNull(stilling);
-        assertEquals(stilling.getAnnonsetekst(), annonsetekst + "\n\n");
+        assertEquals(stilling.getAnnonsetekst(), annonsetekst + "\n");
 
     }
 
@@ -98,7 +98,7 @@ public class DexiModelTest {
 
         Stilling stilling = DexiModel.toStilling(map, "testRobot");
         assertNotNull(stilling);
-        assertEquals(stilling.getAnnonsetekst(), ingress.concat("\n\n" + annonsetekst + "\n\n"));
+        assertEquals(stilling.getAnnonsetekst(), ingress.concat("\n" + annonsetekst + "\n"));
 
     }
 }
