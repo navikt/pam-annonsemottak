@@ -96,7 +96,7 @@ public class StillingRepositoryTest {
     }
 
     @Test
-    public void publiseringsdato_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
+    public void publiseringsdato_skal_ikke_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
         final String externalID = java.util.UUID.randomUUID().toString();
         Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
         OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(Collections.singletonMap("status", "2"));
@@ -119,7 +119,7 @@ public class StillingRepositoryTest {
 
         stored = stillingRepository.save(externallyUpdated);
 
-        assertEquals(published, stored.getPublished());
+        assertNotEquals(published, stored.getPublished());
     }
 
     @Test
