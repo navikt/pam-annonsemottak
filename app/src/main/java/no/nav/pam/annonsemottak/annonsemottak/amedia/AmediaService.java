@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.amedia;
 
-import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.filter.StillingFilterchain;
@@ -9,7 +9,6 @@ import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,6 +26,9 @@ public class AmediaService {
 
     public final static Integer MAXANTALl_TREFF = 1200;
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
+    private static final String ADS_COLLECTED_COUNTER = "ads.collected.amedia";
+
+    private final MeterRegistry meterRegistry;
     private final AmediaConnector amediaConnector;
     private final AnnonseFangstService annonseFangstService;
     private final ExternalRunService externalRunService;
@@ -36,10 +37,12 @@ public class AmediaService {
     @Inject
     public AmediaService(AmediaConnector amediaConnector,
                          AnnonseFangstService annonseFangstService,
-                         ExternalRunService externalRunService) {
+                         ExternalRunService externalRunService,
+                         MeterRegistry meterRegistry) {
         this.amediaConnector = amediaConnector;
         this.annonseFangstService = annonseFangstService;
         this.externalRunService = externalRunService;
+        this.meterRegistry = meterRegistry;
     }
 
     public ResultsOnSave saveLatestResults() {
@@ -77,7 +80,7 @@ public class AmediaService {
 
         saveLastRun(externalRun, returnerteStillinger);
 
-        sendSensuEvent(alleStillingIDer, annonseResultat);
+        addMetricsCounters(alleStillingIDer, annonseResultat);
 
         return new ResultsOnSave(returnerteStillinger.size(), annonseResultat.getNewList().size(),
             System.currentTimeMillis() - start);
@@ -98,20 +101,13 @@ public class AmediaService {
             });
     }
 
-    private void sendSensuEvent(List<String> alleStillingIDer, AnnonseResult annonseResultat) {
-
-        ImmutableMap<String, Integer> sensuFields = ImmutableMap.of(
-            "total", alleStillingIDer.size(),
-            //"new", annonseResult.getNewList().size(),
-            "new", annonseResultat.getNewList().size(),
-            "rejected",
-            annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size(),
-            "changed", annonseResultat.getModifyList().size(),
-            "stopped", annonseResultat.getStopList().size());
-
-        LOG.info("Amedia, sender sensuevent med felter: {}", sensuFields);
-
-        SensuClient.sendEvent("amediaStillingerHentet.event", Collections.emptyMap(), sensuFields);
+    private void addMetricsCounters(List<String> alleStillingIDer, AnnonseResult annonseResultat) {
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".total").increment(alleStillingIDer.size());
+        //"new", annonseResult.getNewList().size(),
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(annonseResultat.getNewList().size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".rejected").increment(annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".changed").increment(annonseResultat.getModifyList().size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".stopped").increment(annonseResultat.getStopList().size());
     }
 
     private AnnonseResult saveAnnonseresultat(List<String> alleStillingIDerFraAmedia,

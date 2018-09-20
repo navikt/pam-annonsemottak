@@ -1,9 +1,8 @@
 package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
-import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,19 +22,25 @@ import java.util.stream.Collectors;
 public class SolrFetchService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolrFetchService.class);
+    private static final String ADS_COLLECTED_COUNTER = "ads.collected.solr";
+
     private static final String fraArbeidsgiver = "Overført fra arbeidsgiver";
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
+
+    private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
     private final String filterQueryKildetekst;
 
     @Inject
     public SolrFetchService(SolrRepository solrRepository,
-                            StillingRepository stillingRepository) {
+                            StillingRepository stillingRepository,
+                            MeterRegistry meterRegistry) {
         this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
+        this.meterRegistry = meterRegistry;
 
         filterQueryKildetekst = buildFilterQueryKildetekst();
     }
@@ -56,10 +60,7 @@ public class SolrFetchService {
     public List<Stilling> saveNewStillingerFromSolr(LocalDateTime since) {
         List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since));
 
-        SensuClient.sendEvent(
-                "solrStillingerHentet.event",
-                Collections.emptyMap(),
-                ImmutableMap.of("new", savedStillinger.size()));
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(savedStillinger.size());
 
         return savedStillinger;
     }

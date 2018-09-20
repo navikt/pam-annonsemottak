@@ -1,9 +1,8 @@
 package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
-import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,15 +20,19 @@ import java.util.stream.Collectors;
 public class DeactivateSolrStillingerService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DeactivateSolrStillingerService.class);
+    private static final String ADS_DEACTIVATED_COUNTER = "ads.deactivated.solr";
 
+    private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
 
     @Autowired
     public DeactivateSolrStillingerService(SolrRepository solrRepository,
-                                           StillingRepository stillingRepository) {
+                                           StillingRepository stillingRepository,
+                                           MeterRegistry meterRegistry) {
         this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
+        this.meterRegistry = meterRegistry;
     }
 
     @Transactional
@@ -44,10 +46,8 @@ public class DeactivateSolrStillingerService {
 
         stillingRepository.saveAll(deactivatedAds);
 
-        SensuClient.sendEvent(
-                "solrStillingerDeaktivert.event",
-                Collections.emptyMap(),
-                ImmutableMap.of("deactivated", deactivatedAds.size()));
+        meterRegistry.counter(ADS_DEACTIVATED_COUNTER).increment(deactivatedAds.size());
+
         LOG.info("Deactivated {} inactive ads from solr", deactivatedAds.size());
     }
 

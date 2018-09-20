@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.finn;
 
-import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
@@ -9,7 +9,6 @@ import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -29,16 +28,23 @@ public class FinnService {
     private static final Logger LOG = LoggerFactory.getLogger(FinnService.class);
 
     private static final String[] KNOWN_COLLECTIONS = {"job-full-time", "job-part-time", "job-management"};
+    private static final String ADS_COLLECTED_COUNTER = "ads.collected.finn";
 
+    private final MeterRegistry meterRegistry;
     private final FinnConnector connector;
     private final AnnonseFangstService finnAnnonseFangstService;
     private final ExternalRunService externalRunService;
 
     @Inject
-    public FinnService(AnnonseFangstService finnAnnonseFangstService, FinnConnector connector, ExternalRunService externalRunService) {
+    public FinnService(
+            AnnonseFangstService finnAnnonseFangstService,
+            FinnConnector connector,
+            ExternalRunService externalRunService,
+            MeterRegistry meterRegistry) {
         this.finnAnnonseFangstService = finnAnnonseFangstService;
         this.connector = connector;
         this.externalRunService = externalRunService;
+        this.meterRegistry = meterRegistry;
     }
 
     /**
@@ -110,13 +116,12 @@ public class FinnService {
         //Save new or update last run time
         externalRunService.save(externalRun);
 
-        SensuClient.sendEvent("finnStillingerHentet.event", Collections.emptyMap(), ImmutableMap.of(
-                "total", searchResult.size(),
-                //"new", annonseResult.getNewList().size(),
-                "new", rest.size(),
-                "rejected", annonseResult.getModifyList().size() - rest.size(),
-                "changed", annonseResult.getModifyList().size(),
-                "stopped", annonseResult.getStopList().size()));
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".total").increment(searchResult.size());
+        //"new", annonseResult.getNewList().size(),
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(rest.size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".rejected").increment(annonseResult.getModifyList().size() - rest.size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".changed").increment(annonseResult.getModifyList().size());
+        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".stopped").increment(annonseResult.getStopList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

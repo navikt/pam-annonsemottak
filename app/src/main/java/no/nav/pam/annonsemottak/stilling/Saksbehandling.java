@@ -1,17 +1,17 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import com.google.common.collect.ImmutableMap;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
+import io.micrometer.core.instrument.Metrics;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Optional;
 
 @Embeddable
 public class Saksbehandling {
+
+    private static final String STATUS_CHANGED_COUNTER = "ad.status.changed";
 
     private String saksbehandler;
 
@@ -31,7 +31,8 @@ public class Saksbehandling {
         valider(command);
 
         if (command.getStatus().isPresent() && this.status != command.getStatus().get()) {
-            SensuClient.sendEvent("stillingStatusEndret.event", Collections.emptyMap(), ImmutableMap.of("status", command.getStatus().get().name()));
+            Metrics.counter(STATUS_CHANGED_COUNTER + "." + command.getStatus().get().name()).increment();
+
             this.status = command.getStatus().get();
             if (this.status == Status.GODKJENT)
                 stilling.setPublished(LocalDateTime.now());

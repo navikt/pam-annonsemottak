@@ -1,9 +1,8 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.hash.Hashing;
+import io.micrometer.core.instrument.Metrics;
 import no.nav.pam.annonsemottak.ModelEntity;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
 
@@ -24,6 +23,8 @@ public class Stilling extends ModelEntity {
     private static final int MAX_EXPIRY_LIMIT = 6;
 
     private static final Set<String> NONIDENTIFYING_KEYS;
+
+    private static final String AD_DUPLICATE_COUNTER = "ad.duplicate";
 
     static {
         Set<String> s = new HashSet<>();
@@ -305,10 +306,8 @@ public class Stilling extends ModelEntity {
 
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
-        SensuClient.sendEvent(
-                "stillingAvvistDuplikat.event",
-                Collections.emptyMap(),
-                ImmutableMap.of("kilde", this.kilde));
+
+        Metrics.counter(AD_DUPLICATE_COUNTER + "." + this.kilde).increment();
     }
 
     public void rejectBecauseOfCapasity() {
