@@ -16,13 +16,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 @Service
 public class DexiService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiService.class);
-
-    private static final String ADS_COLLECTED_COUNTER = "ads.collected.dexi";
-    private static final String ROBOTS_FAILED_COUNTER = "dexi.robots.failed";
 
     private final MeterRegistry meterRegistry;
     private final DexiConnector dexiConnector;
@@ -61,10 +60,10 @@ public class DexiService {
             } catch (Exception e) {
                LOG.error("Failed to get entries from robot " + currentRobotName, e);
 
-                meterRegistry.counter(
-                        ROBOTS_FAILED_COUNTER,
-                        Arrays.asList(Tag.of("jobId", configuration.getJobId()), Tag.of("robotName", currentRobotName)))
-                        .increment();
+                meterRegistry.gauge(
+                        ROBOTS_FAILED_METRIC,
+                        Arrays.asList(Tag.of("jobId", configuration.getJobId()), Tag.of("robotName", currentRobotName)),
+                        1);
             }
         }
 
@@ -100,18 +99,18 @@ public class DexiService {
         AnnonseResult annonseResult =  annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
 
-        meterRegistry.counter(
-                ADS_COLLECTED_COUNTER + ".total",
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)))
-                .increment(mapped.size());
-        meterRegistry.counter(
-                ADS_COLLECTED_COUNTER + ".new",
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)))
-                .increment(annonseResult.getNewList().size());
-        meterRegistry.counter(
-                ADS_COLLECTED_COUNTER + ".stopped",
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)))
-                .increment(annonseResult.getStopList().size());
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_TOTAL,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                mapped.size());
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_NEW,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                annonseResult.getNewList().size());
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_STOPPED,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                annonseResult.getStopList().size());
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

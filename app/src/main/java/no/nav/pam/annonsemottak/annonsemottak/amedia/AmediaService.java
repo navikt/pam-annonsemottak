@@ -18,6 +18,8 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 /**
  * Amedia operasjoner
  */
@@ -26,7 +28,6 @@ public class AmediaService {
 
     public final static Integer MAXANTALl_TREFF = 1200;
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
-    private static final String ADS_COLLECTED_COUNTER = "ads.collected.amedia";
 
     private final MeterRegistry meterRegistry;
     private final AmediaConnector amediaConnector;
@@ -102,12 +103,12 @@ public class AmediaService {
     }
 
     private void addMetricsCounters(List<String> alleStillingIDer, AnnonseResult annonseResultat) {
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".total").increment(alleStillingIDer.size());
+        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_TOTAL, alleStillingIDer.size());
         //"new", annonseResult.getNewList().size(),
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(annonseResultat.getNewList().size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".rejected").increment(annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".changed").increment(annonseResultat.getModifyList().size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".stopped").increment(annonseResultat.getStopList().size());
+        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_NEW, annonseResultat.getNewList().size());
+        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_REJECTED, annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size());
+        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_CHANGED, annonseResultat.getModifyList().size());
+        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_STOPPED, annonseResultat.getStopList().size());
     }
 
     private AnnonseResult saveAnnonseresultat(List<String> alleStillingIDerFraAmedia,

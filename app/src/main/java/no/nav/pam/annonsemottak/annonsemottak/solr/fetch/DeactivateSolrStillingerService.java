@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
+import no.nav.pam.annonsemottak.app.metrics.MetricNames;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -16,11 +17,12 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_DEACTIVATED_SOLR;
+
 @Service
 public class DeactivateSolrStillingerService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DeactivateSolrStillingerService.class);
-    private static final String ADS_DEACTIVATED_COUNTER = "ads.deactivated.solr";
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
@@ -46,7 +48,7 @@ public class DeactivateSolrStillingerService {
 
         stillingRepository.saveAll(deactivatedAds);
 
-        meterRegistry.counter(ADS_DEACTIVATED_COUNTER).increment(deactivatedAds.size());
+        meterRegistry.gauge(ADS_DEACTIVATED_SOLR, deactivatedAds.size());
 
         LOG.info("Deactivated {} inactive ads from solr", deactivatedAds.size());
     }

@@ -20,6 +20,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 /**
  * A service class for fetching jobs ad from Finn with FinnConnector and persisting
  */
@@ -28,7 +30,6 @@ public class FinnService {
     private static final Logger LOG = LoggerFactory.getLogger(FinnService.class);
 
     private static final String[] KNOWN_COLLECTIONS = {"job-full-time", "job-part-time", "job-management"};
-    private static final String ADS_COLLECTED_COUNTER = "ads.collected.finn";
 
     private final MeterRegistry meterRegistry;
     private final FinnConnector connector;
@@ -116,12 +117,12 @@ public class FinnService {
         //Save new or update last run time
         externalRunService.save(externalRun);
 
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".total").increment(searchResult.size());
+        meterRegistry.gauge(ADS_COLLECTED_FINN_TOTAL, searchResult.size());
         //"new", annonseResult.getNewList().size(),
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(rest.size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".rejected").increment(annonseResult.getModifyList().size() - rest.size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".changed").increment(annonseResult.getModifyList().size());
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".stopped").increment(annonseResult.getStopList().size());
+        meterRegistry.gauge(ADS_COLLECTED_FINN_NEW, rest.size());
+        meterRegistry.gauge(ADS_COLLECTED_FINN_REJECTED, annonseResult.getModifyList().size() - rest.size());
+        meterRegistry.gauge(ADS_COLLECTED_FINN_CHANGED, annonseResult.getModifyList().size());
+        meterRegistry.gauge(ADS_COLLECTED_FINN_STOPPED, annonseResult.getStopList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

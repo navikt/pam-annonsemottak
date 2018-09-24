@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 
 @Entity
 @Table(name = "STILLING")
@@ -23,8 +25,6 @@ public class Stilling extends ModelEntity {
     private static final int MAX_EXPIRY_LIMIT = 6;
 
     private static final Set<String> NONIDENTIFYING_KEYS;
-
-    private static final String AD_DUPLICATE_COUNTER = "ad.duplicate";
 
     static {
         Set<String> s = new HashSet<>();
@@ -307,7 +307,7 @@ public class Stilling extends ModelEntity {
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
 
-        Metrics.counter(AD_DUPLICATE_COUNTER + "." + this.kilde).increment();
+        Metrics.gauge(AD_DUPLICATE_METRIC + "." + this.kilde, 1);
     }
 
     public void rejectBecauseOfCapasity() {

@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
+import no.nav.pam.annonsemottak.app.metrics.MetricNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -18,11 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_SOLR_NEW;
+
 @Service
 public class SolrFetchService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolrFetchService.class);
-    private static final String ADS_COLLECTED_COUNTER = "ads.collected.solr";
 
     private static final String fraArbeidsgiver = "Overført fra arbeidsgiver";
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
@@ -60,7 +62,7 @@ public class SolrFetchService {
     public List<Stilling> saveNewStillingerFromSolr(LocalDateTime since) {
         List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since));
 
-        meterRegistry.counter(ADS_COLLECTED_COUNTER + ".new").increment(savedStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size());
 
         return savedStillinger;
     }

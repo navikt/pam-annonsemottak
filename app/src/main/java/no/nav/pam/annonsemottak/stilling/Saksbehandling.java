@@ -8,10 +8,10 @@ import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.STATUS_CHANGED_METRIC;
+
 @Embeddable
 public class Saksbehandling {
-
-    private static final String STATUS_CHANGED_COUNTER = "ad.status.changed";
 
     private String saksbehandler;
 
@@ -31,7 +31,7 @@ public class Saksbehandling {
         valider(command);
 
         if (command.getStatus().isPresent() && this.status != command.getStatus().get()) {
-            Metrics.counter(STATUS_CHANGED_COUNTER + "." + command.getStatus().get().name()).increment();
+            Metrics.gauge(STATUS_CHANGED_METRIC + "." + command.getStatus().get().name(), 1);
 
             this.status = command.getStatus().get();
             if (this.status == Status.GODKJENT)
