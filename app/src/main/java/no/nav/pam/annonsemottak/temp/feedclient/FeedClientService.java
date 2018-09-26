@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.temp.feedclient;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tags;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import no.nav.pam.feed.client.FeedConnector;
@@ -21,11 +20,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 @Service
 public class FeedClientService {
 
     public static final String TASK_NAME = "feedclient.annonsemottak";
-    public static final String COUNTER_NAME = "feedclient.annonsemottak.feed.save";
 
     private static final Logger LOG = LoggerFactory.getLogger(FeedClientService.class);
 
@@ -108,8 +108,8 @@ public class FeedClientService {
             }
         }
 
-        meterRegistry.counter(COUNTER_NAME + ".ok", Tags.empty()).increment(successCount);
-        meterRegistry.counter(COUNTER_NAME + ".fail", Tags.empty()).increment(failCount);
+        meterRegistry.gauge(ADS_COLLECTED_FEED_OK, successCount);
+        meterRegistry.gauge(ADS_COLLECTED_FEED_FAILED, failCount);
         LOG.info("Saved a list of {} ads. Successfully saved {} and failed {} ads", ads.size(), successCount, failCount);
     }
 

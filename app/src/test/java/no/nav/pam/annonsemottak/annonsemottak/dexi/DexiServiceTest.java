@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.dexi;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.DexiAnnonseFangstService;
@@ -44,7 +45,7 @@ public class DexiServiceTest {
         configs.add(new DexiConfiguration("robot-3", "robot 3", "job-3", "job 3"));
         when(mockedDexiConnector.getConfigurations(DexiConfiguration.PRODUCTION)).thenReturn(configs);
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anyString(), anyString())).thenReturn(annonseResult);
-        dexiService = new DexiService(mockedDexiConnector, mockedAnnonseFangstService);
+        dexiService = new DexiService(mockedDexiConnector, mockedAnnonseFangstService, new SimpleMeterRegistry());
     }
 
     @Test

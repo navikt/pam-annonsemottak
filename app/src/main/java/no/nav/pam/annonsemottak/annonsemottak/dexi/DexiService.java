@@ -1,10 +1,10 @@
 package no.nav.pam.annonsemottak.annonsemottak.dexi;
 
-import com.google.common.collect.ImmutableMap;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.DexiAnnonseFangstService;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,17 +16,25 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 @Service
 public class DexiService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiService.class);
+
+    private final MeterRegistry meterRegistry;
     private final DexiConnector dexiConnector;
     private DexiAnnonseFangstService annonseFangstService;
 
     @Inject
-    public DexiService(DexiConnector dexiConnector, DexiAnnonseFangstService annonseFangstService) {
+    public DexiService(
+            DexiConnector dexiConnector,
+            DexiAnnonseFangstService annonseFangstService,
+            MeterRegistry meterRegistry) {
         this.dexiConnector = dexiConnector;
         this.annonseFangstService = annonseFangstService;
+        this.meterRegistry = meterRegistry;
     }
 
     public ResultsOnSave saveLatestResultsFromAllJobs() throws DexiException {
@@ -51,7 +59,11 @@ public class DexiService {
                 saved += results.getSaved();
             } catch (Exception e) {
                LOG.error("Failed to get entries from robot " + currentRobotName, e);
-               SensuClient.sendEvent("dexiRobotFeilet.event", Collections.emptyMap(), ImmutableMap.of("jobId", configuration.getJobId(), "robotName", currentRobotName));
+
+                meterRegistry.gauge(
+                        ROBOTS_FAILED_METRIC,
+                        Arrays.asList(Tag.of("jobId", configuration.getJobId()), Tag.of("robotName", currentRobotName)),
+                        1);
             }
         }
 
@@ -87,13 +99,19 @@ public class DexiService {
         AnnonseResult annonseResult =  annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
 
-        // TODO tags on sensu should be rename, "mapped, filtered" does not say anything.
-        SensuClient.sendEvent("dexiStillingerHentet.event", Collections.emptyMap(), ImmutableMap.of(
-                "total", mapped.size(),
-                "new", annonseResult.getNewList().size(),
-                "stopped", annonseResult.getStopList().size(),
-                "jobId", id,
-                "robotName", robotName));
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_TOTAL,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                mapped.size());
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_NEW,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                annonseResult.getNewList().size());
+        meterRegistry.gauge(
+                ADS_COLLECTED_DEXI_STOPPED,
+                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
+                annonseResult.getStopList().size());
+
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
 
