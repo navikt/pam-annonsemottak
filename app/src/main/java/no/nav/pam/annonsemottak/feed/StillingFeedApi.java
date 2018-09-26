@@ -71,7 +71,7 @@ public class StillingFeedApi {
 
         Instant instant = Instant.ofEpochMilli(millis);
         LocalDateTime updatedDate = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-        LOG.info("Fetching feed for ads updates after " + updatedDate.toString());
+        LOG.info("Serving feed for ads updates after " + updatedDate.toString());
 
         return ResponseEntity.ok(
                 stillingFeedService.findStillingUpdatedAfter(updatedDate, pageable).map(objectMapper::valueToTree)
@@ -81,7 +81,7 @@ public class StillingFeedApi {
     private ResponseEntity getFeedByTimestamp(String timestamp, Pageable pageable) {
         try {
             LocalDateTime lastUpdatedDate = LocalDateTime.parse(timestamp);
-            LOG.info("Fetching feed for ads updates after " + lastUpdatedDate.toString());
+            LOG.info("Serving feed for ads updates after " + lastUpdatedDate.toString());
 
             return ResponseEntity.ok(
                     stillingFeedService.findStillingUpdatedAfter(lastUpdatedDate, pageable).map(objectMapper::valueToTree)
@@ -95,7 +95,7 @@ public class StillingFeedApi {
     @GetMapping(path = "/{uuid}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity getOneAdAsFeed(@PathVariable("uuid") String uuid) {
 
-        LOG.info("Fetching feed for an ad with uuid {}", uuid);
+        LOG.info("Serving feed for an ad with uuid {}", uuid);
 
         return ResponseEntity.ok(stillingFeedService.findStilling(uuid));
 
