@@ -1,9 +1,8 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.hash.Hashing;
+import io.micrometer.core.instrument.Metrics;
 import no.nav.pam.annonsemottak.ModelEntity;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
 
@@ -13,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 
 @Entity
@@ -305,10 +306,8 @@ public class Stilling extends ModelEntity {
 
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
-        SensuClient.sendEvent(
-                "stillingAvvistDuplikat.event",
-                Collections.emptyMap(),
-                ImmutableMap.of("kilde", this.kilde));
+
+        Metrics.gauge(AD_DUPLICATE_METRIC + "." + this.kilde, 1);
     }
 
     public void rejectBecauseOfCapasity() {

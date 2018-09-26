@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.finn;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
@@ -37,7 +38,7 @@ public class FinnServiceTest {
         mockedExternalRunService = mock(ExternalRunService.class);
         mockedAnnonseFangstService = mock(AnnonseFangstService.class);
 
-        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService);
+        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService, new SimpleMeterRegistry());
     }
 
     @Test
