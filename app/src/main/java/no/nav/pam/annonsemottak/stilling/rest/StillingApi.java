@@ -16,7 +16,6 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodePageRequest.withPageRequest;
@@ -33,32 +32,7 @@ public class StillingApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(StillingApi.class);
 
-    private static final Map<String, String> ADREG_PROPERTY_KEYS;
-
     private final StillingRepository stillingRepository;
-
-    //TODO: pam-adreg specific property names and corresponding local names. Remove, once this function is moved to pam-adreg
-    static {
-        ADREG_PROPERTY_KEYS = new HashMap<>();
-        ADREG_PROPERTY_KEYS.put("oppstart", PropertyNames.TILTREDELSE);
-        ADREG_PROPERTY_KEYS.put("etterAvtale", PropertyNames.TILTREDELSE);
-        ADREG_PROPERTY_KEYS.put("omfang", PropertyNames.HELTIDDELTID);
-        ADREG_PROPERTY_KEYS.put("stillingstype", PropertyNames.VARIGHET);
-        ADREG_PROPERTY_KEYS.put("mottatSoeknadEpost", PropertyNames.APPLICATION_EMAIL);
-        ADREG_PROPERTY_KEYS.put("soeknadslenke", PropertyNames.SOKNADSLENKE);
-        ADREG_PROPERTY_KEYS.put("hjemmeside", PropertyNames.EMPLOYER_URL);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedPostnr", PropertyNames.LOCATION_POSTCODE);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedAdresse", PropertyNames.LOCATION_ADDRESS);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedSted", PropertyNames.LOCATION_CITY);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedKommune", PropertyNames.LOCATION_MUNICIPAL);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedFylke", PropertyNames.LOCATION_COUNTY);
-        ADREG_PROPERTY_KEYS.put("arbeidsstedLand", PropertyNames.LOCATION_COUNTRY);
-        ADREG_PROPERTY_KEYS.put("stillingstittel", PropertyNames.STILLINGSTITTEL);
-        ADREG_PROPERTY_KEYS.put("kommuneFylke", PropertyNames.FYLKE);
-        ADREG_PROPERTY_KEYS.put("Antall", PropertyNames.ANTALL_STILLINGER);
-
-        //TODO: Standardize contact info
-    }
 
     @Inject
     public StillingApi(StillingRepository stillingRepository) {
@@ -116,8 +90,6 @@ public class StillingApi {
         nonEmptyProperties.put("orgnr", ad.getOrgNummer());
         nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
 
-        replacePropertyKeysBeforeSave(nonEmptyProperties);
-
         Stilling s = new Stilling(
                 ad.getUuid(),
                 ad.getEmployerName(),
@@ -134,17 +106,6 @@ public class StillingApi {
 
         s.setPublished(ad.getPubliserFra());
         return s;
-    }
-
-    private static void replacePropertyKeysBeforeSave(Map<String, String> properties) {
-        LOG.debug("Replaces stillingsregistrering (pam-adreg) specific properties into standardized local property names");
-        Set<String> foundKeys = properties.keySet().stream().filter(s -> ADREG_PROPERTY_KEYS.containsKey(s)).collect(Collectors.toSet());
-
-        foundKeys.stream().forEach(s -> {
-            String value = properties.remove(s);
-            properties.put(ADREG_PROPERTY_KEYS.get(s), value);
-            LOG.debug("Replaced property names from {} to {} on incoming ad", value, ADREG_PROPERTY_KEYS.get(s));
-        });
     }
 
     @GetMapping(value = "/{uuid}", produces = APPLICATION_JSON_VALUE)
