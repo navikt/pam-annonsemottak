@@ -5,7 +5,7 @@
     <parent>
         <groupId>no.nav.pam.annonsemottak</groupId>
         <artifactId>pam-annonsemottak</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>pam-annonsemottak-app</artifactId>
