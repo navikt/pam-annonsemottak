@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -44,7 +45,7 @@ public class SolrFetchServiceTest {
 
     @Before
     public void before() {
-        solrFetchService = new SolrFetchService(solrRepository, stillingRepository);
+        solrFetchService = new SolrFetchService(solrRepository, stillingRepository, new SimpleMeterRegistry());
     }
 
     @Test

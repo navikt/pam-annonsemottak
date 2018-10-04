@@ -84,11 +84,18 @@ public class AnnonseFangstService {
         return annonseResult;
     }
 
-    @Transactional
+
     public void saveAll(AnnonseResult annonseResult) {
         LOG.info("Annonsefangstservice, før save,  annonseresult: {}", annonseResult.toString());
-        stillingRepository.saveAll(annonseResult.getAll());
+        annonseResult.getAll().stream().forEach(stilling -> saveOne(stilling));
         LOG.info("Annonsefangstservice, etter save,  annonseresult: {}", annonseResult.toString());
     }
 
+    private void saveOne(Stilling s) {
+        try {
+            stillingRepository.save(s);
+        } catch (Exception e) {
+            LOG.error("Error while saving ad {} from source {}. Error: {}", s.getUuid(), s.getKilde(), e.getMessage());
+        }
+    }
 }

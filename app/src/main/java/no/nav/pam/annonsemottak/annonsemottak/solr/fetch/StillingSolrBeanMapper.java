@@ -48,7 +48,6 @@ class StillingSolrBeanMapper {
 
         properties.put(StillingSolrBeanFieldNames.SOKNADSENDES, solrBean.getSoknadsendes());
         properties.put(StillingSolrBeanFieldNames.REG_DATO, regDato.toString());
-        properties.put(StillingSolrBeanFieldNames.PUBLISERES_FRA, published.toString());
         properties.put(StillingSolrBeanFieldNames.STILLINGSPROSENT, fieldToString(solrBean.getStillingsprosent()));
 
         properties.put(StillingSolrBeanFieldNames.LONNSINFO, fieldToString(solrBean.getLonnsinfo()));
@@ -74,8 +73,13 @@ class StillingSolrBeanMapper {
                 properties,
                 null);
 
+        newStilling.setPublished(published);
+
         try {
-            OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(Collections.singletonMap("status", "2"));
+            final Map<String, String> params = new HashMap<>();
+            params.put("status", "2");
+            params.put("saksbehandler", "System");
+            OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(params);
             newStilling.oppdaterMed(saksbehandlingCommand);
         } catch (IllegalSaksbehandlingCommandException e) {
             LOG.debug("Kunne ikke oppdatere stilling med status godkjent", e);

@@ -32,18 +32,25 @@ public class ModelEntity {
     @PrePersist
     @PreUpdate
     protected void onMerge() {
+
+        //TODO: Remove this after migration from
+        if (getCreated() != null && getUpdated() != null) {
+            return;
+        }
+
         String userName = "test1234";
         String userDisplayName = "Testuser Displayname";
+        LocalDateTime now = LocalDateTime.now();
+
         if (isNew()) {
+            setCreated(now);
             setCreatedBy(userName);
             setCreatedByDisplayName(userDisplayName);
-            setUpdatedBy(userName);
-            setUpdatedByDisplayName(userDisplayName);
-        } else {
-            setUpdated(LocalDateTime.now());
-            setUpdatedBy(userName);
-            setUpdatedByDisplayName(userDisplayName);
         }
+
+        setUpdated(now);
+        setUpdatedBy(userName);
+        setUpdatedByDisplayName(userDisplayName);
     }
 
     public boolean isNew() {

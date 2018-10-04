@@ -13,6 +13,7 @@ import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.annonsemottak.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
+import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
 import okhttp3.OkHttpClient;
@@ -157,8 +158,8 @@ public class AppConfig {
     @Bean
     public FinnConnector finnConnector(
             HttpClientProxy proxy,
-            @Value("${finn.service.document.url:https://cache.api.finn.no/iad}") String serviceDocumentUrl,
-            @Value("${finn.api.password:someboguskey}") String apiKey,
+            @Value("${finn.url}") String serviceDocumentUrl,
+            @Value("${finn.api.password}") String apiKey,
             @Value("${finn.polite.delay.millis:200}") int politeRequestDelayInMillis) {
         return new FinnConnector(proxy, serviceDocumentUrl, apiKey, politeRequestDelayInMillis);
     }
@@ -168,6 +169,13 @@ public class AppConfig {
                                            @Value("${amedia.url}") String amediaUrl) {
 
         return new AmediaConnector(proxy, amediaUrl);
+    }
+
+    @Bean
+    public PolarisConnector polarisConnector(HttpClientProxy proxy,
+                                            @Value("${polaris.url}") String polarisUrl) {
+
+        return new PolarisConnector(proxy, polarisUrl);
     }
 
     @Bean

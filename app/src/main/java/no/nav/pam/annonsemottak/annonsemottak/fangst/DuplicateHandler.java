@@ -3,12 +3,15 @@ package no.nav.pam.annonsemottak.annonsemottak.fangst;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrService;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.annonsemottak.solr.fetch.StillingSolrBeanFieldNames;
+import no.nav.pam.annonsemottak.stilling.IllegalSaksbehandlingCommandException;
+import no.nav.pam.annonsemottak.stilling.OppdaterSaksbehandlingCommand;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,6 +51,11 @@ public class DuplicateHandler {
         LOG.debug("Got duplicate arbeidsgiver: " + stillingSolrBean.getArbeidsgivernavn() +
                 " tittel: "+ stillingSolrBean.getTittel() + " id: " + stillingSolrBean.getId());
         stilling.rejectAsDuplicate(stillingSolrBean.getId());
+        try {
+            stilling.oppdaterMed(new OppdaterSaksbehandlingCommand(Collections.singletonMap("saksbehandler", "System")));
+        } catch (IllegalSaksbehandlingCommandException e) {
+            throw new IllegalStateException("Unexpceted error when updating ad reportee", e);
+        }
     }
 
     private List<StillingSolrBean> search(Stilling stilling) {

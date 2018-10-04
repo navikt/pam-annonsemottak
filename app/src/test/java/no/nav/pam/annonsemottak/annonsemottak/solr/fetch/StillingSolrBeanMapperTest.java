@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
+import no.nav.pam.annonsemottak.stilling.Status;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
@@ -43,6 +44,17 @@ public class StillingSolrBeanMapperTest {
         softly.assertThat(props.get(PropertyNames.STILLINGSTITTEL)).isEqualTo(solrBean.getStillingstype());
 
         softly.assertAll();
+    }
+
+    @Test
+    public void should_set_correct_reportee_status() {
+        StillingSolrBean solrBean = createNewSolrBean();
+        Stilling stilling = StillingSolrBeanMapper.mapToStilling(solrBean);
+        SoftAssertions softIce = new SoftAssertions();
+        softIce.assertThat(stilling.getStatus()).isEqualTo(Status.GODKJENT);
+        softIce.assertThat(stilling.getSaksbehandler().isPresent()).isTrue();
+        softIce.assertThat(stilling.getSaksbehandler().get().asString()).isEqualTo("System");
+        softIce.assertAll();
     }
 
     private StillingSolrBean createNewSolrBean() {

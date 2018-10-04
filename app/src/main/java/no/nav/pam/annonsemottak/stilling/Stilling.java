@@ -1,10 +1,10 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.hash.Hashing;
+import io.micrometer.core.instrument.Metrics;
 import no.nav.pam.annonsemottak.ModelEntity;
-import no.nav.pam.annonsemottak.app.sensu.SensuClient;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+
 
 @Entity
 @Table(name = "STILLING")
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 public class Stilling extends ModelEntity {
 
     private static final int DEFAULT_EXPIRY_DAYS = 10;
-    private static final int MAX_EXPIRY_LIMIT  = 6;
+    private static final int MAX_EXPIRY_LIMIT = 6;
 
     private static final Set<String> NONIDENTIFYING_KEYS;
 
@@ -52,8 +54,11 @@ public class Stilling extends ModelEntity {
     private String medium;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String employerDescription;
+
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String jobDescription;
 
     @NotNull
@@ -301,10 +306,8 @@ public class Stilling extends ModelEntity {
 
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
-        SensuClient.sendEvent(
-                "stillingAvvistDuplikat.event",
-                Collections.emptyMap(),
-                ImmutableMap.of("kilde", this.kilde));
+
+        Metrics.gauge(AD_DUPLICATE_METRIC + "." + this.kilde, 1);
     }
 
     public void rejectBecauseOfCapasity() {
@@ -317,9 +320,8 @@ public class Stilling extends ModelEntity {
     }
 
     public void setPublished(LocalDateTime published) {
-        if (this.published != null)
-            throw new IllegalArgumentException("Published er allerede satt. Kan ikke overskrives");
-        this.published = published;
+        if (published != null)
+            this.published = published;
     }
 
     public AnnonseStatus getAnnonseStatus() {
@@ -329,17 +331,14 @@ public class Stilling extends ModelEntity {
     public Stilling merge(Stilling stilling) {
         Status oldStatus = stilling.getSaksbehandling().getStatus();
 
+        this.saksbehandling = stilling.getSaksbehandling();
         if ((oldStatus == Status.GODKJENT || oldStatus == Status.FJERNET) && this.annonseStatus != AnnonseStatus.STOPPET) {
             this.getSaksbehandling().oppdatert();
-        } else {
-            this.saksbehandling = stilling.getSaksbehandling();
         }
         this.setId(stilling.getId());
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
-        if (this.getPublished() == null) { // Paranoid, avoid IAE in case something has already set published.. (What could possibly go wrong.)
-            this.setPublished(stilling.getPublished());
-        }
+
         return this;
     }
 }

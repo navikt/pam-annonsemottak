@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
@@ -98,27 +96,7 @@ public class StillingRepositoryTest {
     }
 
     @Test
-    public void stilling_publisert_skal_bare_kunne_settes_en_gang() {
-        final String externalID = java.util.UUID.randomUUID().toString();
-        Stilling stilling = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
-        stilling.setPublished(LocalDateTime.now());
-
-        stillingRepository.save(stilling);
-        Stilling lastetStilling = stillingRepository.findByKildeAndMediumAndExternalId(
-                stilling.getKilde(), stilling.getMedium(), externalID);
-
-        assertNotNull(lastetStilling);
-
-        try {
-            lastetStilling.setPublished(LocalDateTime.now());
-            fail("Det skal ikke være lov å sette published for andre gang");
-        } catch (IllegalArgumentException e) {
-            // Dette er ok
-        }
-    }
-
-    @Test
-    public void publiseringsdato_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
+    public void publiseringsdato_skal_ikke_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
         final String externalID = java.util.UUID.randomUUID().toString();
         Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
         OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(Collections.singletonMap("status", "2"));
@@ -141,7 +119,36 @@ public class StillingRepositoryTest {
 
         stored = stillingRepository.save(externallyUpdated);
 
-        assertEquals(published, stored.getPublished());
+        assertNotEquals(published, stored.getPublished());
+    }
+
+    @Test
+    public void saksbehandling_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
+        final String externalID = java.util.UUID.randomUUID().toString();
+        Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
+
+        final String uuid = brandNew.getUuid();
+
+        Map<String, String> updateMap = new HashMap<>();
+        updateMap.put("status", "2");
+        updateMap.put("saksbehandler", "System");
+        OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(updateMap);
+        brandNew.oppdaterMed(saksbehandlingCommand); // Approve ad as "System"
+
+        stillingRepository.save(brandNew);
+
+        // Simulate update on existing ad
+        Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
+
+        Stilling inDb = stillingRepository.findByUuid(uuid);
+        assertNotNull(inDb);
+        assertEquals(Status.GODKJENT, inDb.getStatus());
+
+        Stilling merged = externallyUpdated.merge(inDb);
+
+        assertEquals("System", merged.getSaksbehandler().get().asString());
+        assertEquals(Status.OPPDATERT, merged.getStatus());
+        assertEquals(AnnonseStatus.AKTIV, merged.getAnnonseStatus());
     }
 
     @Test

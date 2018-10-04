@@ -5,7 +5,7 @@
     <parent>
         <groupId>no.nav.pam.annonsemottak</groupId>
         <artifactId>pam-annonsemottak</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>pam-annonsemottak-app</artifactId>
@@ -146,7 +146,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
+            <artifactId>commons-text</artifactId>
         </dependency>
 
         <dependency>

@@ -9,7 +9,8 @@ public class HtmlSanitizer {
         PolicyFactory policy = Sanitizers.FORMATTING
                 .and(Sanitizers.LINKS)
                 .and(Sanitizers.BLOCKS)
-                .and(Sanitizers.TABLES);
+                .and(Sanitizers.TABLES)
+                .and(Sanitizers.FORMATTING);
 
         return policy.sanitize(html);
     }
