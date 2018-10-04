@@ -91,7 +91,6 @@ public class AnnonseFangstService {
         LOG.info("Annonsefangstservice, etter save,  annonseresult: {}", annonseResult.toString());
     }
 
-    @Transactional
     private void saveOne(Stilling s) {
         try {
             stillingRepository.save(s);
