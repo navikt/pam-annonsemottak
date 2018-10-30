@@ -65,8 +65,6 @@ solr:
 feed:
   annonsemottak:
     url: https://pamstilling.oera.no/api/stillinger/feed/
-  pagesize: 10000
-  poolsize: 1000
-  duration: 10
+  pagesize: 2000
   scheduler:
     enabled: true
