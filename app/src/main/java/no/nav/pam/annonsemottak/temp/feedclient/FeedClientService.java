@@ -20,7 +20,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_FEED_FAILED;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_FEED_OK;
 
 @Service
 public class FeedClientService {
@@ -95,10 +96,11 @@ public class FeedClientService {
             try {
                 Stilling inDb = stillingRepository.findByUuid(a.getUuid());
                 if (inDb != null) {
-                    LOG.debug("Saving new ad with uuid {}", a.getUuid());
-                    stillingRepository.save(a.merge(inDb));
-                } else {
                     LOG.debug("Saving updated ad with uuid {}", a.getUuid());
+                    a.setId(inDb.getId());
+                    stillingRepository.save(a);
+                } else {
+                    LOG.debug("Saving new ad with uuid {}", a.getUuid());
                     stillingRepository.save(a);
                 }
                 successCount++;
