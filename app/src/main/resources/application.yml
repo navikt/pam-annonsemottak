@@ -64,7 +64,7 @@ solr:
 #TODO: Remove after transition from PAM-STILLING is complete
 feed:
   annonsemottak:
-    url: https://pamstilling.oera.no/api/stillinger/feed/
+    url: ${TEMP_PAMSTILLING_FEED_URL:https://pamstilling.oera.no/api/stillinger/feed}
   pagesize: 2000
   scheduler:
     enabled: true

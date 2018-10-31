@@ -35,3 +35,5 @@ fasitResources:
     resourceType: datasource
   - alias: "stilling.solr"
     resourceType: baseurl
+  - alias: "temp.pamstilling.feed"
+    resourceType: baseurl
