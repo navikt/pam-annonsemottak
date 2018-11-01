@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
-import no.nav.pam.annonsemottak.app.metrics.MetricNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -15,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,14 +62,14 @@ public class SolrFetchService {
     }
 
     public List<Stilling> saveNewStillingerFromSolr(LocalDateTime since) {
-        List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since));
+        List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since.atOffset(ZoneOffset.UTC)));
 
         meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size());
 
         return savedStillinger;
     }
 
-    List<Stilling> searchForNewStillinger(LocalDateTime since) {
+    List<Stilling> searchForNewStillinger(OffsetDateTime since) {
         SolrQuery solrQuery = buildSolrQueryForSearch(since);
         QueryResponse response = solrRepository.query(solrQuery);
         SolrDocumentList result = response.getResults();
@@ -101,7 +103,7 @@ public class SolrFetchService {
                 .collect(Collectors.toList());
     }
 
-    private SolrQuery buildSolrQueryForSearch(LocalDateTime since) {
+    private SolrQuery buildSolrQueryForSearch(OffsetDateTime since) {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
 
@@ -117,8 +119,8 @@ public class SolrFetchService {
         return solrQuery;
     }
 
-    private String buildFilterQueryRegDato(LocalDateTime since) {
-        String newDate = since.toString();
+    private String buildFilterQueryRegDato(OffsetDateTime since) {
+        String newDate =  since.format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
         return "[" + newDate + " TO *]";
     }
 

@@ -59,7 +59,7 @@ public class SolrSchedulerTask {
             lastRun = externalRun.getLastRun();
         }
         if (lastRun == null) {
-            lastRun = LocalDateTime.parse("2017-01-01T00:00:00Z");
+            lastRun = LocalDateTime.parse("2017-01-01T00:00:00");
         }
 
         return lastRun;

@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class SolrFetchServiceTest {
     private static final int ID = 1;
     private static final String KILDE = "nav.no";
     private static final String ARBEIDSGIVER = "Arbeid AS";
-    private static final LocalDateTime DATO = LocalDateTime.now();
+    private static final OffsetDateTime DATO = OffsetDateTime.now();
 
     private SolrFetchService solrFetchService;
 
