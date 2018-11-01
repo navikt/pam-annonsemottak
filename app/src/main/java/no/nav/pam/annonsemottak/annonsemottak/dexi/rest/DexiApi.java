@@ -50,7 +50,7 @@ public class DexiApi {
         }
     }
 
-    @RequestMapping(value = "/configurations/results/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/configurations/results/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveLatestResultsFromAllJobs() {
         try {
             ResultsOnSave dexiResult = dexiService.saveLatestResultsFromAllJobs();
@@ -62,7 +62,7 @@ public class DexiApi {
     }
 
     @RequestMapping(value = "/robots/{robotName}/configurations/{configuration}/results",
-            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveLatestRobotRunResult(@PathVariable("robotName") String robotName,
                                                    @PathVariable("configuration") String configuration) {
         LOG.info("Got save request for '{}' with configuration '{}'",robotName, configuration);
