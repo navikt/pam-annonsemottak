@@ -50,7 +50,7 @@ public class SolrSearchInternal {
         LOG.debug("Starting saving new stillinger from solr since {}", time);
         List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(time);
         LOG.debug("Finished saving stillinger");
-        return ResponseEntity.ok(solrBeans);
+        return ResponseEntity.ok(solrBeans.size());
     }
 }
 
