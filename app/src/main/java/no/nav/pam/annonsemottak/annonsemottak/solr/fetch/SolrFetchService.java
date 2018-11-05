@@ -32,6 +32,7 @@ public class SolrFetchService {
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
+    private static final int daysToSubtract = 7;
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
@@ -108,7 +109,7 @@ public class SolrFetchService {
         solrQuery.setQuery("*:*");
 
         solrQuery.addFilterQuery(StillingSolrBeanFieldNames.KILDETEKST + ":" + filterQueryKildetekst);
-        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.REG_DATO + ":" + buildFilterQueryRegDatoMinusFiveDays(since));
+        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.REG_DATO + ":" + buildFilterQueryRegDato(since));
 
         solrQuery.setFacet(false);
         solrQuery.setStart(0);
@@ -120,8 +121,8 @@ public class SolrFetchService {
     }
 
     //Going five days back in time because of missed ads caused by gaps in reg_dato vs fetching time
-    private String buildFilterQueryRegDatoMinusFiveDays(OffsetDateTime since) {
-        String newDate = since.minusDays(5).format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
+    private String buildFilterQueryRegDato(OffsetDateTime since) {
+        String newDate = since.minusDays(daysToSubtract).format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
         return "[" + newDate + " TO *]";
     }
 
