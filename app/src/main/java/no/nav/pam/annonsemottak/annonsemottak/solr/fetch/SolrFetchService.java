@@ -108,7 +108,7 @@ public class SolrFetchService {
         solrQuery.setQuery("*:*");
 
         solrQuery.addFilterQuery(StillingSolrBeanFieldNames.KILDETEKST + ":" + filterQueryKildetekst);
-        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.REG_DATO + ":" + buildFilterQueryRegDato(since));
+        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.REG_DATO + ":" + buildFilterQueryRegDatoMinusFiveDays(since));
 
         solrQuery.setFacet(false);
         solrQuery.setStart(0);
@@ -119,8 +119,9 @@ public class SolrFetchService {
         return solrQuery;
     }
 
-    private String buildFilterQueryRegDato(OffsetDateTime since) {
-        String newDate =  since.format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
+    //Going five days back in time because of missed ads caused by gaps in reg_dato vs fetching time
+    private String buildFilterQueryRegDatoMinusFiveDays(OffsetDateTime since) {
+        String newDate = since.minusDays(5).format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
         return "[" + newDate + " TO *]";
     }
 
