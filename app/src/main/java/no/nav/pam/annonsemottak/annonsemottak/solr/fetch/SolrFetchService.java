@@ -32,6 +32,7 @@ public class SolrFetchService {
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
+    //Going some days back in time because of missed ads caused by gaps in reg_dato vs fetching time
     private static final int daysToSubtract = 7;
 
     private final MeterRegistry meterRegistry;
@@ -120,7 +121,6 @@ public class SolrFetchService {
         return solrQuery;
     }
 
-    //Going five days back in time because of missed ads caused by gaps in reg_dato vs fetching time
     private String buildFilterQueryRegDato(OffsetDateTime since) {
         String newDate = since.minusDays(daysToSubtract).format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
         return "[" + newDate + " TO *]";
