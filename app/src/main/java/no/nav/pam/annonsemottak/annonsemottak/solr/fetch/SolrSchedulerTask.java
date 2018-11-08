@@ -28,7 +28,7 @@ public class SolrSchedulerTask {
         this.stopSolrStillingerService = stopSolrStillingerService;
     }
 
-    @Scheduled(cron = "0 0 8 * * *")
+    @Scheduled(cron = "0 0 8,16 * * *")
     @SchedulerLock(name = "saveLatestAdsFromStillingsolr")
     public void saveLatestAdsFromStillingsolr() {
         try {
