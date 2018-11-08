@@ -10,12 +10,10 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,11 +43,11 @@ public class SolrSearchInternal {
         return ResponseEntity.ok(stillingSolrBeans);
     }
 
-    @PostMapping(path = "/fetch/since/{time}")
-    public ResponseEntity fetchStillinger(@PathVariable("time") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime time) {
-        LOG.debug("Starting saving new stillinger from solr since {}", time);
-        List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(time);
-        LOG.debug("Finished saving stillinger");
+    @PostMapping(path = "/fetch")
+    public ResponseEntity fetchStillinger() {
+        LOG.info("REST request to start saving new stillinger from solr ");
+        List<Stilling> solrBeans = solrFetchService.saveStillingerFromSolr();
+        LOG.info("Finished saving stillinger");
         return ResponseEntity.ok(solrBeans.size());
     }
 }

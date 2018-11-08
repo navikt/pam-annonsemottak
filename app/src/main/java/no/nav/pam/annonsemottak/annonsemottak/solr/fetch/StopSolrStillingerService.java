@@ -2,11 +2,9 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
-import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.apache.solr.client.solrj.SolrQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +22,23 @@ public class StopSolrStillingerService {
     private static final Logger LOG = LoggerFactory.getLogger(StopSolrStillingerService.class);
 
     private final MeterRegistry meterRegistry;
-    private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
 
     @Autowired
-    public StopSolrStillingerService(SolrRepository solrRepository,
-                                     StillingRepository stillingRepository,
+    public StopSolrStillingerService(StillingRepository stillingRepository,
                                      MeterRegistry meterRegistry) {
-        this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
         this.meterRegistry = meterRegistry;
     }
 
     @Transactional
-    public void findAndStopOldSolrStillinger() {
+    public void findAndStopOldSolrStillinger(List<Stilling> savedAds) {
         List<Stilling> activeAds = stillingRepository.findByKildeAndAnnonseStatus(Kilde.STILLINGSOLR.value(), AnnonseStatus.AKTIV);
 
         // Stopping ads if they're removed from stillingsolr, to prevent them getting republished
+        List<String> savedUuids = savedAds.stream().map(s -> s.getUuid()).collect(Collectors.toList());
         List<Stilling> stoppedAds = activeAds.stream()
-                .filter(s -> doesNotExist(s.getExternalId()))
+                .filter(s -> !savedUuids.contains(s.getUuid()))
                 .map(Stilling::stop)
                 .collect(Collectors.toList());
 
@@ -51,22 +47,5 @@ public class StopSolrStillingerService {
         meterRegistry.gauge(ADS_DEACTIVATED_SOLR, stoppedAds.size());
 
         LOG.info("Stopped {} inactive ads from solr", stoppedAds.size());
-    }
-
-    private boolean doesNotExist(String id) {
-        return solrRepository.query(buildSolrQueryForSearch(id)).getResults().getNumFound() == 0;
-    }
-
-    private SolrQuery buildSolrQueryForSearch(String externalId) {
-        SolrQuery solrQuery = new SolrQuery();
-        solrQuery.setQuery("ID:" + externalId);
-
-        solrQuery.setFacet(false);
-        solrQuery.setStart(0);
-        solrQuery.setRows(1);
-
-        solrQuery.add("pam", "pam");
-
-        return solrQuery;
     }
 }
