@@ -79,6 +79,7 @@ public class SolrFetchService {
         meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size() - updatedStillingCounter.get());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, updatedStillingCounter.get());
 
+        LOG.info("Saved {} new and {} changed ads from solr", savedStillinger.size() - updatedStillingCounter.get(), updatedStillingCounter.get());
         return savedStillinger;
     }
 
