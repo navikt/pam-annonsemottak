@@ -111,7 +111,7 @@ public class FeedClientServiceTest {
         verify(connector).fetchContentList(URL, dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(), StillingFeedItem.class);
 
         //Test mapping for one of he ads
-        Stilling ad1 = stillingRepository.findByUuid("de1d8755-98ef-4e63-8626-2fd96a4f2706");
+        Stilling ad1 = stillingRepository.findByUuid("de1d8755-98ef-4e63-8626-2fd96a4f2706").orElse(null);
         assertNotNull(ad1);
 
         SoftAssertions softAssertions = new SoftAssertions();
@@ -151,7 +151,7 @@ public class FeedClientServiceTest {
         verify(connector).fetchContentList(path, 0, StillingFeedItem.class);
 
         //Test mapping for one of he ads
-        Stilling ad1 = stillingRepository.findByUuid(uuid);
+        Stilling ad1 = stillingRepository.findByUuid(uuid).orElse(null);
         assertNotNull(ad1);
 
         SoftAssertions softAssertions = new SoftAssertions();

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -63,12 +64,12 @@ public class SolrFetchService {
         AtomicInteger updatedStillingCounter = new AtomicInteger(0);
 
         stillingerList.stream().forEach(s -> {
-            Stilling inDb = stillingRepository.findByKildeAndMediumAndExternalId(
+            Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
                     s.getKilde(),
                     s.getMedium(),
                     s.getExternalId());
-            if (inDb != null) {
-                s.merge(inDb);
+            if (inDb.isPresent()) {
+                s.merge(inDb.get());
                 updatedStillingCounter.incrementAndGet();
             }
         });
