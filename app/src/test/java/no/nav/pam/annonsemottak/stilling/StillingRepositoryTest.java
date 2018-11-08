@@ -111,7 +111,7 @@ public class StillingRepositoryTest {
 
         Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
 
-        Stilling stored = stillingRepository.findByUuid(uuid);
+        Stilling stored = stillingRepository.findByUuid(uuid).orElse(null);
         assertNotNull(stored);
         assertNotNull(stored.getPublished());
 
@@ -140,7 +140,7 @@ public class StillingRepositoryTest {
         // Simulate update on existing ad
         Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
 
-        Stilling inDb = stillingRepository.findByUuid(uuid);
+        Stilling inDb = stillingRepository.findByUuid(uuid).orElse(null);
         assertNotNull(inDb);
         assertEquals(Status.GODKJENT, inDb.getStatus());
 

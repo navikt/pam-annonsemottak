@@ -94,10 +94,10 @@ public class FeedClientService {
 
         for (Stilling a : ads) {
             try {
-                Stilling inDb = stillingRepository.findByUuid(a.getUuid());
-                if (inDb != null) {
+                Optional<Stilling> inDb = stillingRepository.findByUuid(a.getUuid());
+                if (inDb.isPresent()) {
                     LOG.debug("Saving updated ad with uuid {}", a.getUuid());
-                    a.setId(inDb.getId());
+                    a.setId(inDb.get().getId());
                     stillingRepository.save(a);
                 } else {
                     LOG.debug("Saving new ad with uuid {}", a.getUuid());

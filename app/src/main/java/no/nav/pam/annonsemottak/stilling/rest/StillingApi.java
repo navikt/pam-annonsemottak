@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodePageRequest.withPageRequest;
@@ -112,13 +113,14 @@ public class StillingApi {
     public ResponseEntity<BasicPayload> getAnnonse(@PathVariable("uuid") String uuid) {
         try {
 
-            Stilling stilling = stillingRepository.findByUuid(uuid);
-            if (stilling == null) {
-                return ResponseEntity.status(NOT_FOUND).build();
-            }
-            return ResponseEntity
-                    .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling)));
+            Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
 
+            if (stilling.isPresent()) {
+                return ResponseEntity
+                        .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling.get())));
+            }
+
+            return ResponseEntity.status(NOT_FOUND).build();
         } catch (Exception e) {
             LOG.error("Failed to get Stilling with UUID {}", uuid, e);
             return ResponseEntity
@@ -132,14 +134,16 @@ public class StillingApi {
         LOG.info("PATCH: {}", uuid);
         try {
 
-            Stilling stilling = stillingRepository.findByUuid(uuid);
-            if (stilling == null) {
-                return ResponseEntity.status(NOT_FOUND).build();
-            }
-            stilling.oppdaterMed(new OppdaterSaksbehandlingCommand(keyValueMap));
+            Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
+            if (stilling.isPresent()) {
+                Stilling s = stilling.get();
+                s.oppdaterMed(new OppdaterSaksbehandlingCommand(keyValueMap));
 
-            stillingRepository.save(stilling);
-            return ResponseEntity.noContent().build();
+                stillingRepository.save(s);
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.status(NOT_FOUND).build();
 
         } catch (IllegalSaksbehandlingCommandException e) {
             LOG.warn("Refused to patch Stilling with UUID={}", uuid, e);
@@ -174,12 +178,13 @@ public class StillingApi {
                                                           @PathVariable("medium") String medium,
                                                           @PathVariable("externalid") String externalid) {
         try {
-            Stilling stilling = stillingRepository.findByKildeAndMediumAndExternalId(kilde, medium, externalid);
-            if (stilling == null) {
-                return ResponseEntity.status(NOT_FOUND).build();
+            Optional<Stilling> stilling = stillingRepository.findByKildeAndMediumAndExternalId(kilde, medium, externalid);
+            if (stilling.isPresent()) {
+                return ResponseEntity
+                        .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling.get())));
             }
-            return ResponseEntity
-                    .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling)));
+
+            return ResponseEntity.status(NOT_FOUND).build();
         } catch (Exception e) {
             LOG.error("Failed to get Stilling {} {} {} ", kilde, medium, externalid);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR)
@@ -201,9 +206,9 @@ public class StillingApi {
             if ("STOPPET".equals(adDto.getStatus())) {
                 nyStilling = nyStilling.stop();
             }
-            Stilling gammelStilling = stillingRepository.findByUuid(adDto.getUuid());
-            if (gammelStilling != null)
-                nyStilling.merge(gammelStilling);
+            Optional<Stilling> gammelStilling = stillingRepository.findByUuid(adDto.getUuid());
+            if (gammelStilling.isPresent())
+                nyStilling.merge(gammelStilling.get());
 
             Stilling adEntity = stillingRepository.save(nyStilling);
             Link linkToCreatedResouce = linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();
