@@ -14,14 +14,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,7 +28,6 @@ public class SolrFetchServiceTest {
     private static final int ID = 1;
     private static final String KILDE = "nav.no";
     private static final String ARBEIDSGIVER = "Arbeid AS";
-    private static final OffsetDateTime DATO = OffsetDateTime.now();
 
     private SolrFetchService solrFetchService;
 
@@ -57,33 +53,14 @@ public class SolrFetchServiceTest {
         when(solrRepository.query(any(SolrQuery.class))).thenReturn(queryResponse);
         when(queryResponse.getResults()).thenReturn(solrDocuments);
         when(queryResponse.getBeans(any())).thenReturn(solrBeans);
-        when(stillingRepository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString())).thenReturn(null);
 
-        List<Stilling> stillingList = solrFetchService.searchForNewStillinger(DATO);
+        List<Stilling> stillingList = solrFetchService.searchForStillinger();
 
         assertThat(stillingList).hasSize(1);
         Stilling convertedStilling = stillingList.get(0);
         assertThat(convertedStilling.getArbeidsgiver()).isPresent();
         assertThat(convertedStilling.getArbeidsgiver().get().asString()).isEqualTo(ARBEIDSGIVER);
     }
-
-    @Test
-    public void should_not_return_existing_stilling() {
-        SolrDocumentList solrDocuments = buildFakeSolrDocumentList();
-        StillingSolrBean solrBean = buildFakeSolrBean();
-        List<Object> solrBeans = Collections.singletonList(solrBean);
-
-        when(solrRepository.query(any(SolrQuery.class))).thenReturn(queryResponse);
-        when(queryResponse.getResults()).thenReturn(solrDocuments);
-        when(queryResponse.getBeans(any())).thenReturn(solrBeans);
-        when(stillingRepository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
-                .thenReturn(mock(Stilling.class));
-
-        List<Stilling> stillingList = solrFetchService.searchForNewStillinger(DATO);
-
-        assertThat(stillingList).isEmpty();
-    }
-
 
     private SolrDocumentList buildFakeSolrDocumentList() {
         SolrDocumentList solrDocuments = new SolrDocumentList();

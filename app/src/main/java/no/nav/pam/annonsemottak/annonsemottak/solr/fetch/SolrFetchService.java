@@ -13,15 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_SOLR_NEW;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 @Service
 public class SolrFetchService {
@@ -32,8 +29,6 @@ public class SolrFetchService {
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
-    //Going some days back in time because of missed ads caused by gaps in reg_dato vs fetching time
-    private static final int daysToSubtract = 7;
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
@@ -63,16 +58,32 @@ public class SolrFetchService {
                 ")";
     }
 
-    public List<Stilling> saveNewStillingerFromSolr(LocalDateTime since) {
-        List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(searchForNewStillinger(since.atOffset(ZoneOffset.UTC)));
+    public List<Stilling> saveStillingerFromSolr() {
+        List<Stilling> stillingerList = searchForStillinger();
+        AtomicInteger updatedStillingCounter = new AtomicInteger(0);
 
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size());
+        stillingerList.stream().forEach(s -> {
+            Stilling inDb = stillingRepository.findByKildeAndMediumAndExternalId(
+                    s.getKilde(),
+                    s.getMedium(),
+                    s.getExternalId());
+            if (inDb != null) {
+                s.merge(inDb);
+                updatedStillingCounter.incrementAndGet();
+            }
+        });
+
+        List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(stillingerList);
+
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, savedStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size() - updatedStillingCounter.get());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, updatedStillingCounter.get());
 
         return savedStillinger;
     }
 
-    List<Stilling> searchForNewStillinger(OffsetDateTime since) {
-        SolrQuery solrQuery = buildSolrQueryForSearch(since);
+    List<Stilling> searchForStillinger() {
+        SolrQuery solrQuery = buildSolrQueryForSearch();
         QueryResponse response = solrRepository.query(solrQuery);
         SolrDocumentList result = response.getResults();
 
@@ -100,17 +111,15 @@ public class SolrFetchService {
 
     private List<Stilling> extractStillingerFromBeans(QueryResponse response) {
         return response.getBeans(StillingSolrBean.class).stream()
-                .filter(this::newStillingSolrAd)
                 .map(StillingSolrBeanMapper::mapToStilling)
                 .collect(Collectors.toList());
     }
 
-    private SolrQuery buildSolrQueryForSearch(OffsetDateTime since) {
+    private SolrQuery buildSolrQueryForSearch() {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
 
         solrQuery.addFilterQuery(StillingSolrBeanFieldNames.KILDETEKST + ":" + filterQueryKildetekst);
-        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.REG_DATO + ":" + buildFilterQueryRegDato(since));
 
         solrQuery.setFacet(false);
         solrQuery.setStart(0);
@@ -119,18 +128,5 @@ public class SolrFetchService {
         solrQuery.add("pam", "pam");
 
         return solrQuery;
-    }
-
-    private String buildFilterQueryRegDato(OffsetDateTime since) {
-        String newDate = since.minusDays(daysToSubtract).format(DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX"));
-        return "[" + newDate + " TO *]";
-    }
-
-    private boolean newStillingSolrAd(StillingSolrBean solrBean) {
-        return stillingRepository
-                .findByKildeAndMediumAndExternalId(
-                        "stillingsolr",
-                        solrBean.getKildetekst(),
-                        solrBean.getId().toString()) == null;
     }
 }

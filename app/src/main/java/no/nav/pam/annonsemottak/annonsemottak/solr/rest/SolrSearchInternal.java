@@ -48,7 +48,7 @@ public class SolrSearchInternal {
     @PostMapping(path = "/fetch/since/{time}")
     public ResponseEntity fetchStillinger(@PathVariable("time") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime time) {
         LOG.debug("Starting saving new stillinger from solr since {}", time);
-        List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(time);
+        List<Stilling> solrBeans = solrFetchService.saveStillingerFromSolr();
         LOG.debug("Finished saving stillinger");
         return ResponseEntity.ok(solrBeans.size());
     }
