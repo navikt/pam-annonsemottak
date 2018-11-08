@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface StillingRepository extends PagingAndSortingRepository<Stilling, Long>, JpaSpecificationExecutor<Stilling> {
 
@@ -17,7 +18,7 @@ public interface StillingRepository extends PagingAndSortingRepository<Stilling,
     @Query("select case when count(s) > 0 then true else false end from Stilling s where s.hash = ?1")
     Boolean hashExists(String hash);
 
-    Stilling findByUuid(String uuid);
+    Optional<Stilling> findByUuid(String uuid);
 
     List<Stilling> findByAnnonseStatus(AnnonseStatus annonseStatus);
 
@@ -25,7 +26,7 @@ public interface StillingRepository extends PagingAndSortingRepository<Stilling,
 
     List<Stilling> findByKildeAndMediumAndAnnonseStatus(String kilde, String medium, AnnonseStatus status);
 
-    Stilling findByKildeAndMediumAndExternalId(String kilde, String medium, String externalId);
+    Optional<Stilling> findByKildeAndMediumAndExternalId(String kilde, String medium, String externalId);
 
     @Query("select count(s) from  Stilling s where s.saksbehandling.status = ?2 and s.saksbehandling.saksbehandler = ?1")
     Long numberOfActiv(String saksbehandler, Status status);

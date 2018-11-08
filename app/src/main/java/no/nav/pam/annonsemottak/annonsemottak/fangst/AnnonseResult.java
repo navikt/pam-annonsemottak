@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -52,11 +53,11 @@ public class AnnonseResult {
     }
 
 
-    void handleIfNotActiveAd(Stilling receive, Stilling notActive) {
+    void handleIfNotActiveAd(Stilling receive, Optional<Stilling> notActive) {
         // if ad is stopped, and reactivated we must handle that.
-        if (notActive != null) {
-            LOG.info("Ad {} was stopped/deactivated but is now reactivated", notActive.getExternalId());
-            receive = receive.merge(notActive);
+        if (notActive.isPresent()) {
+            LOG.info("Ad {} was stopped/deactivated but is now reactivated", notActive.get().getExternalId());
+            receive = receive.merge(notActive.get());
             modifyList.add(receive);
         } else {
             newList.add(receive);
