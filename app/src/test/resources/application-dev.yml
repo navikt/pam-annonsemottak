@@ -59,7 +59,7 @@ finn:
 proxy:
   url: http://155.55.60.117:8088
 solr:
-  url: https://itjenester-q0.oera.no/stilling-solr
+  url: https://itjenester-q0.oera.no/stilling-solr/
   core: 'maincore'
 
 #TODO: Remove after transition from PAM-STILLING is complete

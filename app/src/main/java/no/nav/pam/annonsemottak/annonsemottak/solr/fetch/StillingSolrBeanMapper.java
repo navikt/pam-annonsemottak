@@ -73,8 +73,6 @@ class StillingSolrBeanMapper {
                 properties,
                 null);
 
-        newStilling.setPublished(published);
-
         try {
             final Map<String, String> params = new HashMap<>();
             params.put("status", "2");
@@ -84,6 +82,8 @@ class StillingSolrBeanMapper {
         } catch (IllegalSaksbehandlingCommandException e) {
             LOG.debug("Kunne ikke oppdatere stilling med status godkjent", e);
         }
+
+        newStilling.setPublished(published);
 
         return newStilling;
     }

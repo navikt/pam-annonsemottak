@@ -30,11 +30,17 @@ public class SolrFetchService {
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
+    private static final String fraEures = "Fra Eures";
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
     private final String filterQueryKildetekst;
+
+    /**
+     * When this string cookie occurs in ad text, the ad is to be filtered out of the fetched set.
+     */
+    static final String PAM_DIR_ADTEXT_COOKIE = "<p hidden>PAM</p>";
 
     @Inject
     public SolrFetchService(SolrRepository solrRepository,
@@ -56,6 +62,8 @@ public class SolrFetchService {
                 "\"" + meldtNavLokalt + "\"" +
                 " OR " +
                 "\"" + direktemeldt + "\"" +
+                " OR " +
+                "\"" + fraEures + "\"" +
                 ")";
     }
 
@@ -113,6 +121,7 @@ public class SolrFetchService {
 
     private List<Stilling> extractStillingerFromBeans(QueryResponse response) {
         return response.getBeans(StillingSolrBean.class).stream()
+                .filter(SolrFetchService::notPamDirStillinger)
                 .map(StillingSolrBeanMapper::mapToStilling)
                 .collect(Collectors.toList());
     }
@@ -131,4 +140,9 @@ public class SolrFetchService {
 
         return solrQuery;
     }
+
+    static boolean notPamDirStillinger(StillingSolrBean b) {
+        return b.getStillingsbeskrivelse() == null || b.getStillingsbeskrivelse().indexOf(PAM_DIR_ADTEXT_COOKIE) == -1;
+    }
+
 }

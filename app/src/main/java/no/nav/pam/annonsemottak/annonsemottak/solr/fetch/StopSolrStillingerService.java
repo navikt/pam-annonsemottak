@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_DEACTIVATED_SOLR;
@@ -36,7 +37,7 @@ public class StopSolrStillingerService {
         List<Stilling> activeAds = stillingRepository.findByKildeAndAnnonseStatus(Kilde.STILLINGSOLR.value(), AnnonseStatus.AKTIV);
 
         // Stopping ads if they're removed from stillingsolr, to prevent them getting republished
-        List<String> savedUuids = savedAds.stream().map(s -> s.getUuid()).collect(Collectors.toList());
+        Set<String> savedUuids = savedAds.stream().map(s -> s.getUuid()).collect(Collectors.toSet());
         List<Stilling> stoppedAds = activeAds.stream()
                 .filter(s -> !savedUuids.contains(s.getUuid()))
                 .map(Stilling::stop)
