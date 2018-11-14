@@ -6,12 +6,18 @@ import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.IllegalSaksbehandlingCommandException;
 import no.nav.pam.annonsemottak.stilling.OppdaterSaksbehandlingCommand;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames.*;
@@ -19,6 +25,15 @@ import static no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames.*;
 class StillingSolrBeanMapper {
 
     public static final Logger LOG = LoggerFactory.getLogger(StillingSolrBeanMapper.class);
+
+    private static final Pattern EMAIL_PATTERN;
+
+    static {
+        String emailPattern = "[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})";
+
+        EMAIL_PATTERN = Pattern.compile(emailPattern);
+    }
 
     static Stilling mapToStilling(StillingSolrBean solrBean) {
         String medium = solrBean.getKildetekst();
@@ -46,7 +61,8 @@ class StillingSolrBeanMapper {
         properties.put(KONTAKTPERSON_TELEFON, solrBean.getKommunikasjonTelefon());
         properties.put(ARBEIDSTID, arrayListToString(solrBean.getArbeidsordning()));
 
-        properties.put(StillingSolrBeanFieldNames.SOKNADSENDES, solrBean.getSoknadsendes());
+        handleSoknadSendes(properties, solrBean.getSoknadsendes());
+
         properties.put(StillingSolrBeanFieldNames.REG_DATO, regDato.toString());
         properties.put(StillingSolrBeanFieldNames.STILLINGSPROSENT, fieldToString(solrBean.getStillingsprosent()));
 
@@ -86,6 +102,19 @@ class StillingSolrBeanMapper {
         newStilling.setPublished(published);
 
         return newStilling;
+    }
+
+    private static void handleSoknadSendes(Map<String, String> properties, String soknadSendesValue) {
+
+        if (StringUtils.isNotBlank(soknadSendesValue)) {
+
+            Matcher matcher = EMAIL_PATTERN.matcher(soknadSendesValue);
+            if (matcher.find()) {
+                properties.put(APPLICATION_EMAIL, matcher.group());
+            } else {
+                properties.put(APPLICATION_MAIL, soknadSendesValue);
+            }
+        }
     }
 
     private static String convertToHeltidOrDeltid(ArrayList<String> heltidDeltidList) {
