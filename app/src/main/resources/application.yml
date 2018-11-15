@@ -58,5 +58,5 @@ finn:
 proxy:
   url: ${DRIFTPROXY_URL:http://155.55.60.117:8088}
 solr:
-  url: ${SOLR_URL}
+  url: ${STILLING_SOLR_URL}
   core: 'maincore'

@@ -172,4 +172,37 @@ public class HtmlToMarkdownConverterTest {
         String converted = HtmlToMarkdownConverter.parse(semiEscapedHtml);
         assertEquals(expectedMarkup, converted);
     }
+
+    @Test
+    public void should_not_leave_br_after_parsing(){
+        String s = "&lt;p>&lt;strong>Hos oss vil du møte et profesjonelt fagmiljø i en positiv og hektisk hverdag. Vi har et uformelt arbeidsmiljø hvor trivsel og høy aktivitet er i fokus. Vi jobber aktivt med HMS og har mål om null skader på arbeidsplassen. Vi har en ny og godt vedlikeholdt maskinpark og investerer kontinuerlig i nytt utstyr.&lt;/strong>&lt;/p>&lt;p>&lt;strong>Arbeidsoppgaver:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Reparasjon og vedlikehold av diverse stillasmateriell&lt;/li>&lt;li>Lagerarbeid&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;p>&lt;strong>Vi ønsker følgende kvalifikasjoner og egenskaper:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Erfaring fra lagerarbeid&lt;/li>&lt;li>Erfaring fra sveisearbeid er ønskelig&lt;/li>&lt;li>Truckførerbevis&lt;/li>&lt;li>Gode språkkunnskaper i norsk eller engelsk&lt;/li>&lt;li>Evne til å takle en hektisk arbeidshverdag&lt;/li>&lt;li>God til å samarbeide og skape et godt arbeidsmiljø&lt;/li>&lt;li>Positiv og engasjert&lt;/li>&lt;/ul>&lt;p>&lt;br />&lt;strong>Vi tilbyr:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Profesjonelt fagmiljø&lt;/li>&lt;li>Faglig utviklingsmuligheter&lt;/li>&lt;li>Et selskap i vekst&lt;/li>&lt;li>Konkurransedyktige betingelser&lt;/li>&lt;li>Gode pensjons- og forsikringsordninger&lt;/li>&lt;li>Aksjespareprogram&lt;/li>&lt;li>Firmahytter&lt;/li>&lt;li>Bonusordning&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;p>Dersom dette høres interessant ut, ser vi frem til å motta din CV og søknad snarest.&lt;/p>&lt;p> &lt;/p>&lt;p> &lt;/p>";
+        String expected = "**Hos oss vil du møte et profesjonelt fagmiljø i en positiv og hektisk hverdag. Vi har et uformelt arbeidsmiljø hvor trivsel og høy aktivitet er i fokus. Vi jobber aktivt med HMS og har mål om null skader på arbeidsplassen. Vi har en ny og godt vedlikeholdt maskinpark og investerer kontinuerlig i nytt utstyr.**\n" +
+                "\n" +
+                "**Arbeidsoppgaver:**\n\n" +
+                "* Reparasjon og vedlikehold av diverse stillasmateriell\n" +
+                "* Lagerarbeid\n" +
+                "\n" +
+                "**Vi ønsker følgende kvalifikasjoner og egenskaper:**\n\n" +
+                "* Erfaring fra lagerarbeid\n" +
+                "* Erfaring fra sveisearbeid er ønskelig\n" +
+                "* Truckførerbevis\n" +
+                "* Gode språkkunnskaper i norsk eller engelsk\n" +
+                "* Evne til å takle en hektisk arbeidshverdag\n" +
+                "* God til å samarbeide og skape et godt arbeidsmiljø\n" +
+                "* Positiv og engasjert\n" +
+                "\n\n\n" +
+                "**Vi tilbyr:**\n\n" +
+                "* Profesjonelt fagmiljø\n" +
+                "* Faglig utviklingsmuligheter\n" +
+                "* Et selskap i vekst\n" +
+                "* Konkurransedyktige betingelser\n" +
+                "* Gode pensjons- og forsikringsordninger\n" +
+                "* Aksjespareprogram\n" +
+                "* Firmahytter\n" +
+                "* Bonusordning\n" +
+                "\n" +
+                "Dersom dette høres interessant ut, ser vi frem til å motta din CV og søknad snarest.\n\n";
+
+        assertEquals(expected, HtmlToMarkdownConverter.parse(s));
+    }
 }

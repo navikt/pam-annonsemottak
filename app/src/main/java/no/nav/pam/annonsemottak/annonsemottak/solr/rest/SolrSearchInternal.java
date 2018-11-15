@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,12 +43,12 @@ public class SolrSearchInternal {
         return ResponseEntity.ok(stillingSolrBeans);
     }
 
-    @PostMapping(path = "/fetch/since/{time}")
-    public ResponseEntity fetchStillinger(@PathVariable("time") String time) {
-        LOG.debug("Starting saving new stillinger from solr since {}", time);
-        List<Stilling> solrBeans = solrFetchService.saveNewStillingerFromSolr(LocalDateTime.parse(time));
-        LOG.debug("Finished saving stillinger");
-        return ResponseEntity.ok(solrBeans);
+    @PostMapping(path = "/fetch")
+    public ResponseEntity fetchStillinger() {
+        LOG.info("REST request to start saving new stillinger from solr ");
+        List<Stilling> savedAds = solrFetchService.saveStillingerFromSolr();
+        LOG.info("Finished saving stillinger");
+        return ResponseEntity.ok(savedAds.size());
     }
 }
 

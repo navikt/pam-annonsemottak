@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -74,7 +75,7 @@ public class AnnonseFangstService {
             if (activeMap.containsKey(receive.getExternalId())) {
                 annonseResult.handleIfModifiedAd(activeMap, receive);
             } else {
-                Stilling notActive = stillingRepository.findByKildeAndMediumAndExternalId(receive.getKilde(),
+                Optional<Stilling> notActive = stillingRepository.findByKildeAndMediumAndExternalId(receive.getKilde(),
                         receive.getMedium(), receive.getExternalId());
                 annonseResult.handleIfNotActiveAd(receive, notActive);
             }

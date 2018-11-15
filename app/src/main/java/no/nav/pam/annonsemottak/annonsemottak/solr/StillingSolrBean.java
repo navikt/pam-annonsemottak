@@ -60,13 +60,13 @@ public class StillingSolrBean {
     private String soknadmerkes;
 
     @Field(StillingSolrBeanFieldNames.PUBLISERES_FRA)
-    private Date publiseresFra = new Date();
+    private Date publiseresFra;
 
     @Field(StillingSolrBeanFieldNames.SOKNADSFRIST)
-    private Date soknadsfrist = new Date();
+    private Date soknadsfrist;
 
     @Field(StillingSolrBeanFieldNames.SISTEPUBLISERINGSDATO)
-    private Date sistePubliseringsdato = new Date();
+    private Date sistePubliseringsdato;
 
     @Field(StillingSolrBeanFieldNames.ADRESSEPOSTNR)
     private ArrayList<String> adressepostnr = new ArrayList<>();
@@ -90,7 +90,7 @@ public class StillingSolrBean {
     private ArrayList<String> arbeidsordning = new ArrayList<>();
 
     @Field(StillingSolrBeanFieldNames.REG_DATO)
-    private Date regDato = new Date();
+    private Date regDato;
 
     @Field(StillingSolrBeanFieldNames.LAND)
     private String land;

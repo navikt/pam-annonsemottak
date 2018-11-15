@@ -33,7 +33,7 @@ public class AmediaApi {
 
     @RequestMapping(
         value = "/results/save",
-        method = RequestMethod.GET,
+        method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveAndUpdate() {
         try {

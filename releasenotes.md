@@ -1,3 +1,10 @@
+## RELEASE - 0.7.52-03ae4f1
+#### New in this release: 
++ 2018-11-05 [fix] endpoint internal/solr/fetch/since/{date} now returns just the number of ads added, instead of a json representation of all the ads
++ 2018-11-05 [bugfix] subtracts five days from specified fetch date
++ 2018-11-01 [bugfix] flexmar sometimes doesnt convert <br />
++ 2018-11-01 [refactor] internal api call
++ 2018-11-01 [bugfix] solr localdatetime to offset in param
 ## RELEASE - 0.2.39-e3790b5
 #### New in this release: 
 + 2018-10-04 [FIX] bugfix updated time was not being set correctly for new Ads

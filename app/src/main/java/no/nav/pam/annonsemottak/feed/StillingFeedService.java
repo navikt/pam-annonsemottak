@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StillingFeedService {
@@ -41,13 +42,13 @@ public class StillingFeedService {
     public Page<Stilling> findStilling(String uuid) {
 
         List<Stilling> stillingList = new ArrayList();
-        Stilling stilling = stillingRepository.findByUuid(uuid);
-        stilling.setJobDescription(MarkdownToHtmlConverter.parse(stilling.getAnnonsetekst()));
-        stilling.setEmployerDescription(MarkdownToHtmlConverter.parse(stilling.getArbeidsgiveromtale()));
+        Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
 
-        if (stilling != null) {
-            stillingList.add(stilling);
-        }
+        stilling.ifPresent(s -> {
+            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getAnnonsetekst()));
+            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getArbeidsgiveromtale()));
+            stillingList.add(s);
+        });
 
         return new PageImpl<>(stillingList);
     }

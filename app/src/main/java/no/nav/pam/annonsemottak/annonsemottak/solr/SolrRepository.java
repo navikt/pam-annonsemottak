@@ -43,4 +43,5 @@ public class SolrRepository {
         return queryResponse;
     }
 
+
 }

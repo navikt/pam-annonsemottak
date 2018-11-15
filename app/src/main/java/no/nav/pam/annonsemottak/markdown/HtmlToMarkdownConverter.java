@@ -21,7 +21,15 @@ public class HtmlToMarkdownConverter {
 
         html = StringEscapeUtils.unescapeHtml4(html);
         html = HtmlSanitizer.sanitize(html);
+        html = FlexmarkHtmlParser.parse(html, MAX_BLANK_LINES, OPTIONS);
 
-        return FlexmarkHtmlParser.parse(html, MAX_BLANK_LINES, OPTIONS);
+        return removeBr(html);
+    }
+
+    /**
+     * Flexmark bug: in certain cases <br /> is left unconverted
+     */
+    private static String removeBr(String html) {
+        return html.replaceAll("<br\\s?/>", "");
     }
 }

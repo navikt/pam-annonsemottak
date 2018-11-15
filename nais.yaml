@@ -1,4 +1,5 @@
 name: pam-annonsemottak
+team: teampam
 image: repo.adeo.no:5443/pam-annonsemottak
 replicas:
     min: 2
@@ -32,5 +33,7 @@ fasitResources:
     resourceType: credential
   - alias: "annonsemottakDB"
     resourceType: datasource
-  - alias: "solr"
+  - alias: "stilling.solr"
+    resourceType: baseurl
+  - alias: "temp.pamstilling.feed"
     resourceType: baseurl

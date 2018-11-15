@@ -30,7 +30,7 @@ public class FinnApi {
 
     @RequestMapping(
             value = "/results/save",
-            method = RequestMethod.GET,
+            method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveAndUpdate() {
         return saveAndUpdateFromCollection(null);
