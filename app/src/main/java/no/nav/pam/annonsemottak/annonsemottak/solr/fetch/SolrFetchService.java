@@ -16,7 +16,6 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
@@ -68,27 +67,37 @@ public class SolrFetchService {
     }
 
     public List<Stilling> saveStillingerFromSolr() {
-        List<Stilling> stillingerList = searchForStillinger();
-        AtomicInteger updatedStillingCounter = new AtomicInteger(0);
+        List<Stilling> allStillinger = searchForStillinger();
+        List<Stilling> newStillinger = new ArrayList();
+        List<Stilling> changedStillinger = new ArrayList();
 
-        stillingerList.stream().forEach(s -> {
+        allStillinger.stream().forEach(s -> {
             Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
                     s.getKilde(),
                     s.getMedium(),
                     s.getExternalId());
+
             if (inDb.isPresent()) {
-                s.merge(inDb.get());
-                updatedStillingCounter.incrementAndGet();
+                if (!inDb.get().getHash().equals(s.getHash())) {
+                    s.merge(inDb.get());
+                    changedStillinger.add(s);
+                }
+            } else {
+                newStillinger.add(s);
             }
         });
 
-        List<Stilling> savedStillinger = (List<Stilling>) stillingRepository.saveAll(stillingerList);
+        List<Stilling> savedStillinger = new ArrayList();
+        savedStillinger.addAll(newStillinger);
+        savedStillinger.addAll(changedStillinger);
+        savedStillinger = (List<Stilling>) stillingRepository.saveAll(savedStillinger);
 
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, savedStillinger.size());
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, savedStillinger.size() - updatedStillingCounter.get());
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, updatedStillingCounter.get());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, newStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, changedStillinger.size());
 
-        LOG.info("Saved {} new and {} changed ads from solr", savedStillinger.size() - updatedStillingCounter.get(), updatedStillingCounter.get());
+        LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
+                newStillinger.size(), changedStillinger.size(), allStillinger.size());
         return savedStillinger;
     }
 
@@ -101,10 +110,10 @@ public class SolrFetchService {
         LOG.debug("Total hits: {}", numFound);
         int current = 0;
 
-        List<Stilling> newStillinger = new ArrayList<>();
+        List<Stilling> solrStillinger = new ArrayList<>();
 
         while (current < numFound) {
-            newStillinger.addAll(extractStillingerFromBeans(response));
+            solrStillinger.addAll(extractStillingerFromBeans(response));
 
             current += solrQuery.getRows();
             if (current > numFound) {
@@ -115,8 +124,8 @@ public class SolrFetchService {
             response = solrRepository.query(solrQuery);
         }
 
-        LOG.debug("Found {} new ads from stillingsolr", newStillinger.size());
-        return newStillinger;
+        LOG.debug("Fetched {} ads from stillingsolr", solrStillinger.size());
+        return solrStillinger;
     }
 
     private List<Stilling> extractStillingerFromBeans(QueryResponse response) {
