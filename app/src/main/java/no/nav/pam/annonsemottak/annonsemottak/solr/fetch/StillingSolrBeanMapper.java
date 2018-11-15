@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -37,9 +34,10 @@ class StillingSolrBeanMapper {
 
     static Stilling mapToStilling(StillingSolrBean solrBean) {
         String medium = solrBean.getKildetekst();
-        LocalDateTime expires = dateToLocalDateTime(solrBean.getSistePubliseringsdato());
-        LocalDateTime published = dateToLocalDateTime(solrBean.getPubliseresFra());
-        LocalDateTime regDato = dateToLocalDateTime(solrBean.getRegDato());
+        LocalDateTime expires = dateToLocalDateTime(solrBean.getSistePubliseringsdato()).orElse(null);
+        LocalDateTime published = dateToLocalDateTime(solrBean.getPubliseresFra()).orElse(null);
+        LocalDateTime soknadsfrist = dateToLocalDateTime(solrBean.getSoknadsfrist()).orElse(null);
+        String regDato = dateToLocalDateTime(solrBean.getRegDato()).map(rd -> rd.toString()).orElse(null);
 
         Map<String, String> properties = new HashMap<>();
         properties.put(ANTALL_STILLINGER, fieldToString(solrBean.getAntallStillinger()));
@@ -63,7 +61,7 @@ class StillingSolrBeanMapper {
 
         handleSoknadSendes(properties, solrBean.getSoknadsendes());
 
-        properties.put(StillingSolrBeanFieldNames.REG_DATO, regDato.toString());
+        properties.put(StillingSolrBeanFieldNames.REG_DATO, regDato);
         properties.put(StillingSolrBeanFieldNames.STILLINGSPROSENT, fieldToString(solrBean.getStillingsprosent()));
 
         properties.put(StillingSolrBeanFieldNames.LONNSINFO, fieldToString(solrBean.getLonnsinfo()));
@@ -80,12 +78,12 @@ class StillingSolrBeanMapper {
                 solrBean.getArbeidsgivernavn(),
                 HtmlToMarkdownConverter.parse(solrBean.getBedriftspresentasjon()),
                 HtmlToMarkdownConverter.parse(solrBean.getStillingsbeskrivelse()),
-                dateToLocalDateTime(solrBean.getSoknadsfrist()).toString(),
+                (soknadsfrist != null) ? soknadsfrist.toString() : null,
                 Kilde.STILLINGSOLR.value(),
                 medium,
                 "",
                 fieldToString(solrBean.getId()),
-                (solrBean.getSoknadsfrist() != null) ? dateToLocalDateTime(solrBean.getSoknadsfrist()) : expires,
+                (solrBean.getSoknadsfrist() != null) ? soknadsfrist : expires,
                 properties,
                 null);
 
@@ -145,7 +143,12 @@ class StillingSolrBeanMapper {
                 .collect(Collectors.joining(" "));
     }
 
-    private static LocalDateTime dateToLocalDateTime(Date date) {
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusHours(1);
+    private static Optional<LocalDateTime> dateToLocalDateTime(Date date) {
+        LocalDateTime ldt = null;
+        if (date != null) {
+            ldt = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusHours(1);
+        }
+
+        return Optional.ofNullable(ldt);
     }
 }
