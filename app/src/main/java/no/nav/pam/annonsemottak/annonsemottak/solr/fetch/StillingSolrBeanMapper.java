@@ -146,6 +146,6 @@ class StillingSolrBeanMapper {
     }
 
     private static LocalDateTime dateToLocalDateTime(Date date) {
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().plusHours(1);
     }
 }
