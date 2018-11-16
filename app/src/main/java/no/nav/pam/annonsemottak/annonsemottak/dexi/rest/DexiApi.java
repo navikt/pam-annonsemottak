@@ -50,7 +50,7 @@ public class DexiApi {
         }
     }
 
-    @RequestMapping(value = "/configurations/results/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/results/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveLatestResultsFromAllJobs() {
         try {
             ResultsOnSave dexiResult = dexiService.saveLatestResultsFromAllJobs();

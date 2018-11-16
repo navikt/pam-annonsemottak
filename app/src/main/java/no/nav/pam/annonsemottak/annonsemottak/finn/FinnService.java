@@ -17,7 +17,10 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
@@ -116,6 +119,10 @@ public class FinnService {
 
         //Save new or update last run time
         externalRunService.save(externalRun);
+
+        LOG.info("Saved {} new, {} changed, {} stopped ads from FINN", rest.size(),
+                annonseResult.getModifyList().size(),
+                annonseResult.getStopList().size());
 
         meterRegistry.gauge(ADS_COLLECTED_FINN_TOTAL, searchResult.size());
         //"new", annonseResult.getNewList().size(),
