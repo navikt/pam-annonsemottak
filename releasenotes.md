@@ -1,3 +1,11 @@
+## RELEASE - 0.8.59-bfcfa35
+#### New in this release: 
++ 2018-11-15 [bugfix] soknadsfrist from solr is set to new Date() is its empty
++ 2018-11-15 [PAM-2078] Legge på en hash sjekk for annonsene som kommer via solr fetch jobben.
++ 2018-11-15 [PAM-2049] Søknadsfrist kommer ut en dag feil
++ 2018-11-10 [PAM-1993, PAM-1876] Port from pam-stilling, fixes
++ 2018-11-08  [PAM-2001] Henting av oppdaterte annonser med kilde XMLStilling
++ 2018-11-08 [refactoring] Changed method signature in stillingRepository to use Optionals where necessary
 ## RELEASE - 0.7.52-03ae4f1
 #### New in this release: 
 + 2018-11-05 [fix] endpoint internal/solr/fetch/since/{date} now returns just the number of ads added, instead of a json representation of all the ads
