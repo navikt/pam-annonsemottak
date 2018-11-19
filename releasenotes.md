@@ -1,3 +1,7 @@
+## RELEASE - 0.12.65-08f59c1
+#### New in this release: 
++ 2018-11-19 [TEMP] Disable hash check temporarily, new refresh from stillingsolr needed
++ 2018-11-19 [bugfix] solr disables active ads (#11)
 ## RELEASE - 0.11.62-45ec6ee
 #### New in this release: 
 + 2018-11-19 Revert "[TEMP] Temporarily disable hash check to get full refresh of stillingsolr ads"
