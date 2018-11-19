@@ -46,9 +46,9 @@ public class SolrSearchInternal {
     @PostMapping(path = "/fetch")
     public ResponseEntity fetchStillinger() {
         LOG.info("REST request to start saving new stillinger from solr ");
-        List<Stilling> savedAds = solrFetchService.saveStillingerFromSolr();
+        List<Stilling> allFetchedAds = solrFetchService.saveNewAndUpdatedStillingerFromSolr();
         LOG.info("Finished saving stillinger");
-        return ResponseEntity.ok(savedAds.size());
+        return ResponseEntity.ok(allFetchedAds.size());
     }
 }
 

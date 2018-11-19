@@ -31,8 +31,9 @@ public class SolrSchedulerTask {
     @SchedulerLock(name = "saveLatestAdsFromStillingsolr")
     public void saveLatestAdsFromStillingsolr() {
         try {
-            List<Stilling> savedAds = solrFetchService.saveStillingerFromSolr();
-            stopSolrStillingerService.findAndStopOldSolrStillinger(savedAds);
+            List<Stilling> allFetchedAds = solrFetchService.saveNewAndUpdatedStillingerFromSolr();
+
+            stopSolrStillingerService.findAndStopOldSolrStillinger(allFetchedAds);
 
             LOG.info("Scheduler for stillingsolr ferdig");
         } catch (Exception e) {
