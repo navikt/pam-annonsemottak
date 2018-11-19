@@ -82,10 +82,10 @@ public class SolrFetchService {
                     s.getExternalId());
 
             if (inDb.isPresent()) {
-                //if (!inDb.get().getHash().equals(s.getHash())) {
+                if (!inDb.get().getHash().equals(s.getHash())) {
                     s.merge(inDb.get());
                     changedStillinger.add(s);
-                //}
+                }
             } else {
                 newStillinger.add(s);
             }
