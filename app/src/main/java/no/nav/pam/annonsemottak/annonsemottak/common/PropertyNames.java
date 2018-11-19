@@ -46,4 +46,5 @@ public class PropertyNames {
     public static final String KONTAKTPERSON_EPOST = "kontaktPersonEpost";
     public static final String KONTAKTPERSON_TELEFON = "kontaktPersonTelefon";
     public static final String ARBEIDSTID = "arbeidstid";
+    public static final String EMPLOYER_ORGNR = "orgnr";
 }
