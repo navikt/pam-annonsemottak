@@ -41,7 +41,7 @@ management:
       exposure:
         include: ["prometheus", "metrics"]
 scheduler:
-  enabled: false
+  enabled: true
 dexi:
   url: https://api.dexi.io
   api:
@@ -67,4 +67,4 @@ feed:
     url: ${TEMP_PAMSTILLING_FEED_URL:https://pamstilling.oera.no/api/stillinger/feed}
   pagesize: 2000
   scheduler:
-    enabled: true
+    enabled: false
