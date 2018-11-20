@@ -1,3 +1,6 @@
+## RELEASE - 0.13.67-c2d0eea
+#### New in this release: 
++ 2018-11-19 Revert "[TEMP] Disable hash check temporarily, new refresh from stillingsolr needed"
 ## RELEASE - 0.12.65-08f59c1
 #### New in this release: 
 + 2018-11-19 [TEMP] Disable hash check temporarily, new refresh from stillingsolr needed
