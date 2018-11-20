@@ -66,7 +66,11 @@ public class SolrFetchService {
                 ")";
     }
 
-    public List<Stilling> saveStillingerFromSolr() {
+    /**
+     * Retrieves all SOLR ads and saves new and updatef ads
+     * @return list of all active ads in SillingSOLR
+     */
+    public List<Stilling> saveNewAndUpdatedStillingerFromSolr() {
         List<Stilling> allStillinger = searchForStillinger();
         List<Stilling> newStillinger = new ArrayList();
         List<Stilling> changedStillinger = new ArrayList();
@@ -90,7 +94,7 @@ public class SolrFetchService {
         List<Stilling> savedStillinger = new ArrayList();
         savedStillinger.addAll(newStillinger);
         savedStillinger.addAll(changedStillinger);
-        savedStillinger = (List<Stilling>) stillingRepository.saveAll(savedStillinger);
+        stillingRepository.saveAll(savedStillinger);
 
         meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillinger.size());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, newStillinger.size());
@@ -98,7 +102,7 @@ public class SolrFetchService {
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
                 newStillinger.size(), changedStillinger.size(), allStillinger.size());
-        return savedStillinger;
+        return allStillinger;
     }
 
     List<Stilling> searchForStillinger() {

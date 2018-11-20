@@ -88,7 +88,7 @@ public class StillingApi {
                         .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
         );
-        nonEmptyProperties.put("orgnr", ad.getOrgNummer());
+        nonEmptyProperties.put(PropertyNames.EMPLOYER_ORGNR, ad.getOrgNummer());
         nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
 
         Stilling s = new Stilling(

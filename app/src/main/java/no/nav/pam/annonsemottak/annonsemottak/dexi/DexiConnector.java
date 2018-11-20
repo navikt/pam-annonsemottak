@@ -131,4 +131,13 @@ public class DexiConnector {
 
         return map;
     }
+
+    public boolean isPingSuccessful(){
+        try {
+            return proxy.getHttpClient().newCall(getUrl("runs/", null)).execute().isSuccessful();
+        } catch (IOException e) {
+            return false;
+        }
+
+    }
 }

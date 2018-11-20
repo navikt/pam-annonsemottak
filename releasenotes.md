@@ -1,3 +1,16 @@
+## RELEASE - 0.13.67-c2d0eea
+#### New in this release: 
++ 2018-11-19 Revert "[TEMP] Disable hash check temporarily, new refresh from stillingsolr needed"
+## RELEASE - 0.12.65-08f59c1
+#### New in this release: 
++ 2018-11-19 [TEMP] Disable hash check temporarily, new refresh from stillingsolr needed
++ 2018-11-19 [bugfix] solr disables active ads (#11)
+## RELEASE - 0.11.62-45ec6ee
+#### New in this release: 
++ 2018-11-19 Revert "[TEMP] Temporarily disable hash check to get full refresh of stillingsolr ads"
+## RELEASE - 0.10.61-bac0469
+#### New in this release: 
++ 2018-11-19 [TEMP] Temporarily disable hash check to get full refresh of stillingsolr ads
 ## RELEASE - 0.8.59-bfcfa35
 #### New in this release: 
 + 2018-11-15 [bugfix] soknadsfrist from solr is set to new Date() is its empty

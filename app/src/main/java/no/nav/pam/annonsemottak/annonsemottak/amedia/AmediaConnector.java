@@ -31,15 +31,15 @@ public class AmediaConnector {
     JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
         try {
             return executeRequest(createRequest(
-                apiEndpoint + new AmediaRequestParametere(sistModifisert, medDetaljer, resultSize)
-                    .asString()));
+                    apiEndpoint + new AmediaRequestParametere(sistModifisert, medDetaljer, resultSize)
+                            .asString()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     private JsonNode executeRequest(Request request)
-        throws IOException {
+            throws IOException {
         LOG.debug("{}", request);
         Response response = proxy.getHttpClient().newCall(request).execute();
         if (!response.isSuccessful()) {
@@ -50,9 +50,19 @@ public class AmediaConnector {
 
     private Request createRequest(String url) {
         return new Request.Builder()
-            .url(url)
-            .build();
+                .url(url)
+                .build();
     }
 
+    public boolean isPingSuccessful() {
+        try {
+            AmediaRequestParametere params = new AmediaRequestParametere(LocalDateTime.now(), false, 1);
+            Response response = proxy.getHttpClient().newCall(createRequest(apiEndpoint + params.asString())).execute();
+            return response.isSuccessful();
+        } catch (IOException e) {
+            LOG.error("Error while pinging connection to Amedia", e);
+            return false;
+        }
+    }
 
 }
