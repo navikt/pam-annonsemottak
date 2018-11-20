@@ -20,6 +20,10 @@ public class ExternalRunService {
         this.externalRunRepository = externalRunRepository;
     }
 
+    public Iterable<ExternalRun> retrieveAll(){
+        return externalRunRepository.findAll();
+    }
+
     public ExternalRun retrieveExternalRun(String externalRunName){
         LOG.info("Running retrieveExternalRun for {} {} with received list {}", externalRunName);
         ExternalRun externalRun = externalRunRepository.findByName(externalRunName);
