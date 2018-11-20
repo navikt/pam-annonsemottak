@@ -149,4 +149,13 @@ public class FinnConnector {
         return response;
     }
 
+    public boolean isPingSuccessful() {
+        try {
+            Response response = proxy.getHttpClient().newCall(createRequest(HttpUrl.parse(serviceDocumentUrl))).execute();
+            return response.isSuccessful();
+        } catch (IOException e) {
+            LOG.error("Error while pinging connection to Finn.", e);
+            return false;
+        }
+    }
 }

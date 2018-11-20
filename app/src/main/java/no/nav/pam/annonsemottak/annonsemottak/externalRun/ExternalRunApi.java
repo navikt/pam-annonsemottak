@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(PathDefinition.INTERNAL + "/externalRun")
@@ -21,6 +23,17 @@ public class ExternalRunApi {
         this.externalRunService = externalRunService;
     }
 
+
+    @GetMapping()
+    public ResponseEntity<Map> fetchAllExternalRuns() {
+        Map<String, LocalDateTime> externalRunsMap = new HashMap();
+
+        Iterable<ExternalRun> iterable = externalRunService.retrieveAll();
+        iterable.forEach(s -> externalRunsMap.put(s.getName(), s.getLastRun()));
+
+
+        return ResponseEntity.ok(externalRunsMap);
+    }
 
     @GetMapping("/{name}")
     public ResponseEntity<LocalDateTime> fetch(@PathVariable("name") String name) {
