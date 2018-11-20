@@ -155,10 +155,8 @@ public class FeedClientServiceTest {
         assertNotNull(ad1);
 
         SoftAssertions softAssertions = new SoftAssertions();
-        softAssertions.assertThat(ad1.getCreated()).isEqualTo(LocalDateTime.parse("2017-12-14T08:38:39.744"));
         softAssertions.assertThat(ad1.getCreatedBy()).isEqualTo("test1234");
         softAssertions.assertThat(ad1.getCreatedByDisplayName()).isEqualTo("Testuser Displayname");
-        softAssertions.assertThat(ad1.getUpdated()).isEqualTo(LocalDateTime.parse("2017-12-14T08:38:39.744"));
         softAssertions.assertThat(ad1.getUpdatedBy()).isEqualTo("test1234");
         softAssertions.assertThat(ad1.getUpdatedByDisplayName()).isEqualTo("Testuser Displayname");
         softAssertions.assertThat(ad1.getUuid()).isEqualTo("897e5cda-6529-4bb4-bdf0-90474f0e74e6");
