@@ -12,12 +12,10 @@ public class ModelEntity {
     private Long id;
 
     private LocalDateTime created = LocalDateTime.now();
-
     private String createdBy;
     private String createdByDisplayName;
 
     private LocalDateTime updated = LocalDateTime.now();
-
     private String updatedBy;
     private String updatedByDisplayName;
 
