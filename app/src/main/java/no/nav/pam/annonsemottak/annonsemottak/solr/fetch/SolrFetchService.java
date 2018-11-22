@@ -73,11 +73,12 @@ public class SolrFetchService {
      * @return list of all active ads in SillingSOLR
      */
     public List<Stilling> saveNewAndUpdatedStillingerFromSolr(boolean saveAllFetchedAds) {
-        List<Stilling> allStillinger = searchForStillinger();
+        List<Stilling> allStillingerFromSolr = searchForStillinger();
         List<Stilling> newStillinger = new ArrayList();
         List<Stilling> changedStillinger = new ArrayList();
+        List<Stilling> unchangedStillinger = new ArrayList<>();
 
-        allStillinger.stream().forEach(s -> {
+        allStillingerFromSolr.stream().forEach(s -> {
             Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
                     s.getKilde(),
                     s.getMedium(),
@@ -90,23 +91,29 @@ public class SolrFetchService {
 
                     s.merge(inDb.get());
                     changedStillinger.add(s);
+                } else {
+                    unchangedStillinger.add(inDb.get());
                 }
             } else {
                 newStillinger.add(s);
             }
         });
 
-        List<Stilling> savedStillinger = new ArrayList();
-        savedStillinger.addAll(newStillinger);
-        savedStillinger.addAll(changedStillinger);
-        stillingRepository.saveAll(savedStillinger);
+        stillingRepository.saveAll(newStillinger);
+        stillingRepository.saveAll(changedStillinger);
 
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillingerFromSolr.size());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, newStillinger.size());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, changedStillinger.size());
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
-                newStillinger.size(), changedStillinger.size(), allStillinger.size());
+                newStillinger.size(), changedStillinger.size(), allStillingerFromSolr.size());
+
+        List<Stilling> allStillinger = new ArrayList();
+        allStillinger.addAll(newStillinger);
+        allStillinger.addAll(changedStillinger);
+        allStillinger.addAll(unchangedStillinger);
+
         return allStillinger;
     }
 
