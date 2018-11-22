@@ -76,7 +76,7 @@ public class SolrFetchService {
         List<Stilling> allStillingerFromSolr = searchForStillinger();
         List<Stilling> newStillinger = new ArrayList();
         List<Stilling> changedStillinger = new ArrayList();
-        List<Stilling> unchagedStillinger = new ArrayList<>();
+        List<Stilling> unchangedStillinger = new ArrayList<>();
 
         allStillingerFromSolr.stream().forEach(s -> {
             Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
@@ -92,7 +92,7 @@ public class SolrFetchService {
                     s.merge(inDb.get());
                     changedStillinger.add(s);
                 } else {
-                    unchagedStillinger.add(inDb.get());
+                    unchangedStillinger.add(inDb.get());
                 }
             } else {
                 newStillinger.add(s);
@@ -112,7 +112,7 @@ public class SolrFetchService {
         List<Stilling> allStillinger = new ArrayList();
         allStillinger.addAll(newStillinger);
         allStillinger.addAll(changedStillinger);
-        allStillinger.addAll(unchagedStillinger);
+        allStillinger.addAll(unchangedStillinger);
 
         return allStillinger;
     }
