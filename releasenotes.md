@@ -1,3 +1,7 @@
+## RELEASE - 0.17.74-31178f9
+#### New in this release: 
++ 2018-11-22 [PAM-2145] Fetch ads registered by NAV Servicesenter from Solr
++ 2018-11-22 [bugfix] after a scheduled run, many ads were stopped (#14)
 ## RELEASE - 0.16.71-eca63d7
 #### New in this release: 
 + 2018-11-22 [FIX] REST API option to save all regardless of hash, check status as well
