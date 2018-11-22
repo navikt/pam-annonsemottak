@@ -44,11 +44,12 @@ public class SolrSearchInternal {
     }
 
     @PostMapping(path = "/fetch")
-    public ResponseEntity fetchStillinger() {
+    public ResponseEntity fetchStillinger(@RequestParam(name = "saveall", defaultValue = "false") boolean saveAll) {
         LOG.info("REST request to start saving new stillinger from solr ");
-        List<Stilling> allFetchedAds = solrFetchService.saveNewAndUpdatedStillingerFromSolr();
+        List<Stilling> allFetchedAds = solrFetchService.saveNewAndUpdatedStillingerFromSolr(saveAll);
         LOG.info("Finished saving stillinger");
         return ResponseEntity.ok(allFetchedAds.size());
     }
+
 }
 

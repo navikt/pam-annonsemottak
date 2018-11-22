@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
+import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -68,9 +69,10 @@ public class SolrFetchService {
 
     /**
      * Retrieves all SOLR ads and saves new and updatef ads
+     * @param saveAllFetchedAds whether to save all fetched ads, or only ads that have been modified
      * @return list of all active ads in SillingSOLR
      */
-    public List<Stilling> saveNewAndUpdatedStillingerFromSolr() {
+    public List<Stilling> saveNewAndUpdatedStillingerFromSolr(boolean saveAllFetchedAds) {
         List<Stilling> allStillinger = searchForStillinger();
         List<Stilling> newStillinger = new ArrayList();
         List<Stilling> changedStillinger = new ArrayList();
@@ -82,7 +84,10 @@ public class SolrFetchService {
                     s.getExternalId());
 
             if (inDb.isPresent()) {
-                if (!inDb.get().getHash().equals(s.getHash())) {
+                if (saveAllFetchedAds
+                        || !inDb.get().getHash().equals(s.getHash())
+                        || inDb.get().getAnnonseStatus() != AnnonseStatus.AKTIV) {
+
                     s.merge(inDb.get());
                     changedStillinger.add(s);
                 }
