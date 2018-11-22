@@ -31,11 +31,11 @@ public class SolrFetchService {
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
     private static final String fraEures = "Fra Eures";
+    private static final String navServicesenter = "NAV Servicesenter";
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
-    private final String filterQueryKildetekst;
 
     /**
      * When this string cookie occurs in ad text, the ad is to be filtered out of the fetched set.
@@ -49,12 +49,10 @@ public class SolrFetchService {
         this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
         this.meterRegistry = meterRegistry;
-
-        filterQueryKildetekst = buildFilterQueryKildetekst();
     }
 
     private static String buildFilterQueryKildetekst() {
-        return "(" +
+        return StillingSolrBeanFieldNames.KILDETEKST + ":(" +
                 "\"" + fraArbeidsgiver + "\"" +
                 " OR " +
                 "\"" + registrertNav + "\"" +
@@ -64,7 +62,9 @@ public class SolrFetchService {
                 "\"" + direktemeldt + "\"" +
                 " OR " +
                 "\"" + fraEures + "\"" +
-                ")";
+                ")" +
+                " OR (" + StillingSolrBeanFieldNames.KILDETEKST + ":\"" + navServicesenter + "\"" +
+                       " AND NOT " + StillingSolrBeanFieldNames.MEDIUMTEKST + ":[* TO *])";
     }
 
     /**
@@ -154,9 +154,7 @@ public class SolrFetchService {
     private SolrQuery buildSolrQueryForSearch() {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-
-        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.KILDETEKST + ":" + filterQueryKildetekst);
-
+        solrQuery.addFilterQuery(buildFilterQueryKildetekst());
         solrQuery.setFacet(false);
         solrQuery.setStart(0);
         solrQuery.setRows(100);

@@ -14,6 +14,7 @@ public class StillingSolrBeanFieldNames {
     public static final String HELTIDDELTID = "HELTIDDELTID";
     public static final String ID = "ID";
     public static final String KILDETEKST = "KILDETEKST";
+    public static final String MEDIUMTEKST = "MEDIUMTEKST";
     public static final String KOMMUNE = "KOMMUNE";
     public static final String KOMMUNIKASJON_EPOST = "KOMMUNIKASJON_EPOST";
     public static final String KOMMUNIKASJON_TELEFON = "KOMMUNIKASJON_TELEFON";
