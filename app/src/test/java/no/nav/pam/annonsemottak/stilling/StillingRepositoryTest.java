@@ -79,7 +79,7 @@ public class StillingRepositoryTest {
         Iterable<Stilling> alleStillinger = stillingRepository.findAll(new Sort(Sort.Direction.ASC, "created"));
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
-        assertThat(stream(alleStillinger.spliterator(), false).findFirst().get().getStillingstittel(), is(equalTo("Første stilling")));
+        assertThat(stream(alleStillinger.spliterator(), false).findFirst().get().getTitle(), is(equalTo("Første stilling")));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class StillingRepositoryTest {
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
         Stilling hentetStilling = stream(alleStillinger.spliterator(), false).findFirst().get();
-        assertThat(hentetStilling.getStillingstittel(), is(equalTo("Første stilling")));
+        assertThat(hentetStilling.getTitle(), is(equalTo("Første stilling")));
         assertThat(hentetStilling.getSaksbehandling().getSaksbehandler(), is(equalTo(Saksbehandler.ofNullable("Truls"))));
     }
 

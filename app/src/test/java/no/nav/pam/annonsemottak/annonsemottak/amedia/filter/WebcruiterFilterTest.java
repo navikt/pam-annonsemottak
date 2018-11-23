@@ -28,7 +28,7 @@ public class WebcruiterFilterTest {
         assertThat(nyeStillinger)
             .hasSize(1)
             .haveAtLeastOne(new Condition<>(
-                st -> "tittelUtenWebcruiter".equals(st.getStillingstittel()),
+                st -> "tittelUtenWebcruiter".equals(st.getTitle()),
                 "Ikke filtrert"));
     }
 }

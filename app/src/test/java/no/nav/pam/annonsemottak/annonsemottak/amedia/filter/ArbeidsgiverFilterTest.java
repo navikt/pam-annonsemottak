@@ -25,7 +25,7 @@ public class ArbeidsgiverFilterTest {
         assertThat(nyeStillinger)
                 .hasSize(1)
                 .haveAtLeastOne(new Condition<>(
-                        st -> "tittelIkkeBlacklisted".equals(st.getStillingstittel()),
+                        st -> "tittelIkkeBlacklisted".equals(st.getTitle()),
                         "Ikke filtrert"));
     }
 

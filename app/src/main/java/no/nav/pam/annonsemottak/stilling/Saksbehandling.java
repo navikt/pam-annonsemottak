@@ -105,15 +105,10 @@ public class Saksbehandling {
         this.kommentarer = "Duplikat av id: " + id;
     }
 
-    void rejectBecauseOfCapasity() {
-        this.status = Status.AVVIST;
-            this.merknader = Merknader.Merknad.IKKE_KAPASITET.getKodeAsString();
-            this.kommentarer = "Avvist p.g.a. kapasitet";
-    }
-
     public Status getStatus() {
         return status;
     }
+
     public Optional<Saksbehandler> getSaksbehandler() {
         return Saksbehandler.ofNullable(saksbehandler);
     }

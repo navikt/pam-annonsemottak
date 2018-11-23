@@ -29,8 +29,8 @@ public class StillingFeedService {
 
         return stillingRepository.findUpdatedAfter(updatedDate, pageable)
                 .map(s -> {
-                            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getAnnonsetekst()));
-                            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getArbeidsgiveromtale()));
+                            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getJobDescription()));
+                            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getEmployerDescription()));
                             return s;
                         }
                 );
@@ -45,8 +45,8 @@ public class StillingFeedService {
         Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
 
         stilling.ifPresent(s -> {
-            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getAnnonsetekst()));
-            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getArbeidsgiveromtale()));
+            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getJobDescription()));
+            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getEmployerDescription()));
             stillingList.add(s);
         });
 
@@ -55,8 +55,8 @@ public class StillingFeedService {
 
     public Page<Stilling> findAllActive(Pageable pageable) {
         return stillingRepository.findAll(pageable).map(s -> {
-            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getAnnonsetekst()));
-            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getArbeidsgiveromtale()));
+            s.setJobDescription(MarkdownToHtmlConverter.parse(s.getJobDescription()));
+            s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getEmployerDescription()));
             return s;
         });
     }

@@ -23,11 +23,11 @@ class ReferertLenkeManglerFilter extends StillingFilter {
                     Pattern.CASE_INSENSITIVE);
 
     private static final Predicate<Stilling> FILTER_HAR_SOKEKNAPPTEKST =
-            s -> s.getAnnonsetekst() != null && SOKEKNAPP_PATTERN.matcher(s.getAnnonsetekst()).find();
+            s -> s.getJobDescription() != null && SOKEKNAPP_PATTERN.matcher(s.getJobDescription()).find();
 
 
     private final Function<Stilling, Stilling> MAP_MANGLER_REFERERT_LENKE = s -> nyTittel(s,
-            "*" + this.getClass().getSimpleName() + "* " + s.getStillingstittel());
+            "*" + this.getClass().getSimpleName() + "* " + s.getTitle());
 
     @Override
     public List<Stilling> doFilter(List<Stilling> stillinger) {

@@ -168,15 +168,15 @@ public class FeedClientServiceTest {
         softAssertions.assertThat(ad1.getExpires()).isEqualTo(LocalDateTime.parse("2018-01-11T00:00"));
         softAssertions.assertThat(ad1.getSystemModifiedDate()).isNull();
         softAssertions.assertThat(ad1.getStatus()).isEqualTo(Status.AVVIST);
-        softAssertions.assertThat(ad1.getArbeidsgiveromtale()).isEqualTo("KIWI minipris er en av landets mest ekspansive lavpriskjeder og omfatter over 650 butikker. I 2017 forventer vi en samlet omsetning på 35,4 milliarder kroner. Kjedekonseptet er faste, lave priser på alle varer og en kostnadseffektiv drift. KIWI minipris er med i NorgesGruppen som er Norges største dagligvaregruppering.\n\n");
+        softAssertions.assertThat(ad1.getEmployerDescription()).isEqualTo("KIWI minipris er en av landets mest ekspansive lavpriskjeder og omfatter over 650 butikker. I 2017 forventer vi en samlet omsetning på 35,4 milliarder kroner. Kjedekonseptet er faste, lave priser på alle varer og en kostnadseffektiv drift. KIWI minipris er med i NorgesGruppen som er Norges største dagligvaregruppering.\n\n");
         softAssertions.assertThat(ad1.getArbeidsgiver().get().asString()).isEqualTo("KIWI Tigerplassen");
-        softAssertions.assertThat(ad1.getStillingstittel()).isEqualTo("KIWI Tigerplassen søker etter butikkmedarbeider deltid 20 %");
+        softAssertions.assertThat(ad1.getTitle()).isEqualTo("KIWI Tigerplassen søker etter butikkmedarbeider deltid 20 %");
         softAssertions.assertThat(ad1.getSaksbehandler().get().asString()).isEqualTo("Eziz");
         softAssertions.assertThat(ad1.getKommentarer().get().asString()).isEqualTo("Duplikat av id: 9608306");
         softAssertions.assertThat(ad1.getMerknader().get().asString()).isEqualTo("3");
-        softAssertions.assertThat(ad1.getArbeidssted()).isEqualTo("Moss");
-        softAssertions.assertThat(ad1.getSoeknadsfrist()).isEqualTo("11.01.2018");
-        softAssertions.assertThat(ad1.getAnnonsetekst()).isEqualTo("Arbeidsoppgaver:\n* Hovedsakelig kassererarbeid\n* Kundebehandling\n* Varehåndtering\n* Forefallende butikkarbeid\n\nPersonlige egenskaper:\n* Må være fylt 18 år\n* Punktlig\n* Utadvendt og ærlig\n* Serviceinnstilt\n* Ryddig\n* Godt humør\n\nKvalifikasjoner:\n* Erfaring fra dagligvare er ønskelig, men ingen betingelse\n\nVi kan tilby:\n* Opplæring\n* Karrieremuligheter\n* Sosialt og trivelig arbeidsplass blant hyggelige kolleger\n\nNB! Vi gjør oppmerksom på at alle søknader må sendes inn via søknadskjema tilknyttet annonsen, samt at det meste av kommunikasjonen vedrørende stillingen vil skje per e-post.\n\n");
+        softAssertions.assertThat(ad1.getPlace()).isEqualTo("Moss");
+        softAssertions.assertThat(ad1.getDueDate()).isEqualTo("11.01.2018");
+        softAssertions.assertThat(ad1.getJobDescription()).isEqualTo("Arbeidsoppgaver:\n* Hovedsakelig kassererarbeid\n* Kundebehandling\n* Varehåndtering\n* Forefallende butikkarbeid\n\nPersonlige egenskaper:\n* Må være fylt 18 år\n* Punktlig\n* Utadvendt og ærlig\n* Serviceinnstilt\n* Ryddig\n* Godt humør\n\nKvalifikasjoner:\n* Erfaring fra dagligvare er ønskelig, men ingen betingelse\n\nVi kan tilby:\n* Opplæring\n* Karrieremuligheter\n* Sosialt og trivelig arbeidsplass blant hyggelige kolleger\n\nNB! Vi gjør oppmerksom på at alle søknader må sendes inn via søknadskjema tilknyttet annonsen, samt at det meste av kommunikasjonen vedrørende stillingen vil skje per e-post.\n\n");
 
         softAssertions.assertThat(ad1.getProperties().get("Annonsor")).isEqualTo("Norgesgruppen");
         softAssertions.assertThat(ad1.getProperties().keySet().size()).isEqualTo(8);

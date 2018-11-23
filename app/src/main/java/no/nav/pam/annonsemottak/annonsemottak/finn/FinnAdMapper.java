@@ -115,7 +115,7 @@ public class FinnAdMapper {
         keyValueMap.put(PropertyNames.LOCATION_CITY, ad.getLocation().getCity());
         keyValueMap.put(PropertyNames.LOCATION_COUNTRY, ad.getLocation().getCountry());
         // What should be in company.name is used in Stilling.getArbeidsgiver, see constructor.
-        // What should be in company.ingress is used in Stilling.getArbeidsgiveromtale, see constructor.
+        // What should be in company.ingress is used in Stilling.getEmployerDescription, see constructor.
         keyValueMap.put(PropertyNames.EMPLOYER_URL, ad.getCompany().getUrl());
         keyValueMap.put(PropertyNames.KEYWORDS, concatenate(ad.getKeywords()));
         keyValueMap.put(PropertyNames.OCCUPATIONS, concatenate(ad.getOccupations(), ";"));

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.AD_DUPLICATE_METRIC;
 
 
 @Entity
@@ -38,14 +38,8 @@ public class Stilling extends ModelEntity {
     @NotNull
     private String uuid;
 
-    private String place;
-
-    private String title;
-
     @NotNull
     private String employer;
-
-    private String dueDate;
 
     @NotNull
     private String kilde;
@@ -64,17 +58,16 @@ public class Stilling extends ModelEntity {
     @NotNull
     private String hash;
 
+    private String place;
+    private String title;
+    private String dueDate;
     private String url;
-
     private String externalId;
-
-
     private LocalDateTime published = null;
+    private LocalDateTime expires = LocalDateTime.now().plusDays(10);
 
     @Enumerated(EnumType.STRING)
     private AnnonseStatus annonseStatus = AnnonseStatus.AKTIV;
-
-    private LocalDateTime expires = LocalDateTime.now().plusDays(10);
 
     @Transient
     private LocalDateTime systemModifiedDate;
@@ -160,16 +153,26 @@ public class Stilling extends ModelEntity {
 
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    //TEMP CONSTRUCTOR
+    public Stilling(@NotNull String employer, @NotNull String kilde, @NotNull String medium,
+                    String employerDescription, String jobDescription, String place,
+                    String title, String dueDate, String url, String externalId,
+                    Map<String, String> properties) {
 
-    public void setEmployerDescription(String employerDescription) {
+        this.uuid = UUID.randomUUID().toString();
+        this.employer = employer;
+        this.kilde = kilde;
+        this.medium = medium;
         this.employerDescription = employerDescription;
-    }
-
-    public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
+        this.place = place;
+        this.title = title;
+        this.dueDate = dueDate;
+        this.url = url;
+        this.externalId = externalId;
+        this.properties = properties;
+
+        this.hash = hash();
     }
 
     private String hash() {
@@ -192,50 +195,58 @@ public class Stilling extends ModelEntity {
         return Hashing.sha256().hashString(input, StandardCharsets.UTF_8).toString();
     }
 
+    public String getHash() {
+        return hash;
+    }
+
     public String getUuid() {
         return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getEmployerDescription() {
+        return employerDescription;
+    }
+
+    public void setEmployerDescription(String employerDescription) {
+        this.employerDescription = employerDescription;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
     }
 
     public Map<String, String> getProperties() {
         return properties;
     }
 
-    public String getArbeidssted() {
+    public String getPlace() {
         return place;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Optional<Arbeidsgiver> getArbeidsgiver() {
         return Arbeidsgiver.ofNullable(employer);
     }
 
-    public String getAnnonsetekst() {
-        return jobDescription;
-    }
-
-    public String getStillingstittel() {
-        return title;
-    }
 
     /**
      * Returnerer søknadsfristen til en gitt stillingsannonse.
      * </p>
      * Merk! Søknadsfrist er en String, da feltet kan innehole både dato og "SNAREST".
      */
-    public String getSoeknadsfrist() {
+    public String getDueDate() {
         return dueDate;
-    }
-
-    public String getArbeidsgiveromtale() {
-        return employerDescription;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void oppdaterMed(OppdaterSaksbehandlingCommand command)
-            throws IllegalSaksbehandlingCommandException {
-        this.saksbehandling.oppdaterMed(command, this);
     }
 
     public String getKilde() {
@@ -274,19 +285,41 @@ public class Stilling extends ModelEntity {
         return expires;
     }
 
+    public void setExpires(LocalDateTime expires) {
+        if (expires != null && expires.isBefore(LocalDateTime.now().plusMonths(MAX_EXPIRY_LIMIT))) {
+            this.expires = expires;
+        }
+    }
+
     public LocalDateTime getSystemModifiedDate() {
         return systemModifiedDate;
     }
 
-    @Override
-    public String toString() {
-        return "[UUID: " + uuid + "]" +
-                "[Arbeidsgiver: " + employer + "]" +
-                "[Annonsetittel: " + title + "]";
+    public void setSystemModifiedDate(LocalDateTime systemModifiedDate) {
+        this.systemModifiedDate = systemModifiedDate;
+    }
+
+    public LocalDateTime getPublished() {
+        return published;
+    }
+
+    public void setPublished(LocalDateTime published) {
+        if (published != null)
+            this.published = published;
+    }
+
+    public AnnonseStatus getAnnonseStatus() {
+        return annonseStatus;
     }
 
     public String getExternalId() {
         return externalId;
+    }
+
+
+    public void oppdaterMed(OppdaterSaksbehandlingCommand command)
+            throws IllegalSaksbehandlingCommandException {
+        this.saksbehandling.oppdaterMed(command, this);
     }
 
     public Stilling stop() {
@@ -310,24 +343,6 @@ public class Stilling extends ModelEntity {
         Metrics.gauge(AD_DUPLICATE_METRIC + "." + this.kilde, 1);
     }
 
-    public void rejectBecauseOfCapasity() {
-        this.deactivate();
-        this.saksbehandling.rejectBecauseOfCapasity();
-    }
-
-    public LocalDateTime getPublished() {
-        return published;
-    }
-
-    public void setPublished(LocalDateTime published) {
-        if (published != null)
-            this.published = published;
-    }
-
-    public AnnonseStatus getAnnonseStatus() {
-        return annonseStatus;
-    }
-
     public Stilling merge(Stilling stilling) {
         Status oldStatus = stilling.getSaksbehandling().getStatus();
 
@@ -340,5 +355,12 @@ public class Stilling extends ModelEntity {
         this.setCreated(stilling.getCreated());
 
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "[UUID: " + uuid + "]" +
+                "[Arbeidsgiver: " + employer + "]" +
+                "[Annonsetittel: " + title + "]";
     }
 }

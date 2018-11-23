@@ -33,12 +33,12 @@ public class StillingPayload {
         Map<String, String> map = new HashMap<>();
         map.put(UUID, stilling.getUuid());
         map.put(MOTTATTDATO, stilling.getCreated() != null ? stilling.getCreated().toString() : null);
-        map.put(TITTEL, stilling.getStillingstittel());
-        map.put(STED, stilling.getArbeidssted());
+        map.put(TITTEL, stilling.getTitle());
+        map.put(STED, stilling.getPlace());
         map.put(ARBEIDSGIVER, stilling.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null));
-        map.put(ARBEIDSGIVERINFORMASJON, MarkdownToHtmlConverter.parse(stilling.getArbeidsgiveromtale()));
-        map.put(SOEKNADSFRIST, stilling.getSoeknadsfrist());
-        map.put(STILLINGSTEKST, MarkdownToHtmlConverter.parse(stilling.getAnnonsetekst()));
+        map.put(ARBEIDSGIVERINFORMASJON, MarkdownToHtmlConverter.parse(stilling.getEmployerDescription()));
+        map.put(SOEKNADSFRIST, stilling.getDueDate());
+        map.put(STILLINGSTEKST, MarkdownToHtmlConverter.parse(stilling.getJobDescription()));
         map.put(SAKSBEHANDLER, stilling.getSaksbehandler().map(Saksbehandler::asString).orElse(null));
         map.put(STATUS, stilling.getStatus().getKodeAsString());
         map.put(MERKNADER, stilling.getMerknader().map(Merknader::asString).orElse(null));

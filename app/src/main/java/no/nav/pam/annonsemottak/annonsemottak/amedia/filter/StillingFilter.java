@@ -42,7 +42,7 @@ abstract class StillingFilter {
             "[Årsak=" + aarsak.name() + "]" +
                 "[eksternid=" + stilling.getExternalId() + "]" +
                 "[Arbeidsgiver=" + stilling.getArbeidsgiver().map(Arbeidsgiver::asString).orElse("Ikke spesifisert") + "]" +
-                "[Annonsetittel=" + stilling.getStillingstittel() + "]" +
+                "[Annonsetittel=" + stilling.getTitle() + "]" +
                 "[Publikasjon=" + stilling.getProperties().get("publications") + "]";
     }
 
@@ -50,10 +50,10 @@ abstract class StillingFilter {
       Nytt stillingobjekt med ny tittel, shallow copy, men bytter hele arbeidsgiverfeltet.
     */
     Stilling nyTittel(Stilling s, String nyTittel) {
-        Stilling stilling = new Stilling(nyTittel, s.getArbeidssted(),
+        Stilling stilling = new Stilling(nyTittel, s.getPlace(),
             s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
-            s.getArbeidsgiveromtale(),
-            s.getAnnonsetekst(), s.getSoeknadsfrist(), s.getKilde(), s.getMedium(), s.getUrl(),
+            s.getEmployerDescription(),
+            s.getJobDescription(), s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
             s.getExternalId(), s.getExpires(),
             s.getProperties(), s.getSystemModifiedDate());
         stilling.setUuid(s.getUuid());
@@ -65,10 +65,10 @@ abstract class StillingFilter {
         Nytt stillingobjekt med ny tekst, shallow copy, men bytter hele stillingstekstfeltet.
     */
     Stilling nyStillingstekst(Stilling s, String nyTekst) {
-        Stilling stilling = new Stilling(s.getStillingstittel(), s.getArbeidssted(),
+        Stilling stilling = new Stilling(s.getTitle(), s.getPlace(),
             s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
-            s.getArbeidsgiveromtale(),
-            nyTekst, s.getSoeknadsfrist(), s.getKilde(), s.getMedium(), s.getUrl(),
+            s.getEmployerDescription(),
+            nyTekst, s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
             s.getExternalId(), s.getExpires(),
             s.getProperties(), s.getSystemModifiedDate());
         stilling.setUuid(s.getUuid());

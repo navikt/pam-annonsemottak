@@ -34,10 +34,10 @@ public class ReferertLenkeManglerFilterTest {
         assertThat(nyeStillinger)
                 .hasSize(2)
                 .haveAtLeastOne(new Condition<>(
-                        st -> "med lenke".equals(st.getStillingstittel()),
+                        st -> "med lenke".equals(st.getTitle()),
                         "Ikke filtrert"))
                 .haveAtLeastOne(new Condition<>(
-                        st -> "med lenke".equals(st.getStillingstittel()),
+                        st -> "med lenke".equals(st.getTitle()),
                         "uten lenke uten søketekst"));
     }
 }

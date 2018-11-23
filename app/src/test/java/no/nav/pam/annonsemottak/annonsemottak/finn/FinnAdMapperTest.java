@@ -99,19 +99,19 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD2)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertTrue(stilling.getAnnonsetekst().startsWith("Vi søker dyktig prosjektleder"));
-            assertTrue(stilling.getAnnonsetekst().contains("Arbeidsoppgaver"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Kvalifikasjoner"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Utdanning"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Språk"));
-            assertTrue(stilling.getAnnonsetekst().contains("-----"));
-            assertTrue(stilling.getAnnonsetekst().contains("Egenskaper"));
-            assertTrue(stilling.getAnnonsetekst().contains("----------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Vi tilbyr"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------"));
+            assertTrue(stilling.getJobDescription().startsWith("Vi søker dyktig prosjektleder"));
+            assertTrue(stilling.getJobDescription().contains("Arbeidsoppgaver"));
+            assertTrue(stilling.getJobDescription().contains("---------------"));
+            assertTrue(stilling.getJobDescription().contains("Kvalifikasjoner"));
+            assertTrue(stilling.getJobDescription().contains("---------------"));
+            assertTrue(stilling.getJobDescription().contains("Utdanning"));
+            assertTrue(stilling.getJobDescription().contains("---------"));
+            assertTrue(stilling.getJobDescription().contains("Språk"));
+            assertTrue(stilling.getJobDescription().contains("-----"));
+            assertTrue(stilling.getJobDescription().contains("Egenskaper"));
+            assertTrue(stilling.getJobDescription().contains("----------"));
+            assertTrue(stilling.getJobDescription().contains("Vi tilbyr"));
+            assertTrue(stilling.getJobDescription().contains("---------"));
         }
     }
 
