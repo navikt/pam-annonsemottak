@@ -2,7 +2,7 @@ package no.nav.pam.annonsemottak.feed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class StillingMixin {
+public abstract class StillingMixIn {
 
     @JsonProperty("arbeidsgiveromtale")
     String employerDescription;
