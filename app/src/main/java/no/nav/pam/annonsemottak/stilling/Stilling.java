@@ -90,6 +90,7 @@ public class Stilling extends ModelEntity {
     protected Stilling() {
     }
 
+    //TODO: REMOVE
     /**
      * Constructor used when mapping manually registered ads to a {@link Stilling}. These ads already have a UUID, and
      * are always from the source/medium "Stillingsregistrering"/"Stillingsregistrering".
@@ -125,7 +126,7 @@ public class Stilling extends ModelEntity {
         this.uuid = uuid;
     }
 
-
+     //TODO: REMOVE
     // very big constructor, fix later.
     public Stilling(String stillingstittel, String arbeidssted, String arbeidsgiver, String arbeidsgiveromtale,
                     String annonsetekst, String søknadsfrist, String kilde, String medium, String url, String externalId,
@@ -153,7 +154,7 @@ public class Stilling extends ModelEntity {
 
     }
 
-    //TEMP CONSTRUCTOR
+    //TODO: Replace all other with this
     public Stilling(@NotNull String employer, @NotNull String kilde, @NotNull String medium,
                     String employerDescription, String jobDescription, String place,
                     String title, String dueDate, String url, String externalId,
