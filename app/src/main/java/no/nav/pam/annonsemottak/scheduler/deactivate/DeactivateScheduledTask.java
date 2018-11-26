@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.stilling.scheduler.deactivate;
+package no.nav.pam.annonsemottak.scheduler.deactivate;
 
 import net.javacrumbs.shedlock.core.SchedulerLock;
 import org.slf4j.Logger;
