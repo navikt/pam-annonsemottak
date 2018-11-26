@@ -1,8 +1,8 @@
-package no.nav.pam.annonsemottak.annonsemottak.scheduler.resetSaksbehandler;
+package no.nav.pam.annonsemottak.stilling.scheduler.resetSaksbehandler;
 
 
 import net.javacrumbs.shedlock.core.SchedulerLock;
-import no.nav.pam.annonsemottak.annonsemottak.scheduler.deactivate.DeactivateScheduledTask;
+import no.nav.pam.annonsemottak.stilling.scheduler.deactivate.DeactivateScheduledTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

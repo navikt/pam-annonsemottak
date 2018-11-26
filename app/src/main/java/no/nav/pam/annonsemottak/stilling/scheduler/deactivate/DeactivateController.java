@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.scheduler.deactivate;
+package no.nav.pam.annonsemottak.stilling.scheduler.deactivate;
 
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import org.slf4j.Logger;
