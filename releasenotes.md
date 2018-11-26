@@ -1,3 +1,6 @@
+## RELEASE - 0.20.82-0b29f32
+#### New in this release: 
++ 2018-11-26 [REFACTORING] Moves scheduler to stilling package.
 ## RELEASE - 0.17.74-31178f9
 #### New in this release: 
 + 2018-11-22 [PAM-2145] Fetch ads registered by NAV Servicesenter from Solr
