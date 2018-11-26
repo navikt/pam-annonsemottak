@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.scheduler.resetSaksbehandler;
+package no.nav.pam.annonsemottak.stilling.scheduler.resetSaksbehandler;
 
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Status;
