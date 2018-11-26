@@ -179,7 +179,7 @@ public class AppConfig {
     }
 
     @Bean
-    public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider) {
+    public ScheduledLockConfiguration shedLockConfiguration(LockProvider lockProvider) {
         return ScheduledLockConfigurationBuilder
                 .withLockProvider(lockProvider)
                 .withPoolSize(10)
