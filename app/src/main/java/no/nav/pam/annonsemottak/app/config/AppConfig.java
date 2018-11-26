@@ -16,6 +16,9 @@ import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
+import no.nav.pam.annonsemottak.feed.OptionalValueMixIn;
+import no.nav.pam.annonsemottak.feed.StillingMixIn;
+import no.nav.pam.annonsemottak.stilling.*;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
@@ -74,10 +77,22 @@ public class AppConfig {
     @Bean
     public ObjectMapper jacksonMapper() {
 
-        return new ObjectMapper()
+        ObjectMapper objectMapper = new ObjectMapper()
                 .registerModule(new Jdk8Module())
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        //Renames selected Stilling field names for the feed
+        objectMapper.addMixIn(Stilling.class, StillingMixIn.class);
+
+        // Following classes are wrapped in an Optional and result in nested objects in JSON
+        // Removes nesting and assigns String value directly to the property
+        objectMapper.addMixIn(Arbeidsgiver.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Kommentarer.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Merknader.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Saksbehandler.class, OptionalValueMixIn.class);
+
+        return objectMapper;
     }
 
     @Bean
@@ -173,7 +188,7 @@ public class AppConfig {
 
     @Bean
     public PolarisConnector polarisConnector(HttpClientProxy proxy,
-                                            @Value("${polaris.url}") String polarisUrl) {
+                                             @Value("${polaris.url}") String polarisUrl) {
 
         return new PolarisConnector(proxy, polarisUrl);
     }

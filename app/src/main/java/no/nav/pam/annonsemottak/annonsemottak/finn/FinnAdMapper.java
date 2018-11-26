@@ -42,11 +42,11 @@ public class FinnAdMapper {
                 Medium.FINN.toString(),
                 ad.getUrl(),
                 ad.getIdentifier(),
-                GenericDateParser.parse(ad.getApplicationDeadline())
-                        .orElse(FinnDateConverter.convertDate(ad.getExpires())),
-                getKeyValueMap(ad),
-                null
+                getKeyValueMap(ad)
         );
+
+        s.setExpires(GenericDateParser.parse(ad.getApplicationDeadline())
+                .orElse(FinnDateConverter.convertDate(ad.getExpires())));
 
         return s;
     }

@@ -90,89 +90,22 @@ public class Stilling extends ModelEntity {
     protected Stilling() {
     }
 
-    //TODO: REMOVE
-    /**
-     * Constructor used when mapping manually registered ads to a {@link Stilling}. These ads already have a UUID, and
-     * are always from the source/medium "Stillingsregistrering"/"Stillingsregistrering".
-     *
-     * @param uuid                Pre-existing UUID.
-     * @param employerName        Name.
-     * @param employerDescription Description.
-     * @param jobTitle            Title
-     * @param jobLocation         Geographic location, i.e. town.
-     * @param jobDescription      Assumed to be HTML.
-     * @param applicationDeadline Random format.
-     * @param kilde               String "Stillingsregistrering".
-     * @param medium              String "Stillingsregistrering".
-     * @param expires             sistePubliseringsDato.
-     * @param properties          Other properties.
-     */
-    public Stilling(
-            String uuid,
-            String employerName,
-            String employerDescription,
-            String jobTitle,
-            String jobLocation,
-            String jobDescription,
-            String applicationDeadline,
-            String kilde,
-            String medium,
-            LocalDateTime expires,
-            Map<String, String> properties
-    ) {
-        this(jobTitle, jobLocation, employerName, employerDescription,
-                jobDescription, applicationDeadline, kilde, medium, null, uuid,
-                expires, properties, null);
-        this.uuid = uuid;
-    }
-
-     //TODO: REMOVE
-    // very big constructor, fix later.
-    public Stilling(String stillingstittel, String arbeidssted, String arbeidsgiver, String arbeidsgiveromtale,
-                    String annonsetekst, String søknadsfrist, String kilde, String medium, String url, String externalId,
-                    LocalDateTime expires, Map<String, String> metaData, LocalDateTime systemModifiedDate) {
-        this.uuid = UUID.randomUUID().toString();
-        this.title = stillingstittel;
-        this.place = arbeidssted;
-        this.employer = arbeidsgiver;
-        this.employerDescription = arbeidsgiveromtale;
-        this.jobDescription = annonsetekst;
-        this.dueDate = søknadsfrist;
-        this.kilde = kilde;
-        this.medium = medium;
-        this.url = url;
-        this.externalId = externalId;
-        this.properties = metaData;
-        if (expires != null && expires.isBefore(LocalDateTime.now().plusMonths(MAX_EXPIRY_LIMIT))) {
-            this.expires = expires;
-        } else {
-            // temporally only for back compatibility, will remove this as soon as expires is no longer null in database.
-            this.expires = this.getCreated().plusDays(DEFAULT_EXPIRY_DAYS);
-        }
-        this.hash = hash();
-        this.systemModifiedDate = systemModifiedDate;
-
-    }
-
-    //TODO: Replace all other with this
-    public Stilling(@NotNull String employer, @NotNull String kilde, @NotNull String medium,
-                    String employerDescription, String jobDescription, String place,
-                    String title, String dueDate, String url, String externalId,
-                    Map<String, String> properties) {
-
-        this.uuid = UUID.randomUUID().toString();
+    public Stilling(String title, String place, @NotNull String employer, String employerDescription,
+                    String jobDescription, String dueDate, @NotNull String kilde, @NotNull String medium,
+                    String url, String externalId, Map<String, String> properties) {
+        this.title = title;
+        this.place = place;
         this.employer = employer;
-        this.kilde = kilde;
-        this.medium = medium;
         this.employerDescription = employerDescription;
         this.jobDescription = jobDescription;
-        this.place = place;
-        this.title = title;
         this.dueDate = dueDate;
+        this.kilde = kilde;
+        this.medium = medium;
         this.url = url;
         this.externalId = externalId;
         this.properties = properties;
 
+        this.uuid = UUID.randomUUID().toString();
         this.hash = hash();
     }
 

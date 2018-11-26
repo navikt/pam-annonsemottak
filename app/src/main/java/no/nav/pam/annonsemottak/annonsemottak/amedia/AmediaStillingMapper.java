@@ -91,10 +91,11 @@ class AmediaStillingMapper {
                 Medium.AMEDIA.toString(),
                 url,
                 externalId,
-                GenericDateParser.parse(soknadsfrist).orElse(expires),
-                getKeyValueMap(),
-                systemModifiedTime
+                getKeyValueMap()
         );
+
+        stilling.setExpires(GenericDateParser.parse(soknadsfrist).orElse(expires));
+        stilling.setSystemModifiedDate(systemModifiedTime);
 
         return stilling;
     }
