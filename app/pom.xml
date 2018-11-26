@@ -5,20 +5,13 @@
     <parent>
         <groupId>no.nav.pam.annonsemottak</groupId>
         <artifactId>pam-annonsemottak</artifactId>
-        <version>0.16-SNAPSHOT</version>
+        <version>0.18-SNAPSHOT</version>
     </parent>
 
     <artifactId>pam-annonsemottak-app</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- TODO: Remove after transition from PAM-STILLING is complete -->
-        <dependency>
-            <groupId>no.nav.pam.feed</groupId>
-            <artifactId>pam-feed-client</artifactId>
-            <version>1.1</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

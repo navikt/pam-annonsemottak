@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
+import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -30,11 +31,11 @@ public class SolrFetchService {
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
     private static final String fraEures = "Fra Eures";
+    private static final String navServicesenter = "NAV Servicesenter";
 
     private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
-    private final String filterQueryKildetekst;
 
     /**
      * When this string cookie occurs in ad text, the ad is to be filtered out of the fetched set.
@@ -48,12 +49,10 @@ public class SolrFetchService {
         this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
         this.meterRegistry = meterRegistry;
-
-        filterQueryKildetekst = buildFilterQueryKildetekst();
     }
 
     private static String buildFilterQueryKildetekst() {
-        return "(" +
+        return StillingSolrBeanFieldNames.KILDETEKST + ":(" +
                 "\"" + fraArbeidsgiver + "\"" +
                 " OR " +
                 "\"" + registrertNav + "\"" +
@@ -63,45 +62,58 @@ public class SolrFetchService {
                 "\"" + direktemeldt + "\"" +
                 " OR " +
                 "\"" + fraEures + "\"" +
-                ")";
+                ")" +
+                " OR (" + StillingSolrBeanFieldNames.KILDETEKST + ":\"" + navServicesenter + "\"" +
+                       " AND NOT " + StillingSolrBeanFieldNames.MEDIUMTEKST + ":[* TO *])";
     }
 
     /**
      * Retrieves all SOLR ads and saves new and updatef ads
+     * @param saveAllFetchedAds whether to save all fetched ads, or only ads that have been modified
      * @return list of all active ads in SillingSOLR
      */
-    public List<Stilling> saveNewAndUpdatedStillingerFromSolr() {
-        List<Stilling> allStillinger = searchForStillinger();
+    public List<Stilling> saveNewAndUpdatedStillingerFromSolr(boolean saveAllFetchedAds) {
+        List<Stilling> allStillingerFromSolr = searchForStillinger();
         List<Stilling> newStillinger = new ArrayList();
         List<Stilling> changedStillinger = new ArrayList();
+        List<Stilling> unchangedStillinger = new ArrayList<>();
 
-        allStillinger.stream().forEach(s -> {
+        allStillingerFromSolr.stream().forEach(s -> {
             Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
                     s.getKilde(),
                     s.getMedium(),
                     s.getExternalId());
 
             if (inDb.isPresent()) {
-                if (!inDb.get().getHash().equals(s.getHash())) {
+                if (saveAllFetchedAds
+                        || !inDb.get().getHash().equals(s.getHash())
+                        || inDb.get().getAnnonseStatus() != AnnonseStatus.AKTIV) {
+
                     s.merge(inDb.get());
                     changedStillinger.add(s);
+                } else {
+                    unchangedStillinger.add(inDb.get());
                 }
             } else {
                 newStillinger.add(s);
             }
         });
 
-        List<Stilling> savedStillinger = new ArrayList();
-        savedStillinger.addAll(newStillinger);
-        savedStillinger.addAll(changedStillinger);
-        stillingRepository.saveAll(savedStillinger);
+        stillingRepository.saveAll(newStillinger);
+        stillingRepository.saveAll(changedStillinger);
 
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillinger.size());
+        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillingerFromSolr.size());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, newStillinger.size());
         meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, changedStillinger.size());
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
-                newStillinger.size(), changedStillinger.size(), allStillinger.size());
+                newStillinger.size(), changedStillinger.size(), allStillingerFromSolr.size());
+
+        List<Stilling> allStillinger = new ArrayList();
+        allStillinger.addAll(newStillinger);
+        allStillinger.addAll(changedStillinger);
+        allStillinger.addAll(unchangedStillinger);
+
         return allStillinger;
     }
 
@@ -142,9 +154,7 @@ public class SolrFetchService {
     private SolrQuery buildSolrQueryForSearch() {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-
-        solrQuery.addFilterQuery(StillingSolrBeanFieldNames.KILDETEKST + ":" + filterQueryKildetekst);
-
+        solrQuery.addFilterQuery(buildFilterQueryKildetekst());
         solrQuery.setFacet(false);
         solrQuery.setStart(0);
         solrQuery.setRows(100);

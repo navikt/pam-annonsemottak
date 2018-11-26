@@ -16,7 +16,6 @@ import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
-import no.nav.pam.annonsemottak.temp.feedclient.FeedClientConfig;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
@@ -47,7 +46,6 @@ import java.util.concurrent.TimeUnit;
 @EnableScheduling
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses = {Application.class})
-@Import(FeedClientConfig.class)
 public class AppConfig {
 
     @Value("${proxy.url}")
