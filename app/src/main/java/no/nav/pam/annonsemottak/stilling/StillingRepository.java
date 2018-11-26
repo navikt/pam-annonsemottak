@@ -28,9 +28,6 @@ public interface StillingRepository extends PagingAndSortingRepository<Stilling,
 
     Optional<Stilling> findByKildeAndMediumAndExternalId(String kilde, String medium, String externalId);
 
-    @Query("select count(s) from  Stilling s where s.saksbehandling.status = ?2 and s.saksbehandling.saksbehandler = ?1")
-    Long numberOfActiv(String saksbehandler, Status status);
-
     @Query("select s from Stilling s where s.updated >= ?1")
     Page<Stilling> findUpdatedAfter(LocalDateTime updateDate, Pageable pageable);
 
