@@ -2,10 +2,6 @@ package no.nav.pam.annonsemottak.feed;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.api.PathDefinition;
-import no.nav.pam.annonsemottak.stilling.Arbeidsgiver;
-import no.nav.pam.annonsemottak.stilling.Kommentarer;
-import no.nav.pam.annonsemottak.stilling.Merknader;
-import no.nav.pam.annonsemottak.stilling.Saksbehandler;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,13 +33,6 @@ public class StillingFeedApi {
 
         this.stillingFeedService = stillingFeedService;
         this.objectMapper = objectMapper;
-
-        // Following classes are wrapped in an Optional and result in nested objects in JSON
-        // Removes nesting and assigns String value directly to the property
-        this.objectMapper.addMixIn(Arbeidsgiver.class, OptionalValueMixIn.class);
-        this.objectMapper.addMixIn(Kommentarer.class, OptionalValueMixIn.class);
-        this.objectMapper.addMixIn(Merknader.class, OptionalValueMixIn.class);
-        this.objectMapper.addMixIn(Saksbehandler.class, OptionalValueMixIn.class);
     }
 
 

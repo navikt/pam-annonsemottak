@@ -16,6 +16,11 @@ import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
+import no.nav.pam.annonsemottak.feed.OptionalValueMixIn;
+import no.nav.pam.annonsemottak.stilling.Arbeidsgiver;
+import no.nav.pam.annonsemottak.stilling.Kommentarer;
+import no.nav.pam.annonsemottak.stilling.Merknader;
+import no.nav.pam.annonsemottak.stilling.Saksbehandler;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
@@ -74,10 +79,19 @@ public class AppConfig {
     @Bean
     public ObjectMapper jacksonMapper() {
 
-        return new ObjectMapper()
+        ObjectMapper objectMapper = new ObjectMapper()
                 .registerModule(new Jdk8Module())
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        // Following classes are wrapped in an Optional and result in nested objects in JSON
+        // Removes nesting and assigns String value directly to the property
+        objectMapper.addMixIn(Arbeidsgiver.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Kommentarer.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Merknader.class, OptionalValueMixIn.class);
+        objectMapper.addMixIn(Saksbehandler.class, OptionalValueMixIn.class);
+
+        return objectMapper;
     }
 
     @Bean
@@ -151,8 +165,9 @@ public class AppConfig {
     public DexiConnector dexiConnector(HttpClientProxy proxy,
                                        @Value("${dexi.api.username}") String dexiUsername,
                                        @Value("${dexi.api.password}") String dexiPassword,
-                                       @Value("${dexi.url}") String dexiUrl) {
-        return new DexiConnector(proxy, dexiUsername, dexiPassword, dexiUrl);
+                                       @Value("${dexi.url}") String dexiUrl,
+                                       ObjectMapper jacksonMapper) {
+        return new DexiConnector(proxy, dexiUsername, dexiPassword, dexiUrl, jacksonMapper);
     }
 
     @Bean
@@ -166,9 +181,10 @@ public class AppConfig {
 
     @Bean
     public AmediaConnector amediaConnector(HttpClientProxy proxy,
-                                           @Value("${amedia.url}") String amediaUrl) {
+                                           @Value("${amedia.url}") String amediaUrl,
+                                           ObjectMapper jacksonMapper) {
 
-        return new AmediaConnector(proxy, amediaUrl);
+        return new AmediaConnector(proxy, amediaUrl, jacksonMapper);
     }
 
     @Bean

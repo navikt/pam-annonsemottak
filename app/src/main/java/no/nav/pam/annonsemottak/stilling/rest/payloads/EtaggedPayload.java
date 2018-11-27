@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -15,9 +18,14 @@ import java.util.Base64;
  *
  * @param <T> As for {@link BasicPayload}. Will be serialized to JSON with Jackson in order to get content for MD5 checksum/ETag value.
  */
+@Configurable
 public class EtaggedPayload<T> extends BasicPayload<T> {
 
     private static Logger LOG = LoggerFactory.getLogger(EtaggedPayload.class);
+
+    @Qualifier("jacksonMapper")
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private EtagMeta meta;
 
@@ -46,7 +54,7 @@ public class EtaggedPayload<T> extends BasicPayload<T> {
             try {
                 final MessageDigest md5 = MessageDigest.getInstance("MD5");
                 md5.update(
-                        new ObjectMapper()
+                       objectMapper
                                 .writeValueAsString(getData())
                                 .getBytes(Charset.forName("UTF-8"))
                 );

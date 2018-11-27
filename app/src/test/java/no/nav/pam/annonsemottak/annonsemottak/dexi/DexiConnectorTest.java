@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.dexi;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -18,7 +19,7 @@ public class DexiConnectorTest {
     @Test
     public void basicDeserializationOfDexiIoJson()
             throws Exception {
-        DexiConnector connector = new DexiConnector(null,null,null,null);
+        DexiConnector connector = new DexiConnector(null,null,null,null, new ObjectMapper());
         try (Reader reader = new FileReader("src/test/resources/dexi.io/samples/7d7d3a19-b9f1-4ead-ac2e-37612a415826.json")) {
             Map results = connector.deserialize(reader);
             assertEquals(3, results.size());

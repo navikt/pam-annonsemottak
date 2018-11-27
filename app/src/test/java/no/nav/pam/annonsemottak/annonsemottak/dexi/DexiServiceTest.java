@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.annonsemottak.dexi;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
@@ -28,6 +29,7 @@ public class DexiServiceTest {
     private DexiConnector mockedDexiConnector;
     private StillingRepository mockedStillingRepository;
     private DexiAnnonseFangstService mockedAnnonseFangstService;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
     public void init() throws IOException {
@@ -74,7 +76,7 @@ public class DexiServiceTest {
 
     private List<Map<String, String>> getMockedLatestResultForJobID(String id) throws IOException {
         try (Reader reader = new FileReader("src/test/resources/dexi.io/samples/" + id + ".json")) {
-            DexiConnector connector = new DexiConnector(null,null,null,null);
+            DexiConnector connector = new DexiConnector(null,null,null,null, objectMapper);
 
             Map results = connector.deserialize(reader);
             return connector.convertToProperJson(results);
