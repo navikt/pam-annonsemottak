@@ -23,12 +23,12 @@ public class AnnonsehodeConverterTest {
                 .build();
         AnnonsehodePayload payload = new AnnonsehodeConverter().apply(stilling);
         assertEquals(stilling.getArbeidsgiver().get().asString(), payload.getArbeidsgiver());
-        assertEquals(stilling.getArbeidssted(), payload.getArbeidssted());
+        assertEquals(stilling.getPlace(), payload.getArbeidssted());
         assertEquals(stilling.getMerknader().get().asString(), payload.getMerknader());
         assertEquals(stilling.getCreated().toString(), payload.getMottattDato());
         assertEquals(stilling.getSaksbehandler().get().asString(), payload.getSaksbehandler());
         assertEquals(stilling.getStatus().getKodeAsString(), payload.getStatus());
-        assertEquals(stilling.getStillingstittel(), payload.getTittel());
+        assertEquals(stilling.getTitle(), payload.getTittel());
     }
 
     @Test
