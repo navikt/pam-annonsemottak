@@ -41,7 +41,7 @@ public class DexiAnnonseFangstService {
 
     // Dexi sometimes give us duplicates
     private List<Stilling> filterExternalIdDuplicates(List<Stilling> receiveList) {
-        HashMap<String,Stilling> jobMap = new HashMap<String, Stilling>();
+        HashMap<String,Stilling> jobMap = new HashMap<>();
         for (Stilling receive: receiveList) {
             if (!jobMap.containsKey(receive.getExternalId())) {
                 jobMap.put(receive.getExternalId(), receive);

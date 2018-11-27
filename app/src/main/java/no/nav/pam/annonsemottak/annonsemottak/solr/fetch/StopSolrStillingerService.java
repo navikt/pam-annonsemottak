@@ -37,7 +37,7 @@ public class StopSolrStillingerService {
         List<Stilling> activeAds = stillingRepository.findByKildeAndAnnonseStatus(Kilde.STILLINGSOLR.value(), AnnonseStatus.AKTIV);
 
         // Stopping ads if they're removed from stillingsolr, to prevent them getting republished
-        Set<String> savedUuids = allFetchedAds.stream().map(s -> s.getUuid()).collect(Collectors.toSet());
+        Set<String> savedUuids = allFetchedAds.stream().map(Stilling::getUuid).collect(Collectors.toSet());
         List<Stilling> stoppedAds = activeAds.stream()
                 .filter(s -> !savedUuids.contains(s.getUuid()))
                 .map(Stilling::stop)

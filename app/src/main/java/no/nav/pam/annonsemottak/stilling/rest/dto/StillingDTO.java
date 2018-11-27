@@ -37,7 +37,7 @@ public class StillingDTO {
 
     private String status;
 
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Map<String, String> properties = new HashMap<>();
 
     @JsonProperty(required = true)
     public String getUuid() {

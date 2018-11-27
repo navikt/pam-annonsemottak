@@ -37,7 +37,7 @@ class StillingSolrBeanMapper {
         LocalDateTime expires = dateToLocalDateTime(solrBean.getSistePubliseringsdato()).orElse(null);
         LocalDateTime published = dateToLocalDateTime(solrBean.getPubliseresFra()).orElse(null);
         LocalDateTime soknadsfrist = dateToLocalDateTime(solrBean.getSoknadsfrist()).orElse(null);
-        String regDato = dateToLocalDateTime(solrBean.getRegDato()).map(rd -> rd.toString()).orElse(null);
+        String regDato = dateToLocalDateTime(solrBean.getRegDato()).map(LocalDateTime::toString).orElse(null);
 
         Map<String, String> properties = new HashMap<>();
         properties.put(ANTALL_STILLINGER, fieldToString(solrBean.getAntallStillinger()));
