@@ -88,7 +88,7 @@ public class AnnonseFangstService {
 
     public void saveAll(AnnonseResult annonseResult) {
         LOG.info("Annonsefangstservice, før save,  annonseresult: {}", annonseResult.toString());
-        annonseResult.getAll().stream().forEach(stilling -> saveOne(stilling));
+        annonseResult.getAll().stream().forEach(this::saveOne);
         LOG.info("Annonsefangstservice, etter save,  annonseresult: {}", annonseResult.toString());
     }
 

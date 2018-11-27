@@ -82,6 +82,7 @@ public class AppConfig {
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
+
         //Renames selected Stilling field names for the feed
         objectMapper.addMixIn(Stilling.class, StillingMixIn.class);
 
@@ -166,8 +167,9 @@ public class AppConfig {
     public DexiConnector dexiConnector(HttpClientProxy proxy,
                                        @Value("${dexi.api.username}") String dexiUsername,
                                        @Value("${dexi.api.password}") String dexiPassword,
-                                       @Value("${dexi.url}") String dexiUrl) {
-        return new DexiConnector(proxy, dexiUsername, dexiPassword, dexiUrl);
+                                       @Value("${dexi.url}") String dexiUrl,
+                                       ObjectMapper jacksonMapper) {
+        return new DexiConnector(proxy, dexiUsername, dexiPassword, dexiUrl, jacksonMapper);
     }
 
     @Bean
@@ -181,14 +183,15 @@ public class AppConfig {
 
     @Bean
     public AmediaConnector amediaConnector(HttpClientProxy proxy,
-                                           @Value("${amedia.url}") String amediaUrl) {
+                                           @Value("${amedia.url}") String amediaUrl,
+                                           ObjectMapper jacksonMapper) {
 
-        return new AmediaConnector(proxy, amediaUrl);
+        return new AmediaConnector(proxy, amediaUrl, jacksonMapper);
     }
 
     @Bean
     public PolarisConnector polarisConnector(HttpClientProxy proxy,
-                                             @Value("${polaris.url}") String polarisUrl) {
+                                            @Value("${polaris.url}") String polarisUrl) {
 
         return new PolarisConnector(proxy, polarisUrl);
     }

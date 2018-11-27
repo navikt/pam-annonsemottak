@@ -47,7 +47,7 @@ public class MapOperations {
     }
 
     public Map<String, String> copy() {
-        return new HashMap<String, String>(map);
+        return new HashMap<>(map);
     }
 
 }

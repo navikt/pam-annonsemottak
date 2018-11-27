@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class DexiConnector {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     private final String DEXI_ACCOUNT_ID;
     private final String DEXI_API_KEY;
@@ -28,12 +28,12 @@ public class DexiConnector {
     private final HttpClientProxy proxy;
     private final String md5;
 
-    public DexiConnector(HttpClientProxy proxy, String dexiAccount, String dexiApikey, String dexiEndpoint)
-    {
+    public DexiConnector(HttpClientProxy proxy, String dexiAccount, String dexiApikey, String dexiEndpoint, ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.proxy = proxy;
-        this.DEXI_ACCOUNT_ID=dexiAccount;
-        this.DEXI_API_KEY=dexiApikey;
-        this.API_ENDPOINT=dexiEndpoint;
+        this.DEXI_ACCOUNT_ID = dexiAccount;
+        this.DEXI_API_KEY = dexiApikey;
+        this.API_ENDPOINT = dexiEndpoint;
         try {
             String input = DEXI_ACCOUNT_ID + DEXI_API_KEY;
             MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -118,7 +118,7 @@ public class DexiConnector {
             if (o instanceof List) {
                 content = ((List) o).stream().collect(Collectors.joining(",")).toString();
             } else {
-                content = (o != null)? o.toString() : null;
+                content = (o != null) ? o.toString() : null;
             }
 
             map.put(headers.get(i), content);
@@ -132,7 +132,7 @@ public class DexiConnector {
         return map;
     }
 
-    public boolean isPingSuccessful(){
+    public boolean isPingSuccessful() {
         try {
             return proxy.getHttpClient().newCall(getUrl("runs/", null)).execute().isSuccessful();
         } catch (IOException e) {

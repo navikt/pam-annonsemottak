@@ -71,7 +71,7 @@ public class DexioConnectorTestIT {
     public void testConnectorHero()
             throws IOException {
         List<Map<String, String>> latestResultsForJob = dexiConnector.getLatestResultForJobID("72441a26-4d72-4cae-b348-7b5efe5714d0");
-        List<Stilling> stillinger = latestResultsForJob.stream().map(map -> toStilling(map)).collect(Collectors.toList());
+        List<Stilling> stillinger = latestResultsForJob.stream().map(this::toStilling).collect(Collectors.toList());
 
 
         for (String key : latestResultsForJob.get(0).keySet()) {
@@ -83,7 +83,7 @@ public class DexioConnectorTestIT {
     public void testConnectorBergenKommunue()
             throws IOException {
         List<Map<String, String>> latestResultsForJob = dexiConnector.getLatestResultForJobID("92aca435-0df2-4b05-8150-d9f4b84ff087");
-        List<Stilling> stillings = latestResultsForJob.stream().map(map -> toStilling(map)).collect(Collectors.toList());
+        List<Stilling> stillings = latestResultsForJob.stream().map(this::toStilling).collect(Collectors.toList());
 
         for (Stilling stilling : stillings) {
             System.out.println(stilling);
@@ -102,7 +102,7 @@ public class DexioConnectorTestIT {
                         arbeidsgiver,
                         arbeidsgiveromtale, annonsetekst, kilde, soknadsfrist).contains(m.getKey()))
                 .filter(m -> m.getValue() != null)
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue()));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         return stilling()
                 .tittel(map.get(annonsetittel))

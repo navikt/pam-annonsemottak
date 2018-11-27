@@ -17,7 +17,7 @@ public class Tuple<X, Y> implements Serializable {
     }
 
     public static <X, Y> Tuple<X, Y> of(X x, Y y) {
-        return new Tuple<X, Y>(x, y);
+        return new Tuple<>(x, y);
     }
 
 

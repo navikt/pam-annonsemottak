@@ -22,8 +22,6 @@ import java.util.Map;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AmediaResponseMapperTest {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
-
     private final static InputStream enkeltResultat;
     private final static InputStream mangeResultat;
     private final static InputStream idResultat;

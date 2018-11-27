@@ -18,12 +18,13 @@ import java.time.LocalDateTime;
 public class AmediaConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(AmediaConnector.class);
-    private static final ObjectMapper objectMapper = new ObjectMapper();
 
+    private final ObjectMapper objectMapper;
     private final String apiEndpoint;
     private final HttpClientProxy proxy;
 
-    public AmediaConnector(HttpClientProxy proxy, String amediaEndpoint) {
+    public AmediaConnector(HttpClientProxy proxy, String amediaEndpoint, ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.proxy = proxy;
         this.apiEndpoint = amediaEndpoint;
     }

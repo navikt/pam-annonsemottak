@@ -165,7 +165,7 @@ public class SolrFetchService {
     }
 
     static boolean notPamDirStillinger(StillingSolrBean b) {
-        return b.getStillingsbeskrivelse() == null || b.getStillingsbeskrivelse().indexOf(PAM_DIR_ADTEXT_COOKIE) == -1;
+        return b.getStillingsbeskrivelse() == null || !b.getStillingsbeskrivelse().contains(PAM_DIR_ADTEXT_COOKIE);
     }
 
 }

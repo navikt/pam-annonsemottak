@@ -68,7 +68,7 @@ public class AnnonseFangstServiceTest {
         AnnonseResult annonseResult = fangstService.retrieveAnnonseLists(receivedList, allExternalIdSet, kilde, medium);
 
         assertThat("new list should be correct", annonseResult.getNewList().size(), equalTo(2));
-        List<String> newExternalIds = annonseResult.getNewList().stream().map(s -> s.getExternalId()).collect(Collectors.toList());
+        List<String> newExternalIds = annonseResult.getNewList().stream().map(Stilling::getExternalId).collect(Collectors.toList());
         assertTrue(newExternalIds.contains("5"));
         assertTrue(newExternalIds.contains("6"));
 
