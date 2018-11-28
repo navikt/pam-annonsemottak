@@ -51,7 +51,7 @@ dexi:
 amedia:
   url: http:/localhost/api/pipek/v2/classified/search
 polaris:
-  url: https://stilling.adresseavisen.no/api/
+  url: https://stilling.adresseavisen.no/api/nav.json
 finn:
   url: https://cache.api.finn.no/iad
   api:

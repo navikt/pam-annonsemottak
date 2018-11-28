@@ -50,7 +50,7 @@ dexi:
 amedia:
   url: https://bed.api.no/api/pipek/v2/classified/search
 polaris:
-  url: https://stilling.adresseavisen.no/api/nav.json?datetime=2018-11-21T13:03:46.95
+  url: https://stilling.adresseavisen.no/api/nav.json
 finn:
   url: https://cache.api.finn.no/iad
   api:

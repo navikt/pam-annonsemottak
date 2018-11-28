@@ -189,9 +189,10 @@ public class AppConfig {
 
     @Bean
     public PolarisConnector polarisConnector(HttpClientProxy proxy,
-                                            @Value("${polaris.url}") String polarisUrl) {
+                                             @Value("${polaris.url}") String polarisUrl,
+                                             ObjectMapper jacksonMapper) {
 
-        return new PolarisConnector(proxy, polarisUrl);
+        return new PolarisConnector(proxy, polarisUrl, jacksonMapper);
     }
 
     @Bean
