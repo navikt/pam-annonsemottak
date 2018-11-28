@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.app.config;
 
 import io.micrometer.core.instrument.Tag;
+import io.micrometer.core.instrument.binder.jpa.HibernateMetrics;
 import org.slf4j.Logger;
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags;
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider;
@@ -8,7 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpResponse;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -32,5 +35,10 @@ public class MetricsConfig {
                     RestTemplateExchangeTags.status(response),
                     RestTemplateExchangeTags.clientName(request));
         }
+    }
+
+    @Bean
+    public HibernateMetrics hibernateMetrics(EntityManagerFactory entityManagerFactory) {
+        return new HibernateMetrics(entityManagerFactory, "em", Collections.emptyList());
     }
 }
