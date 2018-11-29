@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.polaris.rest;
 
 
-import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisConnector;
+import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisService;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,15 +17,17 @@ public class PolarisApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(PolarisApi.class);
 
-    private final PolarisConnector polarisConnector;
+    private final PolarisService polarisService;
 
     @Autowired
-    public PolarisApi(PolarisConnector polarisConnector) {
-        this.polarisConnector = polarisConnector;
+    public PolarisApi(PolarisService polarisService) {
+        this.polarisService = polarisService;
     }
 
     @GetMapping
     public ResponseEntity ping(){
+
+        polarisService.fetchLatest();
 
         return ResponseEntity.ok("");
     }
