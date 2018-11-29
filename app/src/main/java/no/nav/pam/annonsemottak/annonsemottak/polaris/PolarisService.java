@@ -51,12 +51,12 @@ public class PolarisService {
         List<PolarisAd> polarisAdList = polarisConnector.fetchData(externalRun.getLastRun());
         List<Stilling> stillingList = polarisAdList.stream().map(PolarisAdMapper::mapToStilling).collect(Collectors.toList());
 
+        LOG.info("Fetched {} ads from Polaris", stillingList.size());
 
 
 
         externalRun.setLastRun(newRunTime);
         //externalRunService.save(externalRun);
-        LOG.info("Last run timestamp for Polaris fetch is {}", newRunTime);
     }
 
 
