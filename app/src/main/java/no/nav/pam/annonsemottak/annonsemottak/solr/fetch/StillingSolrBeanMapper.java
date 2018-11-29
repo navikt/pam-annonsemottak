@@ -83,9 +83,10 @@ class StillingSolrBeanMapper {
                 medium,
                 "",
                 fieldToString(solrBean.getId()),
-                (solrBean.getSoknadsfrist() != null) ? soknadsfrist : expires,
-                properties,
-                null);
+                properties);
+
+        newStilling.setExpires((solrBean.getSoknadsfrist() != null) ? soknadsfrist : expires);
+        newStilling.setPublished(published);
 
         try {
             final Map<String, String> params = new HashMap<>();
@@ -96,8 +97,6 @@ class StillingSolrBeanMapper {
         } catch (IllegalSaksbehandlingCommandException e) {
             LOG.debug("Kunne ikke oppdatere stilling med status godkjent", e);
         }
-
-        newStilling.setPublished(published);
 
         return newStilling;
     }

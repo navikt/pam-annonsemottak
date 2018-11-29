@@ -66,15 +66,15 @@ public class AmediaResponseMapperTest {
         s.assertThat(stillinger).hasSize(1);
         Stilling stilling = stillinger.get(0);
 
-        s.assertThat(stilling.getStillingstittel()).isEqualTo("Tankbilsjåfør");
-        s.assertThat(stilling.getArbeidssted()).isEqualTo("Alstahaug");
+        s.assertThat(stilling.getTitle()).isEqualTo("Tankbilsjåfør");
+        s.assertThat(stilling.getPlace()).isEqualTo("Alstahaug");
         s.assertThat(stilling.getArbeidsgiver()).containsInstanceOf(Arbeidsgiver.class);
 
         s.assertThat(stilling.getArbeidsgiver()).hasValueSatisfying(
             new Condition<>(a -> "Boreal Sjø AS".equals(a.asString()), "Boreal Sjø AS"));
-        s.assertThat(stilling.getArbeidsgiveromtale()).startsWith("<p>Boreal  er et");
-        s.assertThat(stilling.getAnnonsetekst()).startsWith("<p>Minol består av 42");
-        s.assertThat(stilling.getSoeknadsfrist()).isEqualTo("30.10.2017");
+        s.assertThat(stilling.getEmployerDescription()).startsWith("<p>Boreal  er et");
+        s.assertThat(stilling.getJobDescription()).startsWith("<p>Minol består av 42");
+        s.assertThat(stilling.getDueDate()).isEqualTo("30.10.2017");
         s.assertThat(stilling.getKilde()).isEqualTo(Kilde.AMEDIA.toString());
         s.assertThat(stilling.getMedium()).isEqualTo(Medium.AMEDIA.toString());
         s.assertThat(stilling.getUrl())
@@ -121,17 +121,17 @@ public class AmediaResponseMapperTest {
         s.assertThat(stillinger).hasSize(27);
         Stilling stilling = stillinger.get(0);
 
-        s.assertThat(stilling.getStillingstittel()).isEqualTo("Pedagogisk rådgiver");
-        s.assertThat(stilling.getArbeidssted()).isEqualTo("Kongsvinger");
+        s.assertThat(stilling.getTitle()).isEqualTo("Pedagogisk rådgiver");
+        s.assertThat(stilling.getPlace()).isEqualTo("Kongsvinger");
         s.assertThat(stilling.getArbeidsgiver()).containsInstanceOf(Arbeidsgiver.class);
 
         s.assertThat(stilling.getArbeidsgiver()).hasValueSatisfying(
             new Condition<>(
                 a -> "Service- og forvaltningsenheten".equals(a.asString()),
                 "Service- og forvaltningsenheten"));
-        s.assertThat(stilling.getArbeidsgiveromtale()).startsWith("");
-        s.assertThat(stilling.getAnnonsetekst()).startsWith("<p>Kongsvinger kommune har");
-        s.assertThat(stilling.getSoeknadsfrist()).isEqualTo("27.11.2017");
+        s.assertThat(stilling.getEmployerDescription()).startsWith("");
+        s.assertThat(stilling.getJobDescription()).startsWith("<p>Kongsvinger kommune har");
+        s.assertThat(stilling.getDueDate()).isEqualTo("27.11.2017");
         s.assertThat(stilling.getKilde()).isEqualTo(Kilde.AMEDIA.toString());
         s.assertThat(stilling.getMedium()).isEqualTo(Medium.AMEDIA.toString());
         s.assertThat(stilling.getUrl())
@@ -225,7 +225,7 @@ public class AmediaResponseMapperTest {
         s.assertThat(stillinger).hasSize(1);
         Stilling stilling = stillinger.get(0);
 
-        s.assertThat(stilling.getArbeidssted()).isEqualTo("Tysvær kommune");
+        s.assertThat(stilling.getPlace()).isEqualTo("Tysvær kommune");
 
         s.assertAll();
     }

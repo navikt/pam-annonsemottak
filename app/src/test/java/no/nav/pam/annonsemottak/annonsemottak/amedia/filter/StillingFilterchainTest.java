@@ -63,11 +63,11 @@ public class StillingFilterchainTest {
         SoftAssertions s = new SoftAssertions();
         s.assertThat(nyeStillinger).hasSize(2);
 
-        s.assertThat(nyeStillinger.get(0).getStillingstittel())
+        s.assertThat(nyeStillinger.get(0).getTitle())
             .isEqualTo("filtreres ikke pga at den har link i tillegg til knappetekst");
-        s.assertThat(nyeStillinger.get(0).getAnnonsetekst())
+        s.assertThat(nyeStillinger.get(0).getJobDescription())
             .isEqualTo("ved å klikke på annonselenken på denne siden.");
-        s.assertThat(nyeStillinger.get(1).getStillingstittel())
+        s.assertThat(nyeStillinger.get(1).getTitle())
             .isEqualTo("ikke filtrering pga tekst");
         s.assertAll();
 

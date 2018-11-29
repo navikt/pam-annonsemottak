@@ -19,10 +19,10 @@ class SokeknappFilter extends StillingFilter {
                     Pattern.CASE_INSENSITIVE);
 
     private static final Predicate<Stilling> FILTER_HAR_SOKEKNAPPTEKST =
-            s -> s.getAnnonsetekst() != null && SOKEKNAPP_PATTERN.matcher(s.getAnnonsetekst()).find();
+            s -> s.getJobDescription() != null && SOKEKNAPP_PATTERN.matcher(s.getJobDescription()).find();
 
     private final Function<Stilling, Stilling> MAP_HAR_SOKEKNAPPTEKST =
-            s -> nyStillingstekst(s, byttUtSokeknapptekst(s.getAnnonsetekst()));
+            s -> nyStillingstekst(s, byttUtSokeknapptekst(s.getJobDescription()));
 
     static String byttUtSokeknapptekst(String tekst) {
 

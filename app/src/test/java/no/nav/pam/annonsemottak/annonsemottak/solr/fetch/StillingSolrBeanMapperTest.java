@@ -22,16 +22,16 @@ public class StillingSolrBeanMapperTest {
         Stilling stilling = StillingSolrBeanMapper.mapToStilling(solrBean);
 
         SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(stilling.getStillingstittel()).isEqualTo(solrBean.getTittel());
-        softly.assertThat(stilling.getArbeidssted())
+        softly.assertThat(stilling.getTitle()).isEqualTo(solrBean.getTittel());
+        softly.assertThat(stilling.getPlace())
                 .isEqualTo(solrBean.getGeografiskomrade().get(0));
 
         softly.assertThat(stilling.getArbeidsgiver().get().asString())
                 .isEqualTo(solrBean.getArbeidsgivernavn());
 
-        softly.assertThat(stilling.getArbeidsgiveromtale())
+        softly.assertThat(stilling.getEmployerDescription())
                 .contains(solrBean.getBedriftspresentasjon());
-        softly.assertThat(stilling.getAnnonsetekst())
+        softly.assertThat(stilling.getJobDescription())
                 .contains(solrBean.getStillingsbeskrivelse());
         softly.assertThat(stilling.getExpires().minusHours(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli())
                 .isEqualTo(solrBean.getSoknadsfrist().getTime());

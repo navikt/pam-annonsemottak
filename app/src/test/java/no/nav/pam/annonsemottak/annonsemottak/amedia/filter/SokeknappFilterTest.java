@@ -26,10 +26,10 @@ public class SokeknappFilterTest {
         assertThat(nyeStillinger)
             .hasSize(2)
             .haveAtLeastOne(new Condition<>(
-                st -> "annen tekst".equals(st.getAnnonsetekst()),
+                st -> "annen tekst".equals(st.getJobDescription()),
                 "har riktig tekst uten endring"))
             .haveAtLeastOne(new Condition<>(
-                st -> forventet.equalsIgnoreCase(st.getAnnonsetekst()),
+                st -> forventet.equalsIgnoreCase(st.getJobDescription()),
                 "har riktig tekst med endring"));
 
     }

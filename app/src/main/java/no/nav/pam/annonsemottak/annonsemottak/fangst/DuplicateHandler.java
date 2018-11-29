@@ -60,9 +60,9 @@ public class DuplicateHandler {
 
     private List<StillingSolrBean> search(Stilling stilling) {
         HashMap<String,String> params = new HashMap<>();
-        LOG.debug("Searching tittel: {}, arbeidsgiver: {}", stilling.getStillingstittel(), stilling.getArbeidsgiver().get().asString());
+        LOG.debug("Searching tittel: {}, arbeidsgiver: {}", stilling.getTitle(), stilling.getArbeidsgiver().get().asString());
         params.put(StillingSolrBeanFieldNames.ARBEIDSGIVERNAVN, stilling.getArbeidsgiver().get().asString());
-        params.put(StillingSolrBeanFieldNames.TITTEL, stilling.getStillingstittel());
+        params.put(StillingSolrBeanFieldNames.TITTEL, stilling.getTitle());
         return solrService.searchStillinger(params);
 
     }
