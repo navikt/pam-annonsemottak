@@ -34,7 +34,7 @@ public class DatabaseScriptsTest {
                 .enkelStilling()
                 .properties(keyValueSet)
                 .build();
-        stilling = stillingRepository.save(stilling);;
+        stilling = stillingRepository.save(stilling);
         stillingRepository.save(stilling);
         stilling.getProperties().put("hello", "world");
         stillingRepository.save(stilling);

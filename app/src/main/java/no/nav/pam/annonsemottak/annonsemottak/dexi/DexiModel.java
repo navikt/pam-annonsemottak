@@ -64,7 +64,7 @@ class DexiModel {
                 .filter(DexiModel::filterOutEmptyValuedEntries)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        return new Stilling(
+        Stilling stilling = new Stilling(
                 HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim(),
                 map.get(ARBEIDSSTED),
                 map.get(ARBEIDSGIVER),
@@ -75,9 +75,10 @@ class DexiModel {
                 robotName,
                 map.get(ANNONSEURL),
                 map.get(EXTERNALID),
-                GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null),
-                props,
-                null);
+                props);
+        stilling.setExpires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null));
+
+        return stilling;
     }
 
     private static boolean hasIncompleteInformation(Map<String, String> map) {

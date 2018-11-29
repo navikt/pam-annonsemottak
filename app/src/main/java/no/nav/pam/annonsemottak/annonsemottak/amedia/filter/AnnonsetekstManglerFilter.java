@@ -16,8 +16,8 @@ class AnnonsetekstManglerFilter extends StillingFilter {
 
 
     private static final Predicate<Stilling> FILTER_MANGLER_ANNONSETEKST =
-        s -> StringUtils.isBlank(s.getAnnonsetekst())
-            || s.getAnnonsetekst().length() < MIN_LENGDE_ANNONSE;
+        s -> StringUtils.isBlank(s.getJobDescription())
+            || s.getJobDescription().length() < MIN_LENGDE_ANNONSE;
 
 
     @Override

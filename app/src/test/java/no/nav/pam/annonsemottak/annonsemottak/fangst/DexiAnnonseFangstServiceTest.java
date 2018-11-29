@@ -64,8 +64,8 @@ public class DexiAnnonseFangstServiceTest {
         stillingRepository.saveAll(annonseResult.getStopList());
         stillingRepository.saveAll(annonseResult.getModifyList());
         assertThat("Modify add should be correct", annonseResult.getModifyList().get(0).getUuid(), equalTo(s2.getUuid()));
-        assertThat("Modififed tittle is correct", annonseResult.getModifyList().get(0).getStillingstittel(),
-                equalTo(s2.getStillingstittel()));
+        assertThat("Modififed tittle is correct", annonseResult.getModifyList().get(0).getTitle(),
+                equalTo(s2.getTitle()));
         assertThat("Saksbehandler for modified ad should not changed", annonseResult.getModifyList().get(0).getSaksbehandler().get().asString(), equalTo("Tuan"));
         // simulate ad getting reactivated
         receivedList.add(s3);

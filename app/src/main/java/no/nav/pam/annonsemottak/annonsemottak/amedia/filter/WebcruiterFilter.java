@@ -15,9 +15,9 @@ class WebcruiterFilter extends StillingFilter {
 
     private static final Predicate<Stilling> FILTER_WEBCRUITER =
         s -> StringUtils.contains(s.getUrl(), "www.webcruiter.no") ||
-            StringUtils.contains(s.getAnnonsetekst(), "via Webcruiter");
+            StringUtils.contains(s.getJobDescription(), "via Webcruiter");
     private final Function<Stilling, Stilling> MAP_WEBCRUITER = s -> nyTittel(s,
-        "*" + this.getClass().getSimpleName() + "* " + s.getStillingstittel());
+        "*" + this.getClass().getSimpleName() + "* " + s.getTitle());
 
     @Override
     public List<Stilling> doFilter(List<Stilling> stillinger) {

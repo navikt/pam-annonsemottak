@@ -26,7 +26,7 @@ public class AnnonsetekstManglerFilterTest {
         assertThat(nyeStillinger)
             .hasSize(1)
             .haveAtLeastOne(new Condition<>(
-                st -> "tittelMedStillingtekst".equals(st.getStillingstittel()),
+                st -> "tittelMedStillingtekst".equals(st.getTitle()),
                 "Ikke filtrert"));
     }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -98,20 +99,25 @@ public class FinnAdMapperTest {
             throws Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD2)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
-            assertNotNull(stilling);
-            assertTrue(stilling.getAnnonsetekst().startsWith("Vi søker dyktig prosjektleder"));
-            assertTrue(stilling.getAnnonsetekst().contains("Arbeidsoppgaver"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Kvalifikasjoner"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Utdanning"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Språk"));
-            assertTrue(stilling.getAnnonsetekst().contains("-----"));
-            assertTrue(stilling.getAnnonsetekst().contains("Egenskaper"));
-            assertTrue(stilling.getAnnonsetekst().contains("----------"));
-            assertTrue(stilling.getAnnonsetekst().contains("Vi tilbyr"));
-            assertTrue(stilling.getAnnonsetekst().contains("---------"));
+
+            SoftAssertions softAssert = new SoftAssertions();
+            softAssert.assertThat(stilling).isNotNull();
+            softAssert.assertThat(stilling.getJobDescription()).startsWith("Vi søker dyktig prosjektleder");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Arbeidsoppgaver");
+            softAssert.assertThat(stilling.getJobDescription()).contains("---------------");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Kvalifikasjoner");
+            softAssert.assertThat(stilling.getJobDescription()).contains("---------------");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Utdanning");
+            softAssert.assertThat(stilling.getJobDescription()).contains("---------");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Språk");
+            softAssert.assertThat(stilling.getJobDescription()).contains("-----");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Egenskaper");
+            softAssert.assertThat(stilling.getJobDescription()).contains("----------");
+            softAssert.assertThat(stilling.getJobDescription()).contains("Vi tilbyr");
+            softAssert.assertThat(stilling.getJobDescription()).contains("---------");
+            softAssert.assertAll();
+
+
         }
     }
 
@@ -141,7 +147,7 @@ public class FinnAdMapperTest {
     }
 
     @Test
-    public void externalPublishDateShouldBeMapped() throws  Exception {
+    public void externalPublishDateShouldBeMapped() throws Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertEquals("2017-03-02T15:01:00.000Z", stilling.getProperties().get(PropertyNames.EXTERNAL_PUBLISH_DATE));
