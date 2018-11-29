@@ -68,13 +68,12 @@ public class PolarisAdTest {
         assertThat(ad.bookings.publication).isEqualTo("Nordfjordsamkøyringa");
 
         assertThat(ad.contacts.size()).isEqualTo(2);
-        Optional<PolarisContact> randomContact = ad.contacts.stream().filter(s -> s.name.contains("Testname")).findAny();
+        Optional<PolarisContact> randomContact = ad.contacts.stream().filter(s -> s.getName().contains("Testname")).findAny();
         assertThat(randomContact.isPresent()).isTrue();
-        assertThat(randomContact.get().email).isEqualTo("trond.inselseth@vagsoy.kommune.no");
-        assertThat(randomContact.get().telephone).isEqualTo("000 15 105");
-        assertThat(randomContact.get().mobile).isEqualTo("975 15 105");
-        assertThat(randomContact.get().lastname).isEqualTo("Testlastname");
-        assertThat(randomContact.get().title).isEqualTo("Kommunelege");
+        assertThat(randomContact.get().getEmail()).isEqualTo("trond.inselseth@vagsoy.kommune.no");
+        assertThat(randomContact.get().getTelephone()).isEqualTo("000 15 105");
+        assertThat(randomContact.get().getMobile()).isEqualTo("975 15 105");
+        assertThat(randomContact.get().getTitle()).isEqualTo("Kommunelege");
 
         assertThat(ad.categories.size()).isEqualTo(1);
         assertThat(ad.categories.get(0).name).isEqualTo("Helse / Sosial");
