@@ -7,6 +7,7 @@ import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.model.PolarisAd;
+import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PolarisService {
@@ -37,7 +39,7 @@ public class PolarisService {
         this.annonseFangstService = annonseFangstService;
     }
 
-    public void fetchLatest() {
+    public void fetchLatest() throws IOException {
 
         ExternalRun externalRun = externalRunService.retrieveExternalRun(Kilde.POLARIS.value());
         if (externalRun == null) {
@@ -45,21 +47,18 @@ public class PolarisService {
         }
         LOG.info("Start fetching Polaris ads updated since {}", externalRun.getLastRun());
 
-        try {
-            LocalDateTime newRunTime = LocalDateTime.now();
-            List<PolarisAd> polarisAdList = polarisConnector.fetchData(externalRun.getLastRun());
+        LocalDateTime newRunTime = LocalDateTime.now();
+        List<PolarisAd> polarisAdList = polarisConnector.fetchData(externalRun.getLastRun());
+        List<Stilling> stillingList = polarisAdList.stream().map(PolarisAdMapper::mapToStilling).collect(Collectors.toList());
 
 
 
-            externalRun.setLastRun(newRunTime);
-            //externalRunService.save(externalRun);
-            LOG.info("Last run timestamp for Polaris fetch is {}", newRunTime);
-        } catch (IOException e) {
-            LOG.error("Failed fetching Polaris ads", e);
-        }
 
-
+        externalRun.setLastRun(newRunTime);
+        //externalRunService.save(externalRun);
+        LOG.info("Last run timestamp for Polaris fetch is {}", newRunTime);
     }
+
 
 
 }

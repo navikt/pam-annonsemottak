@@ -56,6 +56,7 @@ public class PolarisContact {
         return telephone;
     }
 
+    @JsonProperty("telephone")
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }

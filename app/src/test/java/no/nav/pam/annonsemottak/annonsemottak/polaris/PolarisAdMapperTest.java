@@ -68,7 +68,7 @@ public class PolarisAdMapperTest {
         assertThat(stilling.getProperties().get(PropertyNames.BRANSJER)).isEqualTo("Helse / Sosial;Lege / Tannlege");
         assertThat(stilling.getProperties().get(PropertyNames.KONTAKTINFO)).isEqualTo(  "[{\"" +
                 "title\":\"Kommunelege\",\"email\":\"trond.inselseth@vagsoy.kommune.no\",\"mobile\":\"975 15 105\",\"name\":" +
-                "\"Testname Testlastname\",\"phone\":null},{\"title\":null,\"email\":null,\"mobile\":\"979 60 915\",\"name\":" +
+                "\"Testname Testlastname\",\"phone\":\"000 15 105\"},{\"title\":null,\"email\":null,\"mobile\":\"979 60 915\",\"name\":" +
                 "\"Jeanette Jensen\",\"phone\":null}]");
 
         softAssert.assertAll();

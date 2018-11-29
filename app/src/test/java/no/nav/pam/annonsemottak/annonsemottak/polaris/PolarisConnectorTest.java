@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.annonsemottak.polaris;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
-import no.nav.pam.annonsemottak.annonsemottak.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.model.PolarisAd;
 import org.junit.Before;
 import org.junit.Rule;
@@ -21,9 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -61,7 +58,7 @@ public class PolarisConnectorTest {
 
     private String getMockPolarisResponse(String fil) {
         return new BufferedReader(
-                new InputStreamReader(AmediaResponseMapperTest.class.getClassLoader()
+                new InputStreamReader(PolarisConnectorTest.class.getClassLoader()
                         .getResourceAsStream("polaris.samples/" + fil + ".json")))
                 .lines().collect(Collectors.joining("\n"));
     }
