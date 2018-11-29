@@ -120,16 +120,16 @@ public class Stilling extends ModelEntity {
             Map<String, String> properties
     ) {
         this(jobTitle, jobLocation, employerName, employerDescription,
-                jobDescription, applicationDeadline, kilde, medium, null, uuid,
-                properties);
+                jobDescription, applicationDeadline, kilde, medium, null, uuid);
 
+        this.properties.putAll(properties);
         this.setExpires(expires);
         this.uuid = uuid;
     }
 
     public Stilling(String title, String place, @NotNull String employer, String employerDescription,
                     String jobDescription, String dueDate, @NotNull String kilde, @NotNull String medium,
-                    String url, String externalId, Map<String, String> properties) {
+                    String url, String externalId) {
         this.title = title;
         this.place = place;
         this.employer = employer;
@@ -140,7 +140,6 @@ public class Stilling extends ModelEntity {
         this.medium = medium;
         this.url = url;
         this.externalId = externalId;
-        this.properties = properties;
 
         this.uuid = UUID.randomUUID().toString();
         this.hash = hash();

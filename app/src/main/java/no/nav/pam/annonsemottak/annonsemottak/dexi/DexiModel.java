@@ -74,8 +74,9 @@ class DexiModel {
                 Kilde.DEXI.toString(),
                 robotName,
                 map.get(ANNONSEURL),
-                map.get(EXTERNALID),
-                props);
+                map.get(EXTERNALID));
+
+        stilling.getProperties().putAll(props);
         stilling.setExpires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null));
 
         return stilling;

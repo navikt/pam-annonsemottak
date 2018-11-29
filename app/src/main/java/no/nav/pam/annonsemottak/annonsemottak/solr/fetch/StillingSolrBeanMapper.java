@@ -82,9 +82,10 @@ class StillingSolrBeanMapper {
                 Kilde.STILLINGSOLR.value(),
                 medium,
                 "",
-                fieldToString(solrBean.getId()),
-                properties);
+                fieldToString(solrBean.getId())
+        );
 
+        newStilling.getProperties().putAll(properties);
         newStilling.setExpires((solrBean.getSoknadsfrist() != null) ? soknadsfrist : expires);
         newStilling.setPublished(published);
 

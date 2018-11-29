@@ -49,7 +49,7 @@ public class AmediaService {
     public ResultsOnSave saveLatestResults() {
         long start = System.currentTimeMillis();
 
-        LOG.info("Starting amedia fetch {} ");
+        LOG.info("Starting amedia fetch");
 
         ExternalRun externalRun = externalRunService
             .findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
@@ -97,7 +97,6 @@ public class AmediaService {
                     Kilde.AMEDIA.toString(),
                     Medium.AMEDIA.toString(),
                     dateTime);
-                LOG.info("Amedia lagrer externalrun {}", er.getLastRun());
                 externalRunService.save(er);
             });
     }
