@@ -32,7 +32,7 @@ finn:
   api:
     password: finn_api_key
 polaris:
-  url: https://localhost:7012/api/nav.json
+  url: http://localhost:7012/api/nav.json
 proxy:
   url: http://155.55.60.117:8088
 solr:

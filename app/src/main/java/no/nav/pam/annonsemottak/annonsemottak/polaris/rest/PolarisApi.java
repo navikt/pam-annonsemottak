@@ -27,6 +27,6 @@ public class PolarisApi {
     @GetMapping
     public ResponseEntity ping(){
 
-        return ResponseEntity.ok(polarisConnector.fetchData(null));
+        return ResponseEntity.ok("");
     }
 }
