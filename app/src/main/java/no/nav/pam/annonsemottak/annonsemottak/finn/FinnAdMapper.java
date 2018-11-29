@@ -41,10 +41,10 @@ public class FinnAdMapper {
                 Kilde.FINN.toString(),
                 Medium.FINN.toString(),
                 ad.getUrl(),
-                ad.getIdentifier(),
-                getKeyValueMap(ad)
+                ad.getIdentifier()
         );
 
+        s.getProperties().putAll(getKeyValueMap(ad));
         s.setExpires(GenericDateParser.parse(ad.getApplicationDeadline())
                 .orElse(FinnDateConverter.convertDate(ad.getExpires())));
 

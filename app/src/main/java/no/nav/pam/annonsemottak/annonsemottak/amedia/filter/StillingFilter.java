@@ -54,9 +54,9 @@ abstract class StillingFilter {
                 s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
                 s.getEmployerDescription(),
                 s.getJobDescription(), s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
-                s.getExternalId(),
-                s.getProperties());
+                s.getExternalId());
 
+        stilling.getProperties().putAll(s.getProperties());
         stilling.setSystemModifiedDate(s.getSystemModifiedDate());
         stilling.setExpires(s.getExpires());
         stilling.setUuid(s.getUuid());
@@ -72,9 +72,9 @@ abstract class StillingFilter {
                 s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
                 s.getEmployerDescription(),
                 nyTekst, s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
-                s.getExternalId(),
-                s.getProperties());
+                s.getExternalId());
 
+        stilling.getProperties().putAll(s.getProperties());
         stilling.setSystemModifiedDate(s.getSystemModifiedDate());
         stilling.setExpires(s.getExpires());
         stilling.setUuid(s.getUuid());
