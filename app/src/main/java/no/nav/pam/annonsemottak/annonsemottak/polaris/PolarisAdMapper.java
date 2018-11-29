@@ -27,7 +27,7 @@ public class PolarisAdMapper {
                 polarisAd.text,
                 (polarisAd.applicationDeadlineDate != null) ? polarisAd.applicationDeadlineDate.toString() : polarisAd.applicationDeadlineText,
                 Kilde.POLARIS.value(),
-                (polarisAd.bookings.publication != null) ? polarisAd.bookings.publication : Medium.POLARIS.value(),
+                Medium.POLARIS.value(),
                 polarisAd.url,
                 polarisAd.positionId
         );
