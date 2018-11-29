@@ -25,20 +25,21 @@ public class ExternalRunService {
     }
 
     public ExternalRun retrieveExternalRun(String externalRunName){
-        LOG.info("Running retrieveExternalRun for {} {} with received list {}", externalRunName);
+        LOG.debug("Running retrieveExternalRun for {}", externalRunName);
         ExternalRun externalRun = externalRunRepository.findByName(externalRunName);
 
         return externalRun;
     }
 
     public LocalDateTime findLastRunForRunName(String externalRunName){
-        LOG.info("Running findLastRunForRunName for {}", externalRunName);
+        LOG.debug("Running findLastRunForRunName for {}", externalRunName);
         LocalDateTime lastRun = externalRunRepository.findLastRunForRunName(externalRunName);
 
         return lastRun;
     }
 
     public void save(ExternalRun externalRun){
+        LOG.info("Saving external run for source {} with time {}", externalRun.getName(), externalRun.getLastRun());
         externalRunRepository.save(externalRun);
     }
 
