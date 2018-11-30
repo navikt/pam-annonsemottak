@@ -10,6 +10,13 @@ public class MetricNames {
     public static final String ADS_COLLECTED_AMEDIA_REJECTED = ADS_COLLECTED_AMEDIA + ".rejected";
     public static final String ADS_COLLECTED_AMEDIA_CHANGED = ADS_COLLECTED_AMEDIA + ".changed";
 
+    public static final String ADS_COLLECTED_POLARIS = ADS_COLLECTED + ".polaris";
+    public static final String ADS_COLLECTED_POLARIS_TOTAL = ADS_COLLECTED_POLARIS + ".total";
+    public static final String ADS_COLLECTED_POLARIS_NEW = ADS_COLLECTED_POLARIS + ".new";
+    public static final String ADS_COLLECTED_POLARIS_STOPPED = ADS_COLLECTED_POLARIS + ".stopped";
+    public static final String ADS_COLLECTED_POLARIS_REJECTED = ADS_COLLECTED_POLARIS + ".rejected";
+    public static final String ADS_COLLECTED_POLARIS_CHANGED = ADS_COLLECTED_POLARIS + ".changed";
+
     public static final String ADS_COLLECTED_DEXI = ADS_COLLECTED + ".dexi";
     public static final String ADS_COLLECTED_DEXI_TOTAL = ADS_COLLECTED_DEXI + ".total";
     public static final String ADS_COLLECTED_DEXI_NEW = ADS_COLLECTED_DEXI + ".new";

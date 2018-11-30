@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.polaris.rest;
 
 
+import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisService;
 import no.nav.pam.annonsemottak.api.PathDefinition;
 import org.slf4j.Logger;
@@ -28,8 +29,8 @@ public class PolarisApi {
     @PostMapping("/results/save")
     public ResponseEntity fetchLatestAds() {
         try {
-            polarisService.fetchLatest();
-            return ResponseEntity.ok("TODO");
+            ResultsOnSave result = polarisService.fetchAndSaveLatest();
+            return ResponseEntity.ok(result);
         } catch (Exception e) {
             LOG.error("Unable to save results from Polaris", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
