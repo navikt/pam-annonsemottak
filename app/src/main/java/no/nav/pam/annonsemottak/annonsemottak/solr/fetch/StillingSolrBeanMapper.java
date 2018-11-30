@@ -87,7 +87,7 @@ class StillingSolrBeanMapper {
 
         newStilling.getProperties().putAll(properties);
         newStilling.setExpires((solrBean.getSoknadsfrist() != null) ? soknadsfrist : expires);
-        newStilling.setPublished(published);
+
 
         try {
             final Map<String, String> params = new HashMap<>();
@@ -98,7 +98,8 @@ class StillingSolrBeanMapper {
         } catch (IllegalSaksbehandlingCommandException e) {
             LOG.debug("Kunne ikke oppdatere stilling med status godkjent", e);
         }
-
+        // set published has to be set after oppdatersaksbehandling, please dont move it anywhere.
+        newStilling.setPublished(published);
         return newStilling;
     }
 
