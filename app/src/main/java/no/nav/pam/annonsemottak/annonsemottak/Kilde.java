@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak;
 
 public enum Kilde {
+    SBL("Stillingsregistrering"),
     FINN("FINN"),
     DEXI("webcrawl"),
     AMEDIA("AMEDIA"),

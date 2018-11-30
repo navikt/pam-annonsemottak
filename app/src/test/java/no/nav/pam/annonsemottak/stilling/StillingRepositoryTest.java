@@ -11,8 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
@@ -93,33 +95,6 @@ public class StillingRepositoryTest {
         Stilling hentetStilling = stream(alleStillinger.spliterator(), false).findFirst().get();
         assertThat(hentetStilling.getTitle(), is(equalTo("Første stilling")));
         assertThat(hentetStilling.getSaksbehandling().getSaksbehandler(), is(equalTo(Saksbehandler.ofNullable("Truls"))));
-    }
-
-    @Test
-    public void publiseringsdato_skal_ikke_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
-        final String externalID = java.util.UUID.randomUUID().toString();
-        Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
-        OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(Collections.singletonMap("status", "2"));
-        brandNew.oppdaterMed(saksbehandlingCommand); // Sets published date to "now" and status to GODKJENT
-
-        final LocalDateTime published = brandNew.getPublished();
-        assertNotNull(brandNew.getPublished());
-
-        final String uuid = brandNew.getUuid();
-
-        stillingRepository.save(brandNew);
-
-        Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
-
-        Stilling stored = stillingRepository.findByUuid(uuid).orElse(null);
-        assertNotNull(stored);
-        assertNotNull(stored.getPublished());
-
-        externallyUpdated.merge(stored);
-
-        stored = stillingRepository.save(externallyUpdated);
-
-        assertNotEquals(published, stored.getPublished());
     }
 
     @Test

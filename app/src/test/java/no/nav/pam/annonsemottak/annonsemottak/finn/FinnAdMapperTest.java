@@ -155,15 +155,6 @@ public class FinnAdMapperTest {
     }
 
     @Test
-    public void shouldNotSetPublished()
-            throws Exception {
-        try (Reader reader = FinnConnectorTest.getReader(AD1)) {
-            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
-            assertNull(stilling.getPublished());
-        }
-    }
-
-    @Test
     public void geocoordinates_should_be_mapped() throws Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));

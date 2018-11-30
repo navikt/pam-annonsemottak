@@ -81,7 +81,7 @@ public class AmediaResponseMapperTest {
             .isEqualTo("https://karriere.no/jobb/tankbilsjafor-572920.html");
         s.assertThat(stilling.getExternalId()).isEqualTo("3410158");
         s.assertThat(stilling.getExpires()).isEqualTo(AmediaDateConverter.convertDate("2017-10-30T00:00:00Z"));  //soknadsfrist
-        s.assertThat(stilling.getPublished()).isNull();
+        s.assertThat(stilling.getPublished()).isNotNull();
 
         Map<String, String> properties = stilling.getProperties();
         s.assertThat(properties.get(PropertyNames.EXTERNAL_PUBLISH_DATE)).isEqualTo("2017-10-17T00:00:00Z");
