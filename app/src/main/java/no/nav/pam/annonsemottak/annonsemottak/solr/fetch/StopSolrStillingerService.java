@@ -45,7 +45,7 @@ public class StopSolrStillingerService {
 
         stillingRepository.saveAll(stoppedAds);
 
-        meterRegistry.gauge(ADS_DEACTIVATED_SOLR, stoppedAds.size());
+        meterRegistry.counter(ADS_DEACTIVATED_SOLR, Integer.toString(stoppedAds.size())).increment();
 
         LOG.info("Stopped {} inactive ads from solr", stoppedAds.size());
     }

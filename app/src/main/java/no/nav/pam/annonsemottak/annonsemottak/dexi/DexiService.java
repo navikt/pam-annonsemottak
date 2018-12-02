@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.asList;
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 @Service
@@ -25,7 +26,7 @@ public class DexiService {
 
     private final MeterRegistry meterRegistry;
     private final DexiConnector dexiConnector;
-    private DexiAnnonseFangstService annonseFangstService;
+    private final DexiAnnonseFangstService annonseFangstService;
 
     @Inject
     public DexiService(
@@ -58,12 +59,11 @@ public class DexiService {
                 received += results.getReceived();
                 saved += results.getSaved();
             } catch (Exception e) {
-               LOG.error("Failed to get entries from robot " + currentRobotName, e);
+                LOG.error("Failed to get entries from robot " + currentRobotName, e);
 
-                meterRegistry.gauge(
-                        ROBOTS_FAILED_METRIC,
-                        Arrays.asList(Tag.of("jobId", configuration.getJobId()), Tag.of("robotName", currentRobotName)),
-                        1);
+                meterRegistry.counter(ROBOTS_FAILED_METRIC, asList(
+                        Tag.of("jobId", configuration.getJobId()),
+                        Tag.of("robotName", currentRobotName))).increment();
             }
         }
 
@@ -77,12 +77,12 @@ public class DexiService {
 
         List<Map<String, String>> dexiResult = dexiConnector.getLatestResultForJobID(id);
         List<Map<String, String>> nonErrorResult = dexiResult.stream()
-                .filter(map -> !(map.containsKey("error") && map.get("error")!= null))
+                .filter(map -> !(map.containsKey("error") && map.get("error") != null))
                 .collect(Collectors.toList());
 
-        if(nonErrorResult.isEmpty()){
+        if (nonErrorResult.isEmpty()) {
             throw new IOException("Robot " + robotName + " returned an error response");
-        } else if (nonErrorResult.size() < dexiResult.size()){
+        } else if (nonErrorResult.size() < dexiResult.size()) {
             LOG.warn("There was an error among the results for robot {}: {}", robotName);
         }
 
@@ -96,21 +96,15 @@ public class DexiService {
         LOG.info("Retrieved {} ads, {} after filtering empty or null", nonErrorResult.size(), mapped.size());
 
         // Sort results into lists of "New", "Modified", "Stopped" and then persist all lists in one transaction.
-        AnnonseResult annonseResult =  annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
+        AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
 
-        meterRegistry.gauge(
-                ADS_COLLECTED_DEXI_TOTAL,
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
-                mapped.size());
-        meterRegistry.gauge(
-                ADS_COLLECTED_DEXI_NEW,
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
-                annonseResult.getNewList().size());
-        meterRegistry.gauge(
-                ADS_COLLECTED_DEXI_STOPPED,
-                Arrays.asList(Tag.of("jobId", id), Tag.of("robotName", robotName)),
-                annonseResult.getStopList().size());
+        meterRegistry.counter(ADS_COLLECTED_DEXI, asList(
+                Tag.of("jobId", id),
+                Tag.of("robotName", robotName),
+                Tag.of(ADS_COLLECTED_DEXI_TOTAL, Integer.toString(mapped.size())),
+                Tag.of(ADS_COLLECTED_DEXI_NEW, Integer.toString(annonseResult.getNewList().size())),
+                Tag.of(ADS_COLLECTED_DEXI_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
