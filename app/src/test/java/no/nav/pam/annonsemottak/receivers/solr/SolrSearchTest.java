@@ -25,7 +25,7 @@ public class SolrSearchTest {
         HashMap<String,String> params = new HashMap<>();
         params.put(StillingSolrBeanFieldNames.ARBEIDSGIVERNAVN, "Gjøvik kommune");
         List<StillingSolrBean> stillingSolrBeans = solrService.searchStillinger(params);
-        stillingSolrBeans.stream().forEach(s -> {
+        stillingSolrBeans.forEach(s -> {
             System.out.println(s.getArbeidsgivernavn());
             System.out.println(s.getTittel());
         });

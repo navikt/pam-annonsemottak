@@ -17,7 +17,7 @@ public class ExternalRunApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExternalRunApi.class);
 
-    private ExternalRunService externalRunService;
+    private final ExternalRunService externalRunService;
 
     public ExternalRunApi(ExternalRunService externalRunService) {
         this.externalRunService = externalRunService;

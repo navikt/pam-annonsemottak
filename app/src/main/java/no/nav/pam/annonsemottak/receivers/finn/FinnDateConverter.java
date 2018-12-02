@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  */
 class FinnDateConverter {
 
-    public static final String FINN_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss[.SSS]Z";
+    private static final String FINN_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss[.SSS]Z";
 
 
     public static LocalDateTime convertDate(String date) {

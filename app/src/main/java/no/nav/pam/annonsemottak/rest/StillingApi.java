@@ -115,12 +115,10 @@ public class StillingApi {
 
             Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
 
-            if (stilling.isPresent()) {
-                return ResponseEntity
-                        .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling.get())));
-            }
+            return stilling.<ResponseEntity<BasicPayload>>map(s -> ResponseEntity
+                    .ok(new EtaggedPayload<>(StillingPayload.fromStilling(s))))
+                    .orElseGet(() -> ResponseEntity.status(NOT_FOUND).build());
 
-            return ResponseEntity.status(NOT_FOUND).build();
         } catch (Exception e) {
             LOG.error("Failed to get Stilling with UUID {}", uuid, e);
             return ResponseEntity
@@ -179,12 +177,11 @@ public class StillingApi {
                                                           @PathVariable("externalid") String externalid) {
         try {
             Optional<Stilling> stilling = stillingRepository.findByKildeAndMediumAndExternalId(kilde, medium, externalid);
-            if (stilling.isPresent()) {
-                return ResponseEntity
-                        .ok(new EtaggedPayload<>(StillingPayload.fromStilling(stilling.get())));
-            }
 
-            return ResponseEntity.status(NOT_FOUND).build();
+            return stilling.<ResponseEntity>map(s -> ResponseEntity
+                    .ok(new EtaggedPayload<>(StillingPayload.fromStilling(s))))
+                    .orElseGet(() -> ResponseEntity.status(NOT_FOUND).build());
+
         } catch (Exception e) {
             LOG.error("Failed to get Stilling {} {} {} ", kilde, medium, externalid);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR)

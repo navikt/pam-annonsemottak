@@ -80,7 +80,7 @@ public class SolrFetchService {
         List<Stilling> changedStillinger = new ArrayList();
         List<Stilling> unchangedStillinger = new ArrayList<>();
 
-        allStillingerFromSolr.stream().forEach(s -> {
+        allStillingerFromSolr.forEach(s -> {
             Optional<Stilling> inDb = stillingRepository.findByKildeAndMediumAndExternalId(
                     s.getKilde(),
                     s.getMedium(),
@@ -167,7 +167,7 @@ public class SolrFetchService {
         return solrQuery;
     }
 
-    static boolean notPamDirStillinger(StillingSolrBean b) {
+    private static boolean notPamDirStillinger(StillingSolrBean b) {
         return b.getStillingsbeskrivelse() == null || !b.getStillingsbeskrivelse().contains(PAM_DIR_ADTEXT_COOKIE);
     }
 

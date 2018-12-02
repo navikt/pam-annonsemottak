@@ -7,7 +7,7 @@ public enum Medium {
     AMEDIA("AMEDIA"),
     UNKNOWN("UNKNOWN");
 
-    private String kilde;
+    private final String kilde;
 
     Medium(String kilde) {
         this.kilde = kilde;

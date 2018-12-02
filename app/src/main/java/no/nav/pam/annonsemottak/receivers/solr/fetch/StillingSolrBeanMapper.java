@@ -21,7 +21,7 @@ import static no.nav.pam.annonsemottak.receivers.common.PropertyNames.*;
 
 class StillingSolrBeanMapper {
 
-    public static final Logger LOG = LoggerFactory.getLogger(StillingSolrBeanMapper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StillingSolrBeanMapper.class);
 
     private static final Pattern EMAIL_PATTERN;
 

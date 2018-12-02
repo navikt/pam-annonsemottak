@@ -11,7 +11,7 @@ public class Kommentarer implements Serializable {
         return kommentarer != null ? Optional.of(new Kommentarer(kommentarer)) : empty();
     }
 
-    static Optional<Kommentarer> empty() {
+    private static Optional<Kommentarer> empty() {
         return Optional.empty();
     }
 

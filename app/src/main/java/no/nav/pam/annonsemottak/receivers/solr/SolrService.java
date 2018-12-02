@@ -28,7 +28,7 @@ public class SolrService {
     private SolrQuery buildSolrQuery(Map<String, String> parameters) {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-        parameters.keySet().stream().forEach(key -> solrQuery.addFilterQuery(""+key+":\""+parameters.get(key)+"\""));
+        parameters.keySet().forEach(key -> solrQuery.addFilterQuery(""+key+":\""+parameters.get(key)+"\""));
         solrQuery.setStart(0);
         solrQuery.setFacet(false);
         solrQuery.setRows(5);

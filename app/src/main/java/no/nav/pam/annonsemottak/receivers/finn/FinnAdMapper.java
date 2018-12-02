@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class FinnAdMapper {
+class FinnAdMapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinnAdMapper.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();

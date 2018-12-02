@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.enkelStilling;
 import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.stilling;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
@@ -30,8 +31,7 @@ public class DatabaseScriptsTest {
     public void sanityTest() {
         Map<String, String> keyValueSet = new HashMap<>();
         keyValueSet.put("aKey", "aValue");
-        Stilling stilling = stilling()
-                .enkelStilling()
+        Stilling stilling = enkelStilling()
                 .properties(keyValueSet)
                 .build();
         stilling = stillingRepository.save(stilling);

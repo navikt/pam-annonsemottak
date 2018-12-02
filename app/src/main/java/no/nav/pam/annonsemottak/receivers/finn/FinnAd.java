@@ -422,7 +422,7 @@ public class FinnAd {
         private final String latitude;
         private final String longitude;
 
-        public GeoLocation(String accuracy, String latitude, String longitude) {
+        GeoLocation(String accuracy, String latitude, String longitude) {
             this.accuracy = accuracy;
             this.latitude = latitude;
             this.longitude = longitude;
@@ -518,7 +518,7 @@ public class FinnAd {
         private final String phone_mobile;
         private final String title;
 
-        public Contact(String name, String email, String phone_work, String phone_mobile, String title) {
+        Contact(String name, String email, String phone_work, String phone_mobile, String title) {
             this.name = name;
             this.email = email;
             this.phone_work = phone_work;

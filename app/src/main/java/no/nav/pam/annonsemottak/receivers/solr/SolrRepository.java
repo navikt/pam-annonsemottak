@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public class SolrRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolrRepository.class);
-    private SolrServer solrServer;
+    private final SolrServer solrServer;
 
     @Inject
     public SolrRepository(SolrServer solrServer) {

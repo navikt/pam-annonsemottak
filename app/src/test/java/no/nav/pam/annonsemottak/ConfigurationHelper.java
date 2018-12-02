@@ -17,7 +17,7 @@ public class ConfigurationHelper {
             System.getProperty("user.home") + File.separator + "stilling.properties",
             System.getProperty("user.home") + File.separator + "database.properties"
     };
-    private static Logger LOG = LoggerFactory.getLogger(ConfigurationHelper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ConfigurationHelper.class);
 
     static void setConfiguration()
             throws IOException {

@@ -146,8 +146,7 @@ public class Stilling extends ModelEntity {
     }
 
     private String hash() {
-        Map<String, String> nonIdentifyingProperties = new HashMap<>();
-        nonIdentifyingProperties.putAll(properties);
+        Map<String, String> nonIdentifyingProperties = new HashMap<>(properties);
         nonIdentifyingProperties.keySet().removeAll(NONIDENTIFYING_KEYS);
 
         String input = new StringBuilder()

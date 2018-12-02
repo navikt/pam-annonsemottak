@@ -7,7 +7,7 @@ public enum Kilde {
     AMEDIA("AMEDIA"),
     STILLINGSOLR("stillingsolr");
 
-    private String kilde;
+    private final String kilde;
 
     Kilde(String kilde) {
         this.kilde = kilde;

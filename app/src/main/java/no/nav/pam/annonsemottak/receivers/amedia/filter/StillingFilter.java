@@ -12,7 +12,7 @@ import java.util.List;
  */
 abstract class StillingFilter {
 
-    Logger LOG = LoggerFactory.getLogger(StillingFilter.class);
+    final Logger LOG = LoggerFactory.getLogger(StillingFilter.class);
 
 
     protected abstract List<Stilling> doFilter(List<Stilling> stillinger);
@@ -34,7 +34,6 @@ abstract class StillingFilter {
                 .forEach(s ->
                         LOG.info("Stilling filtrert fra Amedia: {}", formatLog(s, aarsak))
                 );
-
     }
 
     private String formatLog(Stilling stilling, FilterAarsak aarsak) {

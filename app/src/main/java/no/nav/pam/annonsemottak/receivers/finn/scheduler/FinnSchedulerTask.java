@@ -18,7 +18,7 @@ public class FinnSchedulerTask {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinnSchedulerTask.class);
 
-    private FinnService finnService;
+    private final FinnService finnService;
 
     @Inject
     public FinnSchedulerTask(FinnService finnService) {

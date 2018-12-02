@@ -16,7 +16,7 @@ import javax.inject.Inject;
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 public class AmediaSchedulerTask {
 
-    public static final String CRON = "0 0 6 * * *";
+    private static final String CRON = "0 0 6 * * *";
     private static final Logger LOG = LoggerFactory.getLogger(AmediaSchedulerTask.class);
 
     private final AmediaService amediaService;

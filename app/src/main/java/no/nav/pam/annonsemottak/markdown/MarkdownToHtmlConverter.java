@@ -12,7 +12,7 @@ import com.vladsch.flexmark.util.options.MutableDataSet;
 public class MarkdownToHtmlConverter {
 
     // Using a standard option profile for markdown.
-    private static DataHolder options = new MutableDataSet()
+    private static final DataHolder options = new MutableDataSet()
             .setFrom(ParserEmulationProfile.COMMONMARK);
 
     public static String parse(String markdown) {

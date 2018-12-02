@@ -27,16 +27,13 @@ public class DexiServiceTest {
 
     private DexiService dexiService;
     private DexiConnector mockedDexiConnector;
-    private StillingRepository mockedStillingRepository;
-    private DexiAnnonseFangstService mockedAnnonseFangstService;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Before
     public void init() throws IOException {
         //Instantiate mocks
-        mockedStillingRepository = mock(StillingRepository.class);
         mockedDexiConnector = mock(DexiConnector.class);
-        mockedAnnonseFangstService = mock(DexiAnnonseFangstService.class);
+        DexiAnnonseFangstService mockedAnnonseFangstService = mock(DexiAnnonseFangstService.class);
 
         //TODO: Improve this mock so the results are better
         AnnonseResult annonseResult = new AnnonseResult();

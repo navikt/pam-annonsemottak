@@ -21,7 +21,7 @@ import java.util.Base64;
 @Configurable
 public class EtaggedPayload<T> extends BasicPayload<T> {
 
-    private static Logger LOG = LoggerFactory.getLogger(EtaggedPayload.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EtaggedPayload.class);
 
     @Qualifier("jacksonMapper")
     @Autowired
