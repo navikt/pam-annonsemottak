@@ -1,9 +1,9 @@
 package no.nav.pam.annonsemottak.app.rest;
 
-import no.nav.pam.annonsemottak.annonsemottak.amedia.AmediaConnector;
-import no.nav.pam.annonsemottak.annonsemottak.dexi.DexiConnector;
-import no.nav.pam.annonsemottak.annonsemottak.finn.FinnConnector;
-import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
+import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
+import no.nav.pam.annonsemottak.receivers.dexi.DexiConnector;
+import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
+import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

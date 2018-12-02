@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import no.nav.pam.annonsemottak.annonsemottak.GenericDateParser;
+import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

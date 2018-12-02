@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import no.nav.pam.annonsemottak.MapOperations;
-
 import java.util.Map;
 import java.util.Optional;
 

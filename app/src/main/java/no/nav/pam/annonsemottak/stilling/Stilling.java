@@ -2,8 +2,7 @@ package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.hash.Hashing;
 import io.micrometer.core.instrument.Metrics;
-import no.nav.pam.annonsemottak.ModelEntity;
-import no.nav.pam.annonsemottak.annonsemottak.Kilde;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
 

@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.feed;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.api.PathDefinition;
+import no.nav.pam.annonsemottak.PathDefinition;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
