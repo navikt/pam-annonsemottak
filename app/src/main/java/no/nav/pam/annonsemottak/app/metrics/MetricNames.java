@@ -26,9 +26,10 @@ public class MetricNames {
     public static final String ADS_COLLECTED_FEED_OK = ADS_COLLECTED_FEED + ".ok";
     public static final String ADS_COLLECTED_FEED_FAILED = ADS_COLLECTED_FEED + ".fail";
 
-    public static final String ADS_COLLECTED_SOLR_NEW = ADS_COLLECTED + ".solr.new";
-    public static final String ADS_COLLECTED_SOLR_CHANGED = ADS_COLLECTED + ".solr.changed";
-    public static final String ADS_COLLECTED_SOLR_TOTAL = ADS_COLLECTED + ".solr.total";
+    public static final String ADS_COLLECTED_SOLR = ADS_COLLECTED + ".solr";
+    public static final String ADS_COLLECTED_SOLR_NEW = ADS_COLLECTED_SOLR + ".new";
+    public static final String ADS_COLLECTED_SOLR_CHANGED = ADS_COLLECTED_SOLR + ".changed";
+    public static final String ADS_COLLECTED_SOLR_TOTAL = ADS_COLLECTED_SOLR + ".total";
     public static final String ADS_DEACTIVATED_SOLR = "annonsemottak.ads.deactivated.solr";
 
 

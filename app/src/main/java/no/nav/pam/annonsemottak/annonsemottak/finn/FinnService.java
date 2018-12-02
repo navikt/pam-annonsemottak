@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.finn;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
@@ -23,6 +24,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.asList;
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 /**
@@ -124,12 +126,12 @@ public class FinnService {
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        meterRegistry.gauge(ADS_COLLECTED_FINN_TOTAL, searchResult.size());
-        //"new", annonseResult.getNewList().size(),
-        meterRegistry.gauge(ADS_COLLECTED_FINN_NEW, rest.size());
-        meterRegistry.gauge(ADS_COLLECTED_FINN_REJECTED, annonseResult.getModifyList().size() - rest.size());
-        meterRegistry.gauge(ADS_COLLECTED_FINN_CHANGED, annonseResult.getModifyList().size());
-        meterRegistry.gauge(ADS_COLLECTED_FINN_STOPPED, annonseResult.getStopList().size());
+        meterRegistry.counter(ADS_COLLECTED_FINN, asList(
+                Tag.of(ADS_COLLECTED_FINN_TOTAL, Integer.toString(searchResult.size())),
+                Tag.of(ADS_COLLECTED_FINN_NEW, Integer.toString(rest.size())),
+                Tag.of(ADS_COLLECTED_FINN_REJECTED, Integer.toString(annonseResult.getModifyList().size() - rest.size())),
+                Tag.of(ADS_COLLECTED_FINN_CHANGED, Integer.toString(annonseResult.getModifyList().size())),
+                Tag.of(ADS_COLLECTED_FINN_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

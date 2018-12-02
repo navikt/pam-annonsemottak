@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.solr.fetch;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
 import no.nav.pam.annonsemottak.annonsemottak.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -102,9 +104,10 @@ public class SolrFetchService {
         stillingRepository.saveAll(newStillinger);
         stillingRepository.saveAll(changedStillinger);
 
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_TOTAL, allStillingerFromSolr.size());
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_NEW, newStillinger.size());
-        meterRegistry.gauge(ADS_COLLECTED_SOLR_CHANGED, changedStillinger.size());
+        meterRegistry.counter(ADS_COLLECTED_SOLR, Arrays.asList(
+                Tag.of(ADS_COLLECTED_SOLR_TOTAL, Integer.toString(allStillingerFromSolr.size())),
+                Tag.of(ADS_COLLECTED_SOLR_NEW, Integer.toString(newStillinger.size())),
+                Tag.of(ADS_COLLECTED_SOLR_CHANGED, Integer.toString(changedStillinger.size())))).increment();
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
                 newStillinger.size(), changedStillinger.size(), allStillingerFromSolr.size());

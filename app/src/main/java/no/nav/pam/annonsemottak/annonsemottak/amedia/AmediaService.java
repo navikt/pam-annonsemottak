@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.annonsemottak.amedia;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.annonsemottak.Kilde;
 import no.nav.pam.annonsemottak.annonsemottak.Medium;
 import no.nav.pam.annonsemottak.annonsemottak.amedia.filter.StillingFilterchain;
@@ -18,6 +19,7 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 /**
@@ -51,17 +53,16 @@ public class AmediaService {
 
         LOG.info("Starting amedia fetch");
 
-        ExternalRun externalRun = externalRunService
-            .findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
+        ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
 
         List<String> alleStillingIDerFraAmedia = AmediaResponseMapper.mapEksternIder(
-            amediaConnector.hentData(AmediaDateConverter.getInitialDate(), false, 10000));
+                amediaConnector.hentData(AmediaDateConverter.getInitialDate(), false, 10000));
 
         List<Stilling> returnerteStillingerFraAmedia = hentAmediaData(getLastRun(externalRun));
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
 
         List<Stilling> filtrert = new StillingFilterchain()
-            .doFilter(returnerteStillingerFraAmedia);
+                .doFilter(returnerteStillingerFraAmedia);
 
         return save(start, externalRun, alleStillingIDerFraAmedia, filtrert);
     }
@@ -71,11 +72,11 @@ public class AmediaService {
      * gjenbrukes også av finn når den ekstra filtreringen(randomSelection) tas bort. Bør også kunne
      * brukes av andre mottak.
      *
-     * @param start starttidspunkt for kall som henter og prosseserer et mottak.
+     * @param start       starttidspunkt for kall som henter og prosseserer et mottak.
      * @param externalRun inneholder kjøretidspunkt for en annonsemottaksjobb
      */
     private ResultsOnSave save(long start, ExternalRun externalRun,
-        List<String> alleStillingIDer, List<Stilling> returnerteStillinger) {
+                               List<String> alleStillingIDer, List<Stilling> returnerteStillinger) {
 
         AnnonseResult annonseResultat = saveAnnonseresultat(alleStillingIDer, returnerteStillinger);
 
@@ -83,38 +84,40 @@ public class AmediaService {
 
         addMetricsCounters(alleStillingIDer, annonseResultat);
 
-        return new ResultsOnSave(returnerteStillinger.size(), annonseResultat.getNewList().size(),
-            System.currentTimeMillis() - start);
+        return new ResultsOnSave(
+                returnerteStillinger.size(),
+                annonseResultat.getNewList().size(),
+                System.currentTimeMillis() - start);
     }
 
     private void saveLastRun(ExternalRun externalRun, List<Stilling> returnerteStillinger) {
         returnerteStillinger.stream()
-            .map(Stilling::getSystemModifiedDate)
-            .max(LocalDateTime::compareTo)
-            .ifPresent(dateTime -> {
-                ExternalRun er = new ExternalRun(
-                    externalRun != null ? externalRun.getId() : null,
-                    Kilde.AMEDIA.toString(),
-                    Medium.AMEDIA.toString(),
-                    dateTime);
-                externalRunService.save(er);
-            });
+                .map(Stilling::getSystemModifiedDate)
+                .max(LocalDateTime::compareTo)
+                .ifPresent(dateTime -> {
+                    ExternalRun er = new ExternalRun(
+                            externalRun != null ? externalRun.getId() : null,
+                            Kilde.AMEDIA.toString(),
+                            Medium.AMEDIA.toString(),
+                            dateTime);
+                    externalRunService.save(er);
+                });
     }
 
     private void addMetricsCounters(List<String> alleStillingIDer, AnnonseResult annonseResultat) {
-        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_TOTAL, alleStillingIDer.size());
-        //"new", annonseResult.getNewList().size(),
-        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_NEW, annonseResultat.getNewList().size());
-        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_REJECTED, annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size());
-        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_CHANGED, annonseResultat.getModifyList().size());
-        meterRegistry.gauge(ADS_COLLECTED_AMEDIA_STOPPED, annonseResultat.getStopList().size());
+        meterRegistry.counter(ADS_COLLECTED_AMEDIA, asList(
+                Tag.of(ADS_COLLECTED_AMEDIA_TOTAL, Integer.toString(alleStillingIDer.size())),
+                Tag.of(ADS_COLLECTED_AMEDIA_NEW, Integer.toString(annonseResultat.getNewList().size())),
+                Tag.of(ADS_COLLECTED_AMEDIA_REJECTED, Integer.toString(annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size())),
+                Tag.of(ADS_COLLECTED_AMEDIA_CHANGED, Integer.toString(annonseResultat.getModifyList().size())),
+                Tag.of(ADS_COLLECTED_AMEDIA_STOPPED, Integer.toString(annonseResultat.getStopList().size())))).increment();
     }
 
     private AnnonseResult saveAnnonseresultat(List<String> alleStillingIDerFraAmedia,
-        List<Stilling> returnerteStillingerFraAmedia) {
+                                              List<Stilling> returnerteStillingerFraAmedia) {
         AnnonseResult annonseResult = annonseFangstService
-            .retrieveAnnonseLists(returnerteStillingerFraAmedia, alleStillingIDerFraAmedia,
-                Kilde.AMEDIA.toString(), Medium.AMEDIA.toString());
+                .retrieveAnnonseLists(returnerteStillingerFraAmedia, alleStillingIDerFraAmedia,
+                        Kilde.AMEDIA.toString(), Medium.AMEDIA.toString());
         annonseFangstService.handleDuplicates(annonseResult);
         annonseFangstService.saveAll(annonseResult);
 
@@ -135,7 +138,7 @@ public class AmediaService {
 
     private List<Stilling> hentAmediaData(LocalDateTime sisteModifiserteDato) {
         return AmediaResponseMapper
-            .mapResponse(amediaConnector.hentData(sisteModifiserteDato, true, MAXANTALl_TREFF));
+                .mapResponse(amediaConnector.hentData(sisteModifiserteDato, true, MAXANTALl_TREFF));
     }
 
 
