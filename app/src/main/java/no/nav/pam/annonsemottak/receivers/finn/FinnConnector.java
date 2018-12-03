@@ -6,6 +6,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -21,6 +23,7 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class FinnConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinnConnector.class);
@@ -30,7 +33,10 @@ public class FinnConnector {
     private final String apiKey;
     private final int politeRequestDelayInMillis;
 
-    public FinnConnector(HttpClientProxy proxy, String serviceDocumentUrl, String apiKey, int politeRequestDelayInMillis) {
+    public FinnConnector(HttpClientProxy proxy,
+                         @Value("${finn.url}") String serviceDocumentUrl,
+                         @Value("${finn.api.password}") String apiKey,
+                         @Value("${finn.polite.delay.millis:200}") int politeRequestDelayInMillis) {
         this.proxy = proxy;
         this.serviceDocumentUrl = serviceDocumentUrl;
         this.apiKey = apiKey;

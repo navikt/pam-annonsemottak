@@ -8,13 +8,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-
+@Component
 public class PolarisConnector {
     private static final Logger LOG = LoggerFactory.getLogger(PolarisConnector.class);
 
@@ -23,10 +26,13 @@ public class PolarisConnector {
     private final String apiEndpoint;
     private final HttpClientProxy proxy;
 
-    public PolarisConnector(HttpClientProxy proxy, String apiEndpoint, ObjectMapper objectMapper) {
+    @Autowired
+    public PolarisConnector(HttpClientProxy proxy,
+                            @Value("${polaris.url}")String apiEndpoint,
+                            ObjectMapper jacksonMapper) {
         this.proxy = proxy;
         this.apiEndpoint = apiEndpoint;
-        this.objectMapper = objectMapper;
+        this.objectMapper = jacksonMapper;
     }
 
     public boolean isPingSuccessful() {
