@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.hash.Hashing;
 import io.micrometer.core.instrument.Metrics;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
@@ -309,7 +310,8 @@ public class Stilling extends ModelEntity {
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
 
-        Metrics.gauge(AD_DUPLICATE_METRIC + "." + this.kilde, 1);
+        Metrics.counter(AD_DUPLICATE_METRIC, Arrays.asList(
+                Tag.of(AD_DUPLICATE_METRIC + "." + this.kilde, Integer.toString(1)))).increment();
     }
 
     public Stilling merge(Stilling stilling) {

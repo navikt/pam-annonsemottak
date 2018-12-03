@@ -33,13 +33,14 @@ public class MetricNames {
     public static final String ADS_COLLECTED_SOLR_NEW = ADS_COLLECTED_SOLR + ".new";
     public static final String ADS_COLLECTED_SOLR_CHANGED = ADS_COLLECTED_SOLR + ".changed";
     public static final String ADS_COLLECTED_SOLR_TOTAL = ADS_COLLECTED_SOLR + ".total";
-    public static final String ADS_DEACTIVATED_SOLR = "annonsemottak.ads.deactivated.solr";
 
+    public static final String ADS_DEACTIVATED = "annonsemottak.ads.deactivated.v2";
+    public static final String ADS_DEACTIVATED_SOLR = ADS_DEACTIVATED + ".solr";
 
     public static final String ROBOTS_FAILED_METRIC = "annonsemottak.dexi.robots.failed";
 
     public static final String STATUS_CHANGED_METRIC = "annonsemottak.ad.status.changed";
 
-    public static final String AD_DUPLICATE_METRIC = "annonsemottak.ad.duplicate";
+    public static final String AD_DUPLICATE_METRIC = "annonsemottak.ad.v2.duplicate";
 
 }

@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.solr.fetch;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -11,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_DEACTIVATED;
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_DEACTIVATED_SOLR;
 
 @Service
@@ -45,7 +48,8 @@ public class StopSolrStillingerService {
 
         stillingRepository.saveAll(stoppedAds);
 
-        meterRegistry.counter(ADS_DEACTIVATED_SOLR, Integer.toString(stoppedAds.size())).increment();
+        meterRegistry.counter(ADS_DEACTIVATED, Arrays.asList(
+                Tag.of(ADS_DEACTIVATED_SOLR, Integer.toString(stoppedAds.size())))).increment();
 
         LOG.info("Stopped {} inactive ads from solr", stoppedAds.size());
     }
