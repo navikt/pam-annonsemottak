@@ -54,7 +54,9 @@ public class StatusController {
         if (isSolrOK()
                 && isDexiOK()
                 && isAmediaOK()
-                && isFinnOK()) {
+                && isFinnOK()
+                && isPolarisOK()
+                ) {
             return "OK";
         }
 
