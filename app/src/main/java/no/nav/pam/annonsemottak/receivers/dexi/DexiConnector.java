@@ -6,6 +6,9 @@ import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class DexiConnector {
 
     private final ObjectMapper objectMapper;
@@ -27,8 +31,13 @@ public class DexiConnector {
     private final HttpClientProxy proxy;
     private final String md5;
 
-    public DexiConnector(HttpClientProxy proxy, String dexiAccount, String dexiApikey, String dexiEndpoint, ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    @Autowired
+    public DexiConnector(HttpClientProxy proxy,
+                         @Value("${dexi.api.username}") String dexiAccount,
+                         @Value("${dexi.api.password}") String dexiApikey,
+                         @Value("${dexi.url}") String dexiEndpoint,
+                         ObjectMapper jacksonMapper) {
+        this.objectMapper = jacksonMapper;
         this.proxy = proxy;
         this.DEXI_ACCOUNT_ID = dexiAccount;
         this.DEXI_API_KEY = dexiApikey;
