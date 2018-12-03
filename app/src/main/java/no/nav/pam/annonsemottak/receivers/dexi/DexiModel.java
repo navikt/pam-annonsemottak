@@ -84,15 +84,15 @@ class DexiModel {
 
     private static boolean hasIncompleteInformation(Map<String, String> map) {
         if (StringUtils.isBlank(map.get(ANNONSETITTEL))) {
-            LOG.error("Title was empty for ad with ID {} at {}", map.get(EXTERNALID), map.get(ANNONSEURL));
+            LOG.warn("Title was empty for ad with ID {} at {}", map.get(EXTERNALID), map.get(ANNONSEURL));
             return true;
         }
         if (StringUtils.isBlank(map.get(ANNONSETEKST))) {
-            LOG.error("Text was empty for ad with ID {}at {}", map.get(EXTERNALID), map.get(ANNONSEURL));
+            LOG.warn("Text was empty for ad with ID {}at {}", map.get(EXTERNALID), map.get(ANNONSEURL));
             return true;
         }
         if (StringUtils.isBlank(map.get(ARBEIDSGIVER))) {
-            LOG.error("Employer was empty for ad with ID {}", map.get(EXTERNALID));
+            LOG.warn("Employer was empty for ad with ID {}", map.get(EXTERNALID));
             return true;
         }
         return false;
