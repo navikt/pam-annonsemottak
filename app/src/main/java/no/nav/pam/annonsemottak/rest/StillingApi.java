@@ -76,39 +76,6 @@ public class StillingApi {
         }
     }
 
-    // NOTE: No HTML-to-Markdown conversion in this case; values assumed to be non-HTML from source.
-    private static Stilling createEntityFromDto(StillingDTO ad) {
-
-        Map<String, String> nonEmptyProperties = new HashMap<>(ad.getProperties().size());
-        nonEmptyProperties.putAll(
-                ad
-                        .getProperties()
-                        .entrySet()
-                        .stream()
-                        .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-        );
-        nonEmptyProperties.put(PropertyNames.EMPLOYER_ORGNR, ad.getOrgNummer());
-        nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
-
-        Stilling s = new Stilling(
-                ad.getUuid(),
-                ad.getEmployerName(),
-                ad.getEmployerDescription(),
-                ad.getJobTitle(),
-                ad.getJobLocation(),
-                ad.getJobDescription(),
-                ad.getApplicationDeadline(),
-                ad.getKilde(),
-                ad.getMedium(),
-                ad.getSistePubliseringsDato(),
-                nonEmptyProperties
-        );
-
-        s.setPublished(ad.getPubliserFra());
-        return s;
-    }
-
     @GetMapping(value = "/{uuid}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<BasicPayload> getAnnonse(@PathVariable("uuid") String uuid) {
         try {
@@ -219,5 +186,38 @@ public class StillingApi {
             LOG.error("Failed to create ad with incoming UUID {}", null, e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build(); // HTTP 500.
         }
+    }
+
+    // NOTE: No HTML-to-Markdown conversion in this case; values assumed to be non-HTML from source.
+    private static Stilling createEntityFromDto(StillingDTO ad) {
+
+        Map<String, String> nonEmptyProperties = new HashMap<>(ad.getProperties().size());
+        nonEmptyProperties.putAll(
+                ad
+                        .getProperties()
+                        .entrySet()
+                        .stream()
+                        .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+        );
+        nonEmptyProperties.put(PropertyNames.EMPLOYER_ORGNR, ad.getOrgNummer());
+        nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
+
+        Stilling s = new Stilling(
+                ad.getUuid(),
+                ad.getEmployerName(),
+                ad.getEmployerDescription(),
+                ad.getJobTitle(),
+                ad.getJobLocation(),
+                ad.getJobDescription(),
+                ad.getApplicationDeadline(),
+                ad.getKilde(),
+                ad.getMedium(),
+                ad.getSistePubliseringsDato(),
+                nonEmptyProperties
+        );
+
+        s.setPublished(ad.getPubliserFra());
+        return s;
     }
 }
