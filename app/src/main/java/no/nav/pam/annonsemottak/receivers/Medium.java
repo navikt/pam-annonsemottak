@@ -5,6 +5,7 @@ public enum Medium {
     FINN("FINN"),
     DEXI("DEXI"),
     AMEDIA("AMEDIA"),
+    POLARIS("POLARIS"),
     UNKNOWN("UNKNOWN");
 
     private final String kilde;

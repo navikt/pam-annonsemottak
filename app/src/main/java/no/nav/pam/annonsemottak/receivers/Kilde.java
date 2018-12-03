@@ -5,7 +5,8 @@ public enum Kilde {
     FINN("FINN"),
     DEXI("webcrawl"),
     AMEDIA("AMEDIA"),
-    STILLINGSOLR("stillingsolr");
+    STILLINGSOLR("stillingsolr"),
+    POLARIS("POLARIS");
 
     private final String kilde;
 

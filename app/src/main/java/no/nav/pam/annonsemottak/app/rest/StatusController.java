@@ -1,8 +1,11 @@
 package no.nav.pam.annonsemottak.app.rest;
 
+
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.receivers.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
+import no.nav.pam.annonsemottak.receivers.polaris.PolarisConnector;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +33,9 @@ public class StatusController {
 
     @Autowired
     private AmediaConnector amediaConnector;
+
+    @Autowired
+    private PolarisConnector polarisConnector;
 
 
     @GetMapping(path = "/isAlive")
@@ -59,10 +65,11 @@ public class StatusController {
     public ResponseEntity pingSourcesAndGetStatus() {
 
         Map<String, String> statusMap = new HashMap();
-        statusMap.put("Stillingsolr", statusToString(isSolrOK()));
-        statusMap.put("DEXI", statusToString(isDexiOK()));
-        statusMap.put("Finn", statusToString(isFinnOK()));
-        statusMap.put("Amedia", statusToString(isAmediaOK()));
+        statusMap.put(Kilde.STILLINGSOLR.value(), statusToString(isSolrOK()));
+        statusMap.put(Kilde.DEXI.value(), statusToString(isDexiOK()));
+        statusMap.put(Kilde.FINN.value(), statusToString(isFinnOK()));
+        statusMap.put(Kilde.AMEDIA.value(), statusToString(isAmediaOK()));
+        statusMap.put(Kilde.POLARIS.value(), statusToString(isPolarisOK()));
 
         return ResponseEntity.ok(statusMap);
     }
@@ -86,4 +93,6 @@ public class StatusController {
     private boolean isAmediaOK() {
         return amediaConnector.isPingSuccessful();
     }
+
+    private boolean isPolarisOK() { return polarisConnector.isPingSuccessful(); }
 }
