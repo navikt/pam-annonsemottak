@@ -10,7 +10,7 @@ public class Arbeidsgiver {
         return arbeidsgiver != null ? Optional.of(new Arbeidsgiver(arbeidsgiver)) : empty();
     }
 
-    static Optional<Arbeidsgiver> empty() {
+    private static Optional<Arbeidsgiver> empty() {
         return Optional.empty();
     }
 

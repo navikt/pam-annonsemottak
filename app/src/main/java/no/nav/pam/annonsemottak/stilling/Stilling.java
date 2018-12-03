@@ -2,7 +2,7 @@ package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.hash.Hashing;
 import io.micrometer.core.instrument.Metrics;
-import no.nav.pam.annonsemottak.ModelEntity;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
 
@@ -63,7 +63,7 @@ public class Stilling extends ModelEntity {
     private String dueDate;
     private String url;
     private String externalId;
-    private LocalDateTime published = null;
+    private LocalDateTime published = LocalDateTime.now();
     private LocalDateTime expires = LocalDateTime.now().plusDays(10);
 
     @Enumerated(EnumType.STRING)
@@ -146,8 +146,7 @@ public class Stilling extends ModelEntity {
     }
 
     private String hash() {
-        Map<String, String> nonIdentifyingProperties = new HashMap<>();
-        nonIdentifyingProperties.putAll(properties);
+        Map<String, String> nonIdentifyingProperties = new HashMap<>(properties);
         nonIdentifyingProperties.keySet().removeAll(NONIDENTIFYING_KEYS);
 
         String input = new StringBuilder()
@@ -323,6 +322,10 @@ public class Stilling extends ModelEntity {
         this.setId(stilling.getId());
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
+
+        if(!this.getKilde().equals(Kilde.SBL.value())){
+            this.setPublished(stilling.getPublished());
+        }
 
         return this;
     }

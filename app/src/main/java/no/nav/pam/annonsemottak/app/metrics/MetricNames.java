@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.app.metrics;
 
 public class MetricNames {
-    public static final String ADS_COLLECTED = "annonsemottak.ads.collected";
+    public static final String ADS_COLLECTED = "annonsemottak.ads.collected.v2";
 
     public static final String ADS_COLLECTED_AMEDIA = ADS_COLLECTED + ".amedia";
     public static final String ADS_COLLECTED_AMEDIA_TOTAL = ADS_COLLECTED_AMEDIA + ".total";
@@ -29,13 +29,10 @@ public class MetricNames {
     public static final String ADS_COLLECTED_FINN_REJECTED = ADS_COLLECTED_FINN + ".rejected";
     public static final String ADS_COLLECTED_FINN_CHANGED = ADS_COLLECTED_FINN + ".changed";
 
-    public static final String ADS_COLLECTED_FEED = ADS_COLLECTED + ".feed";
-    public static final String ADS_COLLECTED_FEED_OK = ADS_COLLECTED_FEED + ".ok";
-    public static final String ADS_COLLECTED_FEED_FAILED = ADS_COLLECTED_FEED + ".fail";
-
-    public static final String ADS_COLLECTED_SOLR_NEW = ADS_COLLECTED + ".solr.new";
-    public static final String ADS_COLLECTED_SOLR_CHANGED = ADS_COLLECTED + ".solr.changed";
-    public static final String ADS_COLLECTED_SOLR_TOTAL = ADS_COLLECTED + ".solr.total";
+    public static final String ADS_COLLECTED_SOLR = ADS_COLLECTED + ".solr";
+    public static final String ADS_COLLECTED_SOLR_NEW = ADS_COLLECTED_SOLR + ".new";
+    public static final String ADS_COLLECTED_SOLR_CHANGED = ADS_COLLECTED_SOLR + ".changed";
+    public static final String ADS_COLLECTED_SOLR_TOTAL = ADS_COLLECTED_SOLR + ".total";
     public static final String ADS_DEACTIVATED_SOLR = "annonsemottak.ads.deactivated.solr";
 
 

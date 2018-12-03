@@ -18,8 +18,6 @@ import static org.mockito.Mockito.when;
 
 public class ResetSaksbehandlerTest {
 
-    private ResetSaksbehandlerService service;
-
     @Test
     public void should_reset_old_ads(){
         List<Stilling> ads = new ArrayList<>();
@@ -31,7 +29,7 @@ public class ResetSaksbehandlerTest {
 
         StillingRepository mockedStillingRepository = mock(StillingRepository.class);
         when(mockedStillingRepository.findBySaksbehandlingStatusAndAnnonseStatus(Status.UNDER_ARBEID, AnnonseStatus.AKTIV)).thenReturn(ads);
-        service = new ResetSaksbehandlerService(mockedStillingRepository);
+        ResetSaksbehandlerService service = new ResetSaksbehandlerService(mockedStillingRepository);
 
         List<Stilling> beforeReset = filterStillingWithNoSaksbehandlerAndStatus(ads);
         Assert.assertEquals(1, beforeReset.size());

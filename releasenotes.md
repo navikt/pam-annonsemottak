@@ -1,3 +1,6 @@
+## RELEASE - 0.22.91-b311391
+#### New in this release: 
++ 2018-11-29 [refactor] makes WireMock reusable in other tests
 ## RELEASE - 0.20.82-0b29f32
 #### New in this release: 
 + 2018-11-26 [REFACTORING] Moves scheduler to stilling package.

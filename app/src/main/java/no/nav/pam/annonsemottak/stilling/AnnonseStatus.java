@@ -10,7 +10,7 @@ public enum AnnonseStatus {
     AKTIV(1),
     STOPPET(2);
 
-    private int code;
+    private final int code;
 
     AnnonseStatus(int code) {
         this.code = code;

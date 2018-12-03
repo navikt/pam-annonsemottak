@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.scheduler.deactivate;
 
-import no.nav.pam.annonsemottak.api.PathDefinition;
+import no.nav.pam.annonsemottak.PathDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

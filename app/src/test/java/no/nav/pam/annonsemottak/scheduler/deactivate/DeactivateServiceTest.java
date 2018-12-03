@@ -19,8 +19,6 @@ import static org.mockito.Mockito.when;
 
 public class DeactivateServiceTest {
 
-    private DeactivateService service;
-
     @Test
     public void shouldDeactivateExpired(){
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern( "yyyy.M.dd");
@@ -38,7 +36,7 @@ public class DeactivateServiceTest {
         StillingRepository mockedStillingRepository = mock(StillingRepository.class);
         when(mockedStillingRepository.findByAnnonseStatus(AnnonseStatus.AKTIV)).thenReturn(ads);
 
-        service = new DeactivateService(mockedStillingRepository);
+        DeactivateService service = new DeactivateService(mockedStillingRepository);
 
         service.deactivateExpired();
 
