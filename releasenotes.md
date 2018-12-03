@@ -1,3 +1,10 @@
+## RELEASE - 0.24.98-a2131f4
+#### New in this release: 
++ 2018-12-03 [PAM-2004] Hente data fra Polaris Media
++ 2018-12-02 [REFACTORING] Cleans up code after code inspection.
++ 2018-12-02 [REFACTORING] Extracts config from common into explisit config.
++ 2018-12-02 [REFACTORING] Renamed package names
++ 2018-12-02 [PAM-2186] Replaces use of gauge with counter
 ## RELEASE - 0.22.91-b311391
 #### New in this release: 
 + 2018-11-29 [refactor] makes WireMock reusable in other tests
