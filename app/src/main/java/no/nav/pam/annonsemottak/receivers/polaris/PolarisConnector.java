@@ -1,9 +1,9 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris;
+package no.nav.pam.annonsemottak.receivers.polaris;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
-import no.nav.pam.annonsemottak.annonsemottak.polaris.model.PolarisAd;
+import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 
 public class PolarisConnector {
     private static final Logger LOG = LoggerFactory.getLogger(PolarisConnector.class);

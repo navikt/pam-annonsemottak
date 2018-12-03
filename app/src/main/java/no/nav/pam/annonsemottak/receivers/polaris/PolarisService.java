@@ -1,14 +1,15 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris;
+package no.nav.pam.annonsemottak.receivers.polaris;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.annonsemottak.Kilde;
-import no.nav.pam.annonsemottak.annonsemottak.Medium;
-import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
-import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRun;
-import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
-import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
-import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseResult;
-import no.nav.pam.annonsemottak.annonsemottak.polaris.model.PolarisAd;
+import io.micrometer.core.instrument.Tag;
+import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.Medium;
+import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
+import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
+import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
+import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
+import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
+import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.asList;
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 @Service
@@ -69,11 +71,12 @@ public class PolarisService {
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        meterRegistry.gauge(ADS_COLLECTED_POLARIS_TOTAL, receivedList.size());
-        meterRegistry.gauge(ADS_COLLECTED_POLARIS_NEW, annonseResult.getNewList().size());
-        meterRegistry.gauge(ADS_COLLECTED_POLARIS_REJECTED, annonseResult.getModifyList().size() - annonseResult.getNewList().size());
-        meterRegistry.gauge(ADS_COLLECTED_POLARIS_CHANGED, annonseResult.getModifyList().size());
-        meterRegistry.gauge(ADS_COLLECTED_POLARIS_STOPPED, annonseResult.getStopList().size());
+        meterRegistry.counter(ADS_COLLECTED_POLARIS, asList(
+                Tag.of(ADS_COLLECTED_POLARIS_TOTAL, Integer.toString(receivedList.size())),
+                Tag.of(ADS_COLLECTED_POLARIS_NEW, Integer.toString(annonseResult.getNewList().size())),
+                Tag.of(ADS_COLLECTED_POLARIS_REJECTED, Integer.toString(annonseResult.getModifyList().size() - annonseResult.getNewList().size())),
+                Tag.of(ADS_COLLECTED_POLARIS_CHANGED, Integer.toString(annonseResult.getModifyList().size())),
+                Tag.of(ADS_COLLECTED_POLARIS_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
 
         externalRun.setLastRun(newRunTime);
         externalRunService.save(externalRun);

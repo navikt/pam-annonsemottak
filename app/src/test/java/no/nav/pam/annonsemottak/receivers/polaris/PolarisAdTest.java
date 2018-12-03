@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris;
+package no.nav.pam.annonsemottak.receivers.polaris;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;

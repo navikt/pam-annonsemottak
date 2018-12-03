@@ -1,7 +1,7 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris.scheduler;
+package no.nav.pam.annonsemottak.receivers.polaris.scheduler;
 
 import net.javacrumbs.shedlock.core.SchedulerLock;
-import no.nav.pam.annonsemottak.annonsemottak.polaris.PolarisService;
+import no.nav.pam.annonsemottak.receivers.polaris.PolarisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

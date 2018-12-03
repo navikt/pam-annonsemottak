@@ -1,10 +1,9 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris;
+package no.nav.pam.annonsemottak.receivers.polaris;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.annonsemottak.common.PropertyNames;
-import no.nav.pam.annonsemottak.receivers.polaris.PolarisAdMapper;
+import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;

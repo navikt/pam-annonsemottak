@@ -1,17 +1,16 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris;
+package no.nav.pam.annonsemottak.receivers.polaris;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.annonsemottak.HttpClientProxy;
-import no.nav.pam.annonsemottak.annonsemottak.Kilde;
-import no.nav.pam.annonsemottak.annonsemottak.common.rest.payloads.ResultsOnSave;
-import no.nav.pam.annonsemottak.annonsemottak.externalRun.ExternalRunService;
-import no.nav.pam.annonsemottak.annonsemottak.fangst.AnnonseFangstService;
-import no.nav.pam.annonsemottak.receivers.polaris.PolarisService;
+import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
+import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
+import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
-import no.nav.pam.annonsemottak.annonsemottak.solr.SolrRepository;
-import no.nav.pam.annonsemottak.annonsemottak.solr.SolrService;
+import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
+import no.nav.pam.annonsemottak.receivers.solr.SolrService;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.junit.Before;
 import org.junit.Rule;
@@ -33,13 +32,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(SolrService.class)
+@MockBean(value = SolrService.class)
 @MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @Transactional

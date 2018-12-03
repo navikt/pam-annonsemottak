@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris.model;
+package no.nav.pam.annonsemottak.receivers.polaris.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
