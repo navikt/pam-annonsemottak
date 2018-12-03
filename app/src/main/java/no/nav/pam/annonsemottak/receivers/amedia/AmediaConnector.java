@@ -8,6 +8,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 /**
  * Kaller amedia sitt Api
  */
+@Component
 public class AmediaConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(AmediaConnector.class);
@@ -23,10 +26,12 @@ public class AmediaConnector {
     private final String apiEndpoint;
     private final HttpClientProxy proxy;
 
-    public AmediaConnector(HttpClientProxy proxy, String amediaEndpoint, ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public AmediaConnector(HttpClientProxy proxy,
+                           @Value("${amedia.url}") String amediaUrl,
+                           ObjectMapper jacksonMapper) {
+        this.objectMapper = jacksonMapper;
         this.proxy = proxy;
-        this.apiEndpoint = amediaEndpoint;
+        this.apiEndpoint = amediaUrl;
     }
 
     JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
