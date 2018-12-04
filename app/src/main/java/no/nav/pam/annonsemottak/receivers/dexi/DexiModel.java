@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.receivers.dexi;
 
+import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
-import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -62,7 +62,7 @@ class DexiModel {
                 .peek(DexiModel::warnIfUnexpectedHtmlInContent)
                 .filter(DexiModel::filterOutNonPropertyEntries)
                 .filter(DexiModel::filterOutEmptyValuedEntries)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().trim()));
 
         Stilling stilling = new Stilling(
                 HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim(),
@@ -99,7 +99,7 @@ class DexiModel {
     }
 
     private static boolean filterOutEmptyValuedEntries(Map.Entry<String, String> entry) {
-        return !StringUtils.isEmpty(entry.getValue());
+        return !StringUtils.isBlank(entry.getValue());
     }
 
     private static boolean filterOutNonPropertyEntries(Map.Entry<String, String> entry) {
