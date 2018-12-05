@@ -1,3 +1,6 @@
+## RELEASE - 0.27.105-6d98caa
+#### New in this release: 
++ 2018-12-05 [PAM-2230] enable scheduler for polaris
 ## RELEASE - 0.24.98-a2131f4
 #### New in this release: 
 + 2018-12-03 [PAM-2004] Hente data fra Polaris Media
