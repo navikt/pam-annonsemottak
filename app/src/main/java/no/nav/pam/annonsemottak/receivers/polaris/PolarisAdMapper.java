@@ -28,7 +28,7 @@ public class PolarisAdMapper {
                 (polarisAd.applicationDeadlineDate != null) ? polarisAd.applicationDeadlineDate.toString() : polarisAd.applicationDeadlineText,
                 Kilde.POLARIS.value(),
                 Medium.POLARIS.value(),
-                polarisAd.url,
+                formatUrl(polarisAd.url),
                 polarisAd.positionId
         );
 
@@ -48,7 +48,7 @@ public class PolarisAdMapper {
                 (StringUtils.isNotBlank(polarisAd.accessionText)) ? polarisAd.accessionText : polarisAd.accessionDate.toString());
         stilling.getProperties().put(PropertyNames.APPLICATION_LABEL, polarisAd.applicationMarked);
         stilling.getProperties().put(PropertyNames.APPLICATION_EMAIL, polarisAd.applicationRecipientEmail);
-        stilling.getProperties().put(PropertyNames.LOGO_URL_MAIN, polarisAd.companyLogo);
+        stilling.getProperties().put(PropertyNames.LOGO_URL_MAIN, formatUrl(polarisAd.companyLogo));
         stilling.getProperties().put(PropertyNames.EMPLOYER_URL, polarisAd.companyWebsite);
         stilling.getProperties().put(PropertyNames.CREATED_DATE, polarisAd.dateTimeCreated.toString());
         stilling.getProperties().put(PropertyNames.UPDATED_DATE, polarisAd.dateTimeModified.toString());
@@ -77,6 +77,10 @@ public class PolarisAdMapper {
         });
 
         return sj.toString();
+    }
+
+    private static String formatUrl(String value) {
+        return value.replaceFirst("//", "");
     }
 
     //TODO: REFACTOR all objectMappers in static mappers
