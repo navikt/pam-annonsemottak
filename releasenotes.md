@@ -1,3 +1,7 @@
+## RELEASE - 0.29.109-acf593f
+#### New in this release: 
++ 2018-12-13 [bugfix] null handling in URL for polaris ads
++ 2018-12-13 [bugfix] null handling in URL for polaris ads
 ## RELEASE - 0.28.107-839d005
 #### New in this release: 
 + 2018-12-10 [bugfix] polaris ad url mapping
