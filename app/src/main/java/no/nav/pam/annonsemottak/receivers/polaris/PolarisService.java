@@ -54,7 +54,8 @@ public class PolarisService {
         }
         LOG.info("Start fetching Polaris ads updated since {}", externalRun.getLastRun());
 
-        LocalDateTime newRunTime = LocalDateTime.now();
+        //Datetime in polaris is inconsistent, so giving it a little room for last updated date
+        LocalDateTime newRunTime = LocalDateTime.now().minusDays(14);
         List<PolarisAd> polarisAdList = polarisConnector.fetchData(externalRun.getLastRun());
 
         List<Stilling> receivedList = polarisAdList.stream().map(PolarisAdMapper::mapToStilling).collect(Collectors.toList());
