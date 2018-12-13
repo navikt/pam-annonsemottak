@@ -1,3 +1,6 @@
+## RELEASE - 0.28.107-839d005
+#### New in this release: 
++ 2018-12-10 [bugfix] polaris ad url mapping
 ## RELEASE - 0.27.105-6d98caa
 #### New in this release: 
 + 2018-12-05 [PAM-2230] enable scheduler for polaris
