@@ -1,3 +1,7 @@
+## RELEASE - 0.30.112-5c76f42
+#### New in this release: 
++ 2019-01-02 [FIX] Broaden match for PAM-cookie in DIR-ads
++ 2018-11-26 [UPGRADE] update to spring boot 2.1.0
 ## RELEASE - 0.29.109-acf593f
 #### New in this release: 
 + 2018-12-13 [bugfix] null handling in URL for polaris ads
