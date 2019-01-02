@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
@@ -40,9 +41,9 @@ public class SolrFetchService {
     private final StillingRepository stillingRepository;
 
     /**
-     * When this string cookie occurs in ad text, the ad is to be filtered out of the fetched set.
+     * When this pattern occurs in ad text, the ad is to be filtered out of the fetched set.
      */
-    static final String PAM_DIR_ADTEXT_COOKIE = "<p hidden>PAM</p>";
+    static final Pattern PAM_DIR_ADTEXT_COOKIE_PATTERN = Pattern.compile("(<p hidden>)?PAM(</p>)?$");
 
     @Inject
     public SolrFetchService(SolrRepository solrRepository,
@@ -168,7 +169,8 @@ public class SolrFetchService {
     }
 
     private static boolean notPamDirStillinger(StillingSolrBean b) {
-        return b.getStillingsbeskrivelse() == null || !b.getStillingsbeskrivelse().contains(PAM_DIR_ADTEXT_COOKIE);
+        return b.getStillingsbeskrivelse() == null
+                || !PAM_DIR_ADTEXT_COOKIE_PATTERN.matcher(b.getStillingsbeskrivelse()).find();
     }
 
 }
