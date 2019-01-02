@@ -1,14 +1,11 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import io.micrometer.core.instrument.Metrics;
-
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.STATUS_CHANGED_METRIC;
 
 @Embeddable
 public class Saksbehandling {
@@ -31,8 +28,6 @@ public class Saksbehandling {
         valider(command);
 
         if (command.getStatus().isPresent() && this.status != command.getStatus().get()) {
-            Metrics.gauge(STATUS_CHANGED_METRIC + "." + command.getStatus().get().name(), 1);
-
             this.status = command.getStatus().get();
             if (this.status == Status.GODKJENT)
                 stilling.setPublished(LocalDateTime.now());

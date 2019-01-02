@@ -82,7 +82,9 @@ public class AmediaService {
 
         saveLastRun(externalRun, returnerteStillinger);
 
-        addMetricsCounters(alleStillingIDer, annonseResultat);
+        annonseFangstService.addMetricsCounters(Kilde.AMEDIA.toString(), alleStillingIDer.size(),
+                annonseResultat.getNewList().size(), annonseResultat.getStopList().size(), annonseResultat.getDuplicateList().size(),
+                annonseResultat.getModifyList().size());
 
         return new ResultsOnSave(
                 returnerteStillinger.size(),
@@ -102,15 +104,6 @@ public class AmediaService {
                             dateTime);
                     externalRunService.save(er);
                 });
-    }
-
-    private void addMetricsCounters(List<String> alleStillingIDer, AnnonseResult annonseResultat) {
-        meterRegistry.counter(ADS_COLLECTED_AMEDIA, asList(
-                Tag.of(ADS_COLLECTED_AMEDIA_TOTAL, Integer.toString(alleStillingIDer.size())),
-                Tag.of(ADS_COLLECTED_AMEDIA_NEW, Integer.toString(annonseResultat.getNewList().size())),
-                Tag.of(ADS_COLLECTED_AMEDIA_REJECTED, Integer.toString(annonseResultat.getDuplicateList().size() + annonseResultat.getExpiredList().size())),
-                Tag.of(ADS_COLLECTED_AMEDIA_CHANGED, Integer.toString(annonseResultat.getModifyList().size())),
-                Tag.of(ADS_COLLECTED_AMEDIA_STOPPED, Integer.toString(annonseResultat.getStopList().size())))).increment();
     }
 
     private AnnonseResult saveAnnonseresultat(List<String> alleStillingIDerFraAmedia,

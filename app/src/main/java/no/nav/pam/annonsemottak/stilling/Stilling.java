@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.AD_DUPLICATE_METRIC;
-
-
 @Entity
 @Table(name = "STILLING")
 @SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
@@ -309,9 +306,6 @@ public class Stilling extends ModelEntity {
 
     public void rejectAsDuplicate(Integer id) {
         this.saksbehandling.rejectAsDuplicate(id);
-
-        Metrics.counter(AD_DUPLICATE_METRIC, Arrays.asList(
-                Tag.of(AD_DUPLICATE_METRIC + "." + this.kilde, Integer.toString(1)))).increment();
     }
 
     public Stilling merge(Stilling stilling) {

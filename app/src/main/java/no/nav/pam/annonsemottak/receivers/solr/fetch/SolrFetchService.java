@@ -2,6 +2,8 @@ package no.nav.pam.annonsemottak.receivers.solr.fetch;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
+import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
 import no.nav.pam.annonsemottak.receivers.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
@@ -35,9 +37,9 @@ public class SolrFetchService {
     private static final String fraEures = "Fra Eures";
     private static final String navServicesenter = "NAV Servicesenter";
 
-    private final MeterRegistry meterRegistry;
     private final SolrRepository solrRepository;
     private final StillingRepository stillingRepository;
+    private final AnnonseFangstService annonseFangstService;
 
     /**
      * When this string cookie occurs in ad text, the ad is to be filtered out of the fetched set.
@@ -47,10 +49,10 @@ public class SolrFetchService {
     @Inject
     public SolrFetchService(SolrRepository solrRepository,
                             StillingRepository stillingRepository,
-                            MeterRegistry meterRegistry) {
+                            AnnonseFangstService annonseFangstService) {
         this.solrRepository = solrRepository;
         this.stillingRepository = stillingRepository;
-        this.meterRegistry = meterRegistry;
+        this.annonseFangstService = annonseFangstService;
     }
 
     private static String buildFilterQueryKildetekst() {
@@ -103,11 +105,8 @@ public class SolrFetchService {
 
         stillingRepository.saveAll(newStillinger);
         stillingRepository.saveAll(changedStillinger);
-
-        meterRegistry.counter(ADS_COLLECTED_SOLR, Arrays.asList(
-                Tag.of(ADS_COLLECTED_SOLR_TOTAL, Integer.toString(allStillingerFromSolr.size())),
-                Tag.of(ADS_COLLECTED_SOLR_NEW, Integer.toString(newStillinger.size())),
-                Tag.of(ADS_COLLECTED_SOLR_CHANGED, Integer.toString(changedStillinger.size())))).increment();
+        annonseFangstService.addMetricsCounters(Kilde.STILLINGSOLR.toString(), allStillingerFromSolr.size(),
+                newStillinger.size(), 0, unchangedStillinger.size(), changedStillinger.size());
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
                 newStillinger.size(), changedStillinger.size(), allStillingerFromSolr.size());

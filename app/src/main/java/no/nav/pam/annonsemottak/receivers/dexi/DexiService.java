@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.dexi;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.receivers.fangst.DexiAnnonseFangstService;
@@ -60,10 +61,7 @@ public class DexiService {
                 saved += results.getSaved();
             } catch (Exception e) {
                 LOG.error("Failed to get entries from robot " + currentRobotName, e);
-
-                meterRegistry.counter(ROBOTS_FAILED_METRIC, asList(
-                        Tag.of("jobId", configuration.getJobId()),
-                        Tag.of("robotName", currentRobotName))).increment();
+                meterRegistry.counter(ADS_COLLECTED_FAILED, "kilde", Kilde.DEXI.toString(), "robot", currentRobotName).increment();
             }
         }
 
@@ -99,12 +97,8 @@ public class DexiService {
         AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
 
-        meterRegistry.counter(ADS_COLLECTED_DEXI, asList(
-                Tag.of("jobId", id),
-                Tag.of("robotName", robotName),
-                Tag.of(ADS_COLLECTED_DEXI_TOTAL, Integer.toString(mapped.size())),
-                Tag.of(ADS_COLLECTED_DEXI_NEW, Integer.toString(annonseResult.getNewList().size())),
-                Tag.of(ADS_COLLECTED_DEXI_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
+        annonseFangstService.addMetricsCounters(Kilde.DEXI.toString(), mapped.size(), annonseResult.getNewList().size(),
+                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

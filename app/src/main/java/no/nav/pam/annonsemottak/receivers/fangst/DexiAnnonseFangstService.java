@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -14,18 +15,24 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHANGED;
+
 @Component
 public class DexiAnnonseFangstService {
 
     private final StillingRepository stillingRepository;
     private final DuplicateHandler duplicateHandler;
+    private final MeterRegistry meterRegistry;
+
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiAnnonseFangstService.class);
 
     @Inject
-    public DexiAnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler) {
+    public DexiAnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler, MeterRegistry meterRegistry) {
         this.stillingRepository = repository;
         this.duplicateHandler = duplicateHandler;
+        this.meterRegistry = meterRegistry;
     }
 
     public AnnonseResult retrieveAnnonseLists(List<Stilling> receiveList, String kilde, String medium) {
@@ -87,6 +94,15 @@ public class DexiAnnonseFangstService {
     public void saveAll(AnnonseResult annonseResult) {
         stillingRepository.saveAll(annonseResult.getAll());
         LOG.info("Persisted: {}", annonseResult);
+    }
+
+    // TODO: duplicate code since Dexi does not use AnnonseFangstService (?)
+    public void addMetricsCounters(String kilde, int totalSize, int newSize, int stopSize, int dupSize, int modifySize) {
+        meterRegistry.counter(ADS_COLLECTED, "kilde", kilde).increment(totalSize);
+        meterRegistry.counter(ADS_COLLECTED_NEW, "kilde", kilde).increment(newSize);
+        meterRegistry.counter(ADS_COLLECTED_STOPPED, "kilde", kilde).increment(stopSize);
+        meterRegistry.counter(ADS_COLLECTED_DUPLICATED, "kilde", kilde).increment(dupSize);
+        meterRegistry.counter(ADS_COLLECTED_CHANGED, "kilde", kilde).increment(modifySize);
     }
 
 }

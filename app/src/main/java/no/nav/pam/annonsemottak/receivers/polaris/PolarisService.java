@@ -71,14 +71,8 @@ public class PolarisService {
                 annonseResult.getNewList().size(),
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
-
-        meterRegistry.counter(ADS_COLLECTED_POLARIS, asList(
-                Tag.of(ADS_COLLECTED_POLARIS_TOTAL, Integer.toString(receivedList.size())),
-                Tag.of(ADS_COLLECTED_POLARIS_NEW, Integer.toString(annonseResult.getNewList().size())),
-                Tag.of(ADS_COLLECTED_POLARIS_REJECTED, Integer.toString(annonseResult.getModifyList().size() - annonseResult.getNewList().size())),
-                Tag.of(ADS_COLLECTED_POLARIS_CHANGED, Integer.toString(annonseResult.getModifyList().size())),
-                Tag.of(ADS_COLLECTED_POLARIS_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
-
+        annonseFangstService.addMetricsCounters(Kilde.POLARIS.toString(), receivedList.size(), annonseResult.getNewList().size(),
+                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
         externalRun.setLastRun(newRunTime);
         externalRunService.save(externalRun);
 
