@@ -81,8 +81,7 @@ public class AmediaService {
         AnnonseResult annonseResultat = saveAnnonseresultat(alleStillingIDer, returnerteStillinger);
 
         saveLastRun(externalRun, returnerteStillinger);
-
-        annonseFangstService.addMetricsCounters(Kilde.AMEDIA.toString(), alleStillingIDer.size(),
+        annonseFangstService.addMetricsCounters(Kilde.AMEDIA.toString(),
                 annonseResultat.getNewList().size(), annonseResultat.getStopList().size(), annonseResultat.getDuplicateList().size(),
                 annonseResultat.getModifyList().size());
 

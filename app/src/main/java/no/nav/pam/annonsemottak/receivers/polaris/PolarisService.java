@@ -71,7 +71,7 @@ public class PolarisService {
                 annonseResult.getNewList().size(),
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
-        annonseFangstService.addMetricsCounters(Kilde.POLARIS.toString(), receivedList.size(), annonseResult.getNewList().size(),
+        annonseFangstService.addMetricsCounters(Kilde.POLARIS.toString(), annonseResult.getNewList().size(),
                 annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
         externalRun.setLastRun(newRunTime);
         externalRunService.save(externalRun);

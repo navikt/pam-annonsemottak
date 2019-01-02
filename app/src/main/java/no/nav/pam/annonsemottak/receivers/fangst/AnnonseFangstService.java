@@ -107,8 +107,7 @@ public class AnnonseFangstService {
         }
     }
 
-    public void addMetricsCounters(String kilde, int totalSize, int newSize, int stopSize, int dupSize, int modifySize) {
-        meterRegistry.counter(ADS_COLLECTED, "kilde",  kilde).increment(totalSize);
+    public void addMetricsCounters(String kilde, int newSize, int stopSize, int dupSize, int modifySize) {
         meterRegistry.counter(ADS_COLLECTED_NEW,"kilde", kilde).increment(newSize);
         meterRegistry.counter(ADS_COLLECTED_STOPPED,"kilde", kilde).increment(stopSize);
         meterRegistry.counter(ADS_COLLECTED_DUPLICATED,"kilde", kilde).increment(dupSize);
