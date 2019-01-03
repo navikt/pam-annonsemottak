@@ -8,6 +8,7 @@ import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.ScheduledLockConfiguration;
 import net.javacrumbs.shedlock.spring.ScheduledLockConfigurationBuilder;
+import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
@@ -43,6 +44,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableScheduling
+@EnableSchedulerLock(defaultLockAtMostFor = "PT60S")
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses = {Application.class})
 public class AppConfig {
@@ -159,7 +161,7 @@ public class AppConfig {
     }
 
     @Bean
-    public ScheduledLockConfiguration taskScheduler(LockProvider lockProvider) {
+    public ScheduledLockConfiguration shedLockScheduler(LockProvider lockProvider) {
         return ScheduledLockConfigurationBuilder
                 .withLockProvider(lockProvider)
                 .withPoolSize(10)
