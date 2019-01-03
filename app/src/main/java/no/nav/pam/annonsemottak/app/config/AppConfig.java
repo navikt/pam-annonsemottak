@@ -44,7 +44,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "PT10S")
+@EnableSchedulerLock(defaultLockAtMostFor = "PT60S")
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses = {Application.class})
 public class AppConfig {
