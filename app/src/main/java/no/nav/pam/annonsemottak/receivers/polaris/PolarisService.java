@@ -11,6 +11,7 @@ import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,10 @@ public class PolarisService {
         LocalDateTime newRunTime = LocalDateTime.now().minusDays(30);
         List<PolarisAd> polarisAdList = polarisConnector.fetchData(externalRun.getLastRun());
 
-        List<Stilling> receivedList = polarisAdList.stream().map(PolarisAdMapper::mapToStilling).collect(Collectors.toList());
+        List<Stilling> receivedList = polarisAdList.stream()
+                .filter(a -> !isOneOfFiltered(a))
+                .map(PolarisAdMapper::mapToStilling)
+                .collect(Collectors.toList());
         List<String> receivedExternalIdList = receivedList.stream().map(Stilling::getExternalId).collect(Collectors.toList());
         LOG.info("Fetched {} ads from Polaris", receivedList.size());
 
@@ -85,5 +89,9 @@ public class PolarisService {
         return new ResultsOnSave(receivedList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
 
+    private boolean isOneOfFiltered(PolarisAd ad){
+        return StringUtils.isNotEmpty(ad.externalSystemUrl)
+                && ad.externalSystemUrl.contains("jobbnorge");
+    }
 
 }
