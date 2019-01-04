@@ -1,3 +1,7 @@
+## RELEASE - 0.32.115-2374a8b
+#### New in this release: 
++ 2019-01-03 [PAM-2417] Sette et filter på Jobbnorge
++ 2019-01-03 [Upgrade] Spring boot to 2.1.1 and shedlock to 2.2.0
 ## RELEASE - 0.30.112-5c76f42
 #### New in this release: 
 + 2019-01-02 [FIX] Broaden match for PAM-cookie in DIR-ads
