@@ -97,7 +97,7 @@ public class DexiService {
         AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
 
-        annonseFangstService.addMetricsCounters(Kilde.DEXI.toString(), annonseResult.getNewList().size(),
+        annonseFangstService.addMetricsCounters(Kilde.DEXI, annonseResult.getNewList().size(),
                 annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);

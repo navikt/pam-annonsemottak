@@ -105,7 +105,7 @@ public class SolrFetchService {
 
         stillingRepository.saveAll(newStillinger);
         stillingRepository.saveAll(changedStillinger);
-        annonseFangstService.addMetricsCounters(Kilde.STILLINGSOLR.toString(),
+        annonseFangstService.addMetricsCounters(Kilde.STILLINGSOLR,
                 newStillinger.size(), 0, 0, changedStillinger.size());
 
         LOG.info("Saved {} new and {} changed ads from stillingsolr total {}",
