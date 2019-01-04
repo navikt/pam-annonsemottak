@@ -17,7 +17,16 @@ management:
   metrics:
     export:
       prometheus:
-        enabled: false
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus", "metrics"]
 scheduler:
   enabled: false
 dexi:

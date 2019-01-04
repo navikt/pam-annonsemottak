@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
@@ -7,6 +8,7 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -33,11 +35,13 @@ public class AnnonseFangstServiceTest {
     @Inject
     private StillingRepository stillingRepository;
 
+    @Mock
+    private MeterRegistry meterRegistry;
 
     @Test
     public void should_add_new_and_changed_ads(){
         DuplicateHandler duplicateHandler = mock(DuplicateHandler.class);
-        AnnonseFangstService fangstService = new AnnonseFangstService(stillingRepository, duplicateHandler);
+        AnnonseFangstService fangstService = new AnnonseFangstService(stillingRepository, duplicateHandler, meterRegistry);
         String kilde = Kilde.FINN.toString();
         String medium = Medium.FINN.toString();
 

@@ -1,5 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -17,18 +19,23 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHANGED;
+
 @Component
 public class AnnonseFangstService {
 
     private final StillingRepository stillingRepository;
     private final DuplicateHandler duplicateHandler;
+    private final MeterRegistry meterRegistry;
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
     @Inject
-    public AnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler) {
+    public AnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler, MeterRegistry meterRegistry) {
         this.stillingRepository = repository;
         this.duplicateHandler = duplicateHandler;
+        this.meterRegistry = meterRegistry;
     }
 
     @Transactional(readOnly = true)
@@ -98,5 +105,12 @@ public class AnnonseFangstService {
         } catch (Exception e) {
             LOG.error("Error while saving ad {} from source {}. Error: {}", s.getUuid(), s.getKilde(), e.getMessage());
         }
+    }
+
+    public void addMetricsCounters(Kilde kilde, int newSize, int stopSize, int dupSize, int modifySize) {
+        meterRegistry.counter(ADS_COLLECTED_NEW,"kilde", kilde.toString()).increment(newSize);
+        meterRegistry.counter(ADS_COLLECTED_STOPPED,"kilde", kilde.toString()).increment(stopSize);
+        meterRegistry.counter(ADS_COLLECTED_DUPLICATED,"kilde", kilde.toString()).increment(dupSize);
+        meterRegistry.counter(ADS_COLLECTED_CHANGED, "kilde", kilde.toString()).increment(modifySize);
     }
 }

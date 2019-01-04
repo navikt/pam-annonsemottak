@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.solr.fetch;
 
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
 import no.nav.pam.annonsemottak.receivers.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -13,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
@@ -41,10 +43,13 @@ public class SolrFetchServiceTest {
     @Mock
     private SolrRepository solrRepository;
 
+    @Mock
+    private AnnonseFangstService annonseFangstService;
+
 
     @Before
     public void before() {
-        solrFetchService = new SolrFetchService(solrRepository, stillingRepository, new SimpleMeterRegistry());
+        solrFetchService = new SolrFetchService(solrRepository, stillingRepository, annonseFangstService);
     }
 
     @Test

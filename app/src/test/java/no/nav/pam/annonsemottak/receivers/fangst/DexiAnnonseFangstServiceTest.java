@@ -1,11 +1,13 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
 
+import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,11 +31,14 @@ public class DexiAnnonseFangstServiceTest {
     @Inject
     private StillingRepository stillingRepository;
 
+    @Mock
+    private MeterRegistry meterRegistry;
+
 
     @Test
     public void stop_modify_new_annonseListss_should_be_correct() {
         DuplicateHandler duplicateHandler = mock(DuplicateHandler.class);
-        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, duplicateHandler);
+        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, duplicateHandler, meterRegistry);
         String kilde = "KILDE";
         String medium = "MEDIUM";
         // we have 3 annonse in database

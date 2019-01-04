@@ -126,12 +126,8 @@ public class FinnService {
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        meterRegistry.counter(ADS_COLLECTED_FINN, asList(
-                Tag.of(ADS_COLLECTED_FINN_TOTAL, Integer.toString(searchResult.size())),
-                Tag.of(ADS_COLLECTED_FINN_NEW, Integer.toString(rest.size())),
-                Tag.of(ADS_COLLECTED_FINN_REJECTED, Integer.toString(annonseResult.getModifyList().size() - rest.size())),
-                Tag.of(ADS_COLLECTED_FINN_CHANGED, Integer.toString(annonseResult.getModifyList().size())),
-                Tag.of(ADS_COLLECTED_FINN_STOPPED, Integer.toString(annonseResult.getStopList().size())))).increment();
+        finnAnnonseFangstService.addMetricsCounters(Kilde.FINN, rest.size(),
+                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
