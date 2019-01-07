@@ -1,3 +1,6 @@
+## RELEASE - 0.33.116-1c8aa9e
+#### New in this release: 
++ 2019-01-02 [PAM-1604] Metrikker for annonsemottak
 ## RELEASE - 0.32.115-2374a8b
 #### New in this release: 
 + 2019-01-03 [PAM-2417] Sette et filter på Jobbnorge
