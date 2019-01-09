@@ -126,7 +126,7 @@ public class FinnService {
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        finnAnnonseFangstService.addMetricsCounters(Kilde.FINN, rest.size(),
+        finnAnnonseFangstService.addMetricsCounters(Kilde.FINN, "FINN", rest.size(),
                 annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);

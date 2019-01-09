@@ -98,11 +98,11 @@ public class DexiAnnonseFangstService {
     }
 
     // TODO: duplicate code since Dexi does not use AnnonseFangstService (?)
-    public void addMetricsCounters(Kilde kilde, int newSize, int stopSize, int dupSize, int modifySize) {
-        meterRegistry.counter(ADS_COLLECTED_NEW, "kilde", kilde.toString()).increment(newSize);
-        meterRegistry.counter(ADS_COLLECTED_STOPPED, "kilde", kilde.toString()).increment(stopSize);
-        meterRegistry.counter(ADS_COLLECTED_DUPLICATED, "kilde", kilde.toString()).increment(dupSize);
-        meterRegistry.counter(ADS_COLLECTED_CHANGED, "kilde", kilde.toString()).increment(modifySize);
+    public void addMetricsCounters(int newSize, int stopSize, int dupSize, int modifySize, String ... tags) {
+        meterRegistry.counter(ADS_COLLECTED_NEW, tags).increment(newSize);
+        meterRegistry.counter(ADS_COLLECTED_STOPPED, tags).increment(stopSize);
+        meterRegistry.counter(ADS_COLLECTED_DUPLICATED, tags).increment(dupSize);
+        meterRegistry.counter(ADS_COLLECTED_CHANGED, tags).increment(modifySize);
     }
 
 }
