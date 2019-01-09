@@ -96,9 +96,9 @@ public class DexiService {
         // Sort results into lists of "New", "Modified", "Stopped" and then persist all lists in one transaction.
         AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
-
-        annonseFangstService.addMetricsCounters(Kilde.DEXI, annonseResult.getNewList().size(),
-                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
+        String [] tags = {"source", Kilde.DEXI.toString(), "origin", robotName};
+        annonseFangstService.addMetricsCounters(annonseResult.getNewList().size(),
+                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size(), tags);
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
