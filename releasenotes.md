@@ -1,3 +1,6 @@
+## RELEASE - 0.34.117-b3d1e0d
+#### New in this release: 
++ 2019-01-09 [Feature] metering source and origin in annonsemottak
 ## RELEASE - 0.33.116-1c8aa9e
 #### New in this release: 
 + 2019-01-02 [PAM-1604] Metrikker for annonsemottak

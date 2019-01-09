@@ -5,7 +5,7 @@
 
     <groupId>no.nav.pam.annonsemottak</groupId>
     <artifactId>pam-annonsemottak</artifactId>
-    <version>0.34-SNAPSHOT</version>
+    <version>0.35-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
