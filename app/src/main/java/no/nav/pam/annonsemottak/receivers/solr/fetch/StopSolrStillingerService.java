@@ -44,8 +44,8 @@ public class StopSolrStillingerService {
 
         stillingRepository.saveAll(stoppedAds);
 
-        meterRegistry.counter(ADS_COLLECTED_STOPPED, "kilde", Kilde.STILLINGSOLR.toString()).increment(stoppedAds.size());
-
+        String [] tags = {"source", Kilde.STILLINGSOLR.toString(), "origin", "STILLINGSOLR"};
+        meterRegistry.counter(ADS_COLLECTED_STOPPED,tags).increment(stoppedAds.size());
         LOG.info("Stopped {} inactive ads from solr", stoppedAds.size());
     }
 }
