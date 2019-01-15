@@ -1,3 +1,6 @@
+## RELEASE - 0.38.122-cf77872
+#### New in this release: 
++ 2019-01-15 [bugfix] replaces robotName to kommune name as medium for Kommuner crawlers
 ## RELEASE - 0.34.117-b3d1e0d
 #### New in this release: 
 + 2019-01-09 [Feature] metering source and origin in annonsemottak
