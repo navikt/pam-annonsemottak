@@ -72,7 +72,7 @@ class DexiModel {
                 concatenateAndWashAnnonsetekst(HtmlToMarkdownConverter.parse(map.get(INGRESS)), HtmlToMarkdownConverter.parse(map.get(ANNONSETEKST))),
                 map.get(SOKNADSFRIST),
                 Kilde.DEXI.toString(),
-                robotName,
+                determineMedium(robotName, map.get("Kilde")),
                 map.get(ANNONSEURL),
                 map.get(EXTERNALID));
 
@@ -80,6 +80,15 @@ class DexiModel {
         stilling.setExpires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null));
 
         return stilling;
+    }
+
+    // Robots Kommuner-Visma and Kommuner-ASP are common for many webpages, sets webpage name as medium instead of the robot name
+    private static String determineMedium(String robotName, String mediumKilde){
+        if(!StringUtils.isAnyBlank(robotName, mediumKilde) && robotName.contains("Kommuner-")){
+            return mediumKilde;
+        }
+
+        return robotName;
     }
 
     private static boolean hasIncompleteInformation(Map<String, String> map) {
