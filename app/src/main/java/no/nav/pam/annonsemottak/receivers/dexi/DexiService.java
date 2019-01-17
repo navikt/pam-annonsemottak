@@ -61,7 +61,7 @@ public class DexiService {
                 saved += results.getSaved();
             } catch (Exception e) {
                 LOG.error("Failed to get entries from robot " + currentRobotName, e);
-                meterRegistry.counter(ADS_COLLECTED_FAILED, "kilde", Kilde.DEXI.toString(), "origin", currentRobotName).increment();
+                meterRegistry.counter(ADS_COLLECTED_FAILED, "source", Kilde.DEXI.toString(), "origin", currentRobotName).increment();
             }
         }
 
