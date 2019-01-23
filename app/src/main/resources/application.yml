@@ -11,8 +11,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
-       generate_statistics: true
-       cache:
+        temp:
+          use_jdbc_metadata_defaults: false
+        generate_statistics: true
+        cache:
           use_second_level_cache: true
           use_query_cache: true
           region:
