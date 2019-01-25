@@ -6,7 +6,8 @@ public enum Kilde {
     DEXI("webcrawl"),
     AMEDIA("AMEDIA"),
     STILLINGSOLR("stillingsolr"),
-    POLARIS("POLARIS");
+    POLARIS("POLARIS"),
+    XML_STILLING("xmlstilling");
 
     private final String kilde;
 

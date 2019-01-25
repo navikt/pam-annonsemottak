@@ -47,3 +47,5 @@ proxy:
 solr:
   url: http://localhost.solr
   core: 'maincore'
+xmlstilling:
+  url: http://pam-xml-stilling.default
