@@ -14,7 +14,7 @@ class XmlStillingMapper {
                 dto.getEmployer(),
                 dto.getEmployerDescription(),
                 dto.getJobDescription(),
-                dto.getDueDate(),
+                dto.getDueDate().toString(),
                 Kilde.XML_STILLING.toString(),
                 dto.getExternalUser(),
                 null,

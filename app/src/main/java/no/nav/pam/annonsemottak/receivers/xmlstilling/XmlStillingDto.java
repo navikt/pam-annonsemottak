@@ -22,7 +22,7 @@ class XmlStillingDto {
     private String title;
 
     @JsonProperty
-    private String dueDate;
+    private LocalDateTime dueDate;
 
     @JsonProperty
     private String externalId;
@@ -54,7 +54,7 @@ class XmlStillingDto {
         return jobDescription;
     }
 
-    String getDueDate() {
+    LocalDateTime getDueDate() {
         return dueDate;
     }
 
