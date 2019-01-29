@@ -2,17 +2,13 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
-import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static no.nav.pam.annonsemottak.receivers.Kilde.XML_STILLING;

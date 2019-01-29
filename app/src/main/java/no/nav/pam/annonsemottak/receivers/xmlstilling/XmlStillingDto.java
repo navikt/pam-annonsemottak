@@ -38,8 +38,6 @@ class XmlStillingDto {
 
     private String AannonseStatus = "INAKTIV"; // default inaktiv
 
-    // private LocalDateTime systemModifiedDate;
-
 
     String getEmployer() {
         return employer;

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
-import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import org.junit.Before;
