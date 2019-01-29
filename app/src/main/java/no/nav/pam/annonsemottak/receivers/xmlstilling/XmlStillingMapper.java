@@ -8,7 +8,7 @@ class XmlStillingMapper {
 
     static Stilling fromDto(XmlStillingDto dto) {
 
-        return new Stilling(
+        Stilling stilling = new Stilling(
                 HtmlToMarkdownConverter.parse(dto.getTitle()).trim(),
                 null,
                 dto.getEmployer(),
@@ -20,6 +20,10 @@ class XmlStillingMapper {
                 null,
                 dto.getExternalId()
         ).deactivate();
+
+        stilling.setSystemModifiedDate(dto.getReceivedDate());
+
+        return stilling;
     }
 
 }

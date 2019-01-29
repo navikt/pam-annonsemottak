@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.Reader;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -56,17 +57,17 @@ class XmlStillingConnector {
         }
     }
 
-    List<Stilling> fetchStillinger (int lastId) {
+    Stillinger fetchStillinger(LocalDateTime lastRun) {
         try {
-            return fetchData(lastId);
-        } catch(IOException e) {
+            return new Stillinger(fetchData(lastRun));
+        } catch (IOException e) {
             throw new RuntimeException("Unexpected error while fetching stillinger from XmlStilling", e);
         }
     }
 
-    private List<Stilling> fetchData(int lastId) throws IOException {
+    private List<Stilling> fetchData(LocalDateTime lastRun) throws IOException {
 
-        Request request = requestFor(uri.forFetchWithStartingId(lastId));
+        Request request = requestFor(uri.forFetchWithStartingId(lastRun));
         log.debug("{}", request);
 
         Response response = proxy.getHttpClient().newCall(request).execute();

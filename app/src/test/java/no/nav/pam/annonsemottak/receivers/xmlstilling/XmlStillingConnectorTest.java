@@ -12,7 +12,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -41,9 +43,9 @@ public class XmlStillingConnectorTest {
         server.enqueue(new MockResponse().setBody(fileAsString("xmlstilling.samples/sample1.json")));
         server.start();
 
-        when(endpointProvider.forFetchWithStartingId(anyInt())).thenReturn(server.url("").toString());
+        when(endpointProvider.forFetchWithStartingId(any())).thenReturn(server.url("").toString());
 
-        connector.fetchStillinger(0);
+        connector.fetchStillinger(LocalDateTime.now());
 
     }
 

@@ -33,6 +33,9 @@ class XmlStillingDto {
     @JsonProperty
     private LocalDateTime expires = LocalDateTime.now().plusDays(10);
 
+    @JsonProperty("received")
+    private LocalDateTime receivedDate;
+
     private String AannonseStatus = "INAKTIV"; // default inaktiv
 
     // private LocalDateTime systemModifiedDate;
@@ -64,5 +67,9 @@ class XmlStillingDto {
 
     String getTitle() {
         return title;
+    }
+
+    public LocalDateTime getReceivedDate() {
+        return receivedDate;
     }
 }

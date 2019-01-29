@@ -2,6 +2,8 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class EndpointProviderTest {
@@ -15,7 +17,8 @@ public class EndpointProviderTest {
 
     @Test
     public void that_fetch_url_is_constructed_correctly() {
-        assertThat(endpointProvider.forFetchWithStartingId(5)).isEqualTo("http://pam-xml-stilling.default/load/5/count/10" );
+        LocalDateTime lastRun = LocalDateTime.of(2015, 3, 22, 14, 11, 2);
+        assertThat(endpointProvider.forFetchWithStartingId(lastRun)).isEqualTo("http://pam-xml-stilling.default/load/2015/03/22/14/11/02" );
     }
 
 }
