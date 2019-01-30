@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.inject.Inject;
 
 /**
- * Henter stillinger fra Amedia og legger de inn i stillingsdatabasen
+ * Henter stillinger fra xml-stilling og legger de inn i stillingsdatabasen
  */
 @RestController
 @RequestMapping(PathDefinition.XML_STILLING)
@@ -41,7 +41,7 @@ public class XmlStillingApi {
             service.updateLatest();
             return ResponseEntity.ok().build();
         } catch (Exception e) {
-            LOG.error("Unable to save results from AMEDIA using specified collections", e);
+            LOG.error("Unable to save results from xml-stilling using specified collections", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

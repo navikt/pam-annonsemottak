@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
-import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -25,7 +24,7 @@ import static java.util.stream.Collectors.toList;
 @Component
 class XmlStillingConnector {
 
-    private static final Logger log = LoggerFactory.getLogger(FinnConnector.class);
+    private static final Logger log = LoggerFactory.getLogger(XmlStillingConnector.class);
     private static final TypeReference<List<XmlStillingDto>> JSON_TYPE = new TypeReference<List<XmlStillingDto>>() {
     };
 
@@ -52,7 +51,7 @@ class XmlStillingConnector {
             Response response = proxy.getHttpClient().newCall(requestFor(uri.forPing())).execute();
             return response.isSuccessful();
         } catch (IOException e) {
-            log.error("Error while pinging connection to Amedia", e);
+            log.error("Error while pinging connection to xml-stilling", e);
             return false;
         }
     }
