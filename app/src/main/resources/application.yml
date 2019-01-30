@@ -62,3 +62,5 @@ proxy:
 solr:
   url: ${STILLING_SOLR_URL}
   core: 'maincore'
+xmlstilling:
+  url: http://pam-xml-stilling.default

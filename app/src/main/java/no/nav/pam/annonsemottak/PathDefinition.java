@@ -10,4 +10,5 @@ public class PathDefinition {
     public static final String FINN = ANNONSEMOTTAK+"/finn";
     public static final String AMEDIA = ANNONSEMOTTAK+"/amedia";
     public static final String POLARIS = ANNONSEMOTTAK+"/polaris";
+    public static final String XML_STILLING = ANNONSEMOTTAK+"/xmlstilling";
 }
