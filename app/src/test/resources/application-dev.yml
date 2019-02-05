@@ -57,7 +57,9 @@ finn:
   api:
     password: finn_api_key
 proxy:
-  url: http://155.55.60.117:8088
+  url: null
 solr:
   url: https://itjenester-q0.oera.no/stilling-solr/
   core: 'maincore'
+xmlstilling:
+  url: http://localhost:9020

@@ -44,7 +44,7 @@ public class XmlStillingConnectorTest {
 
         when(endpointProvider.forFetchWithStartingId(any())).thenReturn(server.url("").toString());
 
-        connector.fetchStillinger(LocalDateTime.now());
+        connector.fetchFrom(LocalDateTime.now());
 
     }
 

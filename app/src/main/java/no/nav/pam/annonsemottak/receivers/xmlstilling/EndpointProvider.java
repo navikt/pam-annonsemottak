@@ -18,7 +18,7 @@ class EndpointProvider {
     }
 
     String forFetchWithStartingId(LocalDateTime lastRun) {
-        return url + "load/" + urlDateTimeFormatter.format(lastRun);
+        return url + "/load/" + urlDateTimeFormatter.format(lastRun);
     }
 
     String forPing() {

@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.solr.fetch;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
@@ -18,13 +16,10 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
 @Service
 public class SolrFetchService {

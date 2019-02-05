@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import static no.nav.pam.annonsemottak.receivers.Kilde.XML_STILLING;
 
@@ -18,7 +18,6 @@ class XmlStillingExternalRun {
 
     private static final Logger log = LoggerFactory.getLogger(XmlStillingExternalRun.class);
     private final ExternalRunService externalRunService;
-    private final Supplier<LocalDateTime> lastRunSupplier;
 
     static final LocalDateTime DEFAULT_DATE = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
 
@@ -28,27 +27,26 @@ class XmlStillingExternalRun {
 
         this.externalRunService = externalRunService;
 
-        lastRunSupplier = () -> latestExternalRun()
-                        .map(ExternalRun::getLastRun)
-                        .orElse(DEFAULT_DATE);
-
     }
 
-    private Optional<ExternalRun> latestExternalRun() {
+    Stillinger decorate(Function<LocalDateTime, Stillinger> stillingUpdater) {
+
         log.debug("Fetching latest run for xml stilling");
-        return Optional.ofNullable(externalRunService.findByNameAndMedium(XML_STILLING.toString(), XML_STILLING.value()));
+
+        ExternalRun run = externalRunService.findByNameAndMedium(XML_STILLING.toString(), XML_STILLING.value());
+        LocalDateTime nextRunStart = run != null ? run.getLastRun() : DEFAULT_DATE;
+
+        Stillinger stillinger = stillingUpdater.apply(nextRunStart);
+
+        stillinger.latestDate().ifPresent(lastUpdate -> {
+            ExternalRun newRun = run != null ?
+                    new ExternalRun(run.getId(), XML_STILLING.toString(), XML_STILLING.value(), lastUpdate) :
+                    new ExternalRun(XML_STILLING.toString(), XML_STILLING.value(), lastUpdate);
+
+            externalRunService.save(newRun);
+        });
+
+        return stillinger;
     }
 
-    Supplier<LocalDateTime> lastRunSupplier() {
-
-        return lastRunSupplier;
-    }
-
-    void updateLatest(LocalDateTime lastUpdate) {
-        ExternalRun latestRun  = latestExternalRun()
-                .map(current -> new ExternalRun(current.getId(), XML_STILLING.toString(), XML_STILLING.value(), lastUpdate))
-                .orElseGet(() -> new ExternalRun(XML_STILLING.toString(), XML_STILLING.value(), lastUpdate));
-
-        externalRunService.save(latestRun);
-    }
 }
