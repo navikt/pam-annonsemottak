@@ -4,7 +4,6 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
 
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 import static org.mockito.Mockito.*;

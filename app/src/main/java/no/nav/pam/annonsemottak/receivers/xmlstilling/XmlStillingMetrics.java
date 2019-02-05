@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHANGED;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.CHANGED;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.NEW;
 

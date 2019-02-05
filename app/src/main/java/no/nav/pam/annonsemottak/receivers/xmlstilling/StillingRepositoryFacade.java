@@ -15,14 +15,14 @@ import java.util.function.Function;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 
 @Service
-public class StillingRepositoryFacade {
+class StillingRepositoryFacade {
 
     private static final Logger log = LoggerFactory.getLogger(StillingRepositoryFacade.class);
 
     private final StillingRepository stillingRepository;
 
     @Inject
-    public StillingRepositoryFacade(StillingRepository stillingRepository) {
+    StillingRepositoryFacade(StillingRepository stillingRepository) {
         this.stillingRepository = stillingRepository;
     }
 

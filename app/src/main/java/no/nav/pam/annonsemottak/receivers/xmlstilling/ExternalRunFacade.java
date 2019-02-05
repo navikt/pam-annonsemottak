@@ -22,7 +22,7 @@ class ExternalRunFacade {
 
 
     @Inject
-    public ExternalRunFacade(ExternalRunService externalRunService) {
+    ExternalRunFacade(ExternalRunService externalRunService) {
 
         this.externalRunService = externalRunService;
 

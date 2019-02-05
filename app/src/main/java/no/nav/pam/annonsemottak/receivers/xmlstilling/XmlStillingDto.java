@@ -67,7 +67,7 @@ class XmlStillingDto {
         return title;
     }
 
-    public LocalDateTime getReceivedDate() {
+    LocalDateTime getReceivedDate() {
         return receivedDate;
     }
 }
