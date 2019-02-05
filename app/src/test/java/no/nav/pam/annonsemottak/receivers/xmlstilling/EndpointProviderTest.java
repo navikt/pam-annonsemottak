@@ -8,7 +8,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class EndpointProviderTest {
 
-    private EndpointProvider endpointProvider = new EndpointProvider("http://pam-xml-stilling.default/");
+    private EndpointProvider endpointProvider = new EndpointProvider("http://pam-xml-stilling.default");
 
     @Test
     public void that_ping_url_is_correct() {

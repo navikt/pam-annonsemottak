@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -56,9 +57,14 @@ class XmlStillingConnector {
         }
     }
 
-    Stillinger fetchStillinger(LocalDateTime lastRun) {
+    List<Stilling> fetchFrom(LocalDateTime lastRun) {
         try {
-            return new Stillinger(fetchData(lastRun));
+            List<Stilling> stillinger = fetchData(lastRun);
+
+            log.debug("Fikk {} stillinger fra pam-xml-stilling.", stillinger.size());
+
+            return stillinger;
+
         } catch (IOException e) {
             throw new RuntimeException("Unexpected error while fetching stillinger from XmlStilling", e);
         }
@@ -85,7 +91,7 @@ class XmlStillingConnector {
 
     private Request requestFor(String endpoint) {
         return new Request.Builder()
-                .url(endpoint)
+                .url(HttpUrl.parse(endpoint))
                 .build();
     }
 

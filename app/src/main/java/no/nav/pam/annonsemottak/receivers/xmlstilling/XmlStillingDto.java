@@ -10,7 +10,7 @@ class XmlStillingDto {
     private String employer;
 
     @JsonProperty
-    private String externalUser; // EKSTERN_BRUKER_REF - Mappes til Medium
+    private String externalUser;
 
     @JsonProperty
     private String employerDescription;
