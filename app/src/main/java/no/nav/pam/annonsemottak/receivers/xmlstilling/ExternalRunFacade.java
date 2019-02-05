@@ -8,22 +8,21 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.function.Function;
 
 import static no.nav.pam.annonsemottak.receivers.Kilde.XML_STILLING;
 
 @Service
-class XmlStillingExternalRun {
+class ExternalRunFacade {
 
-    private static final Logger log = LoggerFactory.getLogger(XmlStillingExternalRun.class);
+    private static final Logger log = LoggerFactory.getLogger(ExternalRunFacade.class);
     private final ExternalRunService externalRunService;
 
     static final LocalDateTime DEFAULT_DATE = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
 
 
     @Inject
-    public XmlStillingExternalRun(ExternalRunService externalRunService) {
+    public ExternalRunFacade(ExternalRunService externalRunService) {
 
         this.externalRunService = externalRunService;
 

@@ -1,23 +1,33 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
-import no.nav.pam.annonsemottak.stilling.StillingRepository;
+import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
+import static java.time.LocalDateTime.now;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class XmlStillingServiceTest {
 
+    private static final LocalDateTime JAN_28_2019 = LocalDateTime.of(2019, 1, 28, 18, 4, 5);
+
     private XmlStillingService service;
 
     private XmlStillingConnector connector = mock(XmlStillingConnector.class);
 
-    private XmlStillingExternalRun externalRun = mock(XmlStillingExternalRun.class);
+    private ExternalRunFacade externalRun = mock(ExternalRunFacade.class);
 
     private XmlStillingMetrics metrics = mock(XmlStillingMetrics.class);
 
-    private StillingRepository stillingRepository = mock(StillingRepository.class);
+    private StillingRepositoryFacade stillingRepository = mock(StillingRepositoryFacade.class);
 
 
     @Before
@@ -33,6 +43,27 @@ public class XmlStillingServiceTest {
         service.updateLatest(true);
 
         verify(externalRun).decorate(any());
+    }
+
+    @Test
+    public void update_callback() {
+
+        Stillinger result = new Stillinger(null, null);
+
+        List<Stilling> stillinger = Arrays.asList(
+                StillingTestdataBuilder.enkelStilling().build(),
+                StillingTestdataBuilder.enkelStilling().build());
+
+        when(connector.fetchFrom(JAN_28_2019)).thenReturn(stillinger);
+        when(stillingRepository.updateStillinger(any(), any())).thenReturn(result);
+
+        Function<LocalDateTime, Stillinger> updateCallback = service.update(true);
+
+        assertThat(updateCallback.apply(JAN_28_2019)).isEqualTo(result);
+
+        verify(stillingRepository).updateStillinger(eq(stillinger), any());;
+
+
     }
 
 }
