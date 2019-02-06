@@ -34,7 +34,7 @@ class XmlStillingConnector {
     private final ObjectMapper objectMapper;
 
     @Inject
-    public XmlStillingConnector(
+    XmlStillingConnector(
             HttpClientProxy proxy,
             EndpointProvider uri
     ) {

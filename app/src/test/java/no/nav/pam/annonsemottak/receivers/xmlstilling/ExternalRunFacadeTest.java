@@ -21,10 +21,10 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class XmlStillingExternalRunTest {
+public class ExternalRunFacadeTest {
 
     private static final LocalDateTime JAN_28_2019 = LocalDateTime.of(2019, 1, 28, 18, 4, 5);
-    private XmlStillingExternalRun externalRun;
+    private ExternalRunFacade externalRun;
 
     @Mock
     private ExternalRunService externalRunService;
@@ -35,7 +35,7 @@ public class XmlStillingExternalRunTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        externalRun = new XmlStillingExternalRun(externalRunService);
+        externalRun = new ExternalRunFacade(externalRunService);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class XmlStillingExternalRunTest {
 
         externalRun.decorate(saveMethodMock);
 
-        verify(saveMethodMock).apply(eq(XmlStillingExternalRun.DEFAULT_DATE));
+        verify(saveMethodMock).apply(eq(ExternalRunFacade.DEFAULT_DATE));
     }
 
     @Test

@@ -22,7 +22,7 @@ class EndpointProvider {
     }
 
     String forPing() {
-        return url + "isAlive";
+        return url + "/isAlive";
     }
 
 }

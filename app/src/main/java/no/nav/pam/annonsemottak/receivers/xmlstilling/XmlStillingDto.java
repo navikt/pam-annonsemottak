@@ -7,67 +7,138 @@ import java.time.LocalDateTime;
 class XmlStillingDto {
 
     @JsonProperty
-    private String employer;
+    private String arbeidsgiver;
 
     @JsonProperty
-    private String externalUser;
+    private String eksternBrukerRef;
 
     @JsonProperty
-    private String employerDescription;
+    private String arbeidsgiverBedriftspresentasjon;
 
     @JsonProperty
-    private String jobDescription;
+    private String stillingsbeskrivelse;
 
     @JsonProperty
-    private String title;
+    private String stillingstittel;
 
     @JsonProperty
-    private LocalDateTime dueDate;
+    private LocalDateTime soknadsfrist;
 
     @JsonProperty
-    private String externalId;
+    private String eksternId;
 
     @JsonProperty
-    private LocalDateTime published = LocalDateTime.now();
+    private LocalDateTime publiseresFra = LocalDateTime.now();
 
     @JsonProperty
-    private LocalDateTime expires = LocalDateTime.now().plusDays(10);
+    private LocalDateTime sistePubliseringsdato = LocalDateTime.now().plusDays(10);
 
-    @JsonProperty("received")
-    private LocalDateTime receivedDate;
+    @JsonProperty
+    private LocalDateTime mottattTidspunkt;
 
-    private String AannonseStatus = "INAKTIV"; // default inaktiv
+    @JsonProperty
+    private Integer antallStillinger;
+
+    @JsonProperty
+    private String arbeidssted;
+
+    @JsonProperty
+    private Float stillingsprosent;
+
+    @JsonProperty
+    private String kontaktinfoPerson;
+
+    @JsonProperty
+    private String kontaktinfoTelefon;
+
+    @JsonProperty
+    private String kontaktinfoEpost;
+
+    @JsonProperty
+    private String arbeidsgiverAdresse;
+
+    @JsonProperty
+    private String arbeidsgiverPostnummer;
+
+    @JsonProperty
+    private String arbeidsgiverWebadresse;
 
 
-    String getEmployer() {
-        return employer;
+
+    String getArbeidsgiver() {
+        return arbeidsgiver;
     }
 
-    String getExternalUser() {
-        return externalUser;
+    String getEksternBrukerRef() {
+        return eksternBrukerRef;
     }
 
-    String getEmployerDescription() {
-        return employerDescription;
+    String getArbeidsgiverBedriftspresentasjon() {
+        return arbeidsgiverBedriftspresentasjon;
     }
 
-    String getJobDescription() {
-        return jobDescription;
+    String getStillingsbeskrivelse() {
+        return stillingsbeskrivelse;
     }
 
-    LocalDateTime getDueDate() {
-        return dueDate;
+    LocalDateTime getSoknadsfrist() {
+        return soknadsfrist;
     }
 
-    String getExternalId() {
-        return externalId;
+    String getEksternId() {
+        return eksternId;
     }
 
-    String getTitle() {
-        return title;
+    String getStillingstittel() {
+        return stillingstittel;
     }
 
-    public LocalDateTime getReceivedDate() {
-        return receivedDate;
+    LocalDateTime getMottattTidspunkt() {
+        return mottattTidspunkt;
+    }
+
+
+    LocalDateTime getPubliseresFra() {
+        return publiseresFra;
+    }
+
+    LocalDateTime getSistePubliseringsdato() {
+        return sistePubliseringsdato;
+    }
+
+    Integer getAntallStillinger() {
+        return antallStillinger;
+    }
+
+    String getArbeidssted() {
+        return arbeidssted;
+    }
+
+    Float getStillingsprosent() {
+        return stillingsprosent;
+    }
+
+    String getKontaktinfoPerson() {
+        return kontaktinfoPerson;
+    }
+
+    String getKontaktinfoTelefon() {
+        return kontaktinfoTelefon;
+    }
+
+    String getKontaktinfoEpost() {
+        return kontaktinfoEpost;
+    }
+
+    String getArbeidsgiverAdresse() {
+        return arbeidsgiverAdresse;
+    }
+
+    String getArbeidsgiverPostnummer() {
+        return arbeidsgiverPostnummer;
+    }
+
+    String getArbeidsgiverWebadresse() {
+        return arbeidsgiverWebadresse;
     }
 }
