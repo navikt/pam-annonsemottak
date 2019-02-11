@@ -107,7 +107,7 @@ public class AppConfig {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .sslSocketFactory(sc.getSocketFactory(), trustAllX509Manager)
                 .hostnameVerifier((s, sslSession) -> true)
-                .proxy(proxyUrl == null ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())))
+//                .proxy(proxyUrl == null ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())))
                 .build();
         HttpClientProxy proxy = new HttpClientProxy();
         proxy.setHttpClient(client);
