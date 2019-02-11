@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%date [%-5level] [%thread] %logger{5} - %m%n</pattern>
-        </encoder>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
 
     <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="OFF" />
-
-    <logger name="no.nav.pam" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="stdout_json" />
