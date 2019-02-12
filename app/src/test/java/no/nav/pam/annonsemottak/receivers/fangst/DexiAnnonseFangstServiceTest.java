@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.fangst;
 
 
 import io.micrometer.core.instrument.MeterRegistry;
+import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ import static org.mockito.Mockito.mock;
 @DataJpaTest
 @Rollback
 @Transactional
+@ContextConfiguration(classes = Application.class)
 public class DexiAnnonseFangstServiceTest {
 
     @Inject
