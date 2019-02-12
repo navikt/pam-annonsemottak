@@ -24,6 +24,8 @@ spring:
       ddl-auto: none
   profiles:
     active: prod
+  main:
+    allow-bean-definition-overriding: true
   flyway:
     enabled: true
     baseline-on-migrate: true
@@ -54,8 +56,8 @@ polaris:
   url: https://stilling.adresseavisen.no/api/nav.json
 finn:
   url: https://cache.api.finn.no/iad
-  api:
-    password: finn_api_key
+  api:
+    password: finn_api_key
 proxy:
   url: null
 solr:
