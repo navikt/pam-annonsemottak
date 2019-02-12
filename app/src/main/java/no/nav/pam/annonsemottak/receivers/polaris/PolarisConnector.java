@@ -2,7 +2,7 @@ package no.nav.pam.annonsemottak.receivers.polaris;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,22 +23,23 @@ public class PolarisConnector {
     private static final Logger LOG = LoggerFactory.getLogger(PolarisConnector.class);
 
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     private final String apiEndpoint;
-    private final HttpClientProxy proxy;
+    private final HttpClientProvider clientProvider;
 
     @Autowired
-    public PolarisConnector(HttpClientProxy proxy,
-                            @Value("${polaris.url}")String apiEndpoint,
-                            ObjectMapper jacksonMapper) {
-        this.proxy = proxy;
+    public PolarisConnector(
+            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            @Value("${polaris.url}") final String apiEndpoint,
+            final ObjectMapper jacksonMapper) {
+        this.clientProvider = clientProvider;
         this.apiEndpoint = apiEndpoint;
         this.objectMapper = jacksonMapper;
     }
 
     public boolean isPingSuccessful() {
         try {
-            Response response = proxy.getHttpClient().newCall(createRequest(apiEndpoint)).execute();
+            Response response = clientProvider.get().newCall(createRequest(apiEndpoint)).execute();
 
             return response.isSuccessful();
         } catch (Exception e) {
@@ -53,7 +55,7 @@ public class PolarisConnector {
 
     private List<PolarisAd> executeRequest(Request request) throws IOException {
         LOG.debug("{}", request);
-        Response response = proxy.getHttpClient().newCall(request).execute();
+        Response response = clientProvider.get().newCall(request).execute();
 
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected response code " + response.code());

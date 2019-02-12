@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -30,8 +30,7 @@ public class XmlStillingConnectorTest {
     @Before
     public void setUp() {
         server = new MockWebServer();
-        HttpClientProxy clientProxy = new HttpClientProxy();
-        clientProxy.setHttpClient(new OkHttpClient().newBuilder().build());
+        HttpClientProvider clientProxy = new HttpClientProvider(new OkHttpClient().newBuilder().build());
         connector = new XmlStillingConnector(clientProxy, endpointProvider);
     }
 

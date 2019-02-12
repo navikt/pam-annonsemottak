@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.IOException;
 import java.io.Reader;
 import java.time.LocalDateTime;
@@ -29,15 +30,14 @@ class XmlStillingConnector {
     private static final TypeReference<List<XmlStillingDto>> JSON_TYPE = new TypeReference<List<XmlStillingDto>>() {
     };
 
-    private final HttpClientProxy proxy;
+    private final HttpClientProvider proxy;
     private final EndpointProvider uri;
     private final ObjectMapper objectMapper;
 
     @Inject
     XmlStillingConnector(
-            HttpClientProxy proxy,
-            EndpointProvider uri
-    ) {
+            @Named("internalHttpClient") final HttpClientProvider proxy,
+            final EndpointProvider uri) {
 
         this.proxy = proxy;
         this.uri = uri;
@@ -49,7 +49,7 @@ class XmlStillingConnector {
 
     boolean isPingSuccessful() {
         try {
-            Response response = proxy.getHttpClient().newCall(requestFor(uri.forPing())).execute();
+            Response response = proxy.get().newCall(requestFor(uri.forPing())).execute();
             return response.isSuccessful();
         } catch (IOException e) {
             log.error("Error while pinging connection to xml-stilling", e);
@@ -75,7 +75,7 @@ class XmlStillingConnector {
         Request request = requestFor(uri.forFetchWithStartingId(lastRun));
         log.debug("{}", request);
 
-        Response response = proxy.getHttpClient().newCall(request).execute();
+        Response response = proxy.get().newCall(request).execute();
 
         if (!response.isSuccessful()) {
             throw new RuntimeException("Unexpected response code " + response.code());

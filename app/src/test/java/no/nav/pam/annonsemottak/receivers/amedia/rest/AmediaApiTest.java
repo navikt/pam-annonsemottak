@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.amedia.rest;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import no.nav.pam.annonsemottak.app.config.TestConfig;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
@@ -17,6 +18,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -35,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
+@ContextConfiguration(classes = TestConfig.class)
 public class AmediaApiTest {
 
     static {

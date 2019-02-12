@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -13,6 +13,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.inject.Named;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
@@ -28,16 +29,17 @@ public class FinnConnector {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinnConnector.class);
 
-    private final HttpClientProxy proxy;
+    private final HttpClientProvider clientProvider;
     private final String serviceDocumentUrl;
     private final String apiKey;
     private final int politeRequestDelayInMillis;
 
-    public FinnConnector(HttpClientProxy proxy,
-                         @Value("${finn.url}") String serviceDocumentUrl,
-                         @Value("${finn.api.password}") String apiKey,
-                         @Value("${finn.polite.delay.millis:200}") int politeRequestDelayInMillis) {
-        this.proxy = proxy;
+    public FinnConnector(
+            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            @Value("${finn.url}") final String serviceDocumentUrl,
+            @Value("${finn.api.password}") final String apiKey,
+            @Value("${finn.polite.delay.millis:200}") final int politeRequestDelayInMillis) {
+        this.clientProvider = clientProvider;
         this.serviceDocumentUrl = serviceDocumentUrl;
         this.apiKey = apiKey;
         this.politeRequestDelayInMillis = politeRequestDelayInMillis;
@@ -148,7 +150,7 @@ public class FinnConnector {
             throws IOException {
         addPoliteDelayBetweenRequests();
         LOG.debug("{}", request);
-        Response response = proxy.getHttpClient().newCall(request).execute();
+        Response response = clientProvider.get().newCall(request).execute();
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected response code " + response.code());
         }
@@ -157,7 +159,7 @@ public class FinnConnector {
 
     public boolean isPingSuccessful() {
         try {
-            Response response = proxy.getHttpClient().newCall(createRequest(HttpUrl.parse(serviceDocumentUrl))).execute();
+            Response response = clientProvider.get().newCall(createRequest(HttpUrl.parse(serviceDocumentUrl))).execute();
             return response.isSuccessful();
         } catch (IOException e) {
             LOG.error("Error while pinging connection to Finn.", e);

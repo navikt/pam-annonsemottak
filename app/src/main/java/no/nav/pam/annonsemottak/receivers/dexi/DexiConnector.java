@@ -2,7 +2,7 @@ package no.nav.pam.annonsemottak.receivers.dexi;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.io.IOException;
 import java.io.Reader;
 import java.math.BigInteger;
@@ -28,17 +29,18 @@ public class DexiConnector {
     private final String DEXI_ACCOUNT_ID;
     private final String DEXI_API_KEY;
     private final String API_ENDPOINT;
-    private final HttpClientProxy proxy;
+    private final HttpClientProvider clientProvider;
     private final String md5;
 
     @Autowired
-    public DexiConnector(HttpClientProxy proxy,
-                         @Value("${dexi.api.username}") String dexiAccount,
-                         @Value("${dexi.api.password}") String dexiApikey,
-                         @Value("${dexi.url}") String dexiEndpoint,
-                         ObjectMapper jacksonMapper) {
+    public DexiConnector(
+            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            @Value("${dexi.api.username}") final String dexiAccount,
+            @Value("${dexi.api.password}") final String dexiApikey,
+            @Value("${dexi.url}") final String dexiEndpoint,
+            final ObjectMapper jacksonMapper) {
         this.objectMapper = jacksonMapper;
-        this.proxy = proxy;
+        this.clientProvider = clientProvider;
         this.DEXI_ACCOUNT_ID = dexiAccount;
         this.DEXI_API_KEY = dexiApikey;
         this.API_ENDPOINT = dexiEndpoint;
@@ -77,7 +79,7 @@ public class DexiConnector {
 
     private Map execute(Request request)
             throws IOException {
-        try (Response response = proxy.getHttpClient().newCall(request).execute()) {
+        try (Response response = clientProvider.get().newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Unexpected response code " + response.code());
             }
@@ -142,7 +144,7 @@ public class DexiConnector {
 
     public boolean isPingSuccessful() {
         try {
-            return proxy.getHttpClient().newCall(getUrl("runs/", null)).execute().isSuccessful();
+            return clientProvider.get().newCall(getUrl("runs/", null)).execute().isSuccessful();
         } catch (IOException e) {
             return false;
         }

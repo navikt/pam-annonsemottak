@@ -163,18 +163,6 @@
 
     <build>
         <plugins>
-            <!-- See http://stackoverflow.com/questions/10598889/jboss7-loader-constraint-violation-with-reasteasy-and-httpclient-with-custom-ht -->
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Dependencies>org.apache.httpcomponents</Dependencies>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.1</version>
