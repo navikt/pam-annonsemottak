@@ -14,7 +14,7 @@ import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
 import no.nav.pam.annonsemottak.feed.OptionalValueMixIn;
 import no.nav.pam.annonsemottak.feed.StillingMixIn;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.stilling.*;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -94,10 +94,9 @@ public class AppConfig {
         return objectMapper;
     }
 
-    @Bean
-    @Profile({"prod", "dev"})
+    @Bean("proxyHttpClient")
     // TODO: Using trustall for the client, until we move the app to NAIS. What could possible go wrong?
-    public HttpClientProxy getUnsafeClient()
+    public HttpClientProvider getUnsafeClient()
             throws GeneralSecurityException {
 
         X509TrustManager trustAllX509Manager = mockX509TrustManager();
@@ -107,11 +106,9 @@ public class AppConfig {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .sslSocketFactory(sc.getSocketFactory(), trustAllX509Manager)
                 .hostnameVerifier((s, sslSession) -> true)
-//                .proxy(proxyUrl == null ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())))
+                .proxy(proxyUrl == null ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())))
                 .build();
-        HttpClientProxy proxy = new HttpClientProxy();
-        proxy.setHttpClient(client);
-        return proxy;
+        return new HttpClientProvider(client);
 
     }
 
@@ -122,9 +119,8 @@ public class AppConfig {
         return sc;
     }
 
-    @Bean
-    @Profile({"test"})
-    public HttpClientProxy getUnsafeClientUtenProxy() {
+    @Bean("internalHttpClient")
+    public HttpClientProvider getUnsafeClientUtenProxy() {
         try {
 
             X509TrustManager trustAllX509Manager = mockX509TrustManager();
@@ -135,9 +131,7 @@ public class AppConfig {
                     .sslSocketFactory(sc.getSocketFactory(), trustAllX509Manager)
                     .hostnameVerifier((s, sslSession) -> true)
                     .build();
-            HttpClientProxy proxy = new HttpClientProxy();
-            proxy.setHttpClient(client);
-            return proxy;
+            return new HttpClientProvider(client);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

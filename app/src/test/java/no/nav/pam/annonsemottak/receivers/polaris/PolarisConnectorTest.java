@@ -3,7 +3,8 @@ package no.nav.pam.annonsemottak.receivers.polaris;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
@@ -21,9 +22,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,19 +39,21 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
 @MockBean(value = SolrService.class)
 @MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @Transactional
 @Rollback
+@ActiveProfiles("test")
 public class PolarisConnectorTest {
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(7012);
 
-    @Autowired
-    HttpClientProxy httpClientProxy;
+    @Inject
+    @Named("internalHttpClient")
+    HttpClientProvider httpClientProvider;
 
     @Autowired
     ExternalRunService externalRunService;
@@ -67,7 +73,7 @@ public class PolarisConnectorTest {
 
     @Before
     public void init() {
-        polarisConnector = new PolarisConnector(httpClientProxy, apiEndpoint, new ObjectMapper());
+        polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, new ObjectMapper());
         polarisService = new PolarisService(externalRunService, meterRegistry, polarisConnector, annonseFangstService);
 
         wireMockRule.stubFor(get(urlPathMatching(

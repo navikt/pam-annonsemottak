@@ -11,6 +11,8 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: none
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: test
 management:

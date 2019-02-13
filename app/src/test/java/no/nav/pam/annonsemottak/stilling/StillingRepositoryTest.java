@@ -1,12 +1,15 @@
 package no.nav.pam.annonsemottak.stilling;
 
+import no.nav.pam.annonsemottak.Application;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +29,7 @@ import static org.junit.Assert.*;
 @DataJpaTest
 @Rollback
 @Transactional
+@ContextConfiguration(classes = Application.class)
 public class StillingRepositoryTest {
 
     @Inject
@@ -149,15 +153,5 @@ public class StillingRepositoryTest {
         stillinger = stillingRepository.findByKildeAndMediumAndAnnonseStatus(kilde, medium, AnnonseStatus.AKTIV);
         assertThat(stillinger.size(), is(equalTo(1)));
     }
-
-//    @Test
-//    public void annonse_dato_skal_være_riktige() {
-//        Stilling s = enkelStilling().build();
-//        s = stillingRepository.save(s);
-//        Stilling load = stillingRepository.findByUuid(s.getUuid());
-//        assertNotNull(load.getCreated());
-//        assertNotNull(load.getExpires());
-//        assertTrue(load.getExpires().isAfter(load.getCreated()));
-//    }
 
 }

@@ -1,10 +1,12 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.collect.Sets;
+import no.nav.pam.annonsemottak.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.enkelStilling;
-import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.stilling;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -22,6 +23,7 @@ import static org.junit.Assert.assertThat;
 @DataJpaTest
 @Rollback
 @Transactional
+@ContextConfiguration(classes = Application.class)
 public class DatabaseScriptsTest {
 
     @Inject

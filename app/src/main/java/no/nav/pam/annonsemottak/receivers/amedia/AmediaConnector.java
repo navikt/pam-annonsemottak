@@ -3,7 +3,7 @@ package no.nav.pam.annonsemottak.receivers.amedia;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.nav.pam.annonsemottak.receivers.HttpClientProxy;
+import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
@@ -24,13 +25,14 @@ public class AmediaConnector {
 
     private final ObjectMapper objectMapper;
     private final String apiEndpoint;
-    private final HttpClientProxy proxy;
+    private final HttpClientProvider clientProvider;
 
-    public AmediaConnector(HttpClientProxy proxy,
-                           @Value("${amedia.url}") String amediaUrl,
-                           ObjectMapper jacksonMapper) {
+    public AmediaConnector(
+            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            @Value("${amedia.url}") final String amediaUrl,
+            final ObjectMapper jacksonMapper) {
         this.objectMapper = jacksonMapper;
-        this.proxy = proxy;
+        this.clientProvider = clientProvider;
         this.apiEndpoint = amediaUrl;
     }
 
@@ -47,7 +49,7 @@ public class AmediaConnector {
     private JsonNode executeRequest(Request request)
             throws IOException {
         LOG.debug("{}", request);
-        Response response = proxy.getHttpClient().newCall(request).execute();
+        Response response = clientProvider.get().newCall(request).execute();
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected response code " + response.code());
         }
@@ -63,7 +65,7 @@ public class AmediaConnector {
     public boolean isPingSuccessful() {
         try {
             AmediaRequestParametere params = new AmediaRequestParametere(LocalDateTime.now(), false, 1);
-            Response response = proxy.getHttpClient().newCall(createRequest(apiEndpoint + params.asString())).execute();
+            Response response = clientProvider.get().newCall(createRequest(apiEndpoint + params.asString())).execute();
             return response.isSuccessful();
         } catch (IOException e) {
             LOG.error("Error while pinging connection to Amedia", e);
