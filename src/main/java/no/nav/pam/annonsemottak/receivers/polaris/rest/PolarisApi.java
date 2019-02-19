@@ -1,4 +1,4 @@
-package no.nav.pam.annonsemottak.annonsemottak.polaris.rest;
+package no.nav.pam.annonsemottak.receivers.polaris.rest;
 
 
 import no.nav.pam.annonsemottak.PathDefinition;
