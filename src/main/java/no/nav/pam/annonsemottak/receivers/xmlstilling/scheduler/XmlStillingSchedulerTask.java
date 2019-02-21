@@ -26,7 +26,7 @@ public class XmlStillingSchedulerTask {
         this.xmlStillingService = xmlStillingService;
     }
 
-    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */30 * * * *")
     @SchedulerLock(name = "saveLatestAdsFromXmlStilling")
     public void saveLatestAds() {
         if(toggle("pam.schedule.fetch.from.xmlstilling").isDisabled()) {
@@ -38,7 +38,7 @@ public class XmlStillingSchedulerTask {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Xml-Stilling.");
 
         try {
-//            xmlStillingService.updateLatest(false);
+            xmlStillingService.updateLatest(false);
             LOG.info("Scheduler for Xml-Stilling is finished");
         } catch (Exception e) {
             LOG.error("Unable to save results from Xml-Stilling", e);
