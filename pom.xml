@@ -28,6 +28,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>no.nav.pam.unleash</groupId>
+            <artifactId>pam-unleash-spring</artifactId>
+            <version>1</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

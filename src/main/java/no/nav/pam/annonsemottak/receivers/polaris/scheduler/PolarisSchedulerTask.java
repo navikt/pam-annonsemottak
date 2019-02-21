@@ -16,7 +16,7 @@ import javax.inject.Inject;
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 public class PolarisSchedulerTask {
 
-    public static final String CRON = "0 30 5 * * *";
+    private static final String CRON = "0 30 5 * * *";
     private static final Logger LOG = LoggerFactory.getLogger(PolarisSchedulerTask.class);
 
     private final PolarisService polarisService;
@@ -28,7 +28,7 @@ public class PolarisSchedulerTask {
 
     @Scheduled(cron = CRON)
     @SchedulerLock(name = "saveLatestAdsFromPolaris")
-    public void saveLatestAdsFromFinn() {
+    public void saveLatestAds() {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Polaris.");
 
         try {
