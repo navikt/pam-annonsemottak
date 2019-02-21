@@ -64,4 +64,5 @@ solr:
   core: 'maincore'
 xmlstilling:
   url: http://pam-xml-stilling
-UNLEASH_API_URL: http://unleashproxy/api
+unleash:
+  api.url: https://unleashproxy.nais.oera.no/api/
