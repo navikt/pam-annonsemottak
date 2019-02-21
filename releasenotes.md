@@ -1,3 +1,6 @@
+## RELEASE - 0.40.137-b4a17d9
+#### New in this release: 
++ 2019-01-23 [FIX] disable postgres use_jdbc_metadata_defaults
 ## RELEASE - 0.38.122-cf77872
 #### New in this release: 
 + 2019-01-15 [bugfix] replaces robotName to kommune name as medium for Kommuner crawlers
