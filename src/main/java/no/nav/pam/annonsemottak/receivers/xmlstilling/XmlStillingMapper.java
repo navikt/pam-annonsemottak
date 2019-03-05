@@ -4,6 +4,8 @@ import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 
+import java.time.LocalDateTime;
+
 import static no.nav.pam.annonsemottak.receivers.common.PropertyNames.*;
 
 class XmlStillingMapper {
@@ -18,7 +20,7 @@ class XmlStillingMapper {
                 dto.getArbeidsgiver(),
                 dto.getArbeidsgiverBedriftspresentasjon(),
                 dto.getStillingsbeskrivelse(),
-                dto.getSoknadsfrist().toString(),
+                dto.getSoknadsfrist().map(LocalDateTime::toString).orElse(""),
                 Kilde.XML_STILLING.toString(),
                 dto.getEksternBrukerRef(),
                 null,

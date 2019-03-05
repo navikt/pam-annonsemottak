@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 class XmlStillingDto {
 
@@ -81,8 +82,8 @@ class XmlStillingDto {
         return stillingsbeskrivelse;
     }
 
-    LocalDateTime getSoknadsfrist() {
-        return soknadsfrist;
+    Optional<LocalDateTime> getSoknadsfrist() {
+        return Optional.ofNullable(soknadsfrist);
     }
 
     String getEksternId() {
