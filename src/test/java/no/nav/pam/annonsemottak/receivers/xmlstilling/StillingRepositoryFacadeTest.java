@@ -40,7 +40,7 @@ public class StillingRepositoryFacadeTest {
     private StillingRepositoryFacade facade;
 
     @Captor
-    private ArgumentCaptor<List<Stilling>> captor;
+    private ArgumentCaptor<Stilling> captor;
 
     @Mock
     private StillingRepository repository;
@@ -57,8 +57,8 @@ public class StillingRepositoryFacadeTest {
 
         verify(repository, times(2)).findByKildeAndMediumAndExternalId(any(), any(), any());
 
-        verify(repository).saveAll(captor.capture());
-        assertThat(captor.getValue()).hasSize(6); // changed + new
+        verify(repository, times(6)).save(captor.capture());
+        assertThat(captor.getAllValues()).hasSize(6); // changed + new
 
         assertThat(stillinger.asList()).hasSize(7);
     }
@@ -120,7 +120,9 @@ public class StillingRepositoryFacadeTest {
 
     private List<Stilling> listOf7stillinger() {
         return IntStream.range(0, 7)
-                .mapToObj(i -> StillingTestdataBuilder.enkelStilling().systemModifiedDate(now()).build())
+                .mapToObj(i -> StillingTestdataBuilder.enkelStilling()
+                        .externalId(String.valueOf(i))
+                        .systemModifiedDate(now()).build())
                 .collect(Collectors.toList());
     }
 

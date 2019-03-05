@@ -7,10 +7,18 @@ import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 
@@ -35,9 +43,10 @@ class StillingRepositoryFacade {
 
         log.debug("Siste stilling mottat {} fra xml-stilling", stillinger.latestDate());
 
-        stillinger.get(CHANGED).ifPresent(list -> list.forEach(this::mergeWithDb));
+        stillinger.get(NEW).forEach(stillingRepository::save);
 
-        stillingRepository.saveAll(stillinger.merge(NEW, CHANGED));
+        // Cannot save all in case we get duplicate IDs incoming, which may happen if the ad is updated
+        stillinger.get(CHANGED).stream().peek(this::mergeWithDb).forEach(stillingRepository::save);
 
         log.info("Saved {} new and {} changed ads from xml-stilling total {}", stillinger.size(NEW), stillinger.size(CHANGED), stillinger.asList().size());
 

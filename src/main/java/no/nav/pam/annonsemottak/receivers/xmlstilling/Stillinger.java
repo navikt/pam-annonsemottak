@@ -4,10 +4,14 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
+import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.CHANGED;
+import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.NEW;
 
 class Stillinger {
 
@@ -15,24 +19,68 @@ class Stillinger {
         NEW, CHANGED, UNCHANGED
     }
 
-    private final Map<Gruppe, List<Stilling>> stillinger;
+    private static class StillingKey {
+
+        private final String kilde, medium, externalId;
+
+        StillingKey(Stilling stilling) {
+            this.kilde = stilling.getKilde();
+            this.medium = stilling.getMedium();
+            this.externalId = stilling.getExternalId();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            StillingKey key = (StillingKey) o;
+            return Objects.equals(kilde, key.kilde) &&
+                    Objects.equals(medium, key.medium) &&
+                    Objects.equals(externalId, key.externalId);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(kilde, medium, externalId);
+        }
+    }
+
+    private Map<Gruppe, List<Stilling>> stillinger;
 
     Stillinger(
             final List<Stilling> stillinger,
             final Function<Stilling, Gruppe> grupperingStrategi) {
 
         this.stillinger = stillinger == null ?
-                Collections.emptyMap() :
+                new HashMap<>() :
                 stillinger.stream().collect(groupingBy(grupperingStrategi));
+
+        moveDuplicateNewsToChanged();
 
     }
 
-    Optional<List<Stilling>> get(Gruppe gruppe) {
-        return Optional.ofNullable(stillinger.get(gruppe));
+    private void moveDuplicateNewsToChanged() {
+
+        get(CHANGED).addAll(
+                get(NEW).stream()
+                        .filter(distinctStilling().negate())
+                        .collect(Collectors.toList())
+        );
+
+        get(NEW).removeIf(distinctStilling().negate());
+    }
+
+    private static Predicate<Stilling> distinctStilling() {
+        Set<StillingKey> seen = ConcurrentHashMap.newKeySet();
+        return stilling -> seen.add(new StillingKey(stilling));
+    }
+
+    List<Stilling> get(Gruppe gruppe) {
+        return stillinger.computeIfAbsent(gruppe, any -> new ArrayList<>());
     }
 
     int size(Gruppe gruppe) {
-        return get(gruppe).map(List::size).orElse(0);
+        return get(gruppe).size();
     }
 
     Optional<LocalDateTime> latestDate() {

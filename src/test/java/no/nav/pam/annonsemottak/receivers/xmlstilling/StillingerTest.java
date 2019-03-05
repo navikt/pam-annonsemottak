@@ -51,13 +51,13 @@ public class StillingerTest {
     @Test
     public void grouping() {
         Stillinger stillinger = new Stillinger(Arrays.asList(
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build()),
+                StillingTestdataBuilder.enkelStilling().externalId("1").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("2").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("3").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("4").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("5").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("6").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("7").build()),
         size_1_2_4_groups);
 
         assertThat(stillinger.size(CHANGED)).isEqualTo(1);
@@ -69,18 +69,18 @@ public class StillingerTest {
     @Test
     public void size_calculation() {
         Stillinger stillinger = new Stillinger(Arrays.asList(
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build(),
-                StillingTestdataBuilder.enkelStilling().build()),
+                StillingTestdataBuilder.enkelStilling().externalId("1").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("2").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("3").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("4").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("5").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("6").build(),
+                StillingTestdataBuilder.enkelStilling().externalId("7").build()),
         size_1_2_4_groups);
 
-        assertThat(stillinger.get(CHANGED).orElse(null)).hasSize(1);
-        assertThat(stillinger.get(NEW).orElse(null)).hasSize(2);
-        assertThat(stillinger.get(UNCHANGED).orElse(null)).hasSize(4);
+        assertThat(stillinger.get(CHANGED)).hasSize(1);
+        assertThat(stillinger.get(NEW)).hasSize(2);
+        assertThat(stillinger.get(UNCHANGED)).hasSize(4);
 
         assertThat(stillinger.merge(CHANGED, NEW)).hasSize(3);
         assertThat(stillinger.merge(NEW, UNCHANGED)).hasSize(6);

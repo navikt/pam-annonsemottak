@@ -35,6 +35,8 @@ class ExternalRunFacade {
         ExternalRun run = externalRunService.findByNameAndMedium(XML_STILLING.toString(), XML_STILLING.value());
         LocalDateTime nextRunStart = run != null ? run.getLastRun() : DEFAULT_DATE;
 
+        log.debug("Next run for xml stilling: {} " + nextRunStart);
+
         Stillinger stillinger = stillingUpdater.apply(nextRunStart);
 
         stillinger.latestDate().ifPresent(lastUpdate -> {
