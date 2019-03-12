@@ -21,12 +21,14 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static no.nav.pam.unleash.UnleashProvider.toggle;
+
 @Service
 public class SolrFetchService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolrFetchService.class);
 
-    private static final String fraArbeidsgiver = "Overført fra arbeidsgiver";
+    static final String fraArbeidsgiver = "Overført fra arbeidsgiver";
     private static final String registrertNav = "Reg. av arb.giver på nav.no";
     private static final String meldtNavLokalt = "Meldt til NAV lokalt";
     private static final String direktemeldt = "Direktemeldt stilling (Nav.no)";
@@ -53,8 +55,7 @@ public class SolrFetchService {
 
     private static String buildFilterQueryKildetekst() {
         return StillingSolrBeanFieldNames.KILDETEKST + ":(" +
-                "\"" + fraArbeidsgiver + "\"" +
-                " OR " +
+                fraArbeidsgiverPart() +
                 "\"" + registrertNav + "\"" +
                 " OR " +
                 "\"" + meldtNavLokalt + "\"" +
@@ -64,7 +65,16 @@ public class SolrFetchService {
                 "\"" + fraEures + "\"" +
                 ")" +
                 " OR (" + StillingSolrBeanFieldNames.KILDETEKST + ":\"" + navServicesenter + "\"" +
-                       " AND NOT " + StillingSolrBeanFieldNames.MEDIUMTEKST + ":[* TO *])";
+                " AND NOT " + StillingSolrBeanFieldNames.MEDIUMTEKST + ":[* TO *])";
+    }
+
+    private static String fraArbeidsgiverPart() {
+
+        if(toggle("pam.schedule.fetch.from.xmlstilling").isDisabled()) {
+            return "\"" + fraArbeidsgiver + "\"" +
+                    " OR ";
+        }
+        return "";
     }
 
     /**
@@ -88,7 +98,6 @@ public class SolrFetchService {
                 if (saveAllFetchedAds
                         || !inDb.get().getHash().equals(s.getHash())
                         || inDb.get().getAnnonseStatus() != AnnonseStatus.AKTIV) {
-
                     s.merge(inDb.get());
                     changedStillinger.add(s);
                 } else {

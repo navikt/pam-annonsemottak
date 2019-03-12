@@ -64,6 +64,10 @@ class XmlStillingDto {
     @JsonProperty
     private String arbeidsgiverWebadresse;
 
+    @Deprecated
+    @JsonProperty
+    private String arenaId;
+
 
 
     String getArbeidsgiver() {
@@ -141,5 +145,13 @@ class XmlStillingDto {
 
     String getArbeidsgiverWebadresse() {
         return arbeidsgiverWebadresse;
+    }
+
+    /**
+     * @deprecated Kun for å håndtere overgang til pam-xml-stilling, som går utenfor arena - kan slettes når siste solr-stilling er utløpt"
+     */
+    @Deprecated
+    String getArenaId() {
+        return arenaId;
     }
 }

@@ -70,6 +70,13 @@ public class Stilling extends ModelEntity {
     @Transient
     private LocalDateTime systemModifiedDate;
 
+    /**
+     * @deprecated Kun for å håndtere overgang til pam-xml-stilling, som går utenfor arena - kan slettes når siste solr-stilling er utløpt"
+     */
+    @Deprecated
+    @Transient
+    private String arenaId;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "PROPERTIES_KEY")
     @Column(name = "PROPERTIES_VALUE", nullable = false)
@@ -324,6 +331,33 @@ public class Stilling extends ModelEntity {
         }
 
         return this;
+    }
+
+    /**
+     * @deprecated Ikke bruk! Fjern når alle solr-stillinger er utløpt. Da er denne ikke akutell lenger
+     */
+    @Deprecated
+    public Stilling mergeNaturalId(Stilling stilling) {
+        this.externalId = stilling.externalId;
+        this.kilde = stilling.kilde;
+        this.medium = stilling.medium;
+        return this;
+    }
+
+    /**
+     * @deprecated Kun for å håndtere overgang til pam-xml-stilling, som går utenfor arena - kan slettes når siste solr-stilling er utløpt"
+     */
+    @Deprecated
+    public String getArenaId() {
+        return arenaId;
+    }
+
+    /**
+     * @deprecated Kun for å håndtere overgang til pam-xml-stilling, som går utenfor arena - kan slettes når siste solr-stilling er utløpt"
+     */
+    @Deprecated
+    public void setArenaId(String arenaId) {
+        this.arenaId = arenaId;
     }
 
     @Override

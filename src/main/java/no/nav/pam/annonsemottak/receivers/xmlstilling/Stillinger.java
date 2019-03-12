@@ -16,7 +16,11 @@ import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.N
 class Stillinger {
 
     enum Gruppe {
-        NEW, CHANGED, UNCHANGED
+        NEW,
+        CHANGED,
+        @Deprecated
+        CHANGED_ARENA,
+        UNCHANGED
     }
 
     private static class StillingKey {
