@@ -39,6 +39,8 @@ class XmlStillingMapper {
 
         stilling.setSystemModifiedDate(dto.getMottattTidspunkt());
 
+        stilling.setArenaId(dto.getArenaId());
+
         return stilling;
     }
 
