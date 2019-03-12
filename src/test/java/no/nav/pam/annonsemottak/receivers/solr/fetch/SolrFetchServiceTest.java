@@ -1,11 +1,12 @@
 package no.nav.pam.annonsemottak.receivers.solr.fetch;
 
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import no.finn.unleash.FakeUnleash;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
 import no.nav.pam.annonsemottak.receivers.solr.StillingSolrBean;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
+import no.nav.pam.unleash.UnleashProvider;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
@@ -13,8 +14,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
@@ -24,6 +25,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,9 +48,12 @@ public class SolrFetchServiceTest {
     @Mock
     private AnnonseFangstService annonseFangstService;
 
+    private FakeUnleash fakeUnleash = new FakeUnleash();
 
     @Before
     public void before() {
+        fakeUnleash.disableAll();
+        UnleashProvider.initialize(fakeUnleash);
         solrFetchService = new SolrFetchService(solrRepository, stillingRepository, annonseFangstService);
     }
 
@@ -94,6 +99,42 @@ public class SolrFetchServiceTest {
         softly.assertThat(stillinger.get(2).getExternalId()).isEqualTo("3");
         softly.assertThat(stillinger.get(3).getExternalId()).isEqualTo("4");
         softly.assertAll();
+    }
+
+    @Test
+    public void feature_toggle_do_not_interfer_when_disabled() {
+        SolrDocumentList solrDocuments = buildFakeSolrDocumentList(1);
+        StillingSolrBean solrBean = buildFakeSolrBean(ID, KILDE, ARBEIDSGIVER, "");
+        List<Object> solrBeans = Collections.singletonList(solrBean);
+
+        when(solrRepository.query(any(SolrQuery.class))).thenReturn(queryResponse);
+        when(queryResponse.getResults()).thenReturn(solrDocuments);
+        when(queryResponse.getBeans(any())).thenReturn(solrBeans);
+
+        solrFetchService.searchForStillinger();
+
+        ArgumentCaptor<SolrQuery> captor = ArgumentCaptor.forClass(SolrQuery.class);
+        verify(solrRepository).query(captor.capture());
+        assertThat(captor.getValue().getFilterQueries()[0]).contains("Overført fra arbeidsgiver");
+    }
+
+    @Test
+    public void feature_toggle_do_not_fetch_overfort_fra_arbeidsgiver_when_enabled() {
+        fakeUnleash.enableAll();
+        SolrDocumentList solrDocuments = buildFakeSolrDocumentList(1);
+        StillingSolrBean solrBean = buildFakeSolrBean(ID, KILDE, ARBEIDSGIVER, "");
+        List<Object> solrBeans = Collections.singletonList(solrBean);
+
+        when(solrRepository.query(any(SolrQuery.class))).thenReturn(queryResponse);
+        when(queryResponse.getResults()).thenReturn(solrDocuments);
+        when(queryResponse.getBeans(any())).thenReturn(solrBeans);
+
+        solrFetchService.searchForStillinger();
+
+        ArgumentCaptor<SolrQuery> captor = ArgumentCaptor.forClass(SolrQuery.class);
+        verify(solrRepository).query(captor.capture());
+
+        assertThat(captor.getValue().getFilterQueries()[0]).doesNotContain("Overført fra arbeidsgiver");
     }
 
     private SolrDocumentList buildFakeSolrDocumentList(int numFound) {
