@@ -1,3 +1,6 @@
+## RELEASE - 0.41.143-9463b75
+#### New in this release: 
++ 2019-03-18 [PAM-2969] Endringer i Finn-data, navn på arbeidsgiver har blitt til attributt i XML
 ## RELEASE - 0.40.137-b4a17d9
 #### New in this release: 
 + 2019-01-23 [FIX] disable postgres use_jdbc_metadata_defaults
