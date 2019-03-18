@@ -1,163 +1,151 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<entry xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:age="http://purl.org/atompub/age/1.0"
-       xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0"
-       xmlns:media="http://search.yahoo.com/mrss/" xmlns:app="http://www.w3.org/2007/app"
-       xmlns:georss="http://www.georss.org/georss" xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:id:91758798</id>
-    <title>Vil du lede den digitale reisen?</title>
-    <updated>2017-03-02T15:05:00.000Z</updated>
-    <published>2017-03-02T15:01:00.000Z</published>
-    <dc:dateSubmitted>2017-03-02T15:01:00.000Z</dc:dateSubmitted>
-    <age:expires>2017-04-13T21:59:00.000Z</age:expires>
-    <app:edited>2017-03-02T15:05:00.000Z</app:edited>
-    <dc:identifier>91758798</dc:identifier>
-    <category scheme="urn:finn:ad:private" term="false"/>
-    <category scheme="urn:finn:ad:type" label="Lederjobb" term="job-management"/>
-    <category scheme="urn:finn:search:type" label="Lederstillinger" term="job-management"/>
+<entry
+        xmlns="http://www.w3.org/2005/Atom"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:age="http://purl.org/atompub/age/1.0"
+        xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0"
+        xmlns:media="http://search.yahoo.com/mrss/"
+        xmlns:app="http://www.w3.org/2007/app"
+        xmlns:georss="http://www.georss.org/georss">
+    <id>urn:id:115526620</id>
+    <title>GPS montør / Servicetekniker søkes</title>
+    <updated>2019-03-07T11:17:00.000Z</updated>
+    <published>2018-03-08T09:42:00.000Z</published>
+    <dc:dateSubmitted>2018-03-08T09:42:00.000Z</dc:dateSubmitted>
+    <age:expires>2019-04-18T10:17:00.000Z</age:expires>
+    <app:edited>2019-03-07T11:17:00.000Z</app:edited>
+    <dc:identifier>115526620</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:type" label="Fulltidsjobb" term="job-full-time"/>
     <category scheme="urn:finn:ad:status" label="Aktiv" term="activated"/>
     <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/91758798" rel="self"/>
-    <link href="https://www.finn.no/91758798" rel="alternate"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/91758798/statistics"
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/115526620" rel="self"/>
+    <link href="https://www.finn.no/115526620" rel="alternate"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/115526620/statistics"
           rel="http://api.finn.no/relations/statistics"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/91758798/tipafriend" rel="urn:finn:ad:tipafriend"/>
-    <link href="http://portal.crmasp.no/TopTempOnlinePortalWeb/Account/RegisterExtended?aid=sQ7x2j4wLuZrx/PZbYky8YfId7c/iknHJweajlgylXFtHt8d%2BH53d2zUEwlWaIHLRgwGEKPLRI37pdEdaYcIPkDCf97wnw1exjbSOuOc7aw%3D"
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/115526620/tipafriend" rel="urn:finn:ad:tipafriend"/>
+    <link href="https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=115526620"
+          rel="http://api.finn.no/relations/apply">
+        <finn:category scheme="urn:finn:category:link" term="MOBILE"/>
+    </link>
+    <link href="https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=115526620"
           rel="http://api.finn.no/relations/apply">
         <finn:category scheme="urn:finn:category:link" term="DESKTOP"/>
     </link>
-    <georss:point finn:accuracy="9">59.95626 11.03524</georss:point>
+    <georss:point finn:accuracy="9">59.821956634521484 10.787223815917969</georss:point>
     <finn:location>
-        <finn:address>DEPOTGATA 22</finn:address>
-        <finn:postal-code>2000</finn:postal-code>
-        <finn:city>Lillestrøm</finn:city>
+        <finn:address>Rosenholmveien 25</finn:address>
+        <finn:postal-code>1414</finn:postal-code>
+        <finn:city>Trollåsen</finn:city>
         <finn:country>Norge</finn:country>
         <media:content
-                url="https://maptiles.finncdn.no/staticmap?lat=59.956257&amp;lng=11.035237&amp;zoom=14&amp;size=400x300&amp;maptype=norwayVector&amp;showPin=true"
+                url="https://maptiles.finncdn.no/staticmap?lat=59.821957&amp;lng=10.787224&amp;zoom=14&amp;size=400x300&amp;maptype=norwayVector&amp;showPin=true"
                 type="image/png" medium="image"/>
-        <link href="https://kart.finn.no/?finnkode=91758798&amp;lat=59.956257&amp;lng=11.035237&amp;mapType=finnvector&amp;showPin=1&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=115526620&amp;lat=59.821957&amp;lng=10.787224&amp;mapType=finnvector&amp;showPin=1&amp;bl=1"
               rel="urn:finn:map:type:finnvector"/>
-        <link href="https://kart.finn.no/?finnkode=91758798&amp;lat=59.956257&amp;lng=11.035237&amp;mapType=finnhybrid&amp;showPin=1&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=115526620&amp;lat=59.821957&amp;lng=10.787224&amp;mapType=finnhybrid&amp;showPin=1&amp;bl=1"
               rel="urn:finn:map:type:finnhybrid"/>
-        <link href="https://kart.finn.no/?finnkode=91758798&amp;lat=59.956257&amp;lng=11.035237&amp;mapType=norortho&amp;showPin=1&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=115526620&amp;lat=59.821957&amp;lng=10.787224&amp;mapType=norortho&amp;showPin=1&amp;bl=1"
               rel="urn:finn:map:type:norortho"/>
     </finn:location>
-    <media:content url="https://images.finncdn.no/mmo/2017/3/2/8/917/587/98_2118645667.png" type="image/png"
-                   medium="image">
+    <media:content height="293" medium="image" width="1123"
+                   url="https://images.finncdn.no/dynamic/default/2018/3/vertical-1/08/0/115/526/_1557701312.jpg"
+                   type="image/jpeg">
+        <media:description>Zeekit familien</media:description>
+    </media:content>
+    <media:content height="695" medium="image" width="1382"
+                   url="https://images.finncdn.no/dynamic/default/2018/3/vertical-1/08/0/115/526/_1977044420.png"
+                   type="image/png">
         <media:category scheme="urn:finn:attachments">LOGO</media:category>
     </media:content>
     <author>
-        <name>Top Temp bemanning AS</name>
-        <uri>https://cache.api.finn.no/iad/organization/2083520418</uri>
-        <dc:identifier>2083520418</dc:identifier>
-        <link href="https://cache.api.finn.no/iad/search/job-full-time?orgId=2083520418"
-              rel="http://api.finn.no/relations/morefromthis"/>
-        <link href="https://cache.api.finn.no/iad/organization/2083520418/profileinfo" rel="urn:finn:org:profile"/>
-        <link href="http://www.toptemp.no/" rel="alternate"/>
-        <link href="https://cache.api.finn.no/iad/organization/2083520418/subscription" rel="subscription"/>
-        <media:content
-                url="https://images.finncdn.no/mmo/logo/object/2083520418/iad_9204971676583467114amestotoptemp_logo_fra_januar_2015.png"
-                type="image/png" medium="image">
-            <media:category scheme="urn:finn:logo:type">MAIN</media:category>
-        </media:content>
-        <media:content
-                url="https://images.finncdn.no/mmo/logo/result/2083520418/iad_5153168901682665885ikon-finn-amesto-top-temp.png"
-                type="image/png" medium="image">
-            <media:category scheme="urn:finn:logo:type">LIST</media:category>
-        </media:content>
-        <finn:externalref>toptemp</finn:externalref>
+        <name>Privat</name>
+        <uri>https://cache.api.finn.no/iad/user/117536302/profile</uri>
+        <dc:identifier>117536302</dc:identifier>
     </author>
-    <finn:contact role="organisation" title="Senior rekrutteringsrådgiver">
-        <name>Charlotte Silkebekken Bergerud</name>
-        <email>csb@toptemp.no</email>
-        <finn:phone-number type="work">+47 958 32 353</finn:phone-number>
-        <link href="https://cache.api.finn.no/iad/ad/job-management/91758798/contact?index=bed61b9024a4ad528f26c3a525bbd871"
+    <finn:contact role="individual" title="Teknisk Sjef">
+        <name>Thomas Tvetbråten</name>
+        <email>thomas.tvetbraaten@zeekit.no</email>
+        <finn:phone-number type="mobile">+47 916 75 001</finn:phone-number>
+        <link href="https://cache.api.finn.no/iad/ad/job-full-time/115526620/contact?index=3869a0f652245a22989af16e4741fdb5"
               rel="http://api.finn.no/relations/contact"/>
     </finn:contact>
-    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-management">
-        <finn:field name="advertiser_reference" value="Charlotte - Top Temp"/>
-        <finn:field name="application_deadline" value="19.03.2017"/>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+        <finn:field name="application_deadline" value="22.03.2019"/>
+        <finn:field name="application_email" value="thomas.tvetbraaten@zeekit.no"/>
         <finn:field name="company">
-            <finn:field name="name">Felleskjøpet</finn:field>
-            <finn:field name="ingress">Felleskjøpet er den ledende leverandør av driftsmidler, varer og tjenester til
-                norsk landbruk. Gjennom vår butikkjede satser vi aktivt innen hage, friluftsliv og kjæledyr. I tillegg
-                har vi også aktiviteter innenfor næringsmidler, anleggsmaskiner og transport. Konsernet har en omsetning
-                på 15,5 mrd., 3000 medarbeidere og 45000 eiere.&lt;br/>&lt;br/>Vi har virksomhet fra Tana i nord til
-                Lillesand i sør, med over 100 butikker, 42 verksteder, 46 kornmottak og 12 fabrikker. I over 120 år har
-                vi vært en av landbrukets viktigste samarbeidspartnere. Det skal vi fortsatt være, samtidig som vår
-                fagkompetanse skal komme alle til gode. Vi har mål om fortsatt vekst, både innen landbruksvirksomheten
-                og gjennom våre mange datterselskaper.
+            <finn:field name="name" value="Zeekit AS"/>
+            <finn:field name="ingress">Zeekit AS hatt en solid vekst og teller i dag totalt
+                28 ansatte. Selskapet er godt etablert og en av de ledende i markedet innenfor GPS teknologi. Selskapet
+                er solid, med robuste systemer og mange dyktige medarbeidere. Zeekit er også etablert i Sverige og Sri
+                Lanka og med planer om videre vekst både nasjonalt og internasjonalt. I vår kundeportefølje har vi mange
+                av Norges største aktører innenfor entreprenørbransjen, energisektoren og servicesektoren. Dette
+                innebærer blant annet Statens vegvesen, Veidekke Industri, NCC, Peab, Hafslund, ISS, og mange flere.
             </finn:field>
-            <finn:field name="url" value="http://www.felleskjopet.no"/>
+            <finn:field name="url" value="http://www.zeekit.no"/>
+            <finn:field name="facebook_url" value="https://www.facebook.com/zeekitas/"/>
         </finn:field>
         <finn:field name="duration" value="Fast"/>
-        <finn:field name="external_ad_id" value="91758798"/>
+        <finn:field name="external_ad_id" value="115526620"/>
         <finn:field name="general_text">
             <finn:value>
-                <finn:field name="value">&lt;p>Felleskjøpet har startet den digitale reisen. En reise som utfordrer,
-                    engasjerer og inspirerer, samtidig som den stadig er i vekst og endring. Vi søker etter lederen for
-                    alle digitale kanaler i konsernet. &lt;br />Felleskjøpet er en solid, spennende og kompleks bedrift.
-                    Her vil du jobbe tett med faglig sterke og engasjerte kollegaer på tvers av ansvarsområder og
-                    forretningsenheter. &lt;br />At du har en meget god forståelse for digital kommunikasjon og digital
-                    innovasjon er en forutsetning for å lykkes i stillingen. Vi ser etter deg som ønsker å utfordre og
-                    kan bidra til å etablere avdelingen ytterligere.&lt;/p>&lt;p>&lt;br />&lt;strong>Du vil få et bredt
-                    spekter av oppgaver og ansvarsområder, hvor du skal:&lt;/strong> &lt;br />•    Ta eierskap til,
-                    videreutvikle og sikre den digitale strategien i Felleskjøpet Agri SA &lt;br />•    Ha et overordnet
-                    ansvar for avdelingen Digitale Kanaler, herunder: Strategisk vareinformasjon, E-handel, Digitale
-                    tjenester og portaler&lt;br />•    Lede digitale initiativ i samarbeid med forretningsdivisjonene
-                    Detaljhandel, Maskin og Landbruk&lt;br />•    Være både strategisk og operativ&lt;/p>&lt;p>&lt;br
-                    />Som person er du uredd, initiativrik og tør å drive endringer. Du tør å ta din rolle i bedriften.
-                    Du har feilet, men du har forhåpentligvis lykkes enda oftere. Du er en proaktiv, engasjert og
-                    operativ leder med evne til å tenke strategisk. Du evner å se mennesker, talenter og å drive gode
-                    team. Videre må du være en bidragsyter til et godt sosialt miljø.&lt;/p>&lt;p>&lt;br />&lt;strong>Vi
-                    ser etter deg som har:&lt;/strong> &lt;br />•    Inngående forståelse for digitale kanaler og
-                    dynamikken i den digitale kundereisen&lt;br />•    Tydelige lederegenskaper &lt;br />•    Sterk
-                    gjennomføringsevne&lt;br />•    God økonomiforståelse &lt;br />•    Meget gode skriftlige og
-                    muntlige kommunikasjonsevner &lt;br />•    Høyere relevant utdannelse &lt;br />•    Erfaring med
-                    nettbutikk/e-handel, men det er ikke et krav&lt;/p>&lt;p>&lt;br />Felleskjøpet kan tilby en sentral
-                    rolle i et konsern hvor det er store muligheter for den rette. En tradisjonellrik bedrift, med et
-                    meningsfylt samfunnsansvar, som evner å tenke nytt og som ser viktigheten med å tørre å utfordre seg
-                    selv. &lt;br />Stillingen vil gi gode muligheter til å skape synlige resultater sammen med
-                    engasjerte og dedikerte kollegaer, hvor man jobber mot felles strategiske målsetninger. Kontorsted
-                    vil være i Felleskjøpet sine nye lokaler i Lillestrøm sentrum, nær togstasjonen. Konkurransedyktige
-                    betingelser tilbys. &lt;br />&lt;br />Søknadsfrist 19.mars 2017&lt;br />For ytterligere spørsmål
-                    kontakt Charlotte Silkebekken Bergerud, mail: csb@toptemp.no, mobil: 958 32 353&lt;/p>
+                <finn:field name="value">&lt;p>&lt;b>Arbeidsoppgaver:&lt;/b>&lt;/p> &lt;p>Service og montering av Zeekit
+                    GPS enheter på ulike kjøretøy som personbiler, lastebiler, traktorer hjullastere mm. Dette innebærer
+                    alt fra enkel OBDII tilkobling til GPS enheter med tilkobling fra produksjonsutstyr slik som
+                    vinterdriftutstyr eller annet produksjonsutstyr for veivedlikehold. Service kan innebære både
+                    feilsøking, feilretting og utskifting av enheter, enten direkte på kjøretøyet eller remote .
+                    Monteringen inkluderer også andre frittstående enheter på utstyr uten egen strømkilde.&lt;br /> I
+                    jobben er det hektiske perioder og det må påberegnes reising.&lt;br />&lt;br />Riktig person vil få
+                    stor mulighet til å påvirke egen arbeidshverdag, og firmaets videre fremtid.&lt;br />&lt;br
+                    />Stillingen vil inngå i selskapets tekniske avdeling, og rapporterer til Teknisk Sjef.&lt;/p> &lt;p> &lt;/p>
+                    &lt;p>&lt;b>Kvalifikasjoner&lt;/b>&lt;/p> &lt;p>&lt;/p>&lt;ul>&lt;li>Ønskelig med relevant fagbrev
+                    eller annen teknisk utdannelse.&lt;br />&lt;/li>&lt;li>God teknisk innsikt er et krav.&lt;br />&lt;/li>&lt;li>Gjerne
+                    bakgrunn fra landbruksmaskiner, bilverksted, lastebilverksted eller relevant servicetekniker yrke.&lt;br
+                    />&lt;/li>&lt;li>Må beherske norsk og engelsk skriftlig og muntlig.&lt;br />&lt;/li>&lt;li>Førerkort
+                    kl. B.&lt;br />&lt;/li>&lt;/ul>&lt;p>&lt;/p> &lt;p> &lt;/p> &lt;p>&lt;b>Egenskaper&lt;/b>&lt;/p>
+                    &lt;p>&lt;/p>&lt;ul>&lt;li>Gode kommunikasjonsevner.&lt;br />&lt;/li>&lt;li>Allsidig, fleksibel og
+                    ansvarsbevisst.&lt;br />&lt;/li>&lt;li>Selvstendig og nøyaktig.&lt;br />&lt;/li>&lt;li>Gode PC
+                    kunnskaper.&lt;br />&lt;/li>&lt;li>Godt humør.&lt;br />&lt;/li>&lt;li>Service innstilt.&lt;br />&lt;/li>&lt;li>Praktisk
+                    sans og teknisk forståelse.&lt;br />&lt;/li>&lt;li>Evne til å takle høyt tempo og mange baller i
+                    luften på en gang.&lt;br />&lt;/li>&lt;/ul>&lt;p>&lt;/p> &lt;p> &lt;/p> &lt;p>&lt;b>Vi tilbyr&lt;br
+                    />&lt;/b>&lt;/p>&lt;ul>&lt;li>&lt;b>Et hektisk, men også et av Norges beste arbeidsmiljø!&lt;br />&lt;/b>&lt;/li>&lt;li>&lt;b>Utfordrende
+                    arbeidsoppgaver.&lt;br />&lt;/b>&lt;/li>&lt;li>&lt;b>Gode betingelser.&lt;br />&lt;/b>&lt;/li>&lt;li>&lt;b>Hyggelige
+                    kolleger.&lt;br />&lt;/b>&lt;/li>&lt;li>&lt;b>Gode arbeidsfasiliteter.&lt;br />&lt;/b>&lt;/li>&lt;/ul>&lt;br
+                    />Ønsker du å være en del av Zeekit familien (se bildet under)? Da har du nå muligheten!&lt;br
+                    />Zeekit er en bedrift som prioriterer et godt arbeidsmiljø hvor det er mye humor, mye variasjon,
+                    men også høy kompetanse og høy profesjonalitet. Tenker du at du er rett person for å ta del i dette,
+                    da ønsker vi at du tar kontakt for en god samtale.&lt;br />&lt;br />Tiltredelse 1. juni eller etter
+                    nærmere avtale.&lt;p>&lt;/p>&lt;br />
                 </finn:field>
             </finn:value>
         </finn:field>
         <finn:field name="industry">
-            <finn:value>Jordbruk og skogbruk</finn:value>
-            <finn:value>Butikk og varehandel</finn:value>
+            <finn:value>Bil, kjøretøy og verksted</finn:value>
+            <finn:value>IT</finn:value>
+            <finn:value>IT - maskinvare</finn:value>
         </finn:field>
-        <finn:field name="job_title">Leder for Digitale Kanaler</finn:field>
+        <finn:field name="job_title">GPS montør, Servicetekniker, bilelektriker, lastebilmekaniker</finn:field>
         <finn:field name="keywords">
-            <finn:value>digitaldirektør</finn:value>
-            <finn:value>digitalisering</finn:value>
-            <finn:value>digitale</finn:value>
-            <finn:value>ehandel</finn:value>
-            <finn:value>ledelse</finn:value>
+            <finn:value>Bilelektro</finn:value>
+            <finn:value>GPS</finn:value>
+            <finn:value>Datafangst</finn:value>
+            <finn:value>Montering</finn:value>
+            <finn:value>Feilsøking</finn:value>
         </finn:field>
-        <finn:field name="manager_role" value="Leder"/>
         <finn:field name="occupations">
             <finn:value>
-                <finn:field name="general">Ledelse</finn:field>
-                <finn:field name="specialization">Ledelse</finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="general">Markedsfører</finn:field>
-                <finn:field name="specialization">Markedsfører</finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="general">Forretningsutvikling og strategi</finn:field>
-                <finn:field name="specialization">Forretningsutvikling og strategi</finn:field>
+                <finn:field name="general">Teknisk personell</finn:field>
+                <finn:field name="specialization">Teknisk personell</finn:field>
             </finn:value>
         </finn:field>
         <finn:field name="provider_id" value="0"/>
         <finn:field name="sector" value="Privat"/>
-        <finn:field name="situation" value="Lillestrøm"/>
-        <finn:field name="start_date" value="Etter avtale"/>
+        <finn:field name="start_date" value="01.06.2019"/>
         <finn:field name="workplaces">
-            <finn:value>DEPOTGATA 22</finn:value>
-            <finn:value>2000 Lillestrøm</finn:value>
+            <finn:value>Rosenholmveien 25</finn:value>
+            <finn:value>1414 Trollåsen</finn:value>
         </finn:field>
     </finn:adata>
+    undefined
 </entry>

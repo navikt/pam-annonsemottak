@@ -72,12 +72,12 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("https://www.finn.no/91758798", stilling.getUrl());
+            assertEquals("https://www.finn.no/115526620", stilling.getUrl());
         }
         try (Reader reader = FinnConnectorTest.getReader(AD2)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("https://www.finn.no/92031856", stilling.getUrl());
+            assertEquals("https://www.finn.no/142783569", stilling.getUrl());
         }
 
     }
@@ -102,19 +102,9 @@ public class FinnAdMapperTest {
 
             SoftAssertions softAssert = new SoftAssertions();
             softAssert.assertThat(stilling).isNotNull();
-            softAssert.assertThat(stilling.getJobDescription()).startsWith("Vi søker dyktig prosjektleder");
+            softAssert.assertThat(stilling.getJobDescription()).startsWith("Avdelingslederen skal ved siden ");
             softAssert.assertThat(stilling.getJobDescription()).contains("Arbeidsoppgaver");
             softAssert.assertThat(stilling.getJobDescription()).contains("---------------");
-            softAssert.assertThat(stilling.getJobDescription()).contains("Kvalifikasjoner");
-            softAssert.assertThat(stilling.getJobDescription()).contains("---------------");
-            softAssert.assertThat(stilling.getJobDescription()).contains("Utdanning");
-            softAssert.assertThat(stilling.getJobDescription()).contains("---------");
-            softAssert.assertThat(stilling.getJobDescription()).contains("Språk");
-            softAssert.assertThat(stilling.getJobDescription()).contains("-----");
-            softAssert.assertThat(stilling.getJobDescription()).contains("Egenskaper");
-            softAssert.assertThat(stilling.getJobDescription()).contains("----------");
-            softAssert.assertThat(stilling.getJobDescription()).contains("Vi tilbyr");
-            softAssert.assertThat(stilling.getJobDescription()).contains("---------");
             softAssert.assertAll();
 
 
@@ -128,10 +118,10 @@ public class FinnAdMapperTest {
             String contactInfoJson = stilling.getProperties().get(PropertyNames.KONTAKTINFO);
             JsonNode jsonNode = objectMapper.readTree(contactInfoJson);
 
-            assertEquals("Charlotte Silkebekken Bergerud", jsonNode.path(0).path("name").asText());
-            assertEquals("+47 958 32 353", jsonNode.path(0).path("phone_work").asText());
-            assertEquals("csb@toptemp.no", jsonNode.path(0).path("email").asText());
-            assertEquals("Senior rekrutteringsrådgiver", jsonNode.path(0).path("title").asText());
+            assertEquals("Thomas Tvetbråten", jsonNode.path(0).path("name").asText());
+            assertEquals("+47 916 75 001", jsonNode.path(0).path("phone_mobile").asText());
+            assertEquals("thomas.tvetbraaten@zeekit.no", jsonNode.path(0).path("email").asText());
+            assertEquals("Teknisk Sjef", jsonNode.path(0).path("title").asText());
         }
     }
 
@@ -140,9 +130,7 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("https://images.finncdn.no/mmo/2017/3/2/8/917/587/98_2118645667.png", stilling.getProperties().get("media.logo.url"));
-            assertEquals("https://images.finncdn.no/mmo/logo/result/2083520418/iad_5153168901682665885ikon-finn-amesto-top-temp.png", stilling.getProperties().get("media.logo.url.list"));
-            assertEquals("https://images.finncdn.no/mmo/logo/object/2083520418/iad_9204971676583467114amestotoptemp_logo_fra_januar_2015.png", stilling.getProperties().get("media.logo.url.main"));
+            assertEquals("https://images.finncdn.no/dynamic/default/2018/3/vertical-1/08/0/115/526/_1977044420.png", stilling.getProperties().get("media.logo.url"));
         }
     }
 
@@ -150,7 +138,7 @@ public class FinnAdMapperTest {
     public void externalPublishDateShouldBeMapped() throws Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
-            assertEquals("2017-03-02T15:01:00.000Z", stilling.getProperties().get(PropertyNames.EXTERNAL_PUBLISH_DATE));
+            assertEquals("2018-03-08T09:42:00.000Z", stilling.getProperties().get(PropertyNames.EXTERNAL_PUBLISH_DATE));
         }
     }
 
@@ -159,8 +147,8 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("11.03524", stilling.getProperties().get(PropertyNames.GEO_LONGITUDE));
-            assertEquals("59.95626", stilling.getProperties().get(PropertyNames.GEO_LATITUDE));
+            assertEquals("10.787223815917969", stilling.getProperties().get(PropertyNames.GEO_LONGITUDE));
+            assertEquals("59.821956634521484", stilling.getProperties().get(PropertyNames.GEO_LATITUDE));
         }
     }
 
@@ -169,7 +157,7 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("2017-03-19", stilling.getExpires().format(DateTimeFormatter.ISO_DATE));
+            assertEquals("2019-03-22", stilling.getExpires().format(DateTimeFormatter.ISO_DATE));
         }
 
         // Non parsable text = snarest. Use expired field

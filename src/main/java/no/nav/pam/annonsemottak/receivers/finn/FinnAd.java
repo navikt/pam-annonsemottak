@@ -102,7 +102,7 @@ public class FinnAd {
         categories = getListOfCategories(getNodeList(document, "/entry/adata/field[@name='categories']/value"));
         throwExceptionIfNonUniqueXpath(document, "/entry/field[@name='company']");
         company = new Company(
-                getString(document, "/entry/adata/field[@name='company']/field[@name='name']"),
+                getString(document, "/entry/adata/field[@name='company']/field[@name='name']/@value"),
                 getString(document, "/entry/adata/field[@name='company']/field[@name='ingress']"),
                 getString(document, "/entry/adata/field[@name='company']/field[@name='url']/@value")
         );

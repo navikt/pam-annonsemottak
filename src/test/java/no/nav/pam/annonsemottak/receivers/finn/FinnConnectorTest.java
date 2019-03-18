@@ -60,72 +60,64 @@ public class FinnConnectorTest {
             FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
 
             SoftAssertions softAssert = new SoftAssertions();
-            softAssert.assertThat(ad.getId()).isEqualTo("urn:id:91758798");
-            softAssert.assertThat(ad.getTitle()).isEqualTo("Vil du lede den digitale reisen?");
-            softAssert.assertThat(ad.getUpdated()).isEqualTo("2017-03-02T15:05:00.000Z");
-            softAssert.assertThat(ad.getPublished()).isEqualTo("2017-03-02T15:01:00.000Z");
-            softAssert.assertThat(ad.getDateSubmitted()).isEqualTo("2017-03-02T15:01:00.000Z");
-            softAssert.assertThat(ad.getExpires()).isEqualTo("2017-04-13T21:59:00.000Z");
-            softAssert.assertThat(ad.getEdited()).isEqualTo("2017-03-02T15:05:00.000Z");
-            softAssert.assertThat(ad.getIdentifier()).isEqualTo("91758798");
-            softAssert.assertThat(ad.isPrivate()).isFalse();
-            softAssert.assertThat(ad.getType()).isEqualTo("job-management");
+            softAssert.assertThat(ad.getId()).isEqualTo("urn:id:115526620");
+            softAssert.assertThat(ad.getTitle()).isEqualTo("GPS montør / Servicetekniker søkes");
+            softAssert.assertThat(ad.getUpdated()).isEqualTo("2019-03-07T11:17:00.000Z");
+            softAssert.assertThat(ad.getPublished()).isEqualTo("2018-03-08T09:42:00.000Z");
+            softAssert.assertThat(ad.getDateSubmitted()).isEqualTo("2018-03-08T09:42:00.000Z");
+            softAssert.assertThat(ad.getExpires()).isEqualTo("2019-04-18T10:17:00.000Z");
+            softAssert.assertThat(ad.getEdited()).isEqualTo("2019-03-07T11:17:00.000Z");
+            softAssert.assertThat(ad.getIdentifier()).isEqualTo("115526620");
+            softAssert.assertThat(ad.isPrivate()).isTrue();
+            softAssert.assertThat(ad.getType()).isEqualTo("job-full-time");
             softAssert.assertThat(ad.isActive()).isTrue();
             softAssert.assertThat(ad.isDisposed()).isFalse();
-            softAssert.assertThat(ad.getLinkToApply().get(0)).isEqualTo("http://portal.crmasp.no/TopTempOnlinePortalWeb/Account/RegisterExtended?aid=sQ7x2j4wLuZrx/PZbYky8YfId7c/iknHJweajlgylXFtHt8d%2BH53d2zUEwlWaIHLRgwGEKPLRI37pdEdaYcIPkDCf97wnw1exjbSOuOc7aw%3D");
-            softAssert.assertThat(ad.getLocation().getAddress()).isEqualTo("DEPOTGATA 22");
-            softAssert.assertThat(ad.getLocation().getPostalCode()).isEqualTo("2000");
-            softAssert.assertThat(ad.getLocation().getCity()).isEqualTo("Lillestrøm");
+            softAssert.assertThat(ad.getLinkToApply().get(0)).isEqualTo("https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=115526620");
+            softAssert.assertThat(ad.getLocation().getAddress()).isEqualTo("Rosenholmveien 25");
+            softAssert.assertThat(ad.getLocation().getPostalCode()).isEqualTo("1414");
+            softAssert.assertThat(ad.getLocation().getCity()).isEqualTo("Trollåsen");
             softAssert.assertThat(ad.getLocation().getCountry()).isEqualTo("Norge");
-            softAssert.assertThat(ad.getAdvertiserReference()).isEqualTo("Charlotte - Top Temp");
-            softAssert.assertThat(ad.getApplicationDeadline()).isEqualTo("19.03.2017");
-            softAssert.assertThat(ad.getCompany().getName()).isEqualTo("Felleskjøpet");
-            softAssert.assertThat(ad.getCompany().getIngress().startsWith("Felleskjøpet er den ledende")).isTrue();
-            softAssert.assertThat(ad.getCompany().getUrl()).isEqualTo("http://www.felleskjopet.no");
+            softAssert.assertThat(ad.getApplicationDeadline()).isEqualTo("22.03.2019");
+            softAssert.assertThat(ad.getCompany().getName()).isEqualTo("Zeekit AS");
+            softAssert.assertThat(ad.getCompany().getIngress().startsWith("Zeekit AS hatt en solid vekst og teller i dag totalt")).isTrue();
+            softAssert.assertThat(ad.getCompany().getUrl()).isEqualTo("http://www.zeekit.no");
             softAssert.assertThat(ad.getDuration()).isEqualTo("Fast");
-            softAssert.assertThat(ad.getIndustry().size()).isEqualTo(2);
-            softAssert.assertThat(ad.getIndustry().contains("Jordbruk og skogbruk")).isTrue();
-            softAssert.assertThat(ad.getIndustry().contains("Butikk og varehandel")).isTrue();
-            softAssert.assertThat(ad.getJobTitle()).isEqualTo("Leder for Digitale Kanaler");
+            softAssert.assertThat(ad.getIndustry().size()).isEqualTo(3);
+            softAssert.assertThat(ad.getIndustry().contains("Bil, kjøretøy og verksted")).isTrue();
+            softAssert.assertThat(ad.getIndustry().contains("IT")).isTrue();
+            softAssert.assertThat(ad.getJobTitle()).isEqualTo("GPS montør, Servicetekniker, bilelektriker, lastebilmekaniker");
             softAssert.assertThat(ad.getKeywords().size()).isEqualTo(5);
-            softAssert.assertThat(ad.getKeywords().contains("digitaldirektør")).isTrue();
-            softAssert.assertThat(ad.getKeywords().contains("digitalisering")).isTrue();
-            softAssert.assertThat(ad.getKeywords().contains("digitale")).isTrue();
-            softAssert.assertThat(ad.getKeywords().contains("ehandel")).isTrue();
-            softAssert.assertThat(ad.getKeywords().contains("ledelse")).isTrue();
-            softAssert.assertThat(ad.getManagerRole()).isEqualTo("Leder");
-            softAssert.assertThat(ad.getProviderId()).isEqualTo("0");
+            softAssert.assertThat(ad.getKeywords().contains("Bilelektro")).isTrue();
+            softAssert.assertThat(ad.getKeywords().contains("GPS")).isTrue();
+            softAssert.assertThat(ad.getKeywords().contains("Datafangst")).isTrue();
+            softAssert.assertThat(ad.getKeywords().contains("Montering")).isTrue();
+            softAssert.assertThat(ad.getKeywords().contains("Feilsøking")).isTrue();
             softAssert.assertThat(ad.getSector()).isEqualTo("Privat");
-            softAssert.assertThat(ad.getSituation()).isEqualTo("Lillestrøm");
-            softAssert.assertThat(ad.getStartDate()).isEqualTo("Etter avtale");
+            softAssert.assertThat(ad.getStartDate()).isEqualTo("01.06.2019");
 
             //Workplaces
             softAssert.assertThat(ad.getWorkplaces().size()).isEqualTo(2);
-            softAssert.assertThat(ad.getWorkplaces().contains("DEPOTGATA 22")).isTrue();
-            softAssert.assertThat(ad.getWorkplaces().contains("2000 Lillestrøm")).isTrue();
+            softAssert.assertThat(ad.getWorkplaces().contains("Rosenholmveien 25")).isTrue();
+            softAssert.assertThat(ad.getWorkplaces().contains("1414 Trollåsen")).isTrue();
 
             //Contacts
-            softAssert.assertThat(ad.getContacts().get(0).getName()).isEqualTo("Charlotte Silkebekken Bergerud");
-            softAssert.assertThat(ad.getContacts().get(0).getEmail()).isEqualTo("csb@toptemp.no");
-            softAssert.assertThat(ad.getContacts().get(0).getTitle()).isEqualTo("Senior rekrutteringsrådgiver");
-            softAssert.assertThat(ad.getContacts().get(0).getPhone_work()).isEqualTo("+47 958 32 353");
+            softAssert.assertThat(ad.getContacts().get(0).getName()).isEqualTo("Thomas Tvetbråten");
+            softAssert.assertThat(ad.getContacts().get(0).getEmail()).isEqualTo("thomas.tvetbraaten@zeekit.no");
+            softAssert.assertThat(ad.getContacts().get(0).getTitle()).isEqualTo("Teknisk Sjef");
+            softAssert.assertThat(ad.getContacts().get(0).getPhone_mobile()).isEqualTo("+47 916 75 001");
 
             //Geo locations
             softAssert.assertThat(ad.getGeoLocation().getAccuracy()).isEqualTo("9");
-            softAssert.assertThat(ad.getGeoLocation().getLatitude()).isEqualTo("59.95626");
-            softAssert.assertThat(ad.getGeoLocation().getLongitude()).isEqualTo("11.03524");
+            softAssert.assertThat(ad.getGeoLocation().getLatitude()).isEqualTo("59.821956634521484");
+            softAssert.assertThat(ad.getGeoLocation().getLongitude()).isEqualTo("10.787223815917969");
 
             //Occupations
-            softAssert.assertThat(ad.getOccupations().size()).isEqualTo(3);
-            softAssert.assertThat(ad.getOccupations().contains("Ledelse")).isTrue();
-            softAssert.assertThat(ad.getOccupations().contains("Markedsfører")).isTrue();
-            softAssert.assertThat(ad.getOccupations().contains("Forretningsutvikling og strategi")).isTrue();
+            softAssert.assertThat(ad.getOccupations().size()).isEqualTo(1);
+            softAssert.assertThat(ad.getOccupations().contains("Teknisk personell")).isTrue();
 
             // Test Logo urls are correct
-            softAssert.assertThat(ad.getAuthor().getUrlListLogo()).isEqualTo("https://images.finncdn.no/mmo/logo/result/2083520418/iad_5153168901682665885ikon-finn-amesto-top-temp.png");
-            softAssert.assertThat(ad.getAuthor().getUrlMainLogo()).isEqualTo("https://images.finncdn.no/mmo/logo/object/2083520418/iad_9204971676583467114amestotoptemp_logo_fra_januar_2015.png");
             softAssert.assertThat(ad.getLogoUrlList().size()).isEqualTo(1);
-            softAssert.assertThat(ad.getLogoUrlList().get(0)).isEqualTo("https://images.finncdn.no/mmo/2017/3/2/8/917/587/98_2118645667.png");
+            softAssert.assertThat(ad.getLogoUrlList().get(0)).isEqualTo("https://images.finncdn.no/dynamic/default/2018/3/vertical-1/08/0/115/526/_1977044420.png");
             softAssert.assertAll();
         }
     }
@@ -136,29 +128,13 @@ public class FinnConnectorTest {
         try (Reader reader = getReader("src/test/resources/finn/samples/ad2.xml")) {
             FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
             FinnAd.GeneralText text;
-            assertEquals(7, ad.getGeneralText().size());
+            assertEquals(2, ad.getGeneralText().size());
             text = ad.getGeneralText().get(0);
             assertEquals(null, text.getTitle());
-            assertTrue(text.getValue().startsWith("Vi søker dyktig prosjektleder"));
+            assertTrue(text.getValue().contains("Avdelingslederen skal ved siden av å være"));
             text = ad.getGeneralText().get(1);
             assertEquals("Arbeidsoppgaver", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Lede prosjektet"));
-            text = ad.getGeneralText().get(2);
-            assertEquals("Kvalifikasjoner", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Ledererfaring"));
-            text = ad.getGeneralText().get(3);
-            assertEquals("Utdanning", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Fagskole"));
-            text = ad.getGeneralText().get(4);
-            assertEquals("Språk", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Engelsk"));
-            text = ad.getGeneralText().get(5);
-            assertEquals("Egenskaper", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Resultatorientert"));
-            text = ad.getGeneralText().get(6);
-            assertEquals("Vi tilbyr", text.getTitle());
-            assertTrue(text.getValue().startsWith("<ul><li>Stillingsbrøk"));
-        }
+            assertEquals("Test", text.getValue());}
     }
 
     @Test

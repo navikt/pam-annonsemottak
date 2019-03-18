@@ -1,147 +1,142 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<entry xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:age="http://purl.org/atompub/age/1.0"
-       xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0" xmlns:media="http://search.yahoo.com/mrss/"
-       xmlns:app="http://www.w3.org/2007/app" xmlns:georss="http://www.georss.org/georss"
-       xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:id:92031856</id>
-    <title>Prosjektleder HST Leirvik</title>
-    <updated>2017-03-07T08:23:00.000Z</updated>
-    <published>2017-03-07T08:24:00.000Z</published>
-    <dc:dateSubmitted>2017-03-07T08:24:00.000Z</dc:dateSubmitted>
-    <age:expires>2017-03-20T22:59:00.000Z</age:expires>
-    <app:edited>2017-03-07T08:23:00.000Z</app:edited>
-    <dc:identifier>92031856</dc:identifier>
-    <category scheme="urn:finn:ad:private" term="false"/>
-    <category scheme="urn:finn:ad:type" label="Lederjobb" term="job-management"/>
-    <category scheme="urn:finn:search:type" label="Lederstillinger" term="job-management"/>
+<entry
+        xmlns="http://www.w3.org/2005/Atom"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:age="http://purl.org/atompub/age/1.0"
+        xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0"
+        xmlns:media="http://search.yahoo.com/mrss/"
+        xmlns:app="http://www.w3.org/2007/app"
+        xmlns:georss="http://www.georss.org/georss">
+    <id>urn:id:142783569</id>
+    <title>Avdelingsleder bredbånd</title>
+    <updated>2019-03-18T12:58:00.000Z</updated>
+    <published>2019-03-18T12:58:00.000Z</published>
+    <dc:dateSubmitted>2019-03-18T12:58:00.000Z</dc:dateSubmitted>
+    <age:expires>2019-04-29T11:58:00.000Z</age:expires>
+    <app:edited>2019-03-18T12:58:00.000Z</app:edited>
+    <dc:identifier>142783569</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:type" label="Fulltidsjobb" term="job-full-time"/>
     <category scheme="urn:finn:ad:status" label="Aktiv" term="activated"/>
     <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/92031856" rel="self"/>
-    <link href="https://www.finn.no/92031856" rel="alternate"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/92031856/statistics"
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/142783569" rel="self"/>
+    <link href="https://www.finn.no/142783569" rel="alternate"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/142783569/statistics"
           rel="http://api.finn.no/relations/statistics"/>
-    <link href="https://cache.api.finn.no/iad/ad/job-management/92031856/tipafriend" rel="urn:finn:ad:tipafriend"/>
-    <link href="https://www.webcruiter.no/WcMain/CvJobrespond1.aspx?oppdragsnr=3366475953&amp;culture_id=NB-NO&amp;company_id=1675217425&amp;Link_source_id=1"
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/142783569/tipafriend" rel="urn:finn:ad:tipafriend"/>
+    <link href="https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=142783569"
+          rel="http://api.finn.no/relations/apply">
+        <finn:category scheme="urn:finn:category:link" term="MOBILE"/>
+    </link>
+    <link href="https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=142783569"
           rel="http://api.finn.no/relations/apply">
         <finn:category scheme="urn:finn:category:link" term="DESKTOP"/>
     </link>
-    <georss:point finn:accuracy="5">61.1368 5.34749</georss:point>
+    <georss:point finn:accuracy="5">58.77932357788086 5.626274585723877</georss:point>
     <finn:location>
-        <finn:address>.</finn:address>
-        <finn:postal-code>6953</finn:postal-code>
-        <finn:city>Leirvik i Sogn</finn:city>
+        <finn:address>Postboks 156</finn:address>
+        <finn:postal-code>4358</finn:postal-code>
+        <finn:city>Kleppe</finn:city>
         <finn:country>Norge</finn:country>
         <media:content
-                url="https://maptiles.finncdn.no/staticmap?lat=61.136803&amp;lng=5.3474913&amp;zoom=12&amp;size=400x300&amp;maptype=norwayVector&amp;showPin=false"
+                url="https://maptiles.finncdn.no/staticmap?lat=58.779324&amp;lng=5.6262746&amp;zoom=12&amp;size=400x300&amp;maptype=norwayVector&amp;showPin=false"
                 type="image/png" medium="image"/>
-        <link href="https://kart.finn.no/?finnkode=92031856&amp;lat=61.136803&amp;lng=5.3474913&amp;mapType=finnvector&amp;showPin=0&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=142783569&amp;lat=58.779324&amp;lng=5.6262746&amp;mapType=finnvector&amp;showPin=0&amp;bl=1"
               rel="urn:finn:map:type:finnvector"/>
-        <link href="https://kart.finn.no/?finnkode=92031856&amp;lat=61.136803&amp;lng=5.3474913&amp;mapType=finnhybrid&amp;showPin=0&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=142783569&amp;lat=58.779324&amp;lng=5.6262746&amp;mapType=finnhybrid&amp;showPin=0&amp;bl=1"
               rel="urn:finn:map:type:finnhybrid"/>
-        <link href="https://kart.finn.no/?finnkode=92031856&amp;lat=61.136803&amp;lng=5.3474913&amp;mapType=norortho&amp;showPin=0&amp;bl=1"
+        <link href="https://kart.finn.no/?finnkode=142783569&amp;lat=58.779324&amp;lng=5.6262746&amp;mapType=norortho&amp;showPin=0&amp;bl=1"
               rel="urn:finn:map:type:norortho"/>
     </finn:location>
-    <media:content url="https://images.finncdn.no/mmo/2017/3/7/6/920/318/56_-553986369.png" type="image/png"
-                   medium="image">
+    <media:content height="100" medium="image" width="103"
+                   url="https://images.finncdn.no/dynamic/default/2019/3/vertical-1/18/9/142/783/569_813035182.png"
+                   type="image/png">
         <media:category scheme="urn:finn:attachments">LOGO</media:category>
     </media:content>
     <author>
-        <name>Havyard Ship Technology AS</name>
-        <uri>https://cache.api.finn.no/iad/organization/59742221</uri>
-        <dc:identifier>59742221</dc:identifier>
-        <link href="https://cache.api.finn.no/iad/search/job-full-time?orgId=59742221"
-              rel="http://api.finn.no/relations/morefromthis"/>
-        <link href="https://cache.api.finn.no/iad/organization/59742221/profileinfo" rel="urn:finn:org:profile"/>
-        <link href="https://cache.api.finn.no/iad/organization/59742221/subscription" rel="subscription"/>
-        <finn:externalref>havyardshiptech</finn:externalref>
+        <name>Privat</name>
+        <uri>https://cache.api.finn.no/iad/user/1760614567/profile</uri>
+        <dc:identifier>1760614567</dc:identifier>
     </author>
-    <finn:contact role="organisation" title="Daglig leder">
-        <name>Lasse Stokkeland</name>
-        <finn:phone-number type="work">+47 916 35 094</finn:phone-number>
+    <finn:contact role="individual">
+        <name>Ingvard Simonsen</name>
+        <finn:phone-number type="mobile">+47 952 66 407</finn:phone-number>
     </finn:contact>
-    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-management">
-        <finn:field name="advertiser_reference" value="Hanne Bruaas"/>
-        <finn:field name="application_deadline" value="19.03.2017"/>
-        <finn:field name="application_label" value="3366475953"/>
+    <finn:contact role="individual" title="Økonomi og personalleder">
+        <name>Brit Karin Aspøy</name>
+        <finn:phone-number type="mobile">+47 952 66 402</finn:phone-number>
+    </finn:contact>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+        <finn:field name="application_deadline" value="06.04.2019"/>
+        <finn:field name="application_email" value="post@klepp-energi.no"/>
         <finn:field name="company">
-            <finn:field name="name">Havyard Group ASA - Havyard Ship Technology, Leirvik i Sogn</finn:field>
-            <finn:field name="ingress">HAVYARD SHIP TECHNOLOGY utruster, tester og leverer skip fra vårt verft i Leirvik
-                i Sogn. Vi utvikler skipsteknologi, og vår kjernekompetanse er styring av komplekse nybygg- og
-                rep/ombyggingsprosjekter. I tillegg til Leirvik har vi kontor i Fosnavåg, Tyrkia og Polen.&lt;br />
+            <finn:field name="name" value="Klepp Energi"/>
+            <finn:field name="ingress">Klepp Energi er et lokalt energi- og bredbåndsselskap. Selskapet er 100% eid av
+                Klepp kommune. Bredbåndsavdelingen har i dag ca 8 årsverk og omsetter for ca 50 mill. &lt;br/>&lt;br/>Bredbåndsatsingen
+                startet i 2004 og har nå bygget fiberbasert infrastruktur til vel 97% av Klepp kommune sine boliger og
+                næringsområder. &lt;br/>Klepp Energi er en av 35 Altibox – partnere rundt om i landet og leverer Altibox
+                tjenester som internett, Tv og telefontjenester til kommunens innbyggere og næringsliv. &lt;br/>Klepp
+                Energi er lokalisert med kontorer og kundemottak i Jærvegen 548 på Kleppe.&lt;br/>&lt;br/>Vi kan tilby:&lt;br/>·
+                Gode pensjons- og forsikringsordninger &lt;br/>· Velferdsordninger&lt;br/>· Konkurransedyktige
+                betingelser&lt;br/>· Selvstendige og utfordrende arbeidsoppgaver&lt;br/>&lt;br/>Søknad med CV,
+                karakterutskrifter og eventuelle attester sendes til:&lt;br/> post@klepp-energi.no
             </finn:field>
+            <finn:field name="url" value="http://klepp-energi.no"/>
         </finn:field>
         <finn:field name="duration" value="Fast"/>
-        <finn:field name="external_ad_id" value="3370391148"/>
+        <finn:field name="external_ad_id" value="142783569"/>
         <finn:field name="general_text">
             <finn:value>
-                <finn:field name="value">Vi søker dyktig prosjektleder til spennende jobb på Havyard sitt verft i
-                    Leirvik
+                <finn:field name="value">Avdelingslederen skal ved siden av å være leder ha det overordnet ansvar
+                    for salg- og markedsaktiviteter for bredbåndavdelingen.&lt;/p> &lt;p>Stillingen rapporterer til
+                    direktør i Klepp Energi og vil inngå i ledergruppen.&lt;br />&lt;br /> &lt;/p>&lt;p>&lt;b>Hovedoppgaver&lt;/b>&lt;/p>&lt;p>
+                    &lt;/p>&lt;ul>&lt;li> &lt;div> ·         Daglig ledelse i bredbåndsavdelingen og bindeledd mot
+                    Altibox &lt;/div>&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;ul>&lt;li> &lt;div> ·         Være en lagspiller
+                    for teamet. Motivere, få det beste ut av hver enkelt og sørge           for at det samlet leveres
+                    best mulig resultater. &lt;/div>&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;ul>&lt;li> &lt;div> ·        
+                    Bistå og avlaste eget team ved behov &lt;/div>&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;ul>&lt;li> &lt;div>
+                    ·         Salgsaktiviteter rettet mot næringslivet &lt;/div>&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;ul>&lt;li>
+                    &lt;div> ·         Utarbeide budsjett, planer og iverksette tiltak på marked- og salgssiden &lt;/div>&lt;/li>&lt;/ul>&lt;p>
+                    &lt;/p>&lt;ul>&lt;li> &lt;div> ·         Relasjonsbygging eksternt og internt &lt;/div>&lt;/li>&lt;/ul>&lt;p>
+                    &lt;/p>&lt;ul>&lt;li> &lt;div> ·         Skape vekst og øke antall kunder i henhold til strategi
+                    &lt;/div>&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;p>&lt;br />Søkeren bør ha høyere utdannelse og/eller
+                    relevant erfaring fra Telecom eller annen sluttbrukervirksomhet. Må ha god teknisk forståelse samt
+                    digital kompetanse.&lt;/p>&lt;p> &lt;/p>&lt;p>Personlige egenskaper vil bli vektlagt.&lt;/p>&lt;p>
+                    &lt;/p>&lt;p> &lt;/p>&lt;p> &lt;/p>&lt;p>For ytterligere informasjon, vennligst ta kontakt med
+                    Ingvard Simonsen&lt;/p>&lt;p> &lt;/p>&lt;p>på tlf 952 66 407 &lt;br />&lt;br />&lt;br />Titredelse
+                    snarest.&lt;/p>&lt;p> &lt;/p> &lt;b>&lt;/b>&lt;i>&lt;/i>&lt;br />
                 </finn:field>
             </finn:value>
             <finn:value>
                 <finn:field name="title" value="Arbeidsoppgaver"/>
-                <finn:field name="value">&lt;ul>&lt;li>Lede prosjektet gjennom alle faser og representere selskapet
-                    ovenfor kunde &lt;/li>&lt;li>Lede og motivere prosjektgruppen&lt;/li>&lt;li>Økonomisk og
-                    kontraktsmessig oppfølging, ansvar for å levere prosjekt på kvalitet, kost og tid&lt;/li>&lt;li>Planlegge,
-                    organisere og koordinere alle involverte parter&lt;/li>&lt;li>Motivere og sikre godt samspill blant
-                    deltakerne i prosjektet&lt;/li>&lt;li>Motivert følge opp og fremme QHMS i prosjektet&lt;/li>&lt;li>Jobbe
-                    tett mot linjeorganisasjonen&lt;/li>&lt;li>Støtte i kalkulasjon av nye oppdrag&lt;/li>&lt;/ul>
-                </finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="title" value="Kvalifikasjoner"/>
-                <finn:field name="value">&lt;ul>&lt;li>Ledererfaring fra styring og gjennomføring av større prosjekter
-                    og prosjektstyring&lt;/li>&lt;li>Relevant og bred bakgrunn fra maritim næring&lt;/li>&lt;li>Må
-                    beherske norsk og engelsk, muntlig og skriftlig&lt;/li>&lt;li>Holdning og erfaring vektlegges tungt&lt;/li>&lt;/ul>
-                </finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="title" value="Utdanning"/>
-                <finn:field name="value">&lt;ul>&lt;li>Fagskole&lt;/li>&lt;li>Høyskole / Universitet&lt;/li>&lt;/ul>
-                </finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="title" value="Språk"/>
-                <finn:field name="value">&lt;ul>&lt;li>Engelsk&lt;/li>&lt;li>Norsk&lt;/li>&lt;/ul></finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="title" value="Egenskaper"/>
-                <finn:field name="value">&lt;ul>&lt;li>Resultatorientert med gjennomføringsevne&lt;/li>&lt;li>Løsningsorientert,
-                    strukturert og systematisk&lt;/li>&lt;li>Samlende og evner å skape resultater sammen med andre&lt;/li>&lt;li>Gode
-                    kommunikasjons- og relasjonsevner&lt;/li>&lt;li>Evne til å motivere, støtte og stille krav til
-                    medarbeidere&lt;/li>&lt;/ul>
-                </finn:field>
-            </finn:value>
-            <finn:value>
-                <finn:field name="title" value="Vi tilbyr"/>
-                <finn:field name="value">&lt;ul>&lt;li>Stillingsbrøk: 100%&lt;/li>&lt;li>Spennende jobb i et
-                    multinasjonalt miljø&lt;/li>&lt;li>Gode faglige utviklingsmuligheter i et internasjonalt konsern&lt;/li>&lt;li>Konkurransedyktige
-                    betingelser &lt;/li>&lt;li>Gode pensjons- og forsikringsordninger&lt;/li>&lt;li>Bedriftshelsetjeneste&lt;/li>&lt;li>Jobb
-                    i en Inkuderende Arbeidsliv-bedrift&lt;/li>&lt;/ul>
-                </finn:field>
+                <finn:field name="value">Test</finn:field>
             </finn:value>
         </finn:field>
         <finn:field name="industry">
-            <finn:value>Maritim og offshore</finn:value>
+            <finn:value>Telekommunikasjon</finn:value>
         </finn:field>
-        <finn:field name="job_title">Prosjektleder HST Leirvik</finn:field>
+        <finn:field name="job_title" value="Avdelingsleder bredbånd"/>
         <finn:field name="keywords">
-            <finn:value>Prosjektleder</finn:value>
-            <finn:value>Skipsverft</finn:value>
+            <finn:value>Bredbånd</finn:value>
+            <finn:value>Telecom</finn:value>
+            <finn:value>Avdelingsleder</finn:value>
+            <finn:value>Salg</finn:value>
+            <finn:value>Marked</finn:value>
         </finn:field>
-        <finn:field name="manager_role" value="Leder"/>
         <finn:field name="occupations">
             <finn:value>
-                <finn:field name="general">Prosjektledelse</finn:field>
-                <finn:field name="specialization">Prosjektledelse</finn:field>
+                <finn:field name="general">Ledelse</finn:field>
+                <finn:field name="specialization">Ledelse</finn:field>
             </finn:value>
         </finn:field>
-        <finn:field name="provider_id" value="120927439"/>
-        <finn:field name="sector" value="Privat"/>
-        <finn:field name="situation" value="Leirvik i Sogn"/>
+        <finn:field name="provider_id" value="0"/>
+        <finn:field name="sector" value="Offentlig"/>
         <finn:field name="workplaces">
-            <finn:value>.</finn:value>
-            <finn:value>6953 Leirvik i Sogn</finn:value>
+            <finn:value>Postboks 156</finn:value>
+            <finn:value>4358 Kleppe</finn:value>
         </finn:field>
+        undefined
     </finn:adata>
+    undefined
 </entry>
