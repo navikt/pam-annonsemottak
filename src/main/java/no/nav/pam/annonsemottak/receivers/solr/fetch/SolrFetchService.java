@@ -70,7 +70,7 @@ public class SolrFetchService {
 
     private static String fraArbeidsgiverPart() {
 
-        if(toggle("pam.schedule.fetch.from.xmlstilling").isDisabled()) {
+        if(toggle("pam.schedule.fetch.from.xmlstilling.via.solr").isDisabled()) {
             return "\"" + fraArbeidsgiver + "\"" +
                     " OR ";
         }
