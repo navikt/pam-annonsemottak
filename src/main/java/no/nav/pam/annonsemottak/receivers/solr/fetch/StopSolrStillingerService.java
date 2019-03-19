@@ -35,7 +35,7 @@ public class StopSolrStillingerService {
     @Deprecated
     private Predicate<Stilling> ignoreOverfortFraArbeidsgiver = s -> {
 
-        if(toggle("pam.schedule.fetch.from.xmlstilling.via.solr").isEnabled()) {
+        if(toggle("pam.schedule.disable.fetch.from.xmlstilling.via.solr").isEnabled()) {
             return !s.getMedium().equals(fraArbeidsgiver);
         }
 
