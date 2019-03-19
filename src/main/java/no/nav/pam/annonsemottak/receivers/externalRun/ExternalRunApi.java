@@ -40,19 +40,21 @@ public class ExternalRunApi {
         return ResponseEntity.ok(externalRunService.findLastRunForRunName(name));
     }
 
-    @PostMapping("/{name}/date/{date}")
-    public ResponseEntity saveDate(@PathVariable("name") String name,
-                                   @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastRunDate) {
+    @PostMapping("/{name}/{medium}/date/{date}")
+    public ResponseEntity saveDate(
+            @PathVariable("name") String name,
+            @PathVariable("medium") String medium,
+            @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastRunDate) {
 
         ExternalRun run = externalRunService.retrieveExternalRun(name);
 
         if (run != null) {
             run.setLastRun(lastRunDate);
         } else {
-            run = new ExternalRun(name, name, lastRunDate);
+            run = new ExternalRun(name, medium, lastRunDate);
         }
 
-        LOG.info("Saving external run for {} with date {}", name, lastRunDate);
+        LOG.info("Saving external run for {}, {} with date {}", name, medium, lastRunDate);
         externalRunService.save(run);
 
         return ResponseEntity.ok().build();
