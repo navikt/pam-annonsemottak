@@ -26,14 +26,13 @@ public class XmlStillingSchedulerTask {
         this.xmlStillingService = xmlStillingService;
     }
 
-    @Scheduled(cron = "0 */30 * * * *")
+    @Scheduled(cron = "0 */2 * * * *")
     @SchedulerLock(name = "saveLatestAdsFromXmlStilling")
     public void saveLatestAds() {
         if(toggle("pam.schedule.fetch.from.xmlstilling").isDisabled()) {
             LOG.info("Xml Stilling scheduling disabled");
             return;
         }
-        LOG.info("Xml Stilling scheduling enabled");
 
         LOG.info("Running scheduled job for saving the latest job ads fetched from Xml-Stilling.");
 
