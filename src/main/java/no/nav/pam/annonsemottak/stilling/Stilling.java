@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
 public class Stilling extends ModelEntity {
 
-    private static final int DEFAULT_EXPIRY_DAYS = 10;
     private static final int MAX_EXPIRY_LIMIT = 6;
 
     private static final Set<String> NONIDENTIFYING_KEYS;

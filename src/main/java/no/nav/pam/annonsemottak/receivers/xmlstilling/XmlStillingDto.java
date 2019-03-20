@@ -29,10 +29,10 @@ class XmlStillingDto {
     private String eksternId;
 
     @JsonProperty
-    private LocalDateTime publiseresFra = LocalDateTime.now();
+    private LocalDateTime publiseresFra;
 
     @JsonProperty
-    private LocalDateTime sistePubliseringsdato = LocalDateTime.now().plusDays(10);
+    private LocalDateTime sistePubliseringsdato;
 
     @JsonProperty
     private LocalDateTime mottattTidspunkt;
