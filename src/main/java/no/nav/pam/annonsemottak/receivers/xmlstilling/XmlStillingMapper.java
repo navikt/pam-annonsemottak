@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 
 import java.time.LocalDateTime;
@@ -27,6 +28,9 @@ class XmlStillingMapper {
                 dto.getEksternId()
         ).deactivate();
 
+        stilling.setExpires(dto.getSistePubliseringsdato());
+        stilling.setPublished(dto.getPubliseresFra());
+
         stilling.getProperties().put(ANTALL_STILLINGER, stringFrom(dto.getAntallStillinger()));
         stilling.getProperties().put(FYLKE, stringFrom(dto.getArbeidssted()));
         stilling.getProperties().put(STILLINGSPROSENT, stringFrom(dto.getStillingsprosent()));
@@ -36,6 +40,7 @@ class XmlStillingMapper {
         stilling.getProperties().put(LOCATION_ADDRESS, stringFrom(dto.getArbeidsgiverAdresse()));
         stilling.getProperties().put(LOCATION_POSTCODE, stringFrom(dto.getArbeidsgiverPostnummer()));
         stilling.getProperties().put(EMPLOYER_URL, stringFrom(dto.getArbeidsgiverWebadresse()));
+
 
         stilling.setSystemModifiedDate(dto.getMottattTidspunkt());
 
