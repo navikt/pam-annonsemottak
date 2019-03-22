@@ -58,7 +58,7 @@ finn:
   api:
     password: ${FINN_API_PASSWORD:<finn api password>}
 proxy:
-  url: ${DRIFTPROXY_URL:http://155.55.60.117:8088}
+  url: ${HTTP_PROXY:http://155.55.60.117:8088}
 solr:
   url: ${STILLING_SOLR_URL}
   core: 'maincore'
