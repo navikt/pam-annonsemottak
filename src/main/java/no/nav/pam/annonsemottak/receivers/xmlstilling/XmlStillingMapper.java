@@ -40,6 +40,7 @@ class XmlStillingMapper {
         stilling.getProperties().put(LOCATION_ADDRESS, stringFrom(dto.getArbeidsgiverAdresse()));
         stilling.getProperties().put(LOCATION_POSTCODE, stringFrom(dto.getArbeidsgiverPostnummer()));
         stilling.getProperties().put(EMPLOYER_URL, stringFrom(dto.getArbeidsgiverWebadresse()));
+        stilling.getProperties().put(TILTREDELSE, stringFrom(dto.getLedigFra()));
 
 
         stilling.setSystemModifiedDate(dto.getMottattTidspunkt());
@@ -49,15 +50,7 @@ class XmlStillingMapper {
         return stilling;
     }
 
-    private static String stringFrom(String value) {
-        return value == null ? "" : value;
-    }
-
-    private static String stringFrom(Integer value) {
-        return value == null ? "" : value.toString();
-    }
-
-    private static String stringFrom(Float value) {
+    private static <T> String stringFrom(T value) {
         return value == null ? "" : value.toString();
     }
 

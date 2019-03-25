@@ -1,10 +1,12 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class XmlStillingDto {
 
     @JsonProperty
@@ -63,6 +65,9 @@ class XmlStillingDto {
 
     @JsonProperty
     private String arbeidsgiverWebadresse;
+
+    @JsonProperty
+    private LocalDateTime ledigFra;
 
     @Deprecated
     @JsonProperty
@@ -145,6 +150,10 @@ class XmlStillingDto {
 
     String getArbeidsgiverWebadresse() {
         return arbeidsgiverWebadresse;
+    }
+
+    public LocalDateTime getLedigFra() {
+        return ledigFra;
     }
 
     /**
