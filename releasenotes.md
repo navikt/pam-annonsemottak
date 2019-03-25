@@ -1,3 +1,6 @@
+## RELEASE - 0.45.149-9ae2695
+#### New in this release: 
++ 2019-03-25 [Kan nå ta imot informasjon om når en stilling mottatt via XmlStilling er ledig fra]
 ## RELEASE - 0.41.143-9463b75
 #### New in this release: 
 + 2019-03-18 [PAM-2969] Endringer i Finn-data, navn på arbeidsgiver har blitt til attributt i XML
