@@ -16,10 +16,10 @@ spec:
     enabled: true
     path: /actuator/prometheus
   liveness:
-    initialDelay: 60
+    initialDelay: 20
     path: /isAlive
   readiness:
-    initialDelay: 60
+    initialDelay: 20
     path: /isReady
   resources:
     limits:
