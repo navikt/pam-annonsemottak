@@ -130,6 +130,7 @@ public class AppConfig {
                     .readTimeout(60, TimeUnit.SECONDS)
                     .sslSocketFactory(sc.getSocketFactory(), trustAllX509Manager)
                     .hostnameVerifier((s, sslSession) -> true)
+                    .proxy(Proxy.NO_PROXY)
                     .build();
             return new HttpClientProvider(client);
         } catch (Exception e) {
