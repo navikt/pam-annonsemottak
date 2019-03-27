@@ -163,4 +163,8 @@ class XmlStillingDto {
     String getArenaId() {
         return arenaId;
     }
+
+    public void setStillingstittel(String stillingstittel) {
+        this.stillingstittel = stillingstittel;
+    }
 }

@@ -12,11 +12,12 @@ import static no.nav.pam.annonsemottak.receivers.common.PropertyNames.*;
 class XmlStillingMapper {
 
     private static final String STILLINGSPROSENT = "STILLINGSPROSENT";
+    static final String STILLINGSTITTEL_ER_IKKE_SATT = "[Stillingstittel er ikke satt]";
 
     static Stilling fromDto(XmlStillingDto dto) {
 
         Stilling stilling = new Stilling(
-                HtmlToMarkdownConverter.parse(dto.getStillingstittel()).trim(),
+                extractStillingtittel(dto),
                 null,
                 dto.getArbeidsgiver(),
                 HtmlToMarkdownConverter.parse(dto.getArbeidsgiverBedriftspresentasjon()),
@@ -48,6 +49,11 @@ class XmlStillingMapper {
         stilling.setArenaId(dto.getArenaId());
 
         return stilling;
+    }
+
+    private static String extractStillingtittel(XmlStillingDto dto) {
+        String result = HtmlToMarkdownConverter.parse(dto.getStillingstittel()).trim();
+        return result.isEmpty() ? STILLINGSTITTEL_ER_IKKE_SATT : result;
     }
 
     private static <T> String stringFrom(T value) {
