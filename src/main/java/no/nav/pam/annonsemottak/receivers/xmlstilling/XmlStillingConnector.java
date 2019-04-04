@@ -47,16 +47,6 @@ class XmlStillingConnector {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    boolean isPingSuccessful() {
-        try {
-            Response response = proxy.get().newCall(requestFor(uri.forPing())).execute();
-            return response.isSuccessful();
-        } catch (IOException e) {
-            log.error("Error while pinging connection to xml-stilling", e);
-            return false;
-        }
-    }
-
     List<Stilling> fetchFrom(LocalDateTime lastRun) {
         try {
             List<Stilling> stillinger = fetchData(lastRun);
