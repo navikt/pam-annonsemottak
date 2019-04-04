@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-import static no.nav.pam.unleash.UnleashProvider.toggle;
-
 
 @Component
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
@@ -29,10 +27,6 @@ public class XmlStillingSchedulerTask {
     @Scheduled(cron = "0 */2 * * * *")
     @SchedulerLock(name = "saveLatestAdsFromXmlStilling")
     public void saveLatestAds() {
-        if(toggle("pam.schedule.fetch.from.xmlstilling").isDisabled()) {
-            LOG.info("Xml Stilling scheduling disabled");
-            return;
-        }
 
         LOG.info("Running scheduled job for saving the latest job ads fetched from Xml-Stilling.");
 
