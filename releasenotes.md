@@ -1,3 +1,7 @@
+## RELEASE - 0.47.158-e816db9
+#### New in this release: 
++ 2019-03-27 [Legger på dummy-tittel hvis tittel mangler fra xml-stilling]
++ 2019-03-26 [fix] pom.xml to reduce vulnerabilities (#38)
 ## RELEASE - 0.45.149-9ae2695
 #### New in this release: 
 + 2019-03-25 [Kan nå ta imot informasjon om når en stilling mottatt via XmlStilling er ledig fra]
