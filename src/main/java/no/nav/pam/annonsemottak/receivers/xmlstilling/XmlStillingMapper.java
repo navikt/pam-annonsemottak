@@ -27,7 +27,7 @@ class XmlStillingMapper {
                 dto.getEksternBrukerRef(),
                 null,
                 dto.getEksternId()
-        ).deactivate();
+        );
 
         stilling.setExpires(dto.getSistePubliseringsdato());
         stilling.setPublished(dto.getPubliseresFra());
