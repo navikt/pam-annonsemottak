@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe;
+import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
@@ -23,6 +24,7 @@ import java.util.stream.Stream;
 import static java.time.LocalDateTime.now;
 import static java.util.Optional.empty;
 import static no.nav.pam.annonsemottak.receivers.Kilde.STILLINGSOLR;
+import static no.nav.pam.annonsemottak.receivers.Kilde.XML_STILLING;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
@@ -191,6 +193,23 @@ public class StillingRepositoryFacadeTest {
         assertThat(facade.saveOnlyNewAndChangedGroupingStrategy(enkelStillingMedArenaId("11"))).isEqualTo(CHANGED_ARENA);
 
         verify(repository).findByKildeAndMediumAndExternalId(eq(STILLINGSOLR.value()), eq("Overført fra arbeidsgiver"), eq("11"));
+
+    }
+
+    @Test
+    public void that_update_also_stops_ads_automatically_when_expiry_is_changed_to_the_past() {
+
+        Stilling eksisterende = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.value()).utløpsdato("13.12.2018").systemModifiedDate(now().minusDays(1)).build();
+        when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
+                .thenReturn(Optional.of(eksisterende));
+
+        Stilling oppdatering = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.value()).utløpsdato("12.12.2018").systemModifiedDate(now()).build();
+        facade.updateStillinger(Arrays.asList(oppdatering), facade::saveOnlyNewAndChangedGroupingStrategy);
+
+        ArgumentCaptor<Stilling> captor = ArgumentCaptor.forClass(Stilling.class);
+        verify(repository).save(captor.capture());
+
+        assertThat(captor.getValue().getAnnonseStatus()).isEqualTo(AnnonseStatus.STOPPET);
 
     }
 

@@ -1,6 +1,9 @@
 package no.nav.pam.annonsemottak.stilling;
 
+import no.nav.pam.annonsemottak.receivers.GenericDateParser;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.junit.Test;
+import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 
 public class StillingTest {
 
@@ -211,5 +215,47 @@ public class StillingTest {
         Stilling stilling = enkelStilling().utløpsdato("12.12.2518").build();
         assertThat(stilling.getExpires().format(DateTimeFormatter.ofPattern(format)),
                 is(equalTo(LocalDateTime.now().plusDays(10).format(DateTimeFormatter.ofPattern(format)))));
+    }
+
+    @Test
+    public void at_stopping_kan_skje_automatisk() {
+
+        Stilling oppdatering = enkelStilling().utløpsdato("11.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+
+        oppdatering.stopIfExpired(eksisterende);
+        assertThat(oppdatering.getAnnonseStatus(), is(equalTo(AnnonseStatus.STOPPET)));
+    }
+
+    @Test
+    public void at_inaktive_annonser_ikke_stoppes_automatisk() {
+
+        Stilling oppdatering = enkelStilling().utløpsdato("11.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build()
+                .deactivate();
+
+        oppdatering.stopIfExpired(eksisterende);
+        assertThat(oppdatering.getAnnonseStatus(), is(not(equalTo(AnnonseStatus.STOPPET))));
+    }
+
+    @Test
+    public void at_med_fremtidig_stopdato_ikke_stoppes_automatisk() {
+
+        Stilling oppdatering = enkelStilling().utløpsdato("13.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build()
+                .deactivate();
+
+        oppdatering.stopIfExpired(eksisterende);
+        assertThat(oppdatering.getAnnonseStatus(), is(not(equalTo(AnnonseStatus.STOPPET))));
+    }
+
+    @Test
+    public void at_ikke_xml_stilling_annonser_ikke_stoppes_automatisk() {
+
+        Stilling oppdatering = enkelStilling().utløpsdato("11.12.2018").kilde(Kilde.AMEDIA.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.AMEDIA.value()).build();
+
+        oppdatering.stopIfExpired(eksisterende);
+        assertThat(oppdatering.getAnnonseStatus(), is(not(equalTo(AnnonseStatus.STOPPET))));
     }
 }

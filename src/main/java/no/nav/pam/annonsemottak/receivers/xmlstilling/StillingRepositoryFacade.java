@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 
+import static java.time.LocalDateTime.now;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 
 @Service
@@ -80,7 +82,10 @@ class StillingRepositoryFacade {
 
     private void mergeWithDb(Stilling stilling) {
         stillingRepository.findByKildeAndMediumAndExternalId(stilling.getKilde(), stilling.getMedium(), stilling.getExternalId())
-                .ifPresent(stilling::merge);
+                .ifPresent(dbStilling -> {
+                    stilling.merge(dbStilling);
+                    stilling.stopIfExpired(dbStilling);
+                });
     }
 
     /**

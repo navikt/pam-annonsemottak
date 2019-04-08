@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.time.LocalDateTime.now;
+
 @Entity
 @Table(name = "STILLING")
 @SequenceGenerator(name = "hibernate_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
@@ -60,8 +62,8 @@ public class Stilling extends ModelEntity {
     private String dueDate;
     private String url;
     private String externalId;
-    private LocalDateTime published = LocalDateTime.now();
-    private LocalDateTime expires = LocalDateTime.now().plusDays(10);
+    private LocalDateTime published = now();
+    private LocalDateTime expires = now().plusDays(10);
 
     @Enumerated(EnumType.STRING)
     private AnnonseStatus annonseStatus = AnnonseStatus.AKTIV;
@@ -259,7 +261,7 @@ public class Stilling extends ModelEntity {
     }
 
     public void setExpires(LocalDateTime expires) {
-        if (expires != null && expires.isBefore(LocalDateTime.now().plusMonths(MAX_EXPIRY_LIMIT))) {
+        if (expires != null && expires.isBefore(now().plusMonths(MAX_EXPIRY_LIMIT))) {
             this.expires = expires;
         }
     }
@@ -325,11 +327,33 @@ public class Stilling extends ModelEntity {
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
 
-        if(!this.getKilde().equals(Kilde.SBL.value())){
-            this.setPublished(stilling.getPublished());
+        if(!kilde.equals(Kilde.SBL.value())) {
+            setPublished(stilling.getPublished());
         }
 
         return this;
+    }
+
+    public Stilling stopIfExpired(Stilling stilling) {
+
+        if(!kilde.equals(Kilde.XML_STILLING.value())) {
+            return this;
+        }
+
+        if(stilling.getExpires().equals(expires)) {
+            return this;
+        }
+
+        if(stilling.getAnnonseStatus() != AnnonseStatus.AKTIV) {
+            return this;
+        }
+
+        if(expires.isBefore(now())) {
+            annonseStatus = AnnonseStatus.STOPPET;
+        }
+
+        return this;
+
     }
 
     /**
