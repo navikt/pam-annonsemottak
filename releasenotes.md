@@ -1,3 +1,7 @@
+## RELEASE - 0.48.161-772d6b6
+#### New in this release: 
++ 2019-04-08 [Stillinger med stopp-dato tilbake i tid skal nå automatisk få stoppet-status]
++ 2019-04-04 [Fjernet featuretoggle pam.schedule.fetch.from.xmlstilling slik at den alltid er aktiv]
 ## RELEASE - 0.47.158-e816db9
 #### New in this release: 
 + 2019-03-27 [Legger på dummy-tittel hvis tittel mangler fra xml-stilling]
