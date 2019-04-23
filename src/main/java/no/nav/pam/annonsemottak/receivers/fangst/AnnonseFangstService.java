@@ -45,6 +45,10 @@ public class AnnonseFangstService {
         return prepareAnnonseResultFromReceiveList(receiveList, allActiveExternalIds, activeList);
     }
 
+    /**
+     * @deprecated usage of this duplicate checker should be phased out, since Arena is no longer origin for new ads
+     */
+    @Deprecated
     public void handleDuplicates(AnnonseResult annonseResult) {
         LOG.info("Annonsefangstservice, før duplikatkontroll,  annonseresult: {}", annonseResult.toString());
         duplicateHandler.markDuplicates(annonseResult);
