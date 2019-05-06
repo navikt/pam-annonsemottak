@@ -39,10 +39,12 @@ management:
       enabled: true
     metrics:
       enabled: true
+    mappings:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: ["prometheus", "metrics"]
+        include: ["prometheus", "metrics", "mappings"]
 scheduler:
   enabled: false
 dexi:
