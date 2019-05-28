@@ -12,14 +12,12 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Optional.empty;
@@ -199,11 +197,11 @@ public class StillingRepositoryFacadeTest {
     @Test
     public void that_update_also_stops_ads_automatically_when_expiry_is_changed_to_the_past() {
 
-        Stilling eksisterende = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.value()).utløpsdato("13.12.2018").systemModifiedDate(now().minusDays(1)).build();
+        Stilling eksisterende = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.toString()).utløpsdato("13.12.2018").systemModifiedDate(now().minusDays(1)).build();
         when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
                 .thenReturn(Optional.of(eksisterende));
 
-        Stilling oppdatering = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.value()).utløpsdato("12.12.2018").systemModifiedDate(now()).build();
+        Stilling oppdatering = StillingTestdataBuilder.enkelStilling().kilde(XML_STILLING.toString()).utløpsdato("12.12.2018").systemModifiedDate(now()).build();
         facade.updateStillinger(Arrays.asList(oppdatering), facade::saveOnlyNewAndChangedGroupingStrategy);
 
         ArgumentCaptor<Stilling> captor = ArgumentCaptor.forClass(Stilling.class);
