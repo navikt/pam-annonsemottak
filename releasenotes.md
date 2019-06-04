@@ -1,3 +1,7 @@
+## RELEASE - 0.49.164-caca12d
+#### New in this release: 
++ 2019-05-28 [PAM-3354,PAM-3424] Endre datoer knyttet til publisering (inkl. stoppe annonse).
++ 2019-05-06 [CFG] Enable mappings metadata endpoint
 ## RELEASE - 0.48.161-772d6b6
 #### New in this release: 
 + 2019-04-08 [Stillinger med stopp-dato tilbake i tid skal nå automatisk få stoppet-status]
