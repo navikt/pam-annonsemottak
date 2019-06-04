@@ -1,9 +1,7 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.junit.Test;
-import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -220,8 +218,8 @@ public class StillingTest {
     @Test
     public void at_stopping_kan_skje_automatisk() {
 
-        Stilling oppdatering = enkelStilling().utløpsdato("11.12.2018").kilde(Kilde.XML_STILLING.value()).build();
-        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling oppdatering = enkelStilling().utløpsdato("11.12.2018").kilde(Kilde.XML_STILLING.toString()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.toString()).build();
 
         oppdatering.stopIfExpired(eksisterende);
         assertThat(oppdatering.getAnnonseStatus(), is(equalTo(AnnonseStatus.STOPPET)));

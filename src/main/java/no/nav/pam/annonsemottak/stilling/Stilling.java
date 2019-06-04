@@ -1,8 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.hash.Hashing;
-import io.micrometer.core.instrument.Metrics;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Type;
@@ -327,16 +325,12 @@ public class Stilling extends ModelEntity {
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
 
-        if(!kilde.equals(Kilde.SBL.value())) {
-            setPublished(stilling.getPublished());
-        }
-
         return this;
     }
 
     public Stilling stopIfExpired(Stilling stilling) {
 
-        if(!kilde.equals(Kilde.XML_STILLING.value())) {
+        if(!kilde.equals(Kilde.XML_STILLING.toString())) {
             return this;
         }
 
