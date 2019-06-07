@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.amedia.filter.StillingFilterchain;
@@ -19,19 +17,15 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-
 /**
  * Amedia operasjoner
  */
 @Service
 public class AmediaService {
-
+    private static final LocalDateTime FIRST_FETCH_DATE = LocalDateTime.of(1900, 1, 1, 0, 0, 0);
     public final static Integer MAXANTALl_TREFF = 1200;
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
 
-    private final MeterRegistry meterRegistry;
     private final AmediaConnector amediaConnector;
     private final AnnonseFangstService annonseFangstService;
     private final ExternalRunService externalRunService;
@@ -40,12 +34,10 @@ public class AmediaService {
     @Inject
     public AmediaService(AmediaConnector amediaConnector,
                          AnnonseFangstService annonseFangstService,
-                         ExternalRunService externalRunService,
-                         MeterRegistry meterRegistry) {
+                         ExternalRunService externalRunService) {
         this.amediaConnector = amediaConnector;
         this.annonseFangstService = annonseFangstService;
         this.externalRunService = externalRunService;
-        this.meterRegistry = meterRegistry;
     }
 
     public ResultsOnSave saveLatestResults() {
@@ -56,7 +48,7 @@ public class AmediaService {
         ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
 
         List<String> alleStillingIDerFraAmedia = AmediaResponseMapper.mapEksternIder(
-                amediaConnector.hentData(AmediaDateConverter.getInitialDate(), false, 10000));
+                amediaConnector.hentData(AmediaRequestParametere.DAWN_OF_TIME));
 
         List<Stilling> returnerteStillingerFraAmedia = hentAmediaData(getLastRun(externalRun));
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
@@ -122,15 +114,17 @@ public class AmediaService {
             lastRun = externalRun.getLastRun();
         } else {
             LOG.info("First time fetching ads from AMEDIA");
-            lastRun = AmediaDateConverter.getInitialDate();
+            lastRun = FIRST_FETCH_DATE;
         }
         LOG.info("Amedia bruker lastrun {}", lastRun);
         return lastRun;
     }
 
     private List<Stilling> hentAmediaData(LocalDateTime sisteModifiserteDato) {
+
+        AmediaRequestParametere requestParametere = new AmediaRequestParametere(sisteModifiserteDato, true, MAXANTALl_TREFF);
         return AmediaResponseMapper
-                .mapResponse(amediaConnector.hentData(sisteModifiserteDato, true, MAXANTALl_TREFF));
+                .mapResponse(amediaConnector.hentData(requestParametere));
     }
 
 

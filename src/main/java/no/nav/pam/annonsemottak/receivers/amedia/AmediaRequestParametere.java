@@ -28,7 +28,12 @@ public class AmediaRequestParametere {
     private final String maxAntallTreff;
     private final String medInnhold;
 
-    public AmediaRequestParametere(LocalDateTime sisteModifiedDate, boolean medInnhold, int resultSize) {
+
+    private static final LocalDateTime DAWN_OF_TIME_LOCALDATETIME = LocalDateTime.of(1900, 1, 1, 0, 0, 0);
+    static final AmediaRequestParametere DAWN_OF_TIME = new AmediaRequestParametere(DAWN_OF_TIME_LOCALDATETIME, false, 10000);
+    public static final AmediaRequestParametere PING = new AmediaRequestParametere(LocalDateTime.now(), false, 1);
+
+    AmediaRequestParametere(LocalDateTime sisteModifiedDate, boolean medInnhold, int resultSize) {
         this.sisteModifiedDate = modifisertDatoMedBuffertid(sisteModifiedDate);
         this.transactionType = DEFAULT_TRANSACTION_TYPE;
         this.sortering = DEFAULT_SORTERING;
@@ -37,7 +42,7 @@ public class AmediaRequestParametere {
     }
 
 
-    public String asString() {
+    String asString() {
         String utenEncoding = StringSubstitutor
             .replace(AMEDIA_REQUEST_PARAMETERS, lagStringMapAvKlasseparameterene());
         String medCustomEncoding =
@@ -77,7 +82,7 @@ public class AmediaRequestParametere {
      */
     private String modifisertDatoMedBuffertid(LocalDateTime sisteModifiserteDato) {
         if (sisteModifiserteDato == null) {
-            return AmediaDateConverter.toStringUrlEncoded(AmediaDateConverter.getInitialDate());
+            return AmediaDateConverter.toStringUrlEncoded(DAWN_OF_TIME_LOCALDATETIME);
         }
 
         return AmediaDateConverter.toStringUrlEncoded(

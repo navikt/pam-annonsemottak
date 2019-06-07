@@ -35,7 +35,7 @@ class AmediaStillingMapper {
     private final JsonNode primaryLogo;
 
 
-    public AmediaStillingMapper(JsonNode stilling) {
+    AmediaStillingMapper(JsonNode stilling) {
         amediaFieldTransformer = new AmediaFieldTransformer();
         this.stilling = stilling;
         this.source = stilling.path("_source");
@@ -45,8 +45,6 @@ class AmediaStillingMapper {
         this.address = source.path("address");
         this.primaryLogo = source.path("primary_logo");
         this.bookings = source.path("bookings");
-
-
     }
 
     public Stilling getStilling() {
@@ -98,6 +96,11 @@ class AmediaStillingMapper {
         stilling.setSystemModifiedDate(systemModifiedTime);
 
         return stilling;
+    }
+
+    boolean isFromNav() {
+
+        return text(source.get("created_by")).equals("nav");
     }
 
     private String getStedMedSoner() {
