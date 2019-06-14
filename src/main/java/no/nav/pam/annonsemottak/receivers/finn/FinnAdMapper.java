@@ -143,10 +143,15 @@ class FinnAdMapper {
         keyValueMap.put(PropertyNames.ANNONSOR, ad.getAuthor().getName());
         keyValueMap.put(PropertyNames.ADRESSE, concatenate(ad.getWorkplaces()));
         keyValueMap.put(PropertyNames.SEKTOR, ad.getSector());
-        keyValueMap.put(PropertyNames.STILLINGSTITTEL, ad.getJobTitle());
         keyValueMap.put(PropertyNames.APPLICATION_EMAIL, ad.getApplicationEmail());
         keyValueMap.put(PropertyNames.APPLICATION_MAIL, ad.getApplicationAddress());
         keyValueMap.put(PropertyNames.APPLICATION_LABEL, ad.getApplicationLabel());
+
+        if(!StringUtils.isBlank(ad.getJobTitle())){
+            keyValueMap.put(PropertyNames.STILLINGSTITTEL, ad.getJobTitle());
+        } else {
+            LOG.warn("Finn job-title fro AD {} was blank", ad.getId());
+        }
 
         keyValueMap.put(PropertyNames.KONTAKTINFO, toJsonString(ad.getContacts()));
 
