@@ -110,7 +110,7 @@ public class FinnAd {
         // Skipping external_ad_id for now.
         generalText = getListOfGeneralText(getNodeList(document, "/entry/adata/field[@name='general_text']/value"));
         industry = getListOfStrings(document, "/entry/adata/field[@name='industry']/value");
-        jobTitle = getString(document, "/entry/adata/field[@name='job_title']");
+        jobTitle = getString(document, "/entry/adata/field[@name='job_title']/@value");
         keywords = getListOfStrings(document, "/entry/adata/field[@name='keywords']/value");
         managerRole = getString(document, "/entry/adata/field[@name='manager_role']/@value");
         occupations = getListOfStrings(document, "/entry/adata/field[@name='occupations']/value/field[@name='general']").stream().collect(Collectors.toSet());
