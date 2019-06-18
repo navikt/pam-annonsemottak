@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
@@ -24,9 +22,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-
 /**
  * A service class for fetching jobs ad from Finn with FinnConnector and persisting
  */
@@ -36,7 +31,6 @@ public class FinnService {
 
     private static final String[] KNOWN_COLLECTIONS = {"job-full-time", "job-part-time", "job-management"};
 
-    private final MeterRegistry meterRegistry;
     private final FinnConnector connector;
     private final AnnonseFangstService finnAnnonseFangstService;
     private final ExternalRunService externalRunService;
@@ -45,20 +39,14 @@ public class FinnService {
     public FinnService(
             AnnonseFangstService finnAnnonseFangstService,
             FinnConnector connector,
-            ExternalRunService externalRunService,
-            MeterRegistry meterRegistry) {
+            ExternalRunService externalRunService) {
         this.finnAnnonseFangstService = finnAnnonseFangstService;
         this.connector = connector;
         this.externalRunService = externalRunService;
-        this.meterRegistry = meterRegistry;
     }
 
     /**
      * Will retrieve all the active job ads from finn, and save new or changed ads.
-     *
-     * @param collection
-     * @return
-     * @throws FinnConnectorException
      */
     public ResultsOnSave saveAndUpdateFromCollection(String collection) throws FinnConnectorException {
         String[] collections = collection == null ? KNOWN_COLLECTIONS : new String[]{collection};
@@ -109,7 +97,6 @@ public class FinnService {
 
         // Persist retrieved ads
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
-        finnAnnonseFangstService.handleDuplicates(annonseResult);
 
         // Filter out adecco, webcruiter and other sources
         List<Stilling> rest = annonseResult.getNewList().stream().filter(st -> !ifOneOfFilteredAds(st)).collect(Collectors.toList());

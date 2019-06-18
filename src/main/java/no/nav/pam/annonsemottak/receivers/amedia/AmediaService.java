@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.amedia.filter.StillingFilterchain;
@@ -19,9 +18,6 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-
 /**
  * Amedia operasjoner
  */
@@ -31,7 +27,6 @@ public class AmediaService {
     public final static Integer MAXANTALl_TREFF = 1200;
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
 
-    private final MeterRegistry meterRegistry;
     private final AmediaConnector amediaConnector;
     private final AnnonseFangstService annonseFangstService;
     private final ExternalRunService externalRunService;
@@ -40,12 +35,10 @@ public class AmediaService {
     @Inject
     public AmediaService(AmediaConnector amediaConnector,
                          AnnonseFangstService annonseFangstService,
-                         ExternalRunService externalRunService,
-                         MeterRegistry meterRegistry) {
+                         ExternalRunService externalRunService) {
         this.amediaConnector = amediaConnector;
         this.annonseFangstService = annonseFangstService;
         this.externalRunService = externalRunService;
-        this.meterRegistry = meterRegistry;
     }
 
     public ResultsOnSave saveLatestResults() {
@@ -110,7 +103,6 @@ public class AmediaService {
         AnnonseResult annonseResult = annonseFangstService
                 .retrieveAnnonseLists(returnerteStillingerFraAmedia, alleStillingIDerFraAmedia,
                         Kilde.AMEDIA.toString(), Medium.AMEDIA.toString());
-        annonseFangstService.handleDuplicates(annonseResult);
         annonseFangstService.saveAll(annonseResult);
 
         return annonseResult;

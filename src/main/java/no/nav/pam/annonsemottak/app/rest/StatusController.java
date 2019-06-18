@@ -6,9 +6,6 @@ import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.receivers.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
 import no.nav.pam.annonsemottak.receivers.polaris.PolarisConnector;
-import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,22 +17,21 @@ import java.util.Map;
 @RestController
 public class StatusController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StatusController.class);
+    private final FinnConnector finnConnector;
+
+    private final DexiConnector dexiConnector;
+
+    private final AmediaConnector amediaConnector;
+
+    private final PolarisConnector polarisConnector;
 
     @Autowired
-    private SolrRepository solrRepository;
-
-    @Autowired
-    private FinnConnector finnConnector;
-
-    @Autowired
-    private DexiConnector dexiConnector;
-
-    @Autowired
-    private AmediaConnector amediaConnector;
-
-    @Autowired
-    private PolarisConnector polarisConnector;
+    public StatusController(FinnConnector finnConnector, DexiConnector dexiConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector) {
+        this.finnConnector = finnConnector;
+        this.dexiConnector = dexiConnector;
+        this.amediaConnector = amediaConnector;
+        this.polarisConnector = polarisConnector;
+    }
 
 
     @GetMapping(path = "/isAlive")
@@ -51,8 +47,7 @@ public class StatusController {
     @GetMapping(path = "/amIOK")
     public String amIOk() {
 
-        if (isSolrOK()
-                && isDexiOK()
+        if (isDexiOK()
                 && isAmediaOK()
                 && isFinnOK()
                 && isPolarisOK()
@@ -66,8 +61,7 @@ public class StatusController {
     @GetMapping(path = "/isSourcePingOK")
     public ResponseEntity pingSourcesAndGetStatus() {
 
-        Map<String, String> statusMap = new HashMap();
-        statusMap.put(Kilde.STILLINGSOLR.value(), statusToString(isSolrOK()));
+        Map<String, String> statusMap = new HashMap<>();
         statusMap.put(Kilde.DEXI.value(), statusToString(isDexiOK()));
         statusMap.put(Kilde.FINN.value(), statusToString(isFinnOK()));
         statusMap.put(Kilde.AMEDIA.value(), statusToString(isAmediaOK()));
@@ -78,10 +72,6 @@ public class StatusController {
 
     private String statusToString(boolean value) {
         return (value) ? "OK" : "NOT OK";
-    }
-
-    private boolean isSolrOK() {
-        return (solrRepository.status() > -1);
     }
 
     private boolean isFinnOK() {

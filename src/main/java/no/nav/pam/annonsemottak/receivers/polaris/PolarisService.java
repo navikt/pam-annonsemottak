@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.polaris;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
@@ -22,26 +20,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-
 @Service
 public class PolarisService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PolarisService.class);
 
     private final ExternalRunService externalRunService;
-    private final MeterRegistry meterRegistry;
     private final PolarisConnector polarisConnector;
     private final AnnonseFangstService annonseFangstService;
 
     @Autowired
     public PolarisService(ExternalRunService externalRunService,
-                          MeterRegistry meterRegistry,
                           PolarisConnector polarisConnector,
                           AnnonseFangstService annonseFangstService) {
         this.externalRunService = externalRunService;
-        this.meterRegistry = meterRegistry;
         this.polarisConnector = polarisConnector;
         this.annonseFangstService = annonseFangstService;
     }
@@ -68,7 +60,6 @@ public class PolarisService {
 
         AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(receivedList, receivedExternalIdList,
                 Kilde.POLARIS.value(), Medium.POLARIS.value());
-        annonseFangstService.handleDuplicates(annonseResult);
         annonseFangstService.saveAll(annonseResult);
 
         LOG.info("Saved {} new, {} changed, {} stopped ads from Polaris",
