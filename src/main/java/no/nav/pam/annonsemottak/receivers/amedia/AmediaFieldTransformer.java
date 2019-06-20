@@ -11,6 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.emptyList;
+
 class AmediaFieldTransformer {
 
     static final String IKKE_OPPGITT = "Ikke oppgitt";
@@ -50,7 +52,7 @@ class AmediaFieldTransformer {
 
     List<String> hentListeSomStrenger(JsonNode node) {
         if (node == null) {
-            return Collections.emptyList();
+            return emptyList();
         }
         return Lists.newArrayList(node.iterator()).stream()
                 .map(JsonNode::toString)
@@ -59,7 +61,7 @@ class AmediaFieldTransformer {
 
     List<JsonNode> hentListeSomJsonnoder(JsonNode node) {
         if (node == null) {
-            return Collections.emptyList();
+            return emptyList();
         }
         return Lists.newArrayList(node.iterator());
     }

@@ -56,7 +56,7 @@ public class AmediaService {
         ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
 
         List<String> alleStillingIDerFraAmedia = AmediaResponseMapper.mapEksternIder(
-                amediaConnector.hentData(AmediaDateConverter.getInitialDate(), false, 10000));
+                amediaConnector.hentData(AmediaRequestParametere.DAWN_OF_TIME));
 
         List<Stilling> returnerteStillingerFraAmedia = hentAmediaData(getLastRun(externalRun));
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
@@ -129,8 +129,9 @@ public class AmediaService {
     }
 
     private List<Stilling> hentAmediaData(LocalDateTime sisteModifiserteDato) {
+        AmediaRequestParametere requestParametere = new AmediaRequestParametere(sisteModifiserteDato, true, MAXANTALl_TREFF);
         return AmediaResponseMapper
-                .mapResponse(amediaConnector.hentData(sisteModifiserteDato, true, MAXANTALl_TREFF));
+                .mapResponse(amediaConnector.hentData(requestParametere));
     }
 
 

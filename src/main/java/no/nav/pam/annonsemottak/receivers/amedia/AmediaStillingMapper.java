@@ -100,6 +100,11 @@ class AmediaStillingMapper {
         return stilling;
     }
 
+    boolean isFromNav() {
+
+        return text(source.get("created_by")).equals("nav");
+    }
+
     private String getStedMedSoner() {
         return amediaFieldTransformer.reservefelt(
                 text(address.get("geography")),

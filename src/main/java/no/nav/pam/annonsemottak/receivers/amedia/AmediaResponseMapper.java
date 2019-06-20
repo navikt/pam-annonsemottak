@@ -18,7 +18,9 @@ class AmediaResponseMapper {
         List<JsonNode> hitlist = Lists.newArrayList(hits.iterator());
 
         return hitlist.stream()
-            .map(h -> new AmediaStillingMapper(h).getStilling())
+                .map(AmediaStillingMapper::new)
+                .filter(amediaStilling -> !amediaStilling.isFromNav())
+                .map(amediaStilling -> amediaStilling.getStilling())
             .collect(Collectors.toList());
     }
 
