@@ -12,23 +12,25 @@ import java.time.format.DateTimeFormatter;
 class AmediaDateConverter {
 
     private static final String AMEDIA_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZ";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN);
+    private static final ZoneId DEFAULT_ZONE = ZoneId.of("Z");
 
 
-    static LocalDateTime convertDate(String date) {
+    static LocalDateTime convertDate(final String date) {
         if (StringUtils.isBlank(date)) {
             return null;
         }
 
-        date = date.replace("Z", "+0000");
-        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN));
+        String parseableAmediaDate = date.replace("Z", "+0000");
+        return LocalDateTime.parse(parseableAmediaDate, DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN));
     }
 
-    static String toStringUrlEncoded(LocalDateTime date) {
+    static String toStringUrlEncoded(final LocalDateTime date) {
+        return urlEncode(date.atZone(DEFAULT_ZONE).format(DATE_TIME_FORMATTER));
+    }
 
-        String dateValue = date.atZone(ZoneId.of("Z")).format(DateTimeFormatter.ofPattern(AMEDIA_DATE_PATTERN));
-        return dateValue
-                .replace("+0000", "Z")
-                .replace(":", "%5C:");
+    private static String urlEncode(final String s) {
+        return s.replace("+0000", "Z").replace(":", "%5C:");
     }
 
     static LocalDateTime getInitialDate() {

@@ -4,6 +4,7 @@ package no.nav.pam.annonsemottak.receivers.amedia;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class AmediaConnector {
     private static final Logger LOG = LoggerFactory.getLogger(AmediaConnector.class);
 
     private final ObjectMapper objectMapper;
-    private final String apiEndpoint;
+    private final String amediaUrl;
     private final HttpClientProvider clientProvider;
 
     public AmediaConnector(
@@ -33,44 +34,55 @@ public class AmediaConnector {
             final ObjectMapper jacksonMapper) {
         this.objectMapper = jacksonMapper;
         this.clientProvider = clientProvider;
-        this.apiEndpoint = amediaUrl;
+        this.amediaUrl = amediaUrl;
     }
 
-    JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
+    //JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
+    JsonNode hentData(final AmediaRequestParametere requestParametere) {
         try {
-            return executeRequest(createRequest(
-                    apiEndpoint + new AmediaRequestParametere(sistModifisert, medDetaljer, resultSize)
-                            .asString()));
+            String url = urlFrom(requestParametere);
+            Response response = call(url);
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code " + response.code());
+            }
+            return objectMapper.readValue(response.body().charStream(), JsonNode.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private JsonNode executeRequest(Request request)
-            throws IOException {
-        LOG.debug("{}", request);
-        Response response = clientProvider.get().newCall(request).execute();
-        if (!response.isSuccessful()) {
-            throw new IOException("Unexpected response code " + response.code());
-        }
-        return objectMapper.readValue(response.body().charStream(), JsonNode.class);
-    }
-
-    private Request createRequest(String url) {
-        return new Request.Builder()
-                .url(url)
-                .build();
-    }
-
     public boolean isPingSuccessful() {
         try {
-            AmediaRequestParametere params = new AmediaRequestParametere(LocalDateTime.now(), false, 1);
-            Response response = clientProvider.get().newCall(createRequest(apiEndpoint + params.asString())).execute();
+            Response response = call(pingUrl());
             return response.isSuccessful();
         } catch (IOException e) {
             LOG.error("Error while pinging connection to Amedia", e);
             return false;
         }
     }
+
+    private OkHttpClient client() {
+        return clientProvider.get();
+    }
+
+    private String urlFrom(final AmediaRequestParametere amediaRequestParametere) {
+        return amediaUrl + amediaRequestParametere.asString();
+    }
+
+    private String pingUrl() {
+        return urlFrom(AmediaRequestParametere.PING);
+    }
+
+    private Response call(final String url)
+            throws IOException {
+        Request request = request(url);
+        LOG.debug("{}", request);
+        return client().newCall(request).execute();
+    }
+
+    private Request request(final String url) {
+        return new Request.Builder().url(url).build();
+    }
+
 
 }
