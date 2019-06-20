@@ -19,22 +19,21 @@ internal class AmediaConnector(
         @Value("\${amedia.url}") private val amediaUrl: String,
         private val jacksonMapper: ObjectMapper) {
 
-    fun hentData(parameters: AmediaRequestParametere) = (client call parameters.asUrl)
+    fun hentData(parameters: AmediaRequestParametere) = (client.call(urlFrom(parameters)))
             .apply { require(isSuccessful) { "Unexpected response code " + code() } }
             .let { jacksonMapper.readValue(it.body().charStream(), JsonNode::class.java) }
 
-    fun isPingSuccessful() = try { (client call pingurl).isSuccessful } catch (e: IOException) { false }
+    fun isPingSuccessful() = try { (client.call(pingurl)).isSuccessful } catch (e: IOException) { false }
 
-    
-    private val AmediaRequestParametere.asUrl get() = amediaUrl + this.asString()
+    private fun urlFrom(requestParametere: AmediaRequestParametere) = amediaUrl + requestParametere.asString()
 
-    private val pingurl = AmediaRequestParametere.PING.asUrl
+    private val pingurl = urlFrom(AmediaRequestParametere.PING)
 
     private val client: OkHttpClient get() = clientProvider.get()
 
-    private infix fun OkHttpClient.call(url: String) = newCall(url.request).execute()
+    private fun OkHttpClient.call(url: String) = newCall(url.toRequest()).execute()
 
-    private val String.request get() = Request.Builder().url(this).build()
+    private fun String.toRequest() = Request.Builder().url(this).build()
             .apply { log.debug("{}", this) }
 }
 

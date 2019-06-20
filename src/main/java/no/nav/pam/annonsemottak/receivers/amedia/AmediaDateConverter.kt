@@ -21,7 +21,6 @@ object AmediaDateConverter {
 
 }
 
-
 private val defaultZone = ZoneId.of("Z")
 private fun String.urlEncode() = this.replace("+0000", "Z").replace(":", "%5C:")
 private const val amedia_date_pattern = "yyyy-MM-dd'T'HH:mm:ssZ"
