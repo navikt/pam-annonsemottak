@@ -26,15 +26,13 @@ import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHA
 public class AnnonseFangstService {
 
     private final StillingRepository stillingRepository;
-    private final DuplicateHandler duplicateHandler;
     private final MeterRegistry meterRegistry;
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
     @Inject
-    public AnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler, MeterRegistry meterRegistry) {
+    public AnnonseFangstService(StillingRepository repository, MeterRegistry meterRegistry) {
         this.stillingRepository = repository;
-        this.duplicateHandler = duplicateHandler;
         this.meterRegistry = meterRegistry;
     }
 
@@ -43,17 +41,6 @@ public class AnnonseFangstService {
         LOG.info("Annonsefangstservice får inn {} stillinger som skal behandles", receiveList.size());
         List<Stilling> activeList = stillingRepository.findByKildeAndMediumAndAnnonseStatus(kilde, medium, AnnonseStatus.AKTIV);
         return prepareAnnonseResultFromReceiveList(receiveList, allActiveExternalIds, activeList);
-    }
-
-    /**
-     * @deprecated usage of this duplicate checker should be phased out, since Arena is no longer origin for new ads
-     */
-    @Deprecated
-    public void handleDuplicates(AnnonseResult annonseResult) {
-        LOG.info("Annonsefangstservice, før duplikatkontroll,  annonseresult: {}", annonseResult.toString());
-        duplicateHandler.markDuplicates(annonseResult);
-        LOG.info("Annonsefangstservice, etter duplikatkontroll,  annonseresult: {}", annonseResult.toString());
-        LOG.info("Found {} duplicated ad", annonseResult.getDuplicateList().size());
     }
 
     private AnnonseResult prepareAnnonseResultFromReceiveList(List<Stilling> receiveList,

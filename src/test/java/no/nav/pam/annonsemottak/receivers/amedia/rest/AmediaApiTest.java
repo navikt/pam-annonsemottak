@@ -2,12 +2,10 @@ package no.nav.pam.annonsemottak.receivers.amedia.rest;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.app.config.TestConfig;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
-import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
-import no.nav.pam.annonsemottak.receivers.solr.SolrService;
-import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
@@ -35,8 +33,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@MockBean(SolrService.class)
-@MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = TestConfig.class)

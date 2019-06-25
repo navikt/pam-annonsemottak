@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -23,16 +22,14 @@ import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHA
 public class DexiAnnonseFangstService {
 
     private final StillingRepository stillingRepository;
-    private final DuplicateHandler duplicateHandler;
     private final MeterRegistry meterRegistry;
 
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiAnnonseFangstService.class);
 
     @Inject
-    public DexiAnnonseFangstService(StillingRepository repository, DuplicateHandler duplicateHandler, MeterRegistry meterRegistry) {
+    public DexiAnnonseFangstService(StillingRepository repository, MeterRegistry meterRegistry) {
         this.stillingRepository = repository;
-        this.duplicateHandler = duplicateHandler;
         this.meterRegistry = meterRegistry;
     }
 
@@ -42,9 +39,7 @@ public class DexiAnnonseFangstService {
         List<Stilling> activeList = stillingRepository.findByKildeAndMediumAndAnnonseStatus(kilde, medium, AnnonseStatus.AKTIV);
 
         receiveList = filterExternalIdDuplicates(receiveList);
-        AnnonseResult result = prepareAnnonseResultFromReceiveList(receiveList, activeList);
-        duplicateHandler.markDuplicates(result);
-        return result;
+        return prepareAnnonseResultFromReceiveList(receiveList, activeList);
     }
 
     // Dexi sometimes give us duplicates

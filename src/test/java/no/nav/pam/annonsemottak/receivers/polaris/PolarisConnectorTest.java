@@ -2,7 +2,6 @@ package no.nav.pam.annonsemottak.receivers.polaris;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.receivers.Kilde;
@@ -10,8 +9,6 @@ import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
-import no.nav.pam.annonsemottak.receivers.solr.SolrRepository;
-import no.nav.pam.annonsemottak.receivers.solr.SolrService;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.junit.Before;
 import org.junit.Rule;
@@ -40,8 +37,6 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@MockBean(value = SolrService.class)
-@MockBean(SolrRepository.class)
 @MockBean(StillingRepository.class)
 @Transactional
 @Rollback
@@ -61,9 +56,6 @@ public class PolarisConnectorTest {
     @Autowired
     AnnonseFangstService annonseFangstService;
 
-    @Autowired
-    MeterRegistry meterRegistry;
-
     @Value("${polaris.url}")
     String apiEndpoint;
 
@@ -74,7 +66,7 @@ public class PolarisConnectorTest {
     @Before
     public void init() {
         polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, new ObjectMapper());
-        polarisService = new PolarisService(externalRunService, meterRegistry, polarisConnector, annonseFangstService);
+        polarisService = new PolarisService(externalRunService, polarisConnector, annonseFangstService);
 
         wireMockRule.stubFor(get(urlPathMatching(
                 "/api/nav.json"))

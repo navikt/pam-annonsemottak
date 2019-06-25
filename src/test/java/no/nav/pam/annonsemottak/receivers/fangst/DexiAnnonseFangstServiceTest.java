@@ -22,7 +22,6 @@ import java.util.List;
 import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.enkelStilling;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -40,8 +39,7 @@ public class DexiAnnonseFangstServiceTest {
 
     @Test
     public void stop_modify_new_annonseListss_should_be_correct() {
-        DuplicateHandler duplicateHandler = mock(DuplicateHandler.class);
-        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, duplicateHandler, meterRegistry);
+        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, meterRegistry);
         String kilde = "KILDE";
         String medium = "MEDIUM";
         // we have 3 annonse in database

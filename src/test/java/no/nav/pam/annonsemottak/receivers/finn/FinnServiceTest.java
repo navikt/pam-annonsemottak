@@ -38,7 +38,7 @@ public class FinnServiceTest {
         mockedExternalRunService = mock(ExternalRunService.class);
         mockedAnnonseFangstService = mock(AnnonseFangstService.class);
 
-        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService, new SimpleMeterRegistry());
+        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService);
     }
 
     @Test

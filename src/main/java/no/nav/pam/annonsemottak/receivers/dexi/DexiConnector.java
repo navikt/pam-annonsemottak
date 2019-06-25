@@ -27,7 +27,6 @@ public class DexiConnector {
     private final ObjectMapper objectMapper;
 
     private final String DEXI_ACCOUNT_ID;
-    private final String DEXI_API_KEY;
     private final String API_ENDPOINT;
     private final HttpClientProvider clientProvider;
     private final String md5;
@@ -42,10 +41,9 @@ public class DexiConnector {
         this.objectMapper = jacksonMapper;
         this.clientProvider = clientProvider;
         this.DEXI_ACCOUNT_ID = dexiAccount;
-        this.DEXI_API_KEY = dexiApikey;
         this.API_ENDPOINT = dexiEndpoint;
         try {
-            String input = DEXI_ACCOUNT_ID + DEXI_API_KEY;
+            String input = DEXI_ACCOUNT_ID + dexiApikey;
             MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(input.getBytes(), 0, input.length());
             md5 = new BigInteger(1, digest.digest()).toString(16);
