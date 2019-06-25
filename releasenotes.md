@@ -1,3 +1,6 @@
+## RELEASE - 0.50.167-6c40036
+#### New in this release: 
++ 2019-06-20 [Stillinger med source lik nav fra amedia filtreres bort slik at vi unngår at stillingene går i loop mellom amedia og nav] + noe refaktorering
 ## RELEASE - 0.49.164-caca12d
 #### New in this release: 
 + 2019-05-28 [PAM-3354,PAM-3424] Endre datoer knyttet til publisering (inkl. stoppe annonse).
