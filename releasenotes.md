@@ -1,3 +1,6 @@
+## RELEASE - 0.51.169-af2c139
+#### New in this release: 
++ 2019-06-18 [Fjera solr-integrasjon og duplikatsjekk mot arena]
 ## RELEASE - 0.50.167-6c40036
 #### New in this release: 
 + 2019-06-20 [Stillinger med source lik nav fra amedia filtreres bort slik at vi unngår at stillingene går i loop mellom amedia og nav] + noe refaktorering
