@@ -212,7 +212,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <folders>src/test/resources</folders>
+                    <folders>
+                        <folder>src/test/resources</folder>
+                        <folder>${project.build.testOutputDirectory}</folder>
+                    </folders>
                     <useTestClasspath>true</useTestClasspath>
                     <!-- fjern denne hvis du vil kjøre test oppsett med H2 som database -->
                     <profiles>dev</profiles>
