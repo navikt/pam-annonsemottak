@@ -1,3 +1,6 @@
+## RELEASE - 0.53.172-ca6ddb1
+#### New in this release: 
++ 2019-08-14 [Oppgradere java og 3. parts avhengigheter]
 ## RELEASE - 0.51.169-af2c139
 #### New in this release: 
 + 2019-06-18 [Fjera solr-integrasjon og duplikatsjekk mot arena]
