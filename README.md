@@ -27,7 +27,7 @@ on the command line field.
 ### Teste og prodsette nye Dexi crawls
 
 Teste opprettet dexi jobb i StillingsAdmin
-1.    Åpne f.eks. Postman og send følgende endepunkt som POST request: 
+1.    Åpne f.eks. Postman og send følgende endepunkt som POST request (bytt ut www.vinje.kommune.no i endepunktet med aktuelt robotnavn): 
 https://pam-annonsemottak.nais.oera-q.local/internal/annonsemottak/dexi/robots/www.vinje.kommune.no/configurations/test/results
 2.    Responsen forteller om det gikk bra. F.eks.:
    ```
