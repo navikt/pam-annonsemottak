@@ -53,7 +53,7 @@ dexi:
     username: dexi_username
     password: dexi_password
 amedia:
-  url: http:/localhost/api/pipek/v2/classified/search
+  url: http:/localhost/api/prophecy/external/nav/jobs
 polaris:
   url: https://stilling.adresseavisen.no/api/nav.json
 finn:

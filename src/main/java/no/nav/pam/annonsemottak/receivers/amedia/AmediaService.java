@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.amedia.filter.StillingFilterchain;
@@ -24,7 +23,7 @@ import java.util.List;
 @Service
 public class AmediaService {
 
-    public final static Integer MAXANTALl_TREFF = 1200;
+    private static final int MODIFISERT_DATO_BUFFER_MINUTT = 10;
     private static final Logger LOG = LoggerFactory.getLogger(AmediaService.class);
 
     private final AmediaConnector amediaConnector;
@@ -48,10 +47,10 @@ public class AmediaService {
 
         ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.AMEDIA.toString(), Kilde.AMEDIA.value());
 
-        List<String> alleStillingIDerFraAmedia = AmediaResponseMapper.mapEksternIder(
-                amediaConnector.hentData(AmediaRequestParametere.DAWN_OF_TIME));
+        List<String> alleStillingIDerFraAmedia = amediaConnector.fetchAllEksternId();
 
-        List<Stilling> returnerteStillingerFraAmedia = hentAmediaData(getLastRun(externalRun));
+        List<Stilling> returnerteStillingerFraAmedia = amediaConnector.hentData(modifisertDatoMedBuffertid(getLastRun(externalRun)));
+
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
 
         List<Stilling> filtrert = new StillingFilterchain()
@@ -68,14 +67,20 @@ public class AmediaService {
      * @param start       starttidspunkt for kall som henter og prosseserer et mottak.
      * @param externalRun inneholder kjøretidspunkt for en annonsemottaksjobb
      */
-    private ResultsOnSave save(long start, ExternalRun externalRun,
-                               List<String> alleStillingIDer, List<Stilling> returnerteStillinger) {
+    private ResultsOnSave save(
+            long start,
+            ExternalRun externalRun,
+
+            List<String> alleStillingIDer,
+            List<Stilling> returnerteStillinger) {
 
         AnnonseResult annonseResultat = saveAnnonseresultat(alleStillingIDer, returnerteStillinger);
 
         saveLastRun(externalRun, returnerteStillinger);
         annonseFangstService.addMetricsCounters(Kilde.AMEDIA, "AMEDIA",
-                annonseResultat.getNewList().size(), annonseResultat.getStopList().size(), annonseResultat.getDuplicateList().size(),
+                annonseResultat.getNewList().size(),
+                annonseResultat.getStopList().size(),
+                annonseResultat.getDuplicateList().size(),
                 annonseResultat.getModifyList().size());
 
         return new ResultsOnSave(
@@ -120,10 +125,12 @@ public class AmediaService {
         return lastRun;
     }
 
-    private List<Stilling> hentAmediaData(LocalDateTime sisteModifiserteDato) {
-        AmediaRequestParametere requestParametere = new AmediaRequestParametere(sisteModifiserteDato, true, MAXANTALl_TREFF);
-        return AmediaResponseMapper
-                .mapResponse(amediaConnector.hentData(requestParametere));
+    private LocalDateTime modifisertDatoMedBuffertid(LocalDateTime sisteModifiserteDato) {
+        if (sisteModifiserteDato == null) {
+            return AmediaDateConverter.getInitialDate();
+        }
+
+        return sisteModifiserteDato.minusMinutes(MODIFISERT_DATO_BUFFER_MINUTT);
     }
 
 

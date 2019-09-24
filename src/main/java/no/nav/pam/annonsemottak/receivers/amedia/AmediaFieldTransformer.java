@@ -36,13 +36,6 @@ class AmediaFieldTransformer {
             .orElse("Ikke oppgitt");
     }
 
-    String reservefeltOrNull(String... tekst) {
-        return Arrays.stream(tekst)
-            .filter(StringUtils::isNotBlank)
-            .findFirst()
-            .orElse(null);
-    }
-
     String hentListeSomStreng(JsonNode node) {
         if (node == null) {
             return AmediaFieldTransformer.IKKE_OPPGITT;

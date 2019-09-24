@@ -4,6 +4,7 @@ package no.nav.pam.annonsemottak.receivers.amedia;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
+import no.nav.pam.annonsemottak.stilling.Stilling;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Named;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Kaller amedia sitt Api
@@ -25,36 +27,49 @@ public class AmediaConnector {
     private static final Logger LOG = LoggerFactory.getLogger(AmediaConnector.class);
 
     private final ObjectMapper objectMapper;
-    private final String amediaUrl;
+    private final AmediaUrl url;
+    private final String apiKey;
     private final HttpClientProvider clientProvider;
 
     public AmediaConnector(
             @Named("proxyHttpClient") final HttpClientProvider clientProvider,
-            @Value("${amedia.url}") final String amediaUrl,
+            final AmediaUrl url,
+            @Value("${amedia.apikey}") final String apiKey,
             final ObjectMapper jacksonMapper) {
         this.objectMapper = jacksonMapper;
         this.clientProvider = clientProvider;
-        this.amediaUrl = amediaUrl;
+        this.apiKey = apiKey;
+        this.url = url;
     }
 
-    //JsonNode hentData(LocalDateTime sistModifisert, boolean medDetaljer, int resultSize) {
-    JsonNode hentData(final AmediaRequestParametere requestParametere) {
+    List<String> fetchAllEksternId() {
         try {
-            String url = urlFrom(requestParametere);
-            Response response = call(url);
+            Response response = call(url.all());
             if (!response.isSuccessful()) {
                 throw new IOException("Unexpected response code " + response.code());
             }
-            return objectMapper.readValue(response.body().charStream(), JsonNode.class);
+            return AmediaResponseMapper.mapEksternIder(objectMapper.readValue(response.body().charStream(), JsonNode.class));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    List<Stilling> hentData(final LocalDateTime sisteModifiserteDato) {
+        try {
+            Response response = call(url.modifiedAfter(sisteModifiserteDato));
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected response code " + response.code());
+            }
+            return AmediaResponseMapper.mapResponse(objectMapper.readValue(response.body().charStream(), JsonNode.class));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public boolean isPingSuccessful() {
         try {
-            Response response = call(pingUrl());
-            return response.isSuccessful();
+            return call(url.ping()).isSuccessful();
         } catch (IOException e) {
             LOG.error("Error while pinging connection to Amedia", e);
             return false;
@@ -65,14 +80,6 @@ public class AmediaConnector {
         return clientProvider.get();
     }
 
-    private String urlFrom(final AmediaRequestParametere amediaRequestParametere) {
-        return amediaUrl + amediaRequestParametere.asString();
-    }
-
-    private String pingUrl() {
-        return urlFrom(AmediaRequestParametere.PING);
-    }
-
     private Response call(final String url)
             throws IOException {
         Request request = request(url);
@@ -81,7 +88,7 @@ public class AmediaConnector {
     }
 
     private Request request(final String url) {
-        return new Request.Builder().url(url).build();
+        return new Request.Builder().url(url).addHeader("api_key", apiKey).build();
     }
 
 

@@ -55,15 +55,13 @@ public class AmediaApiTest {
     @Before
     public void initStubs() {
         wireMockRule.stubFor(get(urlMatching(
-                ".*?transaction_type:11.*?sort=system_modified_time:asc.*?size=10000.*?_source=false"))
+                ".*?all"))
                 .willReturn(aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody(getMockResponse("idResultat"))));
 
         wireMockRule.stubFor(get(urlMatching(
-                ".*?transaction_type:11.*?sort=system_modified_time:asc.*?size="
-                        + AmediaService.MAXANTALl_TREFF
-                        + ".*?_source=true"))
+                ".*?\\?modified=.*?"))
                 .willReturn(aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody(getMockResponse("enkeltResultat"))));
