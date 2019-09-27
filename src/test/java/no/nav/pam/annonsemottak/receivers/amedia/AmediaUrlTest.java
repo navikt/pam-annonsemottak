@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -17,14 +16,14 @@ public class AmediaUrlTest {
         LocalDateTime sistModifisert = LocalDateTime.of(2017, 10, 20, 11, 0, 0);
 
         assertThat(url.modifiedAfter(sistModifisert))
-                .isEqualTo(URL_BASE  + "?modified=2017-10-20T11%5C:00%5C:00Z");
+                .isEqualTo(URL_BASE  + "?modified=2017-10-20T11:00:00Z");
     }
 
     @Test
     public void modifisertDatoErNull() {
 
         assertThat(url.modifiedAfter(null)).isEqualTo(
-            URL_BASE + "?modified=2000-01-01T00%5C:00%5C:00Z");
+            URL_BASE + "?modified=2000-01-01T00:00:00Z");
     }
 
 
