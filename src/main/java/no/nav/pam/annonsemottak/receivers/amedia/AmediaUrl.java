@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 @Component
 class AmediaUrl {
 
-    private static final LocalDateTime START_OF_TIME = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+    private static final LocalDateTime START_OF_TIME = LocalDateTime.of(2001, 1, 1, 0, 11, 0);
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
     private static final ZoneId DEFAULT_ZONE = ZoneId.of("Z");
 
@@ -38,6 +38,6 @@ class AmediaUrl {
     }
 
     private static String urlEncode(final String s) {
-        return s.replace("+0000", "Z").replace(":", "%5C:");
+        return s.replace("+0000", "Z");
     }
 }

@@ -53,8 +53,8 @@ dexi:
     username: dexi_username
     password: dexi_password
 amedia:
-  url: http:/localhost/api/prophecy/external/nav/jobs
-    apikey: ${AMEDIA_API_KEY:need-to-set-token}
+  url: http://services.api.no/api/prophecy/external/nav/jobs
+  apikey: ${AMEDIA_API_KEY:need-to-set-token}
 polaris:
   url: https://stilling.adresseavisen.no/api/nav.json
 finn:
