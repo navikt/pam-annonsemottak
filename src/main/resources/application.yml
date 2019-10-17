@@ -71,5 +71,5 @@ xmlstilling:
 unleash:
   api.url: https://unleashproxy.nais.oera.no/api/
 sensu:
-  host: localhost
+  host: sensu.nais
   port: 3030
