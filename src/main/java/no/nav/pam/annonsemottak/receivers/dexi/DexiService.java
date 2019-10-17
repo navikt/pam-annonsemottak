@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.dexi;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
@@ -14,11 +13,12 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
+import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_FAILED;
 
 @Service
 public class DexiService {
@@ -33,7 +33,8 @@ public class DexiService {
     public DexiService(
             DexiConnector dexiConnector,
             DexiAnnonseFangstService annonseFangstService,
-            MeterRegistry meterRegistry) {
+            MeterRegistry meterRegistry
+    ) {
         this.dexiConnector = dexiConnector;
         this.annonseFangstService = annonseFangstService;
         this.meterRegistry = meterRegistry;
