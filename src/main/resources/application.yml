@@ -70,3 +70,6 @@ xmlstilling:
   url: http://pam-xml-stilling
 unleash:
   api.url: https://unleashproxy.nais.oera.no/api/
+sensu:
+  host: localhost
+  port: 3030

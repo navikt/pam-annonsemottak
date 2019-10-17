@@ -47,7 +47,7 @@ public class AnnonseMottakProbe {
 
 
     @Inject
-    AnnonseMottakProbe(@Value("SENSU_HOST") String hostname, @Value("SENSU_PORT") int port) {
+    AnnonseMottakProbe(@Value("${sensu.host}") String hostname, @Value("${sensu.port}") int port) {
 
         this.hostname = hostname;
         this.port = port;

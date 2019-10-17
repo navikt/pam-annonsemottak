@@ -68,3 +68,6 @@ solr:
   core: 'maincore'
 xmlstilling:
   url: http://localhost:9020
+sensu:
+  host: localhost
+  port: 3030
