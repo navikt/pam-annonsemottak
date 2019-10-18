@@ -70,6 +70,3 @@ xmlstilling:
   url: http://pam-xml-stilling
 unleash:
   api.url: https://unleashproxy.nais.oera.no/api/
-sensu:
-  host: sensu.nais
-  port: 3030

@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -28,18 +27,13 @@ public class AnnonseFangstService {
 
     private final StillingRepository stillingRepository;
     private final MeterRegistry meterRegistry;
-    private final AnnonseMottakProbe probe;
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
     @Inject
-    public AnnonseFangstService(
-            StillingRepository repository,
-            MeterRegistry meterRegistry,
-            AnnonseMottakProbe probe) {
+    public AnnonseFangstService(StillingRepository repository, MeterRegistry meterRegistry) {
         this.stillingRepository = repository;
         this.meterRegistry = meterRegistry;
-        this.probe = probe;
     }
 
     @Transactional(readOnly = true)
@@ -114,10 +108,5 @@ public class AnnonseFangstService {
         meterRegistry.counter(ADS_COLLECTED_STOPPED, tags).increment(stopSize);
         meterRegistry.counter(ADS_COLLECTED_DUPLICATED,tags).increment(dupSize);
         meterRegistry.counter(ADS_COLLECTED_CHANGED, tags).increment(modifySize);
-
-        probe.newAdPoint((long)newSize, tags[1], tags[3]);
-        probe.stoppedAdPoint((long)stopSize, tags[1], tags[3]);
-        probe.duplicateAdPoint((long)dupSize, tags[1], tags[3]);
-        probe.changedAdPoint((long)modifySize, tags[1], tags[3]);
     }
 }

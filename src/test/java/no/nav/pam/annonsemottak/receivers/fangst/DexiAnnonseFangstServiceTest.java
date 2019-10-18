@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.receivers.fangst;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.Application;
-import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -37,13 +36,10 @@ public class DexiAnnonseFangstServiceTest {
     @Mock
     private MeterRegistry meterRegistry;
 
-    @Mock
-    private AnnonseMottakProbe probe;
-
 
     @Test
     public void stop_modify_new_annonseListss_should_be_correct() {
-        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, meterRegistry, probe);
+        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, meterRegistry);
         String kilde = "KILDE";
         String medium = "MEDIUM";
         // we have 3 annonse in database

@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +14,11 @@ import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.N
 class XmlStillingMetrics {
 
     private final MeterRegistry meterRegistry;
-    private final AnnonseMottakProbe probe;
 
     @Inject
-    XmlStillingMetrics(MeterRegistry meterRegistry, AnnonseMottakProbe probe) {
+    XmlStillingMetrics(MeterRegistry meterRegistry) {
 
         this.meterRegistry = meterRegistry;
-        this.probe = probe;
     }
 
     void registerFor(Stillinger stillinger) {
@@ -33,10 +30,6 @@ class XmlStillingMetrics {
         meterRegistry.counter(ADS_COLLECTED_DUPLICATED, tags).increment(0);
         meterRegistry.counter(ADS_COLLECTED_CHANGED, tags).increment(stillinger.size(CHANGED));
 
-        probe.newAdPoint((long)stillinger.size(NEW), Kilde.XML_STILLING.toString(), "XML_STILLING");
-        probe.stoppedAdPoint(0L, Kilde.XML_STILLING.toString(), "XML_STILLING");
-        probe.duplicateAdPoint(0L, Kilde.XML_STILLING.toString(), "XML_STILLING");
-        probe.changedAdPoint((long)stillinger.size(CHANGED), Kilde.XML_STILLING.toString(), "XML_STILLING");
     }
 
 }
