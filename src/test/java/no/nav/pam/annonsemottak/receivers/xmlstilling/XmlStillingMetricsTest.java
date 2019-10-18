@@ -2,8 +2,10 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 import static org.mockito.Mockito.*;
@@ -14,9 +16,11 @@ public class XmlStillingMetricsTest {
 
     private MeterRegistry meterRegistry = mock(MeterRegistry.class);
 
+    private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
+
     @Before
     public void setUp() {
-        metrics = new XmlStillingMetrics(meterRegistry);
+        metrics = new XmlStillingMetrics(meterRegistry, probe);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -23,14 +24,19 @@ public class DexiAnnonseFangstService {
 
     private final StillingRepository stillingRepository;
     private final MeterRegistry meterRegistry;
+    private final AnnonseMottakProbe probe;
 
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiAnnonseFangstService.class);
 
     @Inject
-    public DexiAnnonseFangstService(StillingRepository repository, MeterRegistry meterRegistry) {
+    public DexiAnnonseFangstService(
+            StillingRepository repository,
+            MeterRegistry meterRegistry,
+            AnnonseMottakProbe probe) {
         this.stillingRepository = repository;
         this.meterRegistry = meterRegistry;
+        this.probe = probe;
     }
 
     public AnnonseResult retrieveAnnonseLists(List<Stilling> receiveList, String kilde, String medium) {
@@ -98,6 +104,11 @@ public class DexiAnnonseFangstService {
         meterRegistry.counter(ADS_COLLECTED_STOPPED, tags).increment(stopSize);
         meterRegistry.counter(ADS_COLLECTED_DUPLICATED, tags).increment(dupSize);
         meterRegistry.counter(ADS_COLLECTED_CHANGED, tags).increment(modifySize);
+
+        probe.newAdPoint((long)newSize, tags[1], tags[3]);
+        probe.stoppedAdPoint((long)stopSize, tags[1], tags[3]);
+        probe.duplicateAdPoint((long)dupSize, tags[1], tags[3]);
+        probe.changedAdPoint((long)modifySize, tags[1], tags[3]);
     }
 
 }

@@ -51,3 +51,6 @@ solr:
   core: 'maincore'
 xmlstilling:
   url: http://pam-xml-stilling
+sensu:
+  host: localhost
+  port: 3030
