@@ -1,92 +1,65 @@
 package no.nav.pam.annonsemottak.app.metrics;
 
 import org.influxdb.dto.Point;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class AnnonseMottakProbe {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AnnonseMottakProbe.class);
+    private final SensuClient sensuClient;
 
-    private final String hostname;
-    private final int port;
+    @Inject
+    AnnonseMottakProbe(SensuClient sensuClient) {
+        this.sensuClient = sensuClient;
+    }
 
     public void duplicateAdPoint(Long count, String kilde, String medium) {
-        sendPoint(MetricNames.ADS_COLLECTED_DUPLICATED,
+        influxPoint(MetricNames.ADS_COLLECTED_DUPLICATED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
     }
     public void newAdPoint(Long count, String kilde, String medium) {
-        sendPoint(MetricNames.ADS_COLLECTED_NEW,
+        influxPoint(MetricNames.ADS_COLLECTED_NEW,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
     }
     public void stoppedAdPoint(Long count, String kilde, String medium) {
-        sendPoint(MetricNames.ADS_COLLECTED_STOPPED,
+        influxPoint(MetricNames.ADS_COLLECTED_STOPPED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
     }
     public void changedAdPoint(Long count, String kilde, String medium) {
-        sendPoint(MetricNames.ADS_COLLECTED_CHANGED,
+        influxPoint(MetricNames.ADS_COLLECTED_CHANGED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
     }
 
+    private static final Map<String, String> DEFAULT_TAGS = Map.of(
+            "application", getenv("NAIS_APP_NAME", "pam-annonsemottak"),
+            "cluster", getenv("NAIS_CLUSTER_NAME", "dev-fss"),
+            "namespace", getenv("NAIS_NAMESPACE", "default")
+    );
 
-    @Inject
-    AnnonseMottakProbe(@Value("${sensu.host}") String hostname, @Value("${sensu.port}") int port) {
-
-        this.hostname = hostname;
-        this.port = port;
+    private static String getenv(String env, String defaultValue) {
+        return System.getenv(env) != null ? System.getenv(env) : defaultValue;
     }
 
-    public void sendPoint(String measurement, Map<String, Object> fields, Map<String, String> tags) {
+
+    private void influxPoint(String measurement, Map<String, Object> fields, Map<String, String> tags) {
 
         Point point = Point.measurement(measurement)
+                .time(TimeUnit.MILLISECONDS.toNanos(System.currentTimeMillis()), TimeUnit.NANOSECONDS)
                 .tag(tags)
+                .tag(DEFAULT_TAGS)
                 .fields(fields)
                 .build();
 
-        writeToSensu(hostname, port, point.lineProtocol());
+        sensuClient.write(new SensuClient.SensuEvent("annonsemottak-events", point.lineProtocol()));
     }
 
-    private static void writeToSensu(String hostname, int port, String data) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        executor.execute(() -> {
-
-            try (Socket socket = new Socket(hostname, port)) {
-
-                try (OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8)) {
-                    writer.write(data, 0, data.length());
-                    writer.flush();
-                    LOG.debug("wrote {} bytes of data", data.length());
-                } catch (IOException e) {
-                    LOG.error("Unable to send event {}", data, e);
-                }
-
-            } catch (UnknownHostException e) {
-                LOG.error("Unknow host: {}:{} {}", hostname, port, e.getMessage());
-            } catch (IOException e) {
-                LOG.error("Unable to send event to {}:{}", hostname, port, e);
-            } catch (Exception e) {
-                LOG.error("Unable to send event", e);
-            }
-        });
-
-    }
 
 }
