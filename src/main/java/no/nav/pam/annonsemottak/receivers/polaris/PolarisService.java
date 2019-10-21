@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.polaris;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
@@ -28,14 +29,18 @@ public class PolarisService {
     private final ExternalRunService externalRunService;
     private final PolarisConnector polarisConnector;
     private final AnnonseFangstService annonseFangstService;
+    private final AnnonseMottakProbe probe;
 
     @Autowired
-    public PolarisService(ExternalRunService externalRunService,
-                          PolarisConnector polarisConnector,
-                          AnnonseFangstService annonseFangstService) {
+    public PolarisService(
+            ExternalRunService externalRunService,
+            PolarisConnector polarisConnector,
+            AnnonseFangstService annonseFangstService,
+            AnnonseMottakProbe probe) {
         this.externalRunService = externalRunService;
         this.polarisConnector = polarisConnector;
         this.annonseFangstService = annonseFangstService;
+        this.probe = probe;
     }
 
     public ResultsOnSave fetchAndSaveLatest() throws IOException {
@@ -66,8 +71,7 @@ public class PolarisService {
                 annonseResult.getNewList().size(),
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
-        annonseFangstService.addMetricsCounters(Kilde.POLARIS, "POLARIS",  annonseResult.getNewList().size(),
-                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
+        probe.addMetricsCounters(Kilde.POLARIS.toString(), "POLARIS", annonseResult.getNewList().size(), annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
         externalRun.setLastRun(newRunTime);
         externalRunService.save(externalRun);
 

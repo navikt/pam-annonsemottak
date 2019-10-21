@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.rest;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.PathDefinition;
@@ -37,12 +38,17 @@ public class StillingApi {
 
     private final StillingRepository stillingRepository;
     private final AnnonseFangstService annonseFangstService;
+    private final AnnonseMottakProbe probe;
 
 
     @Inject
-    public StillingApi(StillingRepository stillingRepository, AnnonseFangstService annonseFangstService) {
+    public StillingApi(
+            StillingRepository stillingRepository,
+            AnnonseFangstService annonseFangstService,
+            AnnonseMottakProbe probe) {
         this.stillingRepository = stillingRepository;
         this.annonseFangstService = annonseFangstService;
+        this.probe = probe;
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
@@ -180,7 +186,7 @@ public class StillingApi {
                 nyStilling.merge(gammelStilling.get());
             }
             else {
-                annonseFangstService.addMetricsCounters(Kilde.SBL, Kilde.SBL.toString(), 1, 0,0,0 );
+                probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 1, 0, 0, 0);
             }
             Stilling adEntity = stillingRepository.save(nyStilling);
             Link linkToCreatedResouce = linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();

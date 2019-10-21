@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
@@ -34,15 +35,18 @@ public class FinnService {
     private final FinnConnector connector;
     private final AnnonseFangstService finnAnnonseFangstService;
     private final ExternalRunService externalRunService;
+    private final AnnonseMottakProbe probe;
 
     @Inject
     public FinnService(
             AnnonseFangstService finnAnnonseFangstService,
             FinnConnector connector,
-            ExternalRunService externalRunService) {
+            ExternalRunService externalRunService,
+            AnnonseMottakProbe probe) {
         this.finnAnnonseFangstService = finnAnnonseFangstService;
         this.connector = connector;
         this.externalRunService = externalRunService;
+        this.probe = probe;
     }
 
     /**
@@ -113,8 +117,7 @@ public class FinnService {
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        finnAnnonseFangstService.addMetricsCounters(Kilde.FINN, "FINN", rest.size(),
-                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
+        probe.addMetricsCounters(Kilde.FINN.toString(), "FINN", rest.size(), annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

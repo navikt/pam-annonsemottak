@@ -1,8 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
-import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -20,26 +17,16 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_CHANGED;
-
 @Component
 public class AnnonseFangstService {
 
     private final StillingRepository stillingRepository;
-    private final MeterRegistry meterRegistry;
-    private final AnnonseMottakProbe probe;
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
     @Inject
-    public AnnonseFangstService(
-            StillingRepository repository,
-            MeterRegistry meterRegistry,
-            AnnonseMottakProbe probe) {
+    public AnnonseFangstService(StillingRepository repository) {
         this.stillingRepository = repository;
-        this.meterRegistry = meterRegistry;
-        this.probe = probe;
     }
 
     @Transactional(readOnly = true)
@@ -104,20 +91,4 @@ public class AnnonseFangstService {
         }
     }
 
-    public void addMetricsCounters(Kilde kilde, String origin, int newSize, int stopSize, int dupSize, int modifySize) {
-        String [] tags = {"source", kilde.toString(), "origin", origin};
-        addMetricsCounters(newSize, stopSize, dupSize, modifySize, tags);
-    }
-
-    private void addMetricsCounters(int newSize, int stopSize, int dupSize, int modifySize, String ... tags) {
-        meterRegistry.counter(ADS_COLLECTED_NEW, tags).increment(newSize);
-        meterRegistry.counter(ADS_COLLECTED_STOPPED, tags).increment(stopSize);
-        meterRegistry.counter(ADS_COLLECTED_DUPLICATED,tags).increment(dupSize);
-        meterRegistry.counter(ADS_COLLECTED_CHANGED, tags).increment(modifySize);
-
-        probe.newAdPoint((long)newSize, tags[1], tags[3]);
-        probe.stoppedAdPoint((long)stopSize, tags[1], tags[3]);
-        probe.duplicateAdPoint((long)dupSize, tags[1], tags[3]);
-        probe.changedAdPoint((long)modifySize, tags[1], tags[3]);
-    }
 }
