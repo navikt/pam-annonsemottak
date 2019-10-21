@@ -1,12 +1,10 @@
 package no.nav.pam.annonsemottak.receivers.dexi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.receivers.fangst.DexiAnnonseFangstService;
-import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +44,7 @@ public class DexiServiceTest {
         configs.add(new DexiConfiguration("robot-3", "robot 3", "job-3", "job 3"));
         when(mockedDexiConnector.getConfigurations(DexiConfiguration.PRODUCTION)).thenReturn(configs);
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anyString(), anyString())).thenReturn(annonseResult);
-        dexiService = new DexiService(mockedDexiConnector, mockedAnnonseFangstService, new SimpleMeterRegistry(), probe);
+        dexiService = new DexiService(mockedDexiConnector, mockedAnnonseFangstService, probe);
     }
 
     @Test

@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.dexi;
 
-import io.micrometer.core.instrument.MeterRegistry;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
@@ -19,14 +18,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static no.nav.pam.annonsemottak.app.metrics.MetricNames.ADS_COLLECTED_FAILED;
-
 @Service
 public class DexiService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiService.class);
 
-    private final MeterRegistry meterRegistry;
     private final AnnonseMottakProbe probe;
     private final DexiConnector dexiConnector;
     private final DexiAnnonseFangstService annonseFangstService;
@@ -35,12 +31,10 @@ public class DexiService {
     public DexiService(
             DexiConnector dexiConnector,
             DexiAnnonseFangstService annonseFangstService,
-            MeterRegistry meterRegistry,
             AnnonseMottakProbe probe
     ) {
         this.dexiConnector = dexiConnector;
         this.annonseFangstService = annonseFangstService;
-        this.meterRegistry = meterRegistry;
         this.probe = probe;
     }
 
@@ -66,7 +60,7 @@ public class DexiService {
                 saved += results.getSaved();
             } catch (Exception e) {
                 LOG.error("Failed to get entries from robot " + currentRobotName, e);
-                meterRegistry.counter(ADS_COLLECTED_FAILED, "source", Kilde.DEXI.toString(), "origin", currentRobotName).increment();
+                probe.newFailedPoint(Kilde.DEXI.toString(), currentRobotName);
             }
         }
 
@@ -86,7 +80,7 @@ public class DexiService {
         if (nonErrorResult.isEmpty()) {
             throw new IOException("Robot " + robotName + " returned an error response");
         } else if (nonErrorResult.size() < dexiResult.size()) {
-            LOG.warn("There was an error among the results for robot {}: {}", robotName);
+            LOG.warn("There was an error among the results for robot {}", robotName);
         }
 
         // Convert dexi result to Stilling

@@ -1,10 +1,8 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
-import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
@@ -12,11 +10,7 @@ import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;

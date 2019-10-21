@@ -28,35 +28,45 @@ public class AnnonseMottakProbe {
         changedAdPoint((long)modifySize, kilde, medium);
     }
 
-    public void duplicateAdPoint(Long count, String kilde, String medium) {
+    public void newFailedPoint(String kilde, String medium) {
+        influxMetricReporter.registerPoint(ADS_COLLECTED_FAILED,
+                Map.of("counter", 1L),
+                Map.of("source", kilde, "origin", medium));
+
+        meterRegistry.counter(ADS_COLLECTED_FAILED, "source", kilde, "origin", medium).increment();
+    }
+
+    void duplicateAdPoint(Long count, String kilde, String medium) {
         influxMetricReporter.registerPoint(MetricNames.ADS_COLLECTED_DUPLICATED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
 
         meterRegistry.counter(ADS_COLLECTED_DUPLICATED, "source", kilde, "origin", medium).increment(count);
     }
-    public void newAdPoint(Long count, String kilde, String medium) {
+
+    void newAdPoint(Long count, String kilde, String medium) {
         influxMetricReporter.registerPoint(MetricNames.ADS_COLLECTED_NEW,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
 
         meterRegistry.counter(ADS_COLLECTED_NEW, "source", kilde, "origin", medium).increment(count);
     }
-    public void stoppedAdPoint(Long count, String kilde, String medium) {
+
+    void stoppedAdPoint(Long count, String kilde, String medium) {
         influxMetricReporter.registerPoint(MetricNames.ADS_COLLECTED_STOPPED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
 
         meterRegistry.counter(ADS_COLLECTED_STOPPED, "source", kilde, "origin", medium).increment(count);
     }
-    public void changedAdPoint(Long count, String kilde, String medium) {
+
+    void changedAdPoint(Long count, String kilde, String medium) {
         influxMetricReporter.registerPoint(MetricNames.ADS_COLLECTED_CHANGED,
                 Map.of("counter", count),
                 Map.of("source", kilde, "origin", medium));
 
         meterRegistry.counter(ADS_COLLECTED_CHANGED, "source", kilde, "origin", medium).increment(count);
     }
-
 }
 
 
