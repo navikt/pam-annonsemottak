@@ -34,13 +34,13 @@ class SensuClient {
 
         private final String json;
 
-        SensuEvent(String sensuName, String data) {
+        SensuEvent(String sensuName, String output) {
             json =
                     "{" +
                             "\"name\":\"" + sensuName + "\"," +
                             "\"type\":\"metric\"," +
                             "\"handlers\":[\"events_nano\"]," +
-                            "\"output\":\"" + data + "\"," +
+                            "\"output\":\"" + output + "\"," +
                             "\"status\":0" +
                             "}";
         }
@@ -54,7 +54,7 @@ class SensuClient {
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
         executor.execute(() -> {
-
+            long startTime = System.currentTimeMillis();
             try (Socket socket = new Socket(hostname, port)) {
 
                 try (OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8)) {
@@ -71,6 +71,8 @@ class SensuClient {
                 LOG.error("Unable to send event to {}:{}", hostname, port, e);
             } catch (Exception e) {
                 LOG.error("Unable to send event", e);
+            } finally {
+                LOG.info("Influx/sensu reporting time: {}", System.currentTimeMillis() - startTime);
             }
         });
 
