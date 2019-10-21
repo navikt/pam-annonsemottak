@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.dexi;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
@@ -26,6 +27,7 @@ public class DexiService {
     private static final Logger LOG = LoggerFactory.getLogger(DexiService.class);
 
     private final MeterRegistry meterRegistry;
+    private final AnnonseMottakProbe probe;
     private final DexiConnector dexiConnector;
     private final DexiAnnonseFangstService annonseFangstService;
 
@@ -33,11 +35,13 @@ public class DexiService {
     public DexiService(
             DexiConnector dexiConnector,
             DexiAnnonseFangstService annonseFangstService,
-            MeterRegistry meterRegistry
+            MeterRegistry meterRegistry,
+            AnnonseMottakProbe probe
     ) {
         this.dexiConnector = dexiConnector;
         this.annonseFangstService = annonseFangstService;
         this.meterRegistry = meterRegistry;
+        this.probe = probe;
     }
 
     public ResultsOnSave saveLatestResultsFromAllJobs() throws DexiException {
@@ -97,9 +101,13 @@ public class DexiService {
         // Sort results into lists of "New", "Modified", "Stopped" and then persist all lists in one transaction.
         AnnonseResult annonseResult = annonseFangstService.retrieveAnnonseLists(mapped, DexiConfiguration.KILDE, robotName);
         annonseFangstService.saveAll(annonseResult);
-        String [] tags = {"source", Kilde.DEXI.toString(), "origin", robotName};
-        annonseFangstService.addMetricsCounters(annonseResult.getNewList().size(),
-                annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size(), tags);
+
+        probe.addMetricsCounters(
+                Kilde.DEXI.toString(), robotName, annonseResult.getNewList().size(),
+                annonseResult.getStopList().size(),
+                annonseResult.getDuplicateList().size(),
+                annonseResult.getModifyList().size()
+        );
 
         return new ResultsOnSave(mapped.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }

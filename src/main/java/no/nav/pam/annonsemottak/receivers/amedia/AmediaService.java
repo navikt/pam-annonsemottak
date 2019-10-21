@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.amedia.filter.StillingFilterchain;
@@ -29,15 +30,19 @@ public class AmediaService {
     private final AmediaConnector amediaConnector;
     private final AnnonseFangstService annonseFangstService;
     private final ExternalRunService externalRunService;
+    private final AnnonseMottakProbe probe;
 
 
     @Inject
-    public AmediaService(AmediaConnector amediaConnector,
-                         AnnonseFangstService annonseFangstService,
-                         ExternalRunService externalRunService) {
+    public AmediaService(
+            AmediaConnector amediaConnector,
+            AnnonseFangstService annonseFangstService,
+            ExternalRunService externalRunService,
+            AnnonseMottakProbe probe) {
         this.amediaConnector = amediaConnector;
         this.annonseFangstService = annonseFangstService;
         this.externalRunService = externalRunService;
+        this.probe = probe;
     }
 
     public ResultsOnSave saveLatestResults() {
@@ -77,11 +82,7 @@ public class AmediaService {
         AnnonseResult annonseResultat = saveAnnonseresultat(alleStillingIDer, returnerteStillinger);
 
         saveLastRun(externalRun, returnerteStillinger);
-        annonseFangstService.addMetricsCounters(Kilde.AMEDIA, "AMEDIA",
-                annonseResultat.getNewList().size(),
-                annonseResultat.getStopList().size(),
-                annonseResultat.getDuplicateList().size(),
-                annonseResultat.getModifyList().size());
+        probe.addMetricsCounters(Kilde.AMEDIA.toString(), "AMEDIA", annonseResultat.getNewList().size(), annonseResultat.getStopList().size(), annonseResultat.getDuplicateList().size(), annonseResultat.getModifyList().size());
 
         return new ResultsOnSave(
                 returnerteStillinger.size(),

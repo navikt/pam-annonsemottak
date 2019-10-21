@@ -1,7 +1,9 @@
 package no.nav.pam.annonsemottak.app.metrics;
 
+import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -13,7 +15,8 @@ import java.net.Socket;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 public class RegisterInfluxDataPointIT {
 
@@ -33,10 +36,13 @@ public class RegisterInfluxDataPointIT {
         serverSocket = new ServerSocket(0);
     }
 
-
     @AfterClass
     public static void teardown() throws IOException {
         serverSocket.close();
+    }
+
+    @Before
+    public void setUp() {
     }
 
     private String readFromSocket() throws IOException {
@@ -49,6 +55,8 @@ public class RegisterInfluxDataPointIT {
 
     @Test
     public void send_event() throws IOException {
+        when(meterRegistry.counter(anyString(), any(String.class)))
+                .thenReturn(mock(Counter.class));
 
         SensuClient sensuClient = new SensuClient("localhost", serverSocket.getLocalPort());
         InfluxMetricReporter influxMetricReporter = new InfluxMetricReporter(sensuClient);

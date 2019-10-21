@@ -45,7 +45,7 @@ class SensuClient {
                             "}";
         }
 
-        public String getJson() {
+        String getJson() {
             return json;
         }
     }

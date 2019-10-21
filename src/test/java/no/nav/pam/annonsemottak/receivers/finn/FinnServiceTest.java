@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
@@ -30,30 +31,26 @@ public class FinnServiceTest {
     private FinnConnector mockedConnector;
     private ExternalRunService mockedExternalRunService;
     private AnnonseFangstService mockedAnnonseFangstService;
+    private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
 
 
     @Before
-    public void init() throws FinnConnectorException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+    public void init() {
         mockedConnector = mock(FinnConnector.class);
         mockedExternalRunService = mock(ExternalRunService.class);
         mockedAnnonseFangstService = mock(AnnonseFangstService.class);
 
-        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService);
+        finnService = new FinnService(mockedAnnonseFangstService, mockedConnector, mockedExternalRunService, probe);
     }
 
     @Test
-    public void shouldFilterNewAndUpdatedForSave() throws FinnConnectorException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+    public void shouldFilterNewAndUpdatedForSave() throws FinnConnectorException {
 
         //Last run yesterday
         ExternalRun externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), LocalDateTime.now().minusDays(1));
         when(mockedExternalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString())).thenReturn(externalRun);
 
         Set<FinnAdHead> searchResult = new HashSet<>();
-
-//        searchResult.add(generateAdHeadWithDates("1", DateTime.now().minusDays(2), DateTime.now(), DateTime.now().plusMonths(1))); // Existing but changed
-//        searchResult.add(generateAdHeadWithDates("2", DateTime.now().minusDays(2), DateTime.now().minusDays(2), DateTime.now().plusMonths(1))); // Existing
-//        searchResult.add(generateAdHeadWithDates("3", DateTime.now().minusDays(2), DateTime.now().minusDays(2), DateTime.now().plusMonths(1))); // Existing
-//        searchResult.add(generateAdHeadWithDates("4", DateTime.now(), DateTime.now(), DateTime.now().plusMonths(1))); // New ad
 
         // TODO: Temporary dates with 4 day delay. Switch back to commented lines, once the 4 day delay is disabled.
         searchResult.add(generateAdHeadWithDates("1", LocalDateTime.now().minusDays(3), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // Existing but changed
@@ -65,7 +62,7 @@ public class FinnServiceTest {
 
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
 
-        ResultsOnSave result =  finnService.saveAndUpdateFromCollection("TEST");
+        finnService.saveAndUpdateFromCollection("TEST");
 
         ArgumentCaptor<Set> argumentCaptor = ArgumentCaptor.forClass(Set.class);
         verify(mockedConnector).fetchFullAds(argumentCaptor.capture());
@@ -74,7 +71,7 @@ public class FinnServiceTest {
     }
 
     @Test
-    public void shouldSaveAll() throws FinnConnectorException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+    public void shouldSaveAll() throws FinnConnectorException {
 
         //Last run yesterday
         when(mockedExternalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString())).thenReturn(null);
@@ -88,7 +85,7 @@ public class FinnServiceTest {
 
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
 
-        ResultsOnSave result =  finnService.saveAndUpdateFromCollection("TEST");
+        finnService.saveAndUpdateFromCollection("TEST");
 
         verify(mockedConnector).fetchFullAds(searchResult);
     }

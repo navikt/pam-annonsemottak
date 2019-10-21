@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.junit.Before;
@@ -24,14 +25,14 @@ public class XmlStillingServiceTest {
 
     private ExternalRunFacade externalRun = mock(ExternalRunFacade.class);
 
-    private XmlStillingMetrics metrics = mock(XmlStillingMetrics.class);
+    private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
 
     private StillingRepositoryFacade stillingRepository = mock(StillingRepositoryFacade.class);
 
 
     @Before
     public void setUp() {
-        service = new XmlStillingService(connector, externalRun, stillingRepository, metrics);
+        service = new XmlStillingService(connector, externalRun, stillingRepository, probe);
 
         when(externalRun.decorate(any())).thenReturn(new Stillinger(null, null));
     }

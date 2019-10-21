@@ -34,16 +34,10 @@ public class DexiAnnonseFangstServiceTest {
     @Inject
     private StillingRepository stillingRepository;
 
-    @Mock
-    private MeterRegistry meterRegistry;
-
-    @Mock
-    private AnnonseMottakProbe probe;
-
 
     @Test
     public void stop_modify_new_annonseListss_should_be_correct() {
-        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, meterRegistry, probe);
+        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository);
         String kilde = "KILDE";
         String medium = "MEDIUM";
         // we have 3 annonse in database

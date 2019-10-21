@@ -1,5 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
+import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
@@ -11,6 +13,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 
+import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.CHANGED;
+import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.NEW;
+
 @Service
 public class XmlStillingService {
 
@@ -18,7 +23,7 @@ public class XmlStillingService {
 
     private final XmlStillingConnector xmlStillinger;
     private final ExternalRunFacade externalRuns;
-    private final XmlStillingMetrics metrics;
+    private final AnnonseMottakProbe probe;
     private final StillingRepositoryFacade repository;
 
 
@@ -27,19 +32,19 @@ public class XmlStillingService {
             final XmlStillingConnector connector,
             ExternalRunFacade externalRuns,
             StillingRepositoryFacade stillingRepository,
-            XmlStillingMetrics metrics) {
+            AnnonseMottakProbe probe) {
 
         this.xmlStillinger = connector;
         this.externalRuns = externalRuns;
         this.repository = stillingRepository;
-        this.metrics = metrics;
+        this.probe = probe;
     }
 
     public List<Stilling> updateLatest(boolean saveAllFetchedAds) {
 
         Stillinger stillinger = externalRuns.decorate(update(saveAllFetchedAds));
 
-        metrics.registerFor(stillinger);
+        probe.addMetricsCounters(Kilde.XML_STILLING.toString(), "XML_STILLING", stillinger.size(NEW), 0, 0, stillinger.size(CHANGED));
 
         return stillinger.asList();
 

@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.receivers.polaris;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
@@ -34,6 +35,7 @@ import java.util.stream.Collectors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -59,14 +61,16 @@ public class PolarisConnectorTest {
     @Value("${polaris.url}")
     String apiEndpoint;
 
-    PolarisConnector polarisConnector;
+    private PolarisConnector polarisConnector;
 
-    PolarisService polarisService;
+    private PolarisService polarisService;
+
+    private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
 
     @Before
     public void init() {
         polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, new ObjectMapper());
-        polarisService = new PolarisService(externalRunService, polarisConnector, annonseFangstService);
+        polarisService = new PolarisService(externalRunService, polarisConnector, annonseFangstService, probe);
 
         wireMockRule.stubFor(get(urlPathMatching(
                 "/api/nav.json"))
