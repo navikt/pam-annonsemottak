@@ -46,6 +46,12 @@ public class AnnonseMottakProbeTest {
         verify(influxMetricReporter).registerPoint(any(),any(),any());
     }
 
+    @Test
+    public void verify_that_failed_ad_events_are_registered_with_prometheus() {
+        annonseMottakProbe.newFailedPoint("DEXI", "Molde kommune");
+        verify(influxMetricReporter).registerPoint(any(),any(),any());
+    }
+
 
     @Test
     public void verify_that_new_ad_events_are_registered_with_prometheus() {
@@ -68,6 +74,12 @@ public class AnnonseMottakProbeTest {
     @Test
     public void verify_that_duplicated_ad_events_are_registered_with_prometheus() {
         annonseMottakProbe.duplicateAdPoint(5L, "DEXI", "Molde kommune");
+        verify(meterRegistry).counter(anyString(), ArgumentMatchers.<String>any());
+    }
+
+    @Test
+    public void verify_that_failed_ad_events_are_registered_with_influx() {
+        annonseMottakProbe.newFailedPoint("DEXI", "Molde kommune");
         verify(meterRegistry).counter(anyString(), ArgumentMatchers.<String>any());
     }
 
