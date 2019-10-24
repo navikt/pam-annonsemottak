@@ -180,12 +180,17 @@ public class StillingApi {
             Stilling nyStilling = createEntityFromDto(adDto);
             if ("STOPPET".equals(adDto.getStatus())) {
                 nyStilling = nyStilling.stop();
+                LOG.info("Saved 1 stopped ad from Stillingsregistrering/SBL");
+                probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 0, 1, 0, 0);
             }
             Optional<Stilling> gammelStilling = stillingRepository.findByUuid(adDto.getUuid());
             if (gammelStilling.isPresent()) {
                 nyStilling.merge(gammelStilling.get());
+                LOG.info("Saved changed ad from Stillingsregistrering/SBL");
+                probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 0, 0, 0, 1);
             }
             else {
+                LOG.info("Saved new ad from Stillingsregistrering/SBL");
                 probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 1, 0, 0, 0);
             }
             Stilling adEntity = stillingRepository.save(nyStilling);

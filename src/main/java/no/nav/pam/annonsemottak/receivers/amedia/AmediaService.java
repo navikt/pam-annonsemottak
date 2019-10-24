@@ -83,6 +83,7 @@ public class AmediaService {
 
         saveLastRun(externalRun, returnerteStillinger);
         probe.addMetricsCounters(Kilde.AMEDIA.toString(), "AMEDIA", annonseResultat.getNewList().size(), annonseResultat.getStopList().size(), annonseResultat.getDuplicateList().size(), annonseResultat.getModifyList().size());
+        LOG.info("Saved {} new, {} changed, {} stopped ads from AMEDIA", annonseResultat.getNewList().size(), annonseResultat.getModifyList().size(), annonseResultat.getStopList().size());
 
         return new ResultsOnSave(
                 returnerteStillinger.size(),
