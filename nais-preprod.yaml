@@ -33,4 +33,3 @@ spec:
     enabled: true
   ingresses:
   - https://pam-annonsemottak.nais.oera-q.local
-  - https://tjenester-t5.nav.no
