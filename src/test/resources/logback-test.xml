@@ -10,7 +10,6 @@
     <logger name="org.hibernate.SQL" level="INFO" />
     <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="OFF" />
     <logger name="no.nav.metrics.handlers" level="OFF"/>
-    <logger name="no.finn.unleash" level="ERROR" />
     
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
