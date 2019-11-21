@@ -50,50 +50,46 @@ abstract class StillingFilter {
       Nytt stillingobjekt med ny tittel, shallow copy, men bytter hele arbeidsgiverfeltet.
     */
     Stilling nyTittel(Stilling s, String nyTittel) {
-        Stilling stilling = new StillingBuilder(
-                nyTittel,
-                s.getPlace(),
-                s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
-                s.getEmployerDescription(),
-                s.getJobDescription(),
-                s.getDueDate(),
-                s.getKilde(),
-                s.getMedium(),
-                s.getUrl(),
-                s.getExternalId())
+
+        return new StillingBuilder()
+                .title(nyTittel)
+                .place(s.getPlace())
+                .employer(s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null))
+                .employerDescription(s.getEmployerDescription())
+                .jobDescription(s.getJobDescription())
+                .dueDate(s.getDueDate())
+                .kilde(s.getKilde())
+                .medium(s.getMedium())
+                .url(s.getUrl())
+                .externalId(s.getExternalId())
                 .withProperties(s.getProperties())
                 .expires(s.getExpires())
                 .uuid(s.getUuid())
+                .systemModifiedDate(s.getSystemModifiedDate())
                 .build();
-
-        stilling.setSystemModifiedDate(s.getSystemModifiedDate());
-
-        return stilling;
     }
 
     /*
         Nytt stillingobjekt med ny tekst, shallow copy, men bytter hele stillingstekstfeltet.
     */
     Stilling nyStillingstekst(Stilling s, String nyTekst) {
-        Stilling stilling = new StillingBuilder(
-                s.getTitle(),
-                s.getPlace(),
-                s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
-                s.getEmployerDescription(),
-                nyTekst,
-                s.getDueDate(),
-                s.getKilde(),
-                s.getMedium(),
-                s.getUrl(),
-                s.getExternalId())
+
+        return new StillingBuilder()
+                .title(s.getTitle())
+                .place(s.getPlace())
+                .employer(s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null))
+                .employerDescription(s.getEmployerDescription())
+                .jobDescription(nyTekst)
+                .dueDate(s.getDueDate())
+                .kilde(s.getKilde())
+                .medium(s.getMedium())
+                .url(s.getUrl())
+                .externalId(s.getExternalId())
                 .withProperties(s.getProperties())
                 .expires(s.getExpires())
                 .uuid(s.getUuid())
+                .systemModifiedDate(s.getSystemModifiedDate())
                 .build();
-
-        stilling.setSystemModifiedDate(s.getSystemModifiedDate());
-
-        return stilling;
     }
 
 }

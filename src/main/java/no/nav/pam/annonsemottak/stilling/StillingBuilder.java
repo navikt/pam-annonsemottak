@@ -1,9 +1,9 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class StillingBuilder {
@@ -21,26 +21,11 @@ public class StillingBuilder {
     private String externalId;
     private LocalDateTime expires;
     private Map<String, String> properties = new HashMap<>();
-
-    public StillingBuilder(String title, String place, @NotNull String employer, String employerDescription,
-                    String jobDescription, String dueDate, @NotNull String kilde, @NotNull String medium,
-                    String url, String externalId) {
-        this.title = title;
-        this.place = place;
-        this.employer = employer;
-        this.employerDescription = employerDescription;
-        this.jobDescription = jobDescription;
-        this.dueDate = dueDate;
-        this.kilde = kilde;
-        this.medium = medium;
-        this.url = url;
-        this.externalId = externalId;
-
-        this.uuid = UUID.randomUUID().toString();
-    }
-
+    private LocalDateTime systemModifiedDate;
+    private LocalDateTime published;
 
     public Stilling build() {
+
         Stilling stilling = new Stilling(
                 title,
                 place,
@@ -57,7 +42,11 @@ public class StillingBuilder {
         stilling.setUuid(uuid != null ? uuid : UUID.randomUUID().toString());
         stilling.setExpires(expires);
         stilling.addProperties(properties);
+        stilling.setSystemModifiedDate(systemModifiedDate);
+        stilling.setPublished(published);
+
         stilling.rehash();
+
         return stilling;
     }
 
@@ -127,4 +116,13 @@ public class StillingBuilder {
         return this;
     }
 
+    public StillingBuilder systemModifiedDate(LocalDateTime systemModifiedDate) {
+        this.systemModifiedDate = systemModifiedDate;
+        return this;
+    }
+
+    public StillingBuilder published(LocalDateTime published) {
+        this.published = published;
+        return this;
+    }
 }

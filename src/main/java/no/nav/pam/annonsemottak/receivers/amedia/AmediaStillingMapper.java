@@ -81,24 +81,21 @@ class AmediaStillingMapper {
         LocalDateTime systemModifiedTime = AmediaDateConverter
                 .convertDate(text(source.get("system_modified_time")));
 
-        Stilling stilling = new StillingBuilder(
-                HtmlToMarkdownConverter.parse(stillingstittel).trim(),
-                arbeidssted,
-                arbeidsgiver,
-                arbeidsgiveromtale,
-                annonsetekst,
-                soknadsfrist,
-                Kilde.AMEDIA.toString(),
-                Medium.AMEDIA.toString(),
-                url,
-                externalId)
+        return new StillingBuilder()
+                .title(HtmlToMarkdownConverter.parse(stillingstittel).trim())
+                .place(arbeidssted)
+                .employer(arbeidsgiver)
+                .employerDescription(arbeidsgiveromtale)
+                .jobDescription(annonsetekst)
+                .dueDate(soknadsfrist)
+                .kilde(Kilde.AMEDIA.toString())
+                .medium(Medium.AMEDIA.toString())
+                .url(url)
+                .externalId(externalId)
                 .withProperties(getKeyValueMap())
                 .expires(GenericDateParser.parse(soknadsfrist).orElse(expires))
+                .systemModifiedDate(systemModifiedTime)
                 .build();
-
-        stilling.setSystemModifiedDate(systemModifiedTime);
-
-        return stilling;
     }
 
     boolean isFromNav() {

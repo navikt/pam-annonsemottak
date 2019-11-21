@@ -50,22 +50,21 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
 
     @Override
     public Stilling build() {
-        Stilling stilling = new StillingBuilder(
-                tittel,
-                arbeidssted,
-                arbeidsgiver,
-                arbeidsgiverbeskrivelse,
-                stillingstekst,
-                utløpsdato,
-                kilde,
-                medium,
-                url,
-                externalId)
+        Stilling stilling = new StillingBuilder()
+                .title(tittel)
+                .place(arbeidssted)
+                .employer(arbeidsgiver)
+                .employerDescription(arbeidsgiverbeskrivelse)
+                .jobDescription(stillingstekst)
+                .dueDate(utløpsdato)
+                .kilde(kilde)
+                .medium(medium)
+                .url(url)
+                .externalId(externalId)
                 .withProperties(props)
                 .expires(GenericDateParser.parse(utløpsdato).orElse(null))
+                .systemModifiedDate(systemModifiedDate)
                 .build();
-
-        stilling.setSystemModifiedDate(systemModifiedDate);
 
         Map map = new HashMap();
         if (status != null) {

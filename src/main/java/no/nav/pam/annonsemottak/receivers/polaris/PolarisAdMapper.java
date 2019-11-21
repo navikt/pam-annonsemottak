@@ -22,24 +22,21 @@ class PolarisAdMapper {
 
     static Stilling mapToStilling(PolarisAd polarisAd) {
 
-        Stilling stilling = new StillingBuilder(
-                polarisAd.title,
-                polarisAd.location.city,
-                polarisAd.companyName,
-                polarisAd.companyInformation,
-                polarisAd.text,
-                (polarisAd.applicationDeadlineDate != null) ? polarisAd.applicationDeadlineDate.toString() : polarisAd.applicationDeadlineText,
-                Kilde.POLARIS.value(),
-                Medium.POLARIS.value(),
-                formatUrl(polarisAd.url),
-                polarisAd.positionId)
+        return new StillingBuilder()
+                .title(polarisAd.title)
+                .place(polarisAd.location.city)
+                .employer(polarisAd.companyName)
+                .employerDescription(polarisAd.companyInformation)
+                .jobDescription(polarisAd.text)
+                .dueDate((polarisAd.applicationDeadlineDate != null) ? polarisAd.applicationDeadlineDate.toString() : polarisAd.applicationDeadlineText)
+                .kilde(Kilde.POLARIS.value())
+                .medium(Medium.POLARIS.value())
+                .url(formatUrl(polarisAd.url))
+                .externalId(polarisAd.positionId)
                 .expires(polarisAd.bookings.endDate)
                 .withProperties(extractProperties(polarisAd))
+                .systemModifiedDate(polarisAd.dateTimeModified)
                 .build();
-
-        stilling.setSystemModifiedDate(polarisAd.dateTimeModified);
-
-        return stilling;
     }
 
     private static Map<String, String> extractProperties(PolarisAd polarisAd) {

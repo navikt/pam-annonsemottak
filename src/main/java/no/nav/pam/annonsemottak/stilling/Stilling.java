@@ -135,7 +135,7 @@ public class Stilling extends ModelEntity {
         return Hashing.sha256().hashString(input, StandardCharsets.UTF_8).toString();
     }
 
-    public void addProperties(Map<String, String> properties) {
+    void addProperties(Map<String, String> properties) {
         if(properties != null) {
             this.properties.putAll(properties);
         }
