@@ -94,43 +94,6 @@ public class Stilling extends ModelEntity {
     protected Stilling() {
     }
 
-    /**
-     * Constructor used when mapping manually registered ads to a {@link Stilling}. These ads already have a UUID, and
-     * are always from the source/medium "Stillingsregistrering"/"Stillingsregistrering".
-     *
-     * @param uuid                Pre-existing UUID.
-     * @param employerName        Name.
-     * @param employerDescription Description.
-     * @param jobTitle            Title
-     * @param jobLocation         Geographic location, i.e. town.
-     * @param jobDescription      Assumed to be HTML.
-     * @param applicationDeadline Random format.
-     * @param kilde               String "Stillingsregistrering".
-     * @param medium              String "Stillingsregistrering".
-     * @param expires             sistePubliseringsDato.
-     * @param properties          Other properties.
-     */
-    public Stilling(
-            String uuid,
-            String employerName,
-            String employerDescription,
-            String jobTitle,
-            String jobLocation,
-            String jobDescription,
-            String applicationDeadline,
-            String kilde,
-            String medium,
-            LocalDateTime expires,
-            Map<String, String> properties
-    ) {
-        this(jobTitle, jobLocation, employerName, employerDescription,
-                jobDescription, applicationDeadline, kilde, medium, null, uuid);
-
-        this.properties.putAll(properties);
-        this.setExpires(expires);
-        this.uuid = uuid;
-    }
-
     public Stilling(String title, String place, @NotNull String employer, String employerDescription,
                     String jobDescription, String dueDate, @NotNull String kilde, @NotNull String medium,
                     String url, String externalId) {
@@ -166,6 +129,12 @@ public class Stilling extends ModelEntity {
                         .collect(Collectors.joining(",")))
                 .toString();
         return Hashing.sha256().hashString(input, StandardCharsets.UTF_8).toString();
+    }
+
+    public void addProperties(Map<String, String> properties) {
+        if(properties != null) {
+            this.properties.putAll(properties);
+        }
     }
 
     public String getHash() {
