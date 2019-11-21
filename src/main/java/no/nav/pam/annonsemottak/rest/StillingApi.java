@@ -222,23 +222,21 @@ public class StillingApi {
         nonEmptyProperties.put(PropertyNames.EMPLOYER_ORGNR, ad.getOrgNummer());
         nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
 
-        Stilling s = new StillingBuilder(
-                ad.getJobTitle(),
-                ad.getJobLocation(),
-                ad.getEmployerName(),
-                ad.getEmployerDescription(),
-                ad.getJobDescription(),
-                ad.getApplicationDeadline(),
-                ad.getKilde(),
-                ad.getMedium(),
-                null,
-                ad.getUuid())
+        return new StillingBuilder()
+                .title(ad.getJobTitle())
+                .place(ad.getJobLocation())
+                .employer(ad.getEmployerName())
+                .employerDescription(ad.getEmployerDescription())
+                .jobDescription(ad.getJobDescription())
+                .dueDate(ad.getApplicationDeadline())
+                .kilde(ad.getKilde())
+                .medium(ad.getMedium())
+                .url(null)
+                .externalId(ad.getUuid())
                 .withProperties(nonEmptyProperties)
                 .expires(ad.getSistePubliseringsDato())
                 .uuid(ad.getUuid())
+                .published(ad.getPubliserFra())
                 .build();
-
-        s.setPublished(ad.getPubliserFra());
-        return s;
     }
 }

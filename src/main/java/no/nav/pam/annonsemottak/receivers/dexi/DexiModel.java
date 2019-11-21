@@ -65,17 +65,17 @@ class DexiModel {
                 .filter(DexiModel::filterOutEmptyValuedEntries)
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().trim()));
 
-        return new StillingBuilder(
-                HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim(),
-                map.get(ARBEIDSSTED),
-                map.get(ARBEIDSGIVER),
-                HtmlToMarkdownConverter.parse(map.get(ARBEIDSGIVEROMTALE)),
-                concatenateAndWashAnnonsetekst(HtmlToMarkdownConverter.parse(map.get(INGRESS)), HtmlToMarkdownConverter.parse(map.get(ANNONSETEKST))),
-                map.get(SOKNADSFRIST),
-                Kilde.DEXI.toString(),
-                determineMedium(robotName, map.get("Kilde")),
-                map.get(ANNONSEURL),
-                map.get(EXTERNALID))
+        return new StillingBuilder()
+                .title(HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim())
+                .place(map.get(ARBEIDSSTED))
+                .employer(map.get(ARBEIDSGIVER))
+                .employerDescription(HtmlToMarkdownConverter.parse(map.get(ARBEIDSGIVEROMTALE)))
+                .jobDescription(concatenateAndWashAnnonsetekst(HtmlToMarkdownConverter.parse(map.get(INGRESS)), HtmlToMarkdownConverter.parse(map.get(ANNONSETEKST))))
+                .dueDate(map.get(SOKNADSFRIST))
+                .kilde(Kilde.DEXI.toString())
+                .medium(determineMedium(robotName, map.get("Kilde")))
+                .url(map.get(ANNONSEURL))
+                .externalId(map.get(EXTERNALID))
                 .withProperties(props)
                 .expires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null))
                 .build();

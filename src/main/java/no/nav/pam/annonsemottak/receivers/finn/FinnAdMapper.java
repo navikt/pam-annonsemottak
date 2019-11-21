@@ -32,17 +32,17 @@ class FinnAdMapper {
             return null;
         }
 
-        return new StillingBuilder(
-                HtmlToMarkdownConverter.parse(ad.getTitle()).trim(),
-                ad.getLocation().getCity(),
-                getEmployer(ad),
-                getArbeidsgiveromtaleAsMarkdown(ad.getCompany().getIngress()),
-                getAnnonsetekstAsMarkdown(ad.getGeneralText()),
-                ad.getApplicationDeadline(),
-                Kilde.FINN.toString(),
-                Medium.FINN.toString(),
-                ad.getUrl(),
-                ad.getIdentifier())
+        return new StillingBuilder()
+                .title(HtmlToMarkdownConverter.parse(ad.getTitle()).trim())
+                .place(ad.getLocation().getCity())
+                .employer(getEmployer(ad))
+                .employerDescription(getArbeidsgiveromtaleAsMarkdown(ad.getCompany().getIngress()))
+                .jobDescription(getAnnonsetekstAsMarkdown(ad.getGeneralText()))
+                .dueDate(ad.getApplicationDeadline())
+                .kilde(Kilde.FINN.toString())
+                .medium(Medium.FINN.toString())
+                .url(ad.getUrl())
+                .externalId(ad.getIdentifier())
                 .withProperties(getKeyValueMap(ad))
                 .expires(GenericDateParser.parse(ad.getApplicationDeadline())
                         .orElse(FinnDateConverter.convertDate(ad.getExpires())))

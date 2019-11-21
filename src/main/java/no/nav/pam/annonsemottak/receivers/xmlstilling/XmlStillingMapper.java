@@ -19,24 +19,22 @@ class XmlStillingMapper {
 
     static Stilling fromDto(XmlStillingDto dto) {
 
-        Stilling stilling = new StillingBuilder(
-                extractStillingtittel(dto),
-                null,
-                dto.getArbeidsgiver(),
-                HtmlToMarkdownConverter.parse(dto.getArbeidsgiverBedriftspresentasjon()),
-                HtmlToMarkdownConverter.parse(dto.getStillingsbeskrivelse()),
-                dto.getSoknadsfrist().map(LocalDateTime::toString).orElse(""),
-                Kilde.XML_STILLING.toString(),
-                dto.getEksternBrukerRef(),
-                null,
-                dto.getEksternId())
+        Stilling stilling = new StillingBuilder()
+                .title(extractStillingtittel(dto))
+                .place(null)
+                .employer(dto.getArbeidsgiver())
+                .employerDescription(HtmlToMarkdownConverter.parse(dto.getArbeidsgiverBedriftspresentasjon()))
+                .jobDescription(HtmlToMarkdownConverter.parse(dto.getStillingsbeskrivelse()))
+                .dueDate(dto.getSoknadsfrist().map(LocalDateTime::toString).orElse(""))
+                .kilde(Kilde.XML_STILLING.toString())
+                .medium(dto.getEksternBrukerRef())
+                .url(null)
+                .externalId(dto.getEksternId())
                 .expires(dto.getSistePubliseringsdato())
                 .withProperties(extractProperties(dto))
+                .systemModifiedDate(dto.getMottattTidspunkt())
+                .published(dto.getPubliseresFra())
                 .build();
-
-        stilling.setPublished(dto.getPubliseresFra());
-
-        stilling.setSystemModifiedDate(dto.getMottattTidspunkt());
 
         stilling.setArenaId(dto.getArenaId());
 
