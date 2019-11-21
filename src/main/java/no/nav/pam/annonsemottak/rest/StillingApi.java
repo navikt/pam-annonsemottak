@@ -222,7 +222,7 @@ public class StillingApi {
         nonEmptyProperties.put(PropertyNames.EMPLOYER_ORGNR, ad.getOrgNummer());
         nonEmptyProperties.put(PropertyNames.ANTALL_STILLINGER, ad.getAntallStillinger().toString());
 
-        Stilling s = new Stilling(
+        Stilling s = new StillingBuilder(
                 ad.getJobTitle(),
                 ad.getJobLocation(),
                 ad.getEmployerName(),
@@ -232,11 +232,11 @@ public class StillingApi {
                 ad.getKilde(),
                 ad.getMedium(),
                 null,
-                ad.getUuid()
-        );
-        s.addProperties(nonEmptyProperties);
-        s.setExpires(ad.getSistePubliseringsDato());
-        s.setUuid(ad.getUuid());
+                ad.getUuid())
+                .withProperties(nonEmptyProperties)
+                .expires(ad.getSistePubliseringsDato())
+                .uuid(ad.getUuid())
+                .build();
 
         s.setPublished(ad.getPubliserFra());
         return s;

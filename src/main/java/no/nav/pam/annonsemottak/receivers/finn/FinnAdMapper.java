@@ -8,6 +8,7 @@ import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ class FinnAdMapper {
             return null;
         }
 
-        Stilling s = new Stilling(
+        return new StillingBuilder(
                 HtmlToMarkdownConverter.parse(ad.getTitle()).trim(),
                 ad.getLocation().getCity(),
                 getEmployer(ad),
@@ -41,14 +42,11 @@ class FinnAdMapper {
                 Kilde.FINN.toString(),
                 Medium.FINN.toString(),
                 ad.getUrl(),
-                ad.getIdentifier()
-        );
-
-        s.getProperties().putAll(getKeyValueMap(ad));
-        s.setExpires(GenericDateParser.parse(ad.getApplicationDeadline())
-                .orElse(FinnDateConverter.convertDate(ad.getExpires())));
-
-        return s;
+                ad.getIdentifier())
+                .withProperties(getKeyValueMap(ad))
+                .expires(GenericDateParser.parse(ad.getApplicationDeadline())
+                        .orElse(FinnDateConverter.convertDate(ad.getExpires())))
+                .build();
     }
 
     private static boolean hasIncompleteInformation(FinnAd ad) {

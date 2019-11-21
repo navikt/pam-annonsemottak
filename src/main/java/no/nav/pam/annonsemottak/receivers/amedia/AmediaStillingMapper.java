@@ -9,6 +9,7 @@ import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
@@ -80,7 +81,7 @@ class AmediaStillingMapper {
         LocalDateTime systemModifiedTime = AmediaDateConverter
                 .convertDate(text(source.get("system_modified_time")));
 
-        Stilling stilling = new Stilling(
+        Stilling stilling = new StillingBuilder(
                 HtmlToMarkdownConverter.parse(stillingstittel).trim(),
                 arbeidssted,
                 arbeidsgiver,
@@ -90,11 +91,11 @@ class AmediaStillingMapper {
                 Kilde.AMEDIA.toString(),
                 Medium.AMEDIA.toString(),
                 url,
-                externalId
-        );
+                externalId)
+                .withProperties(getKeyValueMap())
+                .expires(GenericDateParser.parse(soknadsfrist).orElse(expires))
+                .build();
 
-        stilling.getProperties().putAll(getKeyValueMap());
-        stilling.setExpires(GenericDateParser.parse(soknadsfrist).orElse(expires));
         stilling.setSystemModifiedDate(systemModifiedTime);
 
         return stilling;

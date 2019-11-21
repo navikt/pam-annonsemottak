@@ -4,6 +4,7 @@ import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +65,7 @@ class DexiModel {
                 .filter(DexiModel::filterOutEmptyValuedEntries)
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().trim()));
 
-        Stilling stilling = new Stilling(
+        return new StillingBuilder(
                 HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim(),
                 map.get(ARBEIDSSTED),
                 map.get(ARBEIDSGIVER),
@@ -74,12 +75,10 @@ class DexiModel {
                 Kilde.DEXI.toString(),
                 determineMedium(robotName, map.get("Kilde")),
                 map.get(ANNONSEURL),
-                map.get(EXTERNALID));
-
-        stilling.getProperties().putAll(props);
-        stilling.setExpires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null));
-
-        return stilling;
+                map.get(EXTERNALID))
+                .withProperties(props)
+                .expires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null))
+                .build();
     }
 
     // Robots Kommuner-Visma and Kommuner-ASP are common for many webpages, sets webpage name as medium instead of the robot name
