@@ -109,6 +109,10 @@ public class Stilling extends ModelEntity {
         this.externalId = externalId;
 
         this.uuid = UUID.randomUUID().toString();
+        rehash();
+    }
+
+    void rehash() {
         this.hash = hash();
     }
 

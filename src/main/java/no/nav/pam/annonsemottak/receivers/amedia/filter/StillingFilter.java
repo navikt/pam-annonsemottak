@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.amedia.filter;
 
 import no.nav.pam.annonsemottak.stilling.Arbeidsgiver;
 import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,16 +50,23 @@ abstract class StillingFilter {
       Nytt stillingobjekt med ny tittel, shallow copy, men bytter hele arbeidsgiverfeltet.
     */
     Stilling nyTittel(Stilling s, String nyTittel) {
-        Stilling stilling = new Stilling(nyTittel, s.getPlace(),
+        Stilling stilling = new StillingBuilder(
+                nyTittel,
+                s.getPlace(),
                 s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
                 s.getEmployerDescription(),
-                s.getJobDescription(), s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
-                s.getExternalId());
+                s.getJobDescription(),
+                s.getDueDate(),
+                s.getKilde(),
+                s.getMedium(),
+                s.getUrl(),
+                s.getExternalId())
+                .withProperties(s.getProperties())
+                .expires(s.getExpires())
+                .uuid(s.getUuid())
+                .build();
 
-        stilling.getProperties().putAll(s.getProperties());
         stilling.setSystemModifiedDate(s.getSystemModifiedDate());
-        stilling.setExpires(s.getExpires());
-        stilling.setUuid(s.getUuid());
 
         return stilling;
     }
@@ -67,16 +75,23 @@ abstract class StillingFilter {
         Nytt stillingobjekt med ny tekst, shallow copy, men bytter hele stillingstekstfeltet.
     */
     Stilling nyStillingstekst(Stilling s, String nyTekst) {
-        Stilling stilling = new Stilling(s.getTitle(), s.getPlace(),
+        Stilling stilling = new StillingBuilder(
+                s.getTitle(),
+                s.getPlace(),
                 s.getArbeidsgiver().map(Arbeidsgiver::asString).orElse(null),
                 s.getEmployerDescription(),
-                nyTekst, s.getDueDate(), s.getKilde(), s.getMedium(), s.getUrl(),
-                s.getExternalId());
+                nyTekst,
+                s.getDueDate(),
+                s.getKilde(),
+                s.getMedium(),
+                s.getUrl(),
+                s.getExternalId())
+                .withProperties(s.getProperties())
+                .expires(s.getExpires())
+                .uuid(s.getUuid())
+                .build();
 
-        stilling.getProperties().putAll(s.getProperties());
         stilling.setSystemModifiedDate(s.getSystemModifiedDate());
-        stilling.setExpires(s.getExpires());
-        stilling.setUuid(s.getUuid());
 
         return stilling;
     }
