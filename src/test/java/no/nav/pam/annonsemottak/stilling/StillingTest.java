@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.junit.Test;
 
