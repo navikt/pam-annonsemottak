@@ -36,8 +36,6 @@ class XmlStillingMapper {
                 .published(dto.getPubliseresFra())
                 .build();
 
-        stilling.setArenaId(dto.getArenaId());
-
         return stilling;
     }
 
