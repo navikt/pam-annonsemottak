@@ -122,6 +122,7 @@ public class Stilling extends ModelEntity {
                 .append(employer)
                 .append(employerDescription)
                 .append(jobDescription)
+                .append(expires)
                 .append(nonIdentifyingProperties
                         .values()
                         .stream()

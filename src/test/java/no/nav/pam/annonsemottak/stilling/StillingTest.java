@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
+import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.junit.Test;
 
@@ -266,9 +267,14 @@ public class StillingTest {
     }
 
     @Test
-    public void at_stillinger_med_endret_utlopsdato_er_ulike_eksisterende() {
-        Stilling oppdatering = enkelStilling().utløpsdato("13.12.2018").kilde(Kilde.XML_STILLING.value()).build();
-        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+    public void at_stillinger_med_endret_expires_er_ulike_eksisterende() {
+        LocalDateTime expires = LocalDateTime.now();
+
+        Stilling oppdatering = new StillingBuilder().title("tittel").kilde(Kilde.XML_STILLING.value())
+                .expires(expires.minusDays(1)).build();
+
+        Stilling eksisterende = new StillingBuilder().title("tittel").kilde(Kilde.XML_STILLING.value())
+                .expires(expires).build();
 
         assertThat(oppdatering.getHash(), is(not(equalTo(eksisterende.getHash()))));
     }
