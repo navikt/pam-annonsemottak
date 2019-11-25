@@ -256,4 +256,20 @@ public class StillingTest {
         oppdatering.stopIfExpired(eksisterende);
         assertThat(oppdatering.getAnnonseStatus(), is(not(equalTo(AnnonseStatus.STOPPET))));
     }
+
+    @Test
+    public void at_uendrede_stillinger_er_like() {
+        Stilling oppdatering = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+
+        assertThat(oppdatering.getHash(), is(equalTo(eksisterende.getHash())));
+    }
+
+    @Test
+    public void at_stillinger_med_endret_utlopsdato_er_ulike_eksisterende() {
+        Stilling oppdatering = enkelStilling().utløpsdato("13.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+        Stilling eksisterende = enkelStilling().utløpsdato("12.12.2018").kilde(Kilde.XML_STILLING.value()).build();
+
+        assertThat(oppdatering.getHash(), is(not(equalTo(eksisterende.getHash()))));
+    }
 }

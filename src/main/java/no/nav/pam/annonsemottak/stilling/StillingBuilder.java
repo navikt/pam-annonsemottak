@@ -45,7 +45,7 @@ public class StillingBuilder {
         stilling.setSystemModifiedDate(systemModifiedDate);
         stilling.setPublished(published);
 
-        stilling.rehash();
+        stilling.calculateHash();
 
         return stilling;
     }

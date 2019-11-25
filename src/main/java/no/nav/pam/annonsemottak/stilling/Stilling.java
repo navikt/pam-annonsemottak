@@ -109,14 +109,9 @@ public class Stilling extends ModelEntity {
         this.externalId = externalId;
 
         this.uuid = UUID.randomUUID().toString();
-        rehash();
     }
 
-    void rehash() {
-        this.hash = hash();
-    }
-
-    private String hash() {
+    void calculateHash() {
         Map<String, String> nonIdentifyingProperties = new HashMap<>(properties);
         nonIdentifyingProperties.keySet().removeAll(NONIDENTIFYING_KEYS);
 
@@ -132,7 +127,7 @@ public class Stilling extends ModelEntity {
                         .stream()
                         .collect(Collectors.joining(",")))
                 .toString();
-        return Hashing.sha256().hashString(input, StandardCharsets.UTF_8).toString();
+        this.hash = Hashing.sha256().hashString(input, StandardCharsets.UTF_8).toString();
     }
 
     void addProperties(Map<String, String> properties) {
@@ -149,7 +144,7 @@ public class Stilling extends ModelEntity {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -231,7 +226,7 @@ public class Stilling extends ModelEntity {
         return expires;
     }
 
-    public void setExpires(LocalDateTime expires) {
+    void setExpires(LocalDateTime expires) {
         if (expires != null && expires.isBefore(now().plusMonths(MAX_EXPIRY_LIMIT))) {
             this.expires = expires;
         }
@@ -241,7 +236,7 @@ public class Stilling extends ModelEntity {
         return systemModifiedDate;
     }
 
-    public void setSystemModifiedDate(LocalDateTime systemModifiedDate) {
+    void setSystemModifiedDate(LocalDateTime systemModifiedDate) {
         this.systemModifiedDate = systemModifiedDate;
     }
 
@@ -249,7 +244,7 @@ public class Stilling extends ModelEntity {
         return published;
     }
 
-    public void setPublished(LocalDateTime published) {
+    void setPublished(LocalDateTime published) {
         if (published != null)
             this.published = published;
     }
