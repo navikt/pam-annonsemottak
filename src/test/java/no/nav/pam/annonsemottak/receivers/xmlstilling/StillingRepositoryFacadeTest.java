@@ -32,18 +32,11 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class StillingRepositoryFacadeTest {
 
-    private Function<Stilling, Gruppe> size_2_4_1_groups = new Function<Stilling, Gruppe>() {
+    private Function<Stilling, Gruppe> size_2_4_1_groups = new Function<>() {
         int i = 0;
         @Override
         public Gruppe apply(Stilling stilling) {
             return new Gruppe[]{ CHANGED, CHANGED, NEW, NEW, NEW, NEW, UNCHANGED }[i++];
-        }
-    };
-    private Function<Stilling, Gruppe> size_2_4_1_arena_groups = new Function<Stilling, Gruppe>() {
-        int i = 0;
-        @Override
-        public Gruppe apply(Stilling stilling) {
-            return new Gruppe[]{ CHANGED, CHANGED, NEW, NEW, NEW, NEW, CHANGED_ARENA }[i++];
         }
     };
 
@@ -69,23 +62,6 @@ public class StillingRepositoryFacadeTest {
 
         verify(repository, times(6)).save(captor.capture());
         assertThat(captor.getAllValues()).hasSize(6); // changed + new
-
-        assertThat(stillinger.asList()).hasSize(7);
-    }
-
-    @Test
-    public void update_arena_stillinger() {
-        List<Stilling> nyeStillinger = listOf6stillingerAnd1ArenaStillingLast();
-        Stillinger stillinger = facade.updateStillinger(nyeStillinger, size_2_4_1_arena_groups);
-
-        verify(repository, times(3)).findByKildeAndMediumAndExternalId(any(), any(), any());
-
-        verify(repository, times(7)).save(captor.capture());
-        assertThat(captor.getAllValues()).hasSize(7); // changed + new
-
-        assertThat(captor.getAllValues().get(6).getKilde()).isEqualTo(STILLINGSOLR.value());
-        assertThat(captor.getAllValues().get(6).getMedium()).isEqualTo("Overført fra arbeidsgiver");
-        assertThat(captor.getAllValues().get(6).getExternalId()).isEqualTo("11");
 
         assertThat(stillinger.asList()).hasSize(7);
     }
@@ -145,55 +121,6 @@ public class StillingRepositoryFacadeTest {
         assertThat(facade.saveOnlyNewAndChangedGroupingStrategy(enkelStilling("tekst same"))).isEqualTo(UNCHANGED);
     }
 
-
-
-
-    @Test
-    public void test_that_update_all_strategy_ignores_arenaId_when_not_found_in_database() {
-
-        when(repository.findByKildeAndMediumAndExternalId(eq(STILLINGSOLR.value()), eq("Overført fra arbeidsgiver"), any()))
-                .thenReturn(empty());
-        when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
-                .thenReturn(empty());
-
-        assertThat(facade.saveAllGroupingStrategy(enkelStillingMedArenaId("11"))).isEqualTo(NEW);
-
-    }
-    @Test
-    public void test_that_update_changed_and_new_strategy_ignores_arenaId_when_not_found_in_database() {
-
-        when(repository.findByKildeAndMediumAndExternalId(eq(STILLINGSOLR.value()), eq("Overført fra arbeidsgiver"), any()))
-                .thenReturn(empty());
-        when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
-                .thenReturn(empty());
-
-        assertThat(facade.saveOnlyNewAndChangedGroupingStrategy(enkelStillingMedArenaId("11"))).isEqualTo(NEW);
-
-    }
-
-    @Test
-    public void test_that_update_all_strategy_groups_as_arena_change() {
-
-        when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
-                .thenReturn(Optional.of(arenaDbStilling("11")));
-
-        assertThat(facade.saveAllGroupingStrategy(enkelStillingMedArenaId("11"))).isEqualTo(CHANGED_ARENA);
-
-        verify(repository).findByKildeAndMediumAndExternalId(eq(STILLINGSOLR.value()), eq("Overført fra arbeidsgiver"), eq("11"));
-    }
-
-    @Test
-    public void test_that_update_changed_and_new_strategy_as_arena_change() {
-
-        when(repository.findByKildeAndMediumAndExternalId(anyString(), anyString(), anyString()))
-                .thenReturn(Optional.of(arenaDbStilling("11")));
-
-        assertThat(facade.saveOnlyNewAndChangedGroupingStrategy(enkelStillingMedArenaId("11"))).isEqualTo(CHANGED_ARENA);
-
-        verify(repository).findByKildeAndMediumAndExternalId(eq(STILLINGSOLR.value()), eq("Overført fra arbeidsgiver"), eq("11"));
-
-    }
-
     @Test
     public void that_update_also_stops_ads_automatically_when_expiry_is_changed_to_the_past() {
 
@@ -219,22 +146,6 @@ public class StillingRepositoryFacadeTest {
                 .collect(Collectors.toList());
     }
 
-    private List<Stilling> listOf6stillingerAnd1ArenaStillingLast() {
-        List<Stilling> l = IntStream.range(0, 6)
-                .mapToObj(i -> StillingTestdataBuilder.enkelStilling()
-                        .externalId(String.valueOf(i))
-                        .systemModifiedDate(now()).build())
-                .collect(Collectors.toList());
-
-        l.add(StillingTestdataBuilder.enkelStilling()
-                .kilde(STILLINGSOLR.value())
-                .medium("Overført fra arbeidsgiver")
-                .externalId("11")
-                .systemModifiedDate(now())
-                .build());
-        return l;
-    }
-
     private Stilling enkelStilling() {
         return StillingTestdataBuilder.enkelStilling().build();
     }
@@ -243,16 +154,6 @@ public class StillingRepositoryFacadeTest {
         return StillingTestdataBuilder.enkelStilling()
                 .stillingstekst(tekst)
                 .build();
-    }
-
-    private Stilling enkelStillingMedArenaId(String arenaId) {
-        Stilling stilling = StillingTestdataBuilder.enkelStilling().build();
-        stilling.setArenaId(arenaId);
-        return stilling;
-    }
-    private Stilling arenaDbStilling(String arenaId) {
-        return StillingTestdataBuilder.enkelStilling()
-                .externalId(arenaId).build();
     }
 
 }

@@ -18,8 +18,6 @@ class Stillinger {
     enum Gruppe {
         NEW,
         CHANGED,
-        @Deprecated
-        CHANGED_ARENA,
         UNCHANGED
     }
 
