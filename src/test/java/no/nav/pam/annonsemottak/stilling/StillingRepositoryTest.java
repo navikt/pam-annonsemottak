@@ -35,7 +35,7 @@ public class StillingRepositoryTest {
     private StillingRepository stillingRepository;
 
     @Test
-    public void should_create_database_stilling() throws Exception {
+    public void should_create_database_stilling() {
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").externalId("ID1").build());
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Andre stilling").externalId("ID2").build());
         Iterable<Stilling> all = stillingRepository.findAll(PageRequest.of(0, 1));
@@ -43,7 +43,7 @@ public class StillingRepositoryTest {
     }
 
     @Test
-    public void should_identify_duplicate() throws Exception {
+    public void should_identify_duplicate() {
         Stilling one = stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").externalId("ID1").build());
         Stilling two = stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Andre stilling").externalId("ID2").build());
         Boolean oneExists = stillingRepository.hashExists(one.getHash());
@@ -55,7 +55,7 @@ public class StillingRepositoryTest {
     }
 
     @Test
-    public void should_identify_duplicates_in_list() throws Exception {
+    public void should_identify_duplicates_in_list() {
         List<Stilling> stillinger = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             stillinger.add(StillingTestdataBuilder.enkelStilling().externalId("ID" + i).build());
