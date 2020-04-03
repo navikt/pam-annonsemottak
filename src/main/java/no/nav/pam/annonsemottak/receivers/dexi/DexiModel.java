@@ -3,6 +3,7 @@ package no.nav.pam.annonsemottak.receivers.dexi;
 import no.nav.pam.annonsemottak.markdown.HtmlToMarkdownConverter;
 import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 class DexiModel {
-
+    static final String ANTALL_STILLINGER = "Antall stillinger";
     static final String ANNONSETITTEL = "Annonsetittel";
     static final String ANNONSEURL = "AnnonseURL";
     static final String ANNONSETEKST = "Annonsetekst";
@@ -63,7 +64,8 @@ class DexiModel {
                 .peek(DexiModel::warnIfUnexpectedHtmlInContent)
                 .filter(DexiModel::filterOutNonPropertyEntries)
                 .filter(DexiModel::filterOutEmptyValuedEntries)
-                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().trim()));
+                .collect(Collectors.toMap(entry -> mapKeyNames(entry.getKey().trim()), entry -> entry.getValue().trim()));
+        addDefaults(props);
 
         return new StillingBuilder()
                 .title(HtmlToMarkdownConverter.parse(map.get(ANNONSETITTEL)).trim())
@@ -79,6 +81,12 @@ class DexiModel {
                 .withProperties(props)
                 .expires(GenericDateParser.parse(map.get(SOKNADSFRIST)).orElse(null))
                 .build();
+    }
+
+    private static void addDefaults(Map props) {
+        if (!props.containsKey(PropertyNames.ANTALL_STILLINGER)) {
+           props.put(PropertyNames.ANTALL_STILLINGER, "1");
+        }
     }
 
     // Robots Kommuner-Visma and Kommuner-ASP are common for many webpages, sets webpage name as medium instead of the robot name
@@ -104,6 +112,14 @@ class DexiModel {
             return true;
         }
         return false;
+    }
+
+    private static String mapKeyNames(String key) {
+        if (ANTALL_STILLINGER.equalsIgnoreCase(key)) {
+            return PropertyNames.ANTALL_STILLINGER;
+        } else {
+            return key;
+        }
     }
 
     private static boolean filterOutEmptyValuedEntries(Map.Entry<String, String> entry) {
