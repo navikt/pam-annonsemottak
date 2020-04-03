@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.dexi;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -100,5 +101,19 @@ public class DexiModelTest {
         assertNotNull(stilling);
         assertEquals(stilling.getJobDescription(), ingress.concat("\n" + annonsetekst + "\n"));
 
+    }
+
+    @Test
+    public void mapPositionCount() {
+        Map<String, String> map = new HashMap<>();
+        map.put(DexiModel.EXTERNALID, "ID");
+        map.put(DexiModel.ANNONSEURL, "http://www.nav.no");
+        map.put(DexiModel.ANNONSETEKST, "Some non-empty text");
+        map.put(DexiModel.ARBEIDSGIVER, "Arbeidsgiver");
+        map.put(DexiModel.ANNONSETITTEL, "Some nice text");
+        assertEquals("1", DexiModel.toStilling(map, "WallE").getProperties().get(PropertyNames.ANTALL_STILLINGER));
+
+        map.put(DexiModel.ANTALL_STILLINGER, "2");
+        assertEquals("2", DexiModel.toStilling(map, "WallE").getProperties().get(PropertyNames.ANTALL_STILLINGER));
     }
 }
