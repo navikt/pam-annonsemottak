@@ -6,21 +6,18 @@ metadata:
   labels:
     team: teampam
 spec:
-  image: repo.adeo.no:5443/pam-annonsemottak
+  image: {{ image }}
   port: 9016
+  liveness:
+    path: /isAlive
+    initialDelay: 20
+  readiness:
+    path: /isReady
+    initialDelay: 20
   replicas:
     min: 2
     max: 2
-    cpuThresholdPercentage: 50
-  prometheus:
-    enabled: true
-    path: /actuator/prometheus
-  liveness:
-    initialDelay: 20
-    path: /isAlive
-  readiness:
-    initialDelay: 20
-    path: /isReady
+  cpuThresholdPercentage: 50
   resources:
     limits:
       cpu: 2000m
@@ -28,8 +25,13 @@ spec:
     requests:
       cpu: 500m
       memory: 500Mi
-  webproxy: true
   vault:
     enabled: true
+  webproxy: true
+  prometheus:
+    enabled: true
+    path: /actuator/prometheus
   ingresses:
-  - https://pam-annonsemottak.nais.oera.no
+  {{#each ingress as |url|}}
+     - {{url}}
+  {{/each}}
