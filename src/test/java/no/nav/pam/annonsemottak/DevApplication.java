@@ -1,13 +1,11 @@
 package no.nav.pam.annonsemottak;
 
-import no.nav.pam.unleash.spring.EnableUnleash;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@EnableUnleash(fakeUnleash = true, enabledFakeToggles = "pam.schedule.fetch.from.xmlstilling")
 @SpringBootApplication
 public class DevApplication {
 
