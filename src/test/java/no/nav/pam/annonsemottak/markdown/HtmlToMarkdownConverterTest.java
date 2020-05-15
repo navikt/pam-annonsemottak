@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.markdown;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -12,6 +13,19 @@ import static org.junit.Assert.assertThat;
  * <a href=https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-(and-how-to-mitigate-it)>this page</a>.
  */
 public class HtmlToMarkdownConverterTest {
+
+    @Test
+    public void keepGuillemets() {
+        String markdown = "«samskaping»";
+        String expectedHtml = "<p>«samskaping»</p>\n";
+        String expectedMarkdown = markdown + "\n";
+
+        String html = MarkdownToHtmlConverter.parse(markdown);
+        assertEquals(expectedHtml, html);
+
+        String convertedMarkdown = HtmlToMarkdownConverter.parse(markdown);
+        assertEquals(expectedMarkdown, convertedMarkdown);
+    }
 
     @Test
     public void knownVulnerability1() {
