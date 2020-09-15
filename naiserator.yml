@@ -2,7 +2,7 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: pam-annonsemottak
-  namespace: default
+  namespace: teampam
   labels:
     team: teampam
 spec:
@@ -25,9 +25,6 @@ spec:
     requests:
       cpu: 500m
       memory: 500Mi
-  vault:
-    enabled: true
-  webproxy: true
   prometheus:
     enabled: true
     path: /actuator/prometheus
@@ -35,3 +32,26 @@ spec:
   {{#each ingress as |url|}}
      - {{url}}
   {{/each}}
+  filesFrom:
+    - secret: pam-annonsemottak-env-secret
+      mountPath: /var/run/secrets/nais.io/vault
+  gcp:
+    sqlInstances:
+      - name: pam-annonsemottak
+        type: POSTGRES_11
+        diskType: SSD
+        highAvailability: true
+        diskSize: 30
+        diskAutoresize: true
+        autoBackupTime: "03:00"
+        databases:
+          - name: pamannonsemottak
+            envVarPrefix: DB
+        cascadingDelete: false
+  accessPolicy:
+      external:
+        - host: cache.api.finn.no/iad
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS

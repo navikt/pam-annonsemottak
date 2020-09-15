@@ -1,3 +1,3 @@
 {
-  "ingress": ["https://pam-annonsemottak.nais.oera.no"]
+  "ingress": ["https://pam-annonsemottak.prod-gcp.nais.io"]
 }
