@@ -23,7 +23,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: build and test
-        run: mvn clean install
+        run: |
+          git clone https://github.com/navikt/pam-annonsemottak-migration-.git
+          cd pam-annonsemottak-migration
+          git checkout 0.1
+          mvn clean install
+          cd ..
+          mvn clean install
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v1
         env:
