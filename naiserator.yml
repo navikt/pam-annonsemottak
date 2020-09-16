@@ -49,8 +49,19 @@ spec:
             envVarPrefix: DB
         cascadingDelete: false
   accessPolicy:
+    outbound:
       external:
-        - host: cache.api.finn.no/iad
+        - host: cache.api.finn.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: pam-annonsemottak.dev.adeo.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: pam-annonsemottak.dev-sbs.nais.io
           ports:
             - port: 443
               name: https
