@@ -1,4 +1,4 @@
 {
-  "ingress": ["https://pam-annonsemottak.nais.oera-q.local", "https://pam-annonsemottak.dev.adeo.no"]
+  "ingress": ["https://pam-annonsemottak.nais.oera-q.local", "https://pam-annonsemottak.dev-sbs.nais.io", "https://pam-annonsemottak.dev.adeo.no"]
 
 }
