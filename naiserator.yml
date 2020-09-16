@@ -56,16 +56,11 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
-        - host: pam-annonsemottak.dev.adeo.no
-          ports:
-            - port: 443
-              name: https
-              protocol: HTTPS
-        - host: pam-annonsemottak.dev-sbs.nais.io
+        - host: {{ pam_annonsemottak_host }}
           ports:
             - port: 443
               name: https
               protocol: HTTPS
   env:
     - name: MIGRATION_URL
-      value: "{{ migration_url }}"
+      value: https://{{ pam_annonsemottak_host }}

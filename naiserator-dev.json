@@ -1,4 +1,4 @@
 {
   "ingress": ["https://pam-annonsemottak.dev-gcp.nais.io"],
-  "migration_url": "https://pam-annonsemottak.dev-sbs.nais.io"
+  "pam_annonsemottak_host": "pam-annonsemottak.dev-sbs.nais.io"
 }
