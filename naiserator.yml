@@ -55,3 +55,6 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
+  env:
+    - name: MIGRATION_URL
+      value: "{{ migration_url }}"
