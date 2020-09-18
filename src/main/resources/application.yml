@@ -6,7 +6,7 @@ spring:
   datasource:
     url: ${DB_JDBC_URL:jdbc:h2:mem:testdb;Mode=PostgreSQL}
     username: ${DB_USERNAME:sa}
-    password:
+    password: ${DB_PASSWORD:}
     hikari:
       maximum-pool-size: 5
       minimum-idle: 0
