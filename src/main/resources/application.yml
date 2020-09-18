@@ -6,7 +6,13 @@ spring:
   datasource:
     url: ${DB_JDBC_URL:jdbc:h2:mem:testdb;Mode=PostgreSQL}
     username: ${DB_USERNAME:sa}
-    password: ${DB_PASSWORD:}
+    password:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 0
+      max-lifetime: 45000
+      connection-timeout: 30000
+      idle-timeout: 35000
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
