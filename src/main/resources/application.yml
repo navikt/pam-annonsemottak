@@ -59,7 +59,7 @@ dexi:
     password: ${DEXI_API_PASSWORD:<dexi password>}
 amedia:
   # url: https://bed.api.no/api/pipek/v2/classified/search
-  url: http://services.api.no/api/prophecy/external/nav/jobs
+  url: https://services.api.no/api/prophecy/external/nav/jobs
   apikey: ${AMEDIA_API_KEY:<amedia api key>}
 polaris:
   url: https://stilling.adresseavisen.no/api/nav.json

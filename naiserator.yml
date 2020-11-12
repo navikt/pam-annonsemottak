@@ -56,6 +56,21 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
+        - host: api.dexi.io
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: services.api.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: stilling.adresseavisen.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
         - host: {{ pam_annonsemottak_host }}
           ports:
             - port: 443

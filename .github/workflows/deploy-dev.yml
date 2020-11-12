@@ -26,7 +26,7 @@ jobs:
         run: |
           git clone https://github.com/navikt/pam-annonsemottak-migration.git
           cd pam-annonsemottak-migration
-          git checkout 0.5
+          git checkout main
           mvn clean install
           cd ..
           mvn clean install
