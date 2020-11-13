@@ -2,7 +2,7 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: pam-annonsemottak
-  namespace: default
+  namespace: teampam
   labels:
     team: teampam
 spec:
@@ -15,8 +15,8 @@ spec:
     path: /isReady
     initialDelay: 20
   replicas:
-    min: 2
-    max: 2
+    min: 1
+    max: 1
   cpuThresholdPercentage: 50
   resources:
     limits:
@@ -25,9 +25,6 @@ spec:
     requests:
       cpu: 500m
       memory: 500Mi
-  vault:
-    enabled: true
-  webproxy: true
   prometheus:
     enabled: true
     path: /actuator/prometheus
@@ -35,3 +32,50 @@ spec:
   {{#each ingress as |url|}}
      - {{url}}
   {{/each}}
+  filesFrom:
+    - secret: pam-annonsemottak-env-secret
+      mountPath: /var/run/secrets/nais.io/vault
+  gcp:
+    sqlInstances:
+      - name: pam-annonsemottak
+        type: POSTGRES_11
+        diskType: SSD
+        highAvailability: true
+        diskSize: 30
+        diskAutoresize: true
+        autoBackupTime: "03:00"
+        databases:
+          - name: pamannonsemottak
+            envVarPrefix: DB
+        cascadingDelete: false
+  accessPolicy:
+    outbound:
+      external:
+        - host: cache.api.finn.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: api.dexi.io
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: services.api.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: stilling.adresseavisen.no
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+        - host: {{ pam_annonsemottak_host }}
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
+  env:
+    - name: MIGRATION_URL
+      value: https://{{ pam_annonsemottak_host }}

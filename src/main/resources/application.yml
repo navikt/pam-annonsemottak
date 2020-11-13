@@ -4,9 +4,15 @@ application:
   version: @project.version@
 spring:
   datasource:
-    url: ${ANNONSEMOTTAKDB_URL:jdbc:h2:mem:testdb;Mode=PostgreSQL}
-    username: ${ANNONSEMOTTAKDB_USERNAME:sa}
-    password: ${ANNONSEMOTTAKDB_PASSWORD:}
+    url: ${DB_JDBC_URL:jdbc:h2:mem:testdb;Mode=PostgreSQL}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 0
+      max-lifetime: 45000
+      connection-timeout: 30000
+      idle-timeout: 35000
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
@@ -45,7 +51,7 @@ management:
       exposure:
         include: ["prometheus", "metrics", "mappings"]
 scheduler:
-  enabled: true
+  enabled: false
 dexi:
   url: https://api.dexi.io
   api:
@@ -53,19 +59,16 @@ dexi:
     password: ${DEXI_API_PASSWORD:<dexi password>}
 amedia:
   # url: https://bed.api.no/api/pipek/v2/classified/search
-  url: http://services.api.no/api/prophecy/external/nav/jobs
+  url: https://services.api.no/api/prophecy/external/nav/jobs
   apikey: ${AMEDIA_API_KEY:<amedia api key>}
 polaris:
   url: https://stilling.adresseavisen.no/api/nav.json
 finn:
   url: https://cache.api.finn.no/iad
-  api:
-    password: ${FINN_API_PASSWORD:<finn api password>}
+  api:
+    password: ${FINN_API_PASSWORD:<finn api key>}
 proxy:
-  url: ${HTTP_PROXY:http://155.55.60.117:8088}
-solr:
-  url: ${STILLING_SOLR_URL}
-  core: 'maincore'
+  url:
 xmlstilling:
   url: http://pam-xml-stilling
 sensu:
