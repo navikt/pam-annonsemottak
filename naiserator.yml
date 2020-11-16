@@ -39,6 +39,7 @@ spec:
     sqlInstances:
       - name: pam-annonsemottak
         type: POSTGRES_11
+        tier: db-custom-1-3840
         diskType: SSD
         highAvailability: true
         diskSize: 30
