@@ -70,7 +70,7 @@ finn:
 proxy:
   url:
 xmlstilling:
-  url: http://pam-xml-stilling
+  url: ${XMLSTILLING_URL:http://pam-xml-stilling}
 sensu:
   host: sensu.nais
   port: 3030
