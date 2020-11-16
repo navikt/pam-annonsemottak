@@ -87,3 +87,5 @@ spec:
       value: https://{{ pam_annonsemottak_host }}
     - name: XMLSTILLING_URL
       value: https://{{ pam_xmlstilling_host }}
+    - name: SCHEDULER_ENABLED
+      value: {{ scheduler_enabled }}
