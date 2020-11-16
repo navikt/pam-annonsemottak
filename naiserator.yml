@@ -88,4 +88,4 @@ spec:
     - name: XMLSTILLING_URL
       value: https://{{ pam_xmlstilling_host }}
     - name: SCHEDULER_ENABLED
-      value: {{ scheduler_enabled }}
+      value: "{{ scheduler_enabled }}"
