@@ -76,8 +76,13 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
+        - host: {{ pam_xmlstilling_host }}
+          ports:
+            - port: 443
+              name: https
+              protocol: HTTPS
   env:
     - name: MIGRATION_URL
       value: https://{{ pam_annonsemottak_host }}
     - name: XMLSTILLING_URL
-      value: {{ xmlstilling_url }}
+      value: https://{{ pam_xmlstilling_host }}

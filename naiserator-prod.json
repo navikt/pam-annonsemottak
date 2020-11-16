@@ -1,5 +1,5 @@
 {
   "ingress": ["https://pam-annonsemottak.prod-gcp.nais.io"],
   "pam_annonsemottak_host": "pam-annonsemottak.prod-sbs.nais.io",
-  "xmlstilling_url": "https://pam-xml-stilling.prod-sbs.nais.io"
+  "pam_xmlstilling_host": "pam-xml-stilling.prod-sbs.nais.io"
 }
