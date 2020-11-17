@@ -44,7 +44,7 @@ spec:
         highAvailability: true
         diskSize: 30
         diskAutoresize: true
-        autoBackupTime: "03:00"
+        autoBackupTime: "03:30"
         databases:
           - name: pamannonsemottak
             envVarPrefix: DB
