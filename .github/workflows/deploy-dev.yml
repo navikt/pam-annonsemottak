@@ -24,11 +24,6 @@ jobs:
             ${{ runner.os }}-maven-
       - name: build and test
         run: |
-          git clone https://github.com/navikt/pam-annonsemottak-migration.git
-          cd pam-annonsemottak-migration
-          git checkout main
-          mvn clean install
-          cd ..
           mvn clean install
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v1

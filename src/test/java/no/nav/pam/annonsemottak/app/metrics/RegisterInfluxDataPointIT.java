@@ -58,9 +58,8 @@ public class RegisterInfluxDataPointIT {
         when(meterRegistry.counter(anyString(), any(String.class)))
                 .thenReturn(mock(Counter.class));
 
-        SensuClient sensuClient = new SensuClient("localhost", serverSocket.getLocalPort());
-        InfluxMetricReporter influxMetricReporter = new InfluxMetricReporter(sensuClient);
-        AnnonseMottakProbe probe = new AnnonseMottakProbe(influxMetricReporter, meterRegistry);
+
+        AnnonseMottakProbe probe = new AnnonseMottakProbe(meterRegistry);
 
         probe.newAdPoint(50L, "DEXI", "SOME_WEBPAGE");
 
