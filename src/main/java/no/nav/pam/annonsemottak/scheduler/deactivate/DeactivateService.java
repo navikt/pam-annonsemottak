@@ -1,6 +1,8 @@
 package no.nav.pam.annonsemottak.scheduler.deactivate;
 
 
+import no.nav.pam.annonsemottak.receivers.Kilde;
+import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -50,4 +52,17 @@ public class DeactivateService {
         LOG.info("Deactivated {} ads that have passed their expiry date", expiredAds.size());
         repository.saveAll(expiredAds);
     }
+
+    @Transactional
+    public void stopAds(String source, String medium,Boolean dryRun) {
+        List<Stilling> activeAds = repository.findByKildeAndMediumAndAnnonseStatus(source, medium, AnnonseStatus.AKTIV);
+        LOG.info("Stopping {} ads for source {} and medium {}", activeAds.size(),source, medium);
+        if (dryRun) {
+            LOG.info("Dry run, not saving");
+            return;
+        }
+        activeAds.forEach(Stilling::stopBySystem);
+        repository.saveAll(activeAds);
+    }
+
 }

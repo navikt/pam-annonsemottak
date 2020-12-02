@@ -267,6 +267,13 @@ public class Stilling extends ModelEntity {
         return this;
     }
 
+    // stop and set updatedby system
+    public Stilling stopBySystem() {
+        this.annonseStatus = AnnonseStatus.STOPPET;
+        this.setUpdatedBy("system");
+        return this;
+    }
+
     public Stilling reset() {
         this.saksbehandling.resetSaksbehandler();
         return this;
