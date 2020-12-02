@@ -39,10 +39,7 @@ public class ModelEntity {
             setCreatedBy(userName);
             setCreatedByDisplayName(userDisplayName);
         }
-
         setUpdated(now);
-        setUpdatedBy(userName);
-        setUpdatedByDisplayName(userDisplayName);
     }
 
     public boolean isNew() {
