@@ -69,7 +69,7 @@ public class PolarisConnectorTest {
 
     @Before
     public void init() {
-        polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, new ObjectMapper());
+        polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, "user", "password", new ObjectMapper());
         polarisService = new PolarisService(externalRunService, polarisConnector, annonseFangstService, probe);
 
         wireMockRule.stubFor(get(urlPathMatching(
