@@ -72,19 +72,15 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
-        - host: {{ pam_annonsemottak_host }}
-          ports:
-            - port: 443
-              name: https
-              protocol: HTTPS
         - host: {{ pam_xmlstilling_host }}
           ports:
             - port: 443
               name: https
               protocol: HTTPS
+    inbound:
+      rules:
+        - application: pam-ad
   env:
-    - name: MIGRATION_URL
-      value: https://{{ pam_annonsemottak_host }}
     - name: XMLSTILLING_URL
       value: https://{{ pam_xmlstilling_host }}
     - name: SCHEDULER_ENABLED
