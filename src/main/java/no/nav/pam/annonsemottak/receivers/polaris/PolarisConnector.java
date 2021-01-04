@@ -16,6 +16,7 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.List;
 
 @Component
@@ -26,15 +27,20 @@ public class PolarisConnector {
     private final ObjectMapper objectMapper;
     private final String apiEndpoint;
     private final HttpClientProvider clientProvider;
+    private final String basicAuth;
 
     @Autowired
     public PolarisConnector(
             @Named("proxyHttpClient") final HttpClientProvider clientProvider,
             @Value("${polaris.url}") final String apiEndpoint,
+            @Value("${polaris.user}") final String user,
+            @Value("${polaris.password}") final String password,
             final ObjectMapper jacksonMapper) {
         this.clientProvider = clientProvider;
         this.apiEndpoint = apiEndpoint;
         this.objectMapper = jacksonMapper;
+        String userpluspass = user+":"+password;
+        this.basicAuth = Base64.getEncoder().encodeToString(userpluspass.getBytes());
     }
 
     public boolean isPingSuccessful() {
@@ -49,7 +55,6 @@ public class PolarisConnector {
 
     public List<PolarisAd> fetchData(LocalDateTime lastUpdated) throws IOException {
         String url = apiEndpoint + "?datetime=" + lastUpdated.format(DateTimeFormatter.ISO_DATE_TIME);
-
         return executeRequest(createRequest(url));
     }
 
@@ -66,8 +71,10 @@ public class PolarisConnector {
     }
 
     private Request createRequest(String url) {
+
         return new Request.Builder()
                 .url(url)
+                .addHeader("Authorization", "Basic "+basicAuth)
                 .build();
     }
 }
