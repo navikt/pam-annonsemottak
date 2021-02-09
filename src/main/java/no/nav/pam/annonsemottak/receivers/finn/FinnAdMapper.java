@@ -154,6 +154,11 @@ class FinnAdMapper {
         keyValueMap.put(PropertyNames.KONTAKTINFO, toJsonString(ad.getContacts()));
 
         keyValueMap.entrySet().removeIf(entry -> entry.getValue() == null || entry.getValue().isEmpty());
+
+        if (!keyValueMap.containsKey(PropertyNames.ANTALL_STILLINGER)) {
+                keyValueMap.put(PropertyNames.ANTALL_STILLINGER, "1");
+        }
+
         return keyValueMap;
     }
 
