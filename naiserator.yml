@@ -45,6 +45,9 @@ spec:
         diskSize: 30
         diskAutoresize: true
         autoBackupTime: "03:30"
+        maintenanceWindow:
+          day: 7
+          hour: 23
         databases:
           - name: pamannonsemottak
             envVarPrefix: DB
