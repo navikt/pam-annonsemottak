@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static no.nav.pam.annonsemottak.receivers.amedia.AmediaFieldTransformer.IKKE_OPPGITT;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -2,10 +2,9 @@ package no.nav.pam.annonsemottak.app.metrics;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,19 +30,16 @@ public class RegisterInfluxDataPointIT {
 
     private final String expectedJsonAfterTimestamp = ",\"status\":0}";
 
-    @BeforeClass
+    @BeforeAll
     public static void init() throws IOException {
         serverSocket = new ServerSocket(0);
     }
 
-    @AfterClass
+    @AfterAll
     public static void teardown() throws IOException {
         serverSocket.close();
     }
 
-    @Before
-    public void setUp() {
-    }
 
     private String readFromSocket() throws IOException {
         serverSocket.setSoTimeout(1000);

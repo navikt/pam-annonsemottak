@@ -1,4 +1,4 @@
-FROM navikt/java:12
+FROM navikt/java:14
 COPY target/pam-annonsemottak-*.jar /app/app.jar
 EXPOSE 9016
 COPY scripts/init-env.sh /init-scripts/init-env.sh

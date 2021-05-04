@@ -5,8 +5,8 @@ import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.receivers.fangst.DexiAnnonseFangstService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class DexiServiceTest {
     private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Before
+    @BeforeEach
     public void init() throws IOException {
         //Instantiate mocks
         mockedDexiConnector = mock(DexiConnector.class);

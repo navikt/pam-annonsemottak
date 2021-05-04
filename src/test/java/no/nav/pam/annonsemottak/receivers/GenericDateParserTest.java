@@ -1,8 +1,7 @@
 package no.nav.pam.annonsemottak.receivers;
 
-
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,28 +31,28 @@ public class GenericDateParserTest {
         LocalDateTime date18 = GenericDateParser.parse("19. juli").orElse(null);
         LocalDateTime date19 = GenericDateParser.parse("1 september").orElse(null);
 
-        Assert.assertEquals(compareDate, date1);
-        Assert.assertEquals(compareDate, date2);
-        Assert.assertEquals(compareDate, date3);
-        Assert.assertEquals(compareDate, date4);
-        Assert.assertEquals(compareDate, date5);
-        Assert.assertEquals(compareDate, date6);
-        Assert.assertEquals(compareDate, date7);
-        Assert.assertEquals(compareDate, date11);
-        Assert.assertEquals(compareDate, date12);
-        Assert.assertEquals(compareDate, date13);
-        Assert.assertEquals(compareDate, date14);
-        Assert.assertEquals(LocalDateTime.of(2017, 5, 19, 0, 0), date15);
-        Assert.assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date16);
-        Assert.assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date17);
-        Assert.assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date18);
-        Assert.assertEquals(LocalDateTime.of(LocalDate.now().getYear(), 9, 1, 0, 0), date19);
+        assertEquals(compareDate, date1);
+        assertEquals(compareDate, date2);
+        assertEquals(compareDate, date3);
+        assertEquals(compareDate, date4);
+        assertEquals(compareDate, date5);
+        assertEquals(compareDate, date11);
+        assertEquals(compareDate, date7);
+        assertEquals(compareDate, date12);
+        assertEquals(compareDate, date13);
+        assertEquals(compareDate, date14);
+        assertEquals(LocalDateTime.of(2017, 5, 19, 0, 0), date15);
+        assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date16);
+        assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date17);
+        assertEquals(compareDate.withYear(ZonedDateTime.now().getYear()), date18);
+        assertEquals(LocalDateTime.of(LocalDate.now().getYear(), 9, 1, 0, 0), date19);
+        assertEquals(compareDate, date6);
     }
 
     @Test
     public void shouldNotParse() {
-        Assert.assertFalse(GenericDateParser.parse("Snarest").isPresent());
-        Assert.assertFalse(GenericDateParser.parse("Aktuelle kandidater vil bli kontaktet fortløpende").isPresent());
+        assertFalse(GenericDateParser.parse("Snarest").isPresent());
+        assertFalse(GenericDateParser.parse("Aktuelle kandidater vil bli kontaktet fortløpende").isPresent());
     }
 
 }

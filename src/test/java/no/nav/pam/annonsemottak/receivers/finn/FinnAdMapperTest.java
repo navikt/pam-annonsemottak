@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.io.Reader;

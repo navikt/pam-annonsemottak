@@ -81,7 +81,7 @@ public class StillingRepositoryTest {
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").externalId("ID1").build());
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Adnre stilling").externalId("ID2").build());
 
-        Iterable<Stilling> alleStillinger = stillingRepository.findAll(new Sort(Sort.Direction.ASC, "created"));
+        Iterable<Stilling> alleStillinger = stillingRepository.findAll(Sort.by(Sort.Direction.ASC, "created"));
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
         assertThat(stream(alleStillinger.spliterator(), false).findFirst().get().getTitle(), is(equalTo("Første stilling")));
@@ -92,7 +92,7 @@ public class StillingRepositoryTest {
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").saksbehandler("Truls").externalId("ID1").build());
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Andre stilling").externalId("ID2").build());
 
-        Iterable<Stilling> alleStillinger = stillingRepository.findAll(new Sort(Sort.Direction.ASC, "created"));
+        Iterable<Stilling> alleStillinger = stillingRepository.findAll(Sort.by(Sort.Direction.ASC, "created"));
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
         Stilling hentetStilling = stream(alleStillinger.spliterator(), false).findFirst().get();

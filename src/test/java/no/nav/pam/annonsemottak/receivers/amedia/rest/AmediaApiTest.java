@@ -5,13 +5,12 @@ import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.app.config.TestConfig;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
-import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -31,7 +31,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
@@ -46,13 +46,12 @@ public class AmediaApiTest {
         System.setProperty("DEXI_API_PASSWORD", "");
     }
 
-    @Rule
     public WireMockRule wireMockRule = new WireMockRule(7010);
 
     @Autowired
     protected MockMvc mvc;
 
-    @Before
+    @BeforeEach
     public void initStubs() {
         wireMockRule.stubFor(get(urlMatching(
                 ".*?all"))

@@ -10,16 +10,13 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.api.Condition;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AmediaResponseMapperTest {
 
     private final static InputStream enkeltResultat;
