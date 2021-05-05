@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 

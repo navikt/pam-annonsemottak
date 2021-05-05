@@ -2,8 +2,8 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -32,7 +32,7 @@ public class ExternalRunFacadeTest {
     @Mock
     private Function<LocalDateTime, Stillinger> saveMethodMock;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         externalRun = new ExternalRunFacade(externalRunService);

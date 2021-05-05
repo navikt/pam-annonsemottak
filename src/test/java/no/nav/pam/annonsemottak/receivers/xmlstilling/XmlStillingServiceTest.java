@@ -3,8 +3,8 @@ package no.nav.pam.annonsemottak.receivers.xmlstilling;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class XmlStillingServiceTest {
     private StillingRepositoryFacade stillingRepository = mock(StillingRepositoryFacade.class);
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         service = new XmlStillingService(connector, externalRun, stillingRepository, probe);
 

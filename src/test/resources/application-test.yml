@@ -13,8 +13,6 @@ spring:
       ddl-auto: none
   main:
     allow-bean-definition-overriding: true
-  profiles:
-    active: test
 management:
   metrics:
     export:

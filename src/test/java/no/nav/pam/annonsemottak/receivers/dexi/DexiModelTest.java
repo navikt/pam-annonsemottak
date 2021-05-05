@@ -4,9 +4,9 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
@@ -18,14 +18,14 @@ public class DexiModelTest {
 
     private static Level original;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         Logger logger = ((Logger) LoggerFactory.getLogger(DexiModel.class));
         original = logger.getLevel();
         logger.setLevel(Level.ERROR);
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         ((Logger) LoggerFactory.getLogger(DexiModel.class)).setLevel(original);
     }

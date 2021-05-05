@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.XmlStillingMapper.STILLINGSTITTEL_ER_IKKE_SATT;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.XmlStillingMapper.fromDto;

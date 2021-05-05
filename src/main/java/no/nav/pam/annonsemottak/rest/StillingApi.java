@@ -11,6 +11,7 @@ import no.nav.pam.annonsemottak.rest.payloads.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +25,10 @@ import java.util.stream.Collectors;
 
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodePageRequest.withPageRequest;
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodeSpecification.withSpecification;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 
 @RestController
 @RequestMapping(PathDefinition.STILLINGER)
@@ -194,7 +195,7 @@ public class StillingApi {
                 probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 1, 0, 0, 0);
             }
             Stilling adEntity = stillingRepository.save(nyStilling);
-            Link linkToCreatedResouce = linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();
+            Link linkToCreatedResouce = WebMvcLinkBuilder.linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();
 
             LOG.info("Created ad as resource {}", linkToCreatedResouce.getHref());
             return ResponseEntity

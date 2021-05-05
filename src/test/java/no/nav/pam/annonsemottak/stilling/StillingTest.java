@@ -1,7 +1,8 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import no.nav.pam.annonsemottak.receivers.Kilde;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -85,23 +86,13 @@ public class StillingTest {
         assertThat(stillingUnderArbeid.getSaksbehandler(), is(equalTo(Optional.empty())));
     }
 
-    @Test(expected = IllegalSaksbehandlingCommandException.class)
+    @Test
     public void det_skal_ikke_være_mulig__å_sette_status_UNDER_ARBEID_uten_at_saksbehandler_er_angitt()
             throws Exception {
         Stilling nyStilling = enkelStilling().build();
         Map<String, String> map = new HashMap<>();
         map.put(STATUS, Status.UNDER_ARBEID.getKodeAsString());
-        nyStilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map));
-    }
-
-    @Test(expected = IllegalSaksbehandlingCommandException.class)
-    public void det_skal_ikke_være_mulig_å_godkjenne_en_annonse_med_merknad()
-            throws Exception {
-        Stilling nyStilling = enkelStilling().build();
-        Map<String, String> map = new HashMap<>();
-        map.put(STATUS, Status.GODKJENT.getKodeAsString());
-        map.put(MERKNADER, "1");
-        nyStilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map));
+        Assertions.assertThrows(IllegalSaksbehandlingCommandException.class, ()-> nyStilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map)));
     }
 
     @Test
@@ -142,13 +133,13 @@ public class StillingTest {
         assertThat(nyStilling.getMerknader(), is(equalTo(Merknader.ofNullable("1"))));
     }
 
-    @Test(expected = IllegalSaksbehandlingCommandException.class)
+    @Test
     public void det_skal_ikke_være_mulig_å_avvise_en_annonse_uten_merknad()
             throws Exception {
         Stilling nyStilling = enkelStilling().build();
         Map<String, String> map = new HashMap<>();
         map.put(STATUS, Status.AVVIST.getKodeAsString());
-        nyStilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map));
+        Assertions.assertThrows(IllegalSaksbehandlingCommandException.class, ()->nyStilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map)));
     }
 
     @Test
@@ -173,7 +164,7 @@ public class StillingTest {
         assertThat(stilling.getSaksbehandler().isPresent(), is(false));
     }
 
-    @Test(expected = IllegalSaksbehandlingCommandException.class)
+    @Test
     public void cannotChangeSaksbehandlerIfSaksbehandlerIsAlreadySetToAnotherSaksbehandler()
             throws Exception {
         Stilling stilling = enkelStilling()
@@ -181,7 +172,7 @@ public class StillingTest {
                 .build();
         Map<String, String> changes = new HashMap<>(1);
         changes.put(SAKSBEHANDLER, "New Saksbehandler");
-        stilling.oppdaterMed(new OppdaterSaksbehandlingCommand(changes));
+        Assertions.assertThrows(IllegalSaksbehandlingCommandException.class, ()->stilling.oppdaterMed(new OppdaterSaksbehandlingCommand(changes)));
     }
 
     @Test

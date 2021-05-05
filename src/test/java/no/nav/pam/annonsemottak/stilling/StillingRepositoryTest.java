@@ -2,14 +2,14 @@ package no.nav.pam.annonsemottak.stilling;
 
 import no.nav.pam.annonsemottak.Application;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Rollback
 @Transactional
@@ -81,7 +81,7 @@ public class StillingRepositoryTest {
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").externalId("ID1").build());
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Adnre stilling").externalId("ID2").build());
 
-        Iterable<Stilling> alleStillinger = stillingRepository.findAll(new Sort(Sort.Direction.ASC, "created"));
+        Iterable<Stilling> alleStillinger = stillingRepository.findAll(Sort.by(Sort.Direction.ASC, "created"));
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
         assertThat(stream(alleStillinger.spliterator(), false).findFirst().get().getTitle(), is(equalTo("Første stilling")));
@@ -92,7 +92,7 @@ public class StillingRepositoryTest {
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").saksbehandler("Truls").externalId("ID1").build());
         stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Andre stilling").externalId("ID2").build());
 
-        Iterable<Stilling> alleStillinger = stillingRepository.findAll(new Sort(Sort.Direction.ASC, "created"));
+        Iterable<Stilling> alleStillinger = stillingRepository.findAll(Sort.by(Sort.Direction.ASC, "created"));
 
         assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
         Stilling hentetStilling = stream(alleStillinger.spliterator(), false).findFirst().get();

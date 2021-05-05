@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.xmlstilling;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 

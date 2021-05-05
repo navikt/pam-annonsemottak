@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.rest.payloads;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static junit.framework.TestCase.assertEquals;
 

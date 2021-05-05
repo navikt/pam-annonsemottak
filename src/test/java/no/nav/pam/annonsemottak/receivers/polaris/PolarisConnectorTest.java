@@ -11,17 +11,19 @@ import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -37,7 +39,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @MockBean(StillingRepository.class)
 @Transactional
@@ -45,8 +47,7 @@ import static org.mockito.Mockito.mock;
 @ActiveProfiles("test")
 public class PolarisConnectorTest {
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(7012);
+    public static WireMockRule wireMockRule;
 
     @Inject
     @Named("internalHttpClient")
@@ -67,19 +68,30 @@ public class PolarisConnectorTest {
 
     private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
 
-    @Before
-    public void init() {
+    @BeforeEach
+    public void setup() {
         polarisConnector = new PolarisConnector(httpClientProvider, apiEndpoint, "user", "password", new ObjectMapper());
         polarisService = new PolarisService(externalRunService, polarisConnector, annonseFangstService, probe);
 
+    }
+
+    @BeforeAll
+    public static void init() {
+        wireMockRule = new WireMockRule(7012);
         wireMockRule.stubFor(get(urlPathMatching(
                 "/api/nav.json"))
                 .willReturn(aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody(getMockPolarisResponse("result"))));
+        wireMockRule.start();
     }
 
-    private String getMockPolarisResponse(String fil) {
+    @AfterAll
+    public static void stop() {
+        wireMockRule.stop();
+    }
+
+    private static String getMockPolarisResponse(String fil) {
         return new BufferedReader(
                 new InputStreamReader(PolarisConnectorTest.class.getClassLoader()
                         .getResourceAsStream("polaris.samples/" + fil + ".json")))

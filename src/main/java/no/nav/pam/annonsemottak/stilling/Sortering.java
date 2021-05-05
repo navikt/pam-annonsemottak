@@ -25,7 +25,7 @@ public class Sortering {
     }
 
     public Sort asSort() {
-        return new Sort(direction(), orderBy.propertyName());
+        return Sort.by(direction(), orderBy.propertyName());
     }
 
     private Sort.Direction direction() {

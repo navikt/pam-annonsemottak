@@ -4,8 +4,8 @@ package no.nav.pam.annonsemottak.scheduler.deactivate;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +41,6 @@ public class DeactivateServiceTest {
         service.deactivateExpired();
 
         List<Stilling> expired = ads.stream().filter(s -> s.getAnnonseStatus().equals(AnnonseStatus.INAKTIV)).collect(Collectors.toList());
-        Assert.assertEquals(1, expired.size());
+        Assertions.assertEquals(1, expired.size());
     }
 }

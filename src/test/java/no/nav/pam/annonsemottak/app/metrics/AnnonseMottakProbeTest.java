@@ -2,8 +2,8 @@ package no.nav.pam.annonsemottak.app.metrics;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -15,7 +15,7 @@ public class AnnonseMottakProbeTest {
 
     private AnnonseMottakProbe annonseMottakProbe = new AnnonseMottakProbe(meterRegistry);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         when(meterRegistry.counter(anyString(), any(String.class)))
                 .thenReturn(mock(Counter.class));
