@@ -23,7 +23,7 @@ jobs:
             ${{ runner.os }}-maven-
       - uses: actions/checkout@v1
       - name: build and test
-        run: ./mvnw clean install
+        run:  mvn clean install
       - name: build and push docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
