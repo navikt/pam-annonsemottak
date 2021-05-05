@@ -49,9 +49,6 @@ import java.util.concurrent.TimeUnit;
 @ComponentScan(basePackageClasses = {Application.class})
 public class AppConfig {
 
-    @Value("${proxy.url}")
-    private URL proxyUrl;
-
     @Bean
     public FilterRegistrationBean headerFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();

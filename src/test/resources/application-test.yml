@@ -42,8 +42,6 @@ finn:
   url: https://localhost:7011
   api:
     password: finn_api_key
-proxy:
-  url: http://155.55.60.117:8088
 solr:
   url: http://localhost.solr
   core: 'maincore'
