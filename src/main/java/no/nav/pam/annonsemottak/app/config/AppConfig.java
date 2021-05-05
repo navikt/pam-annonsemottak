@@ -102,7 +102,7 @@ public class AppConfig {
     }
 
     @Bean
-    public HttpClientProvider getUnsafeClientUtenProxy() {
+    public HttpClientProvider getClientUtenProxy() {
         try {
 
             X509TrustManager trustAllX509Manager = mockX509TrustManager();
