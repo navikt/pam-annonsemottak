@@ -32,7 +32,7 @@ public class AmediaConnector {
     private final HttpClientProvider clientProvider;
 
     public AmediaConnector(
-            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            final HttpClientProvider clientProvider,
             final AmediaUrl url,
             @Value("${amedia.apikey}") final String apiKey,
             final ObjectMapper jacksonMapper) {

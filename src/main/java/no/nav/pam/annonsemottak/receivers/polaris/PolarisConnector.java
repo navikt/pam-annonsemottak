@@ -31,7 +31,7 @@ public class PolarisConnector {
 
     @Autowired
     public PolarisConnector(
-            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            final HttpClientProvider clientProvider,
             @Value("${polaris.url}") final String apiEndpoint,
             @Value("${polaris.user}") final String user,
             @Value("${polaris.password}") final String password,

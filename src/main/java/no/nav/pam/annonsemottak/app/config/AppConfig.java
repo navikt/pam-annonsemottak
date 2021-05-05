@@ -94,24 +94,6 @@ public class AppConfig {
         return objectMapper;
     }
 
-    @Bean("proxyHttpClient")
-    // TODO: Using trustall for the client, until we move the app to NAIS. What could possible go wrong?
-    public HttpClientProvider getUnsafeClient()
-            throws GeneralSecurityException {
-
-        X509TrustManager trustAllX509Manager = mockX509TrustManager();
-        SSLContext sc = getSslContext(trustAllX509Manager);
-        OkHttpClient client = new OkHttpClient()
-                .newBuilder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .sslSocketFactory(sc.getSocketFactory(), trustAllX509Manager)
-                .hostnameVerifier((s, sslSession) -> true)
-                .proxy(proxyUrl == null ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())))
-                .build();
-        return new HttpClientProvider(client);
-
-    }
-
     private SSLContext getSslContext(X509TrustManager trustAllX509Manager)
             throws NoSuchAlgorithmException, KeyManagementException {
         SSLContext sc = SSLContext.getInstance("SSL");
@@ -119,7 +101,7 @@ public class AppConfig {
         return sc;
     }
 
-    @Bean("internalHttpClient")
+    @Bean
     public HttpClientProvider getUnsafeClientUtenProxy() {
         try {
 

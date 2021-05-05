@@ -69,8 +69,6 @@ finn:
   url: https://cache.api.finn.no/iad
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}
-proxy:
-  url:
 xmlstilling:
   url: ${XMLSTILLING_URL:http://pam-xml-stilling}
 sensu:

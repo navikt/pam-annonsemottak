@@ -35,7 +35,7 @@ public class FinnConnector {
     private final int politeRequestDelayInMillis;
 
     public FinnConnector(
-            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            final HttpClientProvider clientProvider,
             @Value("${finn.url}") final String serviceDocumentUrl,
             @Value("${finn.api.password}") final String apiKey,
             @Value("${finn.polite.delay.millis:200}") final int politeRequestDelayInMillis) {

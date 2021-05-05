@@ -36,7 +36,7 @@ class XmlStillingConnector {
 
     @Inject
     XmlStillingConnector(
-            @Named("internalHttpClient") final HttpClientProvider proxy,
+            final HttpClientProvider proxy,
             final EndpointProvider uri) {
 
         this.proxy = proxy;
