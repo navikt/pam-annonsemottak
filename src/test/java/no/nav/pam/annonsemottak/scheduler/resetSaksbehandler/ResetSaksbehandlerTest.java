@@ -4,8 +4,8 @@ import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Status;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,12 +32,12 @@ public class ResetSaksbehandlerTest {
         ResetSaksbehandlerService service = new ResetSaksbehandlerService(mockedStillingRepository);
 
         List<Stilling> beforeReset = filterStillingWithNoSaksbehandlerAndStatus(ads);
-        Assert.assertEquals(1, beforeReset.size());
+        Assertions.assertEquals(1, beforeReset.size());
 
         service.resetSaksbehandler();
 
         List<Stilling> afterReset = filterStillingWithNoSaksbehandlerAndStatus(ads);
-        Assert.assertEquals(2, afterReset.size());
+        Assertions.assertEquals(2, afterReset.size());
 
         afterReset.stream().filter(s -> s.getSaksbehandler().isPresent());
     }

@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Optional;

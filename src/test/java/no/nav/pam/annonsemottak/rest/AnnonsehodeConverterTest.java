@@ -4,7 +4,7 @@ import no.nav.pam.annonsemottak.stilling.Merknader;
 import no.nav.pam.annonsemottak.stilling.OppdaterSaksbehandlingCommand;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.rest.payloads.AnnonsehodePayload;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,8 +7,8 @@ import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import java.time.LocalDateTime;
@@ -28,7 +28,7 @@ public class FinnServiceTest {
     private AnnonseMottakProbe probe = mock(AnnonseMottakProbe.class);
 
 
-    @Before
+    @BeforeEach
     public void init() {
         mockedConnector = mock(FinnConnector.class);
         mockedExternalRunService = mock(ExternalRunService.class);

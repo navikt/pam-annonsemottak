@@ -7,7 +7,7 @@ import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;

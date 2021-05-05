@@ -5,8 +5,8 @@ import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -21,7 +21,6 @@ import java.util.stream.IntStream;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Optional.empty;
-import static no.nav.pam.annonsemottak.receivers.Kilde.STILLINGSOLR;
 import static no.nav.pam.annonsemottak.receivers.Kilde.XML_STILLING;
 import static no.nav.pam.annonsemottak.receivers.xmlstilling.Stillinger.Gruppe.*;
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -48,7 +47,7 @@ public class StillingRepositoryFacadeTest {
     @Mock
     private StillingRepository repository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         facade = new StillingRepositoryFacade(repository);

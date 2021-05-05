@@ -4,11 +4,12 @@ import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class XmlStillingConnectorTest {
 
     private XmlStillingConnector connector;
@@ -27,8 +28,8 @@ public class XmlStillingConnectorTest {
 
     private EndpointProvider endpointProvider = mock(EndpointProvider.class);
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    public  void setUp() {
         server = new MockWebServer();
         HttpClientProvider clientProxy = new HttpClientProvider(new OkHttpClient().newBuilder().build());
         connector = new XmlStillingConnector(clientProxy, endpointProvider);
@@ -47,7 +48,7 @@ public class XmlStillingConnectorTest {
 
     }
 
-    @After
+    @AfterEach
     public void shutdown() throws IOException {
         server.shutdown();
     }

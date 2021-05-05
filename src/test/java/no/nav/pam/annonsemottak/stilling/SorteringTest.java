@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Sort;
 
 import static org.hamcrest.CoreMatchers.equalTo;

@@ -1,6 +1,8 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -32,10 +34,10 @@ public class StatusTest {
         assertThat(Status.valueOfStatuskode("4"), is(equalTo(Status.FJERNET)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void ukjent_statuskode_skal_gi_exception() {
         String ukjentStatus = Integer.toString(Status.values().length + 1);
-        Status.valueOfStatuskode(ukjentStatus);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> Status.valueOfStatuskode(ukjentStatus));
     }
 
 }

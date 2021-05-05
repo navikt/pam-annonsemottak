@@ -8,6 +8,8 @@ import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,13 +48,14 @@ public class AmediaApiTest {
         System.setProperty("DEXI_API_PASSWORD", "");
     }
 
-    public WireMockRule wireMockRule = new WireMockRule(7010);
+    public static WireMockRule wireMockRule;
 
     @Autowired
     protected MockMvc mvc;
 
-    @BeforeEach
-    public void initStubs() {
+    @BeforeAll
+    public static void initStubs() {
+        wireMockRule = new WireMockRule(7010);
         wireMockRule.stubFor(get(urlMatching(
                 ".*?all"))
                 .willReturn(aResponse().withStatus(200)
@@ -64,13 +67,19 @@ public class AmediaApiTest {
                 .willReturn(aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
                         .withBody(getMockResponse("enkeltResultat"))));
+        wireMockRule.start();
     }
 
-    private String getMockResponse(String fil) {
+    private static String getMockResponse(String fil) {
         return new BufferedReader(
                 new InputStreamReader(AmediaResponseMapperTest.class.getClassLoader()
                         .getResourceAsStream("amedia.io.samples/" + fil + ".json")))
                 .lines().collect(Collectors.joining("\n"));
+    }
+
+    @AfterAll
+    public static void stopWireMock() {
+        wireMockRule.stop();
     }
 
     /*
