@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class FinnService {
     private static final Logger LOG = LoggerFactory.getLogger(FinnService.class);
 
-    private static final String[] KNOWN_COLLECTIONS = {"job-full-time", "job-part-time", "job-management"};
+    public static final String[] KNOWN_COLLECTIONS = {"job-full-time", "job-part-time", "job-management"};
 
     private final FinnConnector connector;
     private final AnnonseFangstService finnAnnonseFangstService;

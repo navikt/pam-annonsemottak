@@ -3,14 +3,12 @@ package no.nav.pam.annonsemottak.receivers.amedia.rest;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
-import no.nav.pam.annonsemottak.app.config.TestConfig;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = TestConfig.class)
 @ActiveProfiles("test")
 public class AmediaApiTest {
 

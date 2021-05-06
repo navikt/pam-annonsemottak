@@ -33,7 +33,7 @@ public class DexiConnector {
 
     @Autowired
     public DexiConnector(
-            @Named("proxyHttpClient") final HttpClientProvider clientProvider,
+            final HttpClientProvider clientProvider,
             @Value("${dexi.api.username}") final String dexiAccount,
             @Value("${dexi.api.password}") final String dexiApikey,
             @Value("${dexi.url}") final String dexiEndpoint,
