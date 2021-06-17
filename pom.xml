@@ -18,7 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.34.48</flexmark.version>
         <logback.version>1.2.0</logback.version>
-        <httpclient.version>4.5.3</httpclient.version>
+        <httpclient.version>4.5.7</httpclient.version>
         <wiremock.version>2.23.2</wiremock.version>
         <assertj.version>3.7.0</assertj.version>
         <shedlock.version>2.2.0</shedlock.version>
