@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: build and test
-        run: ./gradlew test build
+        run: mvn clean install
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v2
         env:
