@@ -80,7 +80,7 @@ public class PolarisService {
 
     private boolean isOneOfFiltered(PolarisAd ad){
         return StringUtils.isNotEmpty(ad.externalSystemUrl)
-                && ad.externalSystemUrl.contains("jobbnorge");
+                && (ad.externalSystemUrl.contains("jobbnorge") || ad.externalSystemUrl.contains("easycruit") || ad.externalSystemUrl.contains("recman"));
     }
 
 }

@@ -110,8 +110,8 @@ public class PolarisConnectorTest {
 
         ResultsOnSave result = polarisService.fetchAndSaveLatest();
 
-        assertEquals(21, result.getReceived());
-        assertEquals(21, result.getSaved());
+        assertEquals(19, result.getReceived());
+        assertEquals(19, result.getSaved());
 
         assertNotNull(externalRunService.findLastRunForRunName(Kilde.POLARIS.value()));
     }
