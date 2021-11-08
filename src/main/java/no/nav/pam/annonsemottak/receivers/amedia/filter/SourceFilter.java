@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 class SourceFilter extends StillingFilter {
 
-    private static List<String> exclude_source = Arrays.asList("recman", "easycruit");
+    private static List<String> exclude_source = Arrays.asList("recman", "easycruit", "jobbnorge");
 
     private static final Predicate<Stilling> FILTER_SOURCE =
         s -> (s.getUrl()!=null && isOneOfSource(s.getUrl()));
