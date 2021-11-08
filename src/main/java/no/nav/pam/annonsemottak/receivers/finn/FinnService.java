@@ -130,7 +130,8 @@ public class FinnService {
                 || adEmployerContainsName(stilling, "oslomet")
                 || adLinkSContainsName(stilling, "webcruiter")
                 || adLinkSContainsName(stilling, "jobbnorge")
-                || adLinkSContainsName(stilling, "recman"));
+                || adLinkSContainsName(stilling, "recman")
+                || adLinkSContainsName(stilling, "easycruit"));
     }
 
     private boolean adEmployerContainsName(Stilling stilling, String employerName) {
