@@ -10,10 +10,10 @@ spec:
   port: 9016
   liveness:
     path: /isAlive
-    initialDelay: 60
+    initialDelay: 20
   readiness:
     path: /isReady
-    initialDelay: 60
+    initialDelay: 20
   replicas:
     min: 2
     max: 2
