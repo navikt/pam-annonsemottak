@@ -80,14 +80,16 @@ public class HtmlToMarkdownConverterTest {
                 "\n" +
                 "Stillingen har 20 % administrasjonstid i forbindelse med fagansvar.\n" +
                 "\n" +
-                "**Arbeidsoppgaver:**\n\n" +
+                "**Arbeidsoppgaver:**\n" +
+                "\n" +
                 "* Målrettet pleie og omsorg til pasientene ved skjermet enhet.\n" +
                 "* Fagansvar på skjermet enhet\n" +
                 "* Medisinansvar\n" +
                 "* Dokumentasjon\n" +
                 "* Stedfortreder for seksjonsleder ved sykehjemmet\n" +
                 "\n" +
-                "**Kvalifikasjonskrav:**\n\n" +
+                "**Kvalifikasjonskrav:**\n" +
+                "\n" +
                 "* Offentlig godkjent sykepleier med gjennomført ABC demens\n" +
                 "* Gode datakunnskaper\n" +
                 "* Må beherske skriftlig og muntlig norsk\n" +
@@ -104,7 +106,8 @@ public class HtmlToMarkdownConverterTest {
                 "\n" +
                 "Tilsetting skjer etter vanlig kommunale vilkår i samsvar med lov- og avtaleverk. Medlemskap i KLP. Lønn etter avtale. Som rekrutteringstiltak tilbyr Gjemnes kommune 10. års ansiennitet ved tiltredelse. Politiattest kreves.\n" +
                 "\n" +
-                "**Kontaktpersoner:** Nærmere opplysninger omkring stillingen kan du få ved å kontakte seksjonsleder Te 71291173/97546702\n";
+                "**Kontaktpersoner:**Nærmere opplysninger omkring stillingen kan du få ved å kontakte seksjonsleder Te 71291173/97546702\n";
+
 
         assertEquals(expected, HtmlToMarkdownConverter.parse(fragment));
     }
@@ -112,7 +115,8 @@ public class HtmlToMarkdownConverterTest {
     @Test
     public void should_parse_sample_html_2() {
         String fragment = "<div> Kvalifikasjonskrav:</div> <ul> <li> Utdanning som minimum barnevernspedagog eller sosionom&nbsp;</li> <li> Oppdatert kompetanse frå arbeid i kommunalt barnevern&nbsp;&nbsp;</li> <li> God kjennskap til Lov om barnevernstenester og anna relevant lovverk.</li> <li> Anna relevant praksis.</li> <li> Gode datakunnskapar.</li> <li> Førarkort klasse B</li> </ul> <div> Vi legg vekt på:</div> <ul> <li> God skriftleg og munnleg framstillingsevne</li> <li> Personlege eigenskapar som til dømes evne til samarbeid og kommunikasjon&nbsp;</li> <li> Evne til å arbeide både i team og sjølvstendig</li> <li> Evne til å bidra i ein lærande organisasjon</li> </ul> <div> Vi tilbyr:</div> <ul> <li> løn etter avtale i høve til kvalifikasjonar og kompetanse</li> <li> spennande utfordringar i eit utviklingsorientert miljø&nbsp;&nbsp;</li> <li> systematisk rettleiing</li> <li> løysingsorientert organisasjonskultur bygd på tillit og handlingsrom&nbsp;</li> <li> inkluderande arbeidslivsverksemd</li> <li> god pensjonsordning i KLP</li> </ul> <div> For nærare opplysningar ta kontakt med barnevernsjef Brynhild Solvang eller fagteamleiar Aina Øyehaug Opsvik</div> <div> &nbsp;</div> <div> <strong>Søknadsfrist: 24.11.17.&nbsp;</strong>ID 907</div> <div> &nbsp;</div> <div> Personlege eigenskapar vert tillagt stor vekt.</div> <div> &nbsp;</div> <div> Aktuelle søkarar vert innkalla til intervju.</div> <div> &nbsp;</div> <div> Volda kommune har god offentleg pensjonsordning i KLP</div> <div> &nbsp;</div> <div> Kommunen har nynorsk som administrasjonsspråk.<br> <br> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> Vi ber deg nytte det elektroniske søknadsskjemaet som du finn i lenke til høgre på sida,<br> eller her:&nbsp;<a class=\"InnholdLinkTekst InnholdLinkTekst \" href=\"https://kommune24-7.no/1519/bruker?retur=%2f1519%2f703102&amp;shortname=703102\" style=\"color: rgb(31, 124, 190); font-size: 0.9em;\">søknadskjema ledig stilling</a></div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> &nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> CV må fyllast ut i søknaden.<br> &nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> Attester og vitnemål skal leverast på førespurnad.&nbsp;</div> <div style=\"font-family: Arial, Helvetica, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);\"> &nbsp;</div> </div> <div> <strong>Om offentlege søkjarliste</strong></div> <div> I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.&nbsp;</div> <div> &nbsp;</div> ";
-        String expected = "Kvalifikasjonskrav:\n\n" +
+        String expected = "Kvalifikasjonskrav:\n" +
+                "\n" +
                 "* Utdanning som minimum barnevernspedagog eller sosionom\n" +
                 "* Oppdatert kompetanse frå arbeid i kommunalt barnevern\n" +
                 "* God kjennskap til Lov om barnevernstenester og anna relevant lovverk.\n" +
@@ -120,13 +124,15 @@ public class HtmlToMarkdownConverterTest {
                 "* Gode datakunnskapar.\n" +
                 "* Førarkort klasse B\n" +
                 "\n" +
-                "Vi legg vekt på:\n\n" +
+                "Vi legg vekt på:\n" +
+                "\n" +
                 "* God skriftleg og munnleg framstillingsevne\n" +
                 "* Personlege eigenskapar som til dømes evne til samarbeid og kommunikasjon\n" +
                 "* Evne til å arbeide både i team og sjølvstendig\n" +
                 "* Evne til å bidra i ein lærande organisasjon\n" +
                 "\n" +
-                "Vi tilbyr:\n\n" +
+                "Vi tilbyr:\n" +
+                "\n" +
                 "* løn etter avtale i høve til kvalifikasjonar og kompetanse\n" +
                 "* spennande utfordringar i eit utviklingsorientert miljø\n" +
                 "* systematisk rettleiing\n" +
@@ -134,19 +140,19 @@ public class HtmlToMarkdownConverterTest {
                 "* inkluderande arbeidslivsverksemd\n" +
                 "* god pensjonsordning i KLP\n" +
                 "\n" +
-                "For nærare opplysningar ta kontakt med barnevernsjef Brynhild Solvang eller fagteamleiar Aina Øyehaug Opsvik\n" +
-                "**Søknadsfrist: 24.11.17.** ID 907\n" +
-                "Personlege eigenskapar vert tillagt stor vekt.\n" +
-                "Aktuelle søkarar vert innkalla til intervju.\n" +
-                "Volda kommune har god offentleg pensjonsordning i KLP\n" +
+                "For nærare opplysningar ta kontakt med barnevernsjef Brynhild Solvang eller fagteamleiar Aina Øyehaug Opsvik  \n" +
+                "**Søknadsfrist: 24.11.17.**ID 907  \n" +
+                "Personlege eigenskapar vert tillagt stor vekt.  \n" +
+                "Aktuelle søkarar vert innkalla til intervju.  \n" +
+                "Volda kommune har god offentleg pensjonsordning i KLP  \n" +
                 "Kommunen har nynorsk som administrasjonsspråk.  \n" +
                 "\n" +
                 "Vi ber deg nytte det elektroniske søknadsskjemaet som du finn i lenke til høgre på sida,  \n" +
-                "eller her: [søknadskjema ledig stilling](https://kommune24-7.no/1519/bruker?retur=%2f1519%2f703102&shortname=703102)\n" +
+                "eller her: [søknadskjema ledig stilling](https://kommune24-7.no/1519/bruker?retur=%2f1519%2f703102&shortname=703102)  \n" +
                 "CV må fyllast ut i søknaden.  \n" +
-                "Attester og vitnemål skal leverast på førespurnad.\n" +
-                "**Om offentlege søkjarliste**\n" +
-                "I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.\n";
+                "Attester og vitnemål skal leverast på førespurnad.  \n" +
+                "**Om offentlege søkjarliste**  \n" +
+                "I samsvar med offentleglova § 25, kan opplysningar om søkjar bli unnateke i offentleg søkjarliste, dersom søkjaren sjølv bed om det. Søkjarar som ønskjer at namn skal vere unnateke offentleg søkjarliste, skal grunngje dette. Kommunen er pliktig til å vurdere meiroffentlegheit og vi gjer ei konkret vurdering av søkjar sitt ønskje om fritak - opp mot dei omsyn som talar for offentlegheit. Om kommunen meinar at grunngjevinga for fritak ikkje er tilstrekkeleg, vil søkjar bli kontakta slik at det er mogleg å trekkje søknaden før endeleg søkarliste blir laga.  \n";
         assertEquals(expected, HtmlToMarkdownConverter.parse(fragment));
     }
 
@@ -172,7 +178,8 @@ public class HtmlToMarkdownConverterTest {
                 "&lt;li>Det er en fordel om du har erfaring med C#, Java eller NodeJS, samt EPiServer og skytjenester&lt;/li>" +
                 "&lt;li>God på dialog og samarbeid&lt;/li>&lt;/ul>&lt;p>";
 
-        String expectedMarkup = "**Kvalifikasjoner:**\n\n" +
+        String expectedMarkup = "**Kvalifikasjoner:**\n" +
+                "\n" +
                 "* Erfaring med ReactJS eller andre Javascriptbibliotek\n" +
                 "* Erfaring med eller kjennskap til Google Analytics\n" +
                 "* God forståelse for brukervennlighet, universell utforming og responsivt design\n" +
@@ -180,7 +187,10 @@ public class HtmlToMarkdownConverterTest {
                 "* God skriftlig og muntlig fremstillingsevne på norsk\n" +
                 "* Høyere utdannelse er en fordel\n" +
                 "* Det er en fordel om du har erfaring med C#, Java eller NodeJS, samt EPiServer og skytjenester\n" +
-                "* God på dialog og samarbeid\n\n";
+                "* God på dialog og samarbeid\n" +
+                "\n" +
+                "\n" +
+                "\n";
 
 
         String converted = HtmlToMarkdownConverter.parse(semiEscapedHtml);
@@ -192,11 +202,13 @@ public class HtmlToMarkdownConverterTest {
         String s = "&lt;p>&lt;strong>Hos oss vil du møte et profesjonelt fagmiljø i en positiv og hektisk hverdag. Vi har et uformelt arbeidsmiljø hvor trivsel og høy aktivitet er i fokus. Vi jobber aktivt med HMS og har mål om null skader på arbeidsplassen. Vi har en ny og godt vedlikeholdt maskinpark og investerer kontinuerlig i nytt utstyr.&lt;/strong>&lt;/p>&lt;p>&lt;strong>Arbeidsoppgaver:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Reparasjon og vedlikehold av diverse stillasmateriell&lt;/li>&lt;li>Lagerarbeid&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;p>&lt;strong>Vi ønsker følgende kvalifikasjoner og egenskaper:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Erfaring fra lagerarbeid&lt;/li>&lt;li>Erfaring fra sveisearbeid er ønskelig&lt;/li>&lt;li>Truckførerbevis&lt;/li>&lt;li>Gode språkkunnskaper i norsk eller engelsk&lt;/li>&lt;li>Evne til å takle en hektisk arbeidshverdag&lt;/li>&lt;li>God til å samarbeide og skape et godt arbeidsmiljø&lt;/li>&lt;li>Positiv og engasjert&lt;/li>&lt;/ul>&lt;p>&lt;br />&lt;strong>Vi tilbyr:&lt;/strong>&lt;/p>&lt;ul>&lt;li>Profesjonelt fagmiljø&lt;/li>&lt;li>Faglig utviklingsmuligheter&lt;/li>&lt;li>Et selskap i vekst&lt;/li>&lt;li>Konkurransedyktige betingelser&lt;/li>&lt;li>Gode pensjons- og forsikringsordninger&lt;/li>&lt;li>Aksjespareprogram&lt;/li>&lt;li>Firmahytter&lt;/li>&lt;li>Bonusordning&lt;/li>&lt;/ul>&lt;p> &lt;/p>&lt;p>Dersom dette høres interessant ut, ser vi frem til å motta din CV og søknad snarest.&lt;/p>&lt;p> &lt;/p>&lt;p> &lt;/p>";
         String expected = "**Hos oss vil du møte et profesjonelt fagmiljø i en positiv og hektisk hverdag. Vi har et uformelt arbeidsmiljø hvor trivsel og høy aktivitet er i fokus. Vi jobber aktivt med HMS og har mål om null skader på arbeidsplassen. Vi har en ny og godt vedlikeholdt maskinpark og investerer kontinuerlig i nytt utstyr.**\n" +
                 "\n" +
-                "**Arbeidsoppgaver:**\n\n" +
+                "**Arbeidsoppgaver:**\n" +
+                "\n" +
                 "* Reparasjon og vedlikehold av diverse stillasmateriell\n" +
                 "* Lagerarbeid\n" +
                 "\n" +
-                "**Vi ønsker følgende kvalifikasjoner og egenskaper:**\n\n" +
+                "**Vi ønsker følgende kvalifikasjoner og egenskaper:**\n" +
+                "\n" +
                 "* Erfaring fra lagerarbeid\n" +
                 "* Erfaring fra sveisearbeid er ønskelig\n" +
                 "* Truckførerbevis\n" +
@@ -204,8 +216,11 @@ public class HtmlToMarkdownConverterTest {
                 "* Evne til å takle en hektisk arbeidshverdag\n" +
                 "* God til å samarbeide og skape et godt arbeidsmiljø\n" +
                 "* Positiv og engasjert\n" +
-                "\n\n\n" +
-                "**Vi tilbyr:**\n\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "**Vi tilbyr:**\n" +
+                "\n" +
                 "* Profesjonelt fagmiljø\n" +
                 "* Faglig utviklingsmuligheter\n" +
                 "* Et selskap i vekst\n" +
@@ -215,7 +230,8 @@ public class HtmlToMarkdownConverterTest {
                 "* Firmahytter\n" +
                 "* Bonusordning\n" +
                 "\n" +
-                "Dersom dette høres interessant ut, ser vi frem til å motta din CV og søknad snarest.\n\n";
+                "Dersom dette høres interessant ut, ser vi frem til å motta din CV og søknad snarest.\n" +
+                "\n";
 
         assertEquals(expected, HtmlToMarkdownConverter.parse(s));
     }

@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.markdown;
 
 import com.vladsch.flexmark.convert.html.FlexmarkHtmlParser;
-import com.vladsch.flexmark.util.options.DataHolder;
-import com.vladsch.flexmark.util.options.MutableDataSet;
+
+import com.vladsch.flexmark.util.data.MutableDataSet;
 import org.apache.commons.text.StringEscapeUtils;
 
 import static com.vladsch.flexmark.convert.html.FlexmarkHtmlParser.TYPOGRAPHIC_QUOTES;
