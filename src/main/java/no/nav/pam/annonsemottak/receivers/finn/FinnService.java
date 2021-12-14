@@ -95,18 +95,18 @@ public class FinnService {
                 .map(FinnAdMapper::toStilling)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-
+        LOG.debug("Collecting externalIds");
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         Set<String> allExternalIds = searchResult.stream().map(FinnAdHead::getId).collect(Collectors.toSet());
 
-        // Persist retrieved ads
+        LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
 
         // Filter out adecco, webcruiter and other sources
         List<Stilling> rest = annonseResult.getNewList().stream().filter(st -> !ifOneOfFilteredAds(st)).collect(Collectors.toList());
         LOG.info("Excluded {} webcruiter ads ", annonseResult.getNewList().size() - rest.size());
 
-        // Save with filtered new list
+        LOG.debug("Saving Finn ads");
         finnAnnonseFangstService.saveAll(new AnnonseResult(annonseResult.getModifyList(), annonseResult.getStopList(),
                 annonseResult.getExpiredList(), rest, annonseResult.getDuplicateList()));
 

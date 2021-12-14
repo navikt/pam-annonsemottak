@@ -27,12 +27,12 @@ class FinnAdMapper {
      * @return A {@link Stilling}, or {@code null} if the {@link FinnAd} representation was incomplete.
      */
     static Stilling toStilling(FinnAd ad) {
-
+        LOG.debug("Mapping finn ad "+ad.getId());
         if (hasIncompleteInformation(ad)) {
             return null;
         }
 
-        return new StillingBuilder()
+        Stilling stilling = new StillingBuilder()
                 .title(HtmlToMarkdownConverter.parse(ad.getTitle()).trim())
                 .place(ad.getLocation().getCity())
                 .employer(getEmployer(ad))
@@ -47,6 +47,8 @@ class FinnAdMapper {
                 .expires(GenericDateParser.parse(ad.getApplicationDeadline())
                         .orElse(FinnDateConverter.convertDate(ad.getExpires())))
                 .build();
+        LOG.debug("Mapping finished ad "+stilling.getExternalId());
+        return stilling;
     }
 
     private static boolean hasIncompleteInformation(FinnAd ad) {
