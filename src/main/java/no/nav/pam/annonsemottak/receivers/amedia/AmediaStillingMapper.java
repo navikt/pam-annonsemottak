@@ -164,6 +164,7 @@ class AmediaStillingMapper {
                         PropertyNames.GEO_LATITUDE, text(attributes.get("mapcoordinatelat")),
                         PropertyNames.GEO_LONGITUDE, text(attributes.get("mapcoordinatelon")),
                         PropertyNames.KONTAKTINFO, amediaFieldTransformer.hentListeSomStreng(source.get("contacts")),
+                        PropertyNames.SOKNADSLENKE, text(attributes.get("applicationurl")),
                         PropertyNames.OCCUPATIONS, Optional.of(
                                 text(source.path("category")))
                                 .filter(cs -> StringUtils.isNotBlank(cs) && !StringUtils.equals("Stilling/Annet", cs))
