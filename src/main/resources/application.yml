@@ -71,6 +71,3 @@ finn:
     password: ${FINN_API_PASSWORD:<finn api key>}
 xmlstilling:
   url: ${XMLSTILLING_URL:http://pam-xml-stilling}
-sensu:
-  host: sensu.nais
-  port: 3030
