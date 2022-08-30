@@ -1,7 +1,6 @@
-# PAM-annonsemottak
+## Beskrivelse
 
 App som henter annonser fra andre kilder som Finn, Amedia, Dexi (web-crawl)
-
 
 ### Running in localhost
 
