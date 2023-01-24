@@ -6,4 +6,20 @@ ignore:
     - '*':
         reason: 'Test dependency, and not fixable'
         expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-COMSQUAREUPOKHTTP3-2958044:
+    - '*':
+        reason: 'Teknisk gjeld'
+        expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-ORGPOSTGRESQL-2970521:
+    - '*':
+        reason: 'Teknisk gjeld'
+        expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-ORGYAML-2806360:
+    - '*':
+        reason: 'Teknisk gjeld'
+        expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-ORGAPACHETOMCATEMBED-3225086:
+    - '*':
+        reason: 'Teknisk gjeld'
+        expires: 2025-07-08T06:14:39.494Z
 patch: {}
