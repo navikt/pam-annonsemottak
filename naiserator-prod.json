@@ -1,5 +1,4 @@
 {
-  "ingress": ["https://pam-annonsemottak.prod-gcp.nais.io"],
-  "pam_xmlstilling_host": "pam-xml-stilling.prod-sbs.nais.io",
+  "ingress": ["https://pam-annonsemottak.intern.nav.no"],
   "scheduler_enabled": "true"
 }

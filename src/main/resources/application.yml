@@ -69,5 +69,3 @@ finn:
   url: https://cache.api.finn.no/iad
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}
-xmlstilling:
-  url: ${XMLSTILLING_URL:http://pam-xml-stilling}

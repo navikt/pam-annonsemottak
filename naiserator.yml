@@ -85,7 +85,5 @@ spec:
         - application: pam-ad
         - application: pam-stillingsregistrering-api
   env:
-    - name: XMLSTILLING_URL
-      value: https://{{ pam_xmlstilling_host }}
     - name: SCHEDULER_ENABLED
       value: "{{ scheduler_enabled }}"
