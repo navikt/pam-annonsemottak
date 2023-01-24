@@ -75,11 +75,6 @@ spec:
             - port: 443
               name: https
               protocol: HTTPS
-        - host: {{ pam_xmlstilling_host }}
-          ports:
-            - port: 443
-              name: https
-              protocol: HTTPS
     inbound:
       rules:
         - application: pam-ad
