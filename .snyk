@@ -22,4 +22,8 @@ ignore:
     - '*':
         reason: 'Teknisk gjeld'
         expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-ORGSPRINGFRAMEWORK-3369852:
+    - '*':
+        reason: 'Ignorerer i en dag for å få ut en ingressendring'
+        expires: 2023-20-04T14:00:00.494Z
 patch: {}
