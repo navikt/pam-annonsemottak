@@ -1,4 +1,4 @@
 {
-  "ingress": ["https://pam-annonsemottak.dev.intern.nav.no, https://pam-annonsemottak.intern.dev.nav.no"],
+  "ingress": ["https://pam-annonsemottak.intern.dev.nav.no"],
   "scheduler_enabled": "true"
 }
