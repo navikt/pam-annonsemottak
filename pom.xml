@@ -25,6 +25,7 @@
         <shedlock.version>2.2.0</shedlock.version>
         <logstash-logback-encoder.version>6.1</logstash-logback-encoder.version>
         <okhttp.version>3.12.0</okhttp.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
         <java.version>17</java.version>
     </properties>
 
@@ -159,12 +160,12 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.14.2</version>
+            <version>1.15.3</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
             <artifactId>owasp-java-html-sanitizer</artifactId>
-            <version>20211018.1</version>
+            <version>20211018.2</version>
         </dependency>
 
         <!-- JUnit Toolbox -->
@@ -206,6 +207,12 @@
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
         </dependency>
 
     </dependencies>
