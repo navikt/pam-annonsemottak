@@ -66,6 +66,6 @@ polaris:
   user: "user"
   password: "password"
 finn:
-  url: https://cache.api.finn.no/iad
+  url: https://cache.api.finn.no/iad/
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}
