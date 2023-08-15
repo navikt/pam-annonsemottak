@@ -203,7 +203,7 @@ public class StillingTest {
 
         Stilling stilling = enkelStilling().utløpsdato("12.12.2518").build();
         assertThat(stilling.getExpires().format(DateTimeFormatter.ofPattern(format)),
-                is(equalTo(LocalDateTime.now().plusDays(10).format(DateTimeFormatter.ofPattern(format)))));
+                is(equalTo(LocalDateTime.now().plusMonths(6).format(DateTimeFormatter.ofPattern(format)))));
     }
 
     @Test
