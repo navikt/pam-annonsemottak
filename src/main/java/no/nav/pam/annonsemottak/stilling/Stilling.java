@@ -221,8 +221,9 @@ public class Stilling extends ModelEntity {
     }
 
     void setExpires(LocalDateTime expires) {
-        if (expires != null && expires.isBefore(now().plusMonths(MAX_EXPIRY_LIMIT))) {
-            this.expires = expires;
+        if (expires != null) {
+            LocalDateTime seksMndFraNaa = now().plusMonths(MAX_EXPIRY_LIMIT);
+            this.expires = expires.isBefore(seksMndFraNaa) ? expires : seksMndFraNaa;
         }
     }
 
