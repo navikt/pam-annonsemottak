@@ -3,10 +3,12 @@ package no.nav.pam.annonsemottak.stilling;
 import com.google.common.hash.Hashing;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -45,11 +47,11 @@ public class Stilling extends ModelEntity {
     private String medium;
 
     @Lob
-    @Type(type = "org.hibernate.type.TextType")
+    @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     private String employerDescription;
 
     @Lob
-    @Type(type = "org.hibernate.type.TextType")
+    @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     private String jobDescription;
 
     @NotNull

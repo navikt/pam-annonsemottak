@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
