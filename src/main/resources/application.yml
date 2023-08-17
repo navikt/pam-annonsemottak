@@ -20,11 +20,6 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
         generate_statistics: true
-        cache:
-          use_second_level_cache: true
-          use_query_cache: true
-          region:
-            factory_class:  org.hibernate.cache.ehcache.EhCacheRegionFactory
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

@@ -1,8 +1,13 @@
 package no.nav.pam.annonsemottak.app.config;
 
 import io.micrometer.core.instrument.Tag;
+import io.micrometer.core.instrument.Tags;
+import io.micrometer.core.instrument.binder.MeterBinder;
 import io.micrometer.core.instrument.binder.jpa.HibernateMetrics;
+import io.micrometer.core.instrument.binder.jpa.HibernateQueryMetrics;
+import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.slf4j.Logger;
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags;
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider;
@@ -38,7 +43,7 @@ public class MetricsConfig {
     }
 
     @Bean
-    public HibernateMetrics hibernateMetrics(SessionFactory sessionFactory) {
-        return new HibernateMetrics(sessionFactory, "em", Collections.emptyList());
+    MeterBinder hibernateQueryMetrics(EntityManagerFactory entityManager) {
+        return new HibernateQueryMetrics(entityManager.unwrap(SessionFactoryImplementor.class), "em", Tags.empty());
     }
 }

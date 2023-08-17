@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
