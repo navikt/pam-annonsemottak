@@ -25,6 +25,9 @@
         <logstash-logback-encoder.version>6.1</logstash-logback-encoder.version>
         <okhttp.version>3.12.0</okhttp.version>
         <snakeyaml.version>2.0</snakeyaml.version>
+        <junit.jupiter.version>5.9.3</junit.jupiter.version>
+        <jakarta.validation.version>3.0.2</jakarta.validation.version>
+        <jakarta.inject.version>2.0.1</jakarta.inject.version>
         <java.version>17</java.version>
     </properties>
 
@@ -78,12 +81,12 @@
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
+            <version>${jakarta.validation.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1</version>
+            <version>${jakarta.inject.version}</version>
         </dependency>
         <!-- TEST -->
         <dependency>
@@ -127,7 +130,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.3</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
