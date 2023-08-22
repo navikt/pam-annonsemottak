@@ -4,6 +4,8 @@ package no.nav.pam.annonsemottak.feed;
 import no.nav.pam.annonsemottak.markdown.MarkdownToHtmlConverter;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,8 @@ import java.util.Optional;
 
 @Service
 public class StillingFeedService {
+    private static final Logger LOG = LoggerFactory.getLogger(StillingFeedService.class);
+
 
     private final StillingRepository stillingRepository;
 
@@ -31,6 +35,7 @@ public class StillingFeedService {
                 .map(s -> {
                             s.setJobDescription(MarkdownToHtmlConverter.parse(s.getJobDescription()));
                             s.setEmployerDescription(MarkdownToHtmlConverter.parse(s.getEmployerDescription()));
+                            LOG.warn("Tester annonse med uuid {}. Den har status {}", s.getUuid(), s.getStatus());
                             return s;
                         }
                 );
