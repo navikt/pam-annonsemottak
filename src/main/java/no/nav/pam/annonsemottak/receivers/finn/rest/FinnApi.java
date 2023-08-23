@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.finn.rest;
 
+import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.finn.FinnService;
 import no.nav.pam.annonsemottak.PathDefinition;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
 
 @RestController
 @RequestMapping(PathDefinition.FINN)

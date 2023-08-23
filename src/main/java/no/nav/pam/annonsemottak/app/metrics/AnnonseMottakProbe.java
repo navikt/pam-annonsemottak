@@ -3,7 +3,7 @@ package no.nav.pam.annonsemottak.app.metrics;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Map;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
