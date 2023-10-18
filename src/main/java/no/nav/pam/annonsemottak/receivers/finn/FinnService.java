@@ -83,7 +83,7 @@ public class FinnService {
                     .filter(adHead -> adHead.getPublished().toLocalDate().isAfter(lastRun.minusDays(1).toLocalDate())
                             || adHead.getUpdated().toLocalDate().isAfter(lastRun.minusDays(1).toLocalDate()))
                     .collect(Collectors.toSet());
-            LOG.debug("Filtered search results from Finn. Found {} new and changed ads since last run on {}",
+            LOG.info("Filtered search results from Finn. Found {} new and changed ads since last run on {}",
                     filteredAdHeads.size(), lastRun.toString());
             retrievedAds = connector.fetchFullAds(filteredAdHeads);
         } else {
@@ -96,8 +96,10 @@ public class FinnService {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         LOG.debug("Collecting externalIds");
+
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         Set<String> allExternalIds = searchResult.stream().map(FinnAdHead::getId).collect(Collectors.toSet());
+        LOG.info("allExternalIds size: {}", allExternalIds);
 
         LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
