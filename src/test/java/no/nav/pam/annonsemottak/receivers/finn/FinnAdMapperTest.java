@@ -23,7 +23,7 @@ public class FinnAdMapperTest {
     private static final String AD2 = "src/test/resources/finn/samples/ad2.xml";
     private static final String AD3 = "src/test/resources/finn/samples/ad3.xml";
 
-    private final FinnConnector connector = new FinnConnector(null, null, null, 0);
+    private final FinnConnector connector = new FinnConnector(null, null,null, null, 0);
 
     @Mock
     private FinnAd ad = mock(FinnAd.class);
