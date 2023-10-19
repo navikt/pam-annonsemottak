@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -52,13 +51,12 @@ public class FinnService {
     /**
      * Will retrieve all the active job ads from finn, and save new or changed ads.
      */
-    public ResultsOnSave saveAndUpdateFromCollection(String collection) throws FinnConnectorException {
-        String[] collections = collection == null ? KNOWN_COLLECTIONS : new String[]{collection};
+    public ResultsOnSave saveAndUpdateFromCollection() throws FinnConnectorException {
 
         //Retrieve the date for last successful run
         LocalDateTime lastRun;
         long start = System.currentTimeMillis();
-        LOG.info("starting finn fetch {} ", Arrays.toString(collections));
+        LOG.info("starting finn fetch");
         ExternalRun externalRun = externalRunService.findByNameAndMedium(Kilde.FINN.toString(), Medium.FINN.toString());
         if (externalRun != null && externalRun.getLastRun() != null) {
             lastRun = externalRun.getLastRun();
@@ -71,7 +69,7 @@ public class FinnService {
 
 
         // Retrieve the search result from finn
-        Set<FinnAdHead> searchResult = connector.fetchSearchResult(collections);
+        Set<FinnAdHead> searchResult = connector.fetchSearchResult();
         LOG.info("Fetched {} ad heads from search in Finn", searchResult.size());
 
         Set<FinnAd> retrievedAds;

@@ -31,7 +31,7 @@ public class FinnSchedulerTask {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Finn.");
 
         try {
-            finnService.saveAndUpdateFromCollection(null);
+            finnService.saveAndUpdateFromCollection();
         } catch (Exception e) {
             LOG.error("Unable to save results from Finn using specified collections", e);
         }

@@ -44,7 +44,7 @@ public class FinnApi {
             @PathVariable("collection") String collection
     ) {
         try {
-            ResultsOnSave result = service.saveAndUpdateFromCollection(collection);
+            ResultsOnSave result = service.saveAndUpdateFromCollection();
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             LOG.error("Unable to save results from Finn using specified collections", e);
