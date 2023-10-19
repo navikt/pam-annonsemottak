@@ -26,7 +26,7 @@ public class FinnServiceIT {
     @Test
     public void start() throws Exception {
         // Good when debug integration against FINN
-        Set<FinnAdHead> finnAdHeads = finnConnector.fetchSearchResult(KNOWN_COLLECTIONS);
+        Set<FinnAdHead> finnAdHeads = finnConnector.fetchSearchResult();
         //FileUtils.write(new File("finnAdHeads.json"), objectMapper.writeValueAsString(finnAdHeads));
     }
 }
