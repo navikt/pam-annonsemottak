@@ -62,5 +62,6 @@ polaris:
   password: "password"
 finn:
   url: https://cache.api.finn.no/iad/
+  job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}

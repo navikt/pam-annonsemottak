@@ -39,7 +39,6 @@ public class AnnonseFangstService {
     private AnnonseResult prepareAnnonseResultFromReceiveList(List<Stilling> receiveList,
                                                               Collection<String> allActiveExternalIds,
                                                               List<Stilling> activeList) {
-
         AnnonseResult annonseResult = new AnnonseResult();
 
         // Determine ads that are deleted in source i.e. stopped ads
@@ -53,6 +52,7 @@ public class AnnonseFangstService {
                     annonseResult.getExpiredList().add(active);
                 } else {
                     active.stop();
+                    LOG.info("Stopping ad {} as it is not in active list", active.getUuid());
                     annonseResult.getStopList().add(active);
                 }
             }

@@ -52,11 +52,11 @@ public class FinnServiceTest {
         searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(3), LocalDateTime.now().minusDays(3), LocalDateTime.now().plusMonths(1))); // Existing
         searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
 
-        when(mockedConnector.fetchSearchResult("TEST")).thenReturn(searchResult);
+        when(mockedConnector.fetchSearchResult()).thenReturn(searchResult);
 
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
 
-        finnService.saveAndUpdateFromCollection("TEST");
+        finnService.saveAndUpdateFromCollection();
 
         ArgumentCaptor<Set> argumentCaptor = ArgumentCaptor.forClass(Set.class);
         verify(mockedConnector).fetchFullAds(argumentCaptor.capture());
@@ -75,11 +75,11 @@ public class FinnServiceTest {
         searchResult.add(generateAdHeadWithDates("2", LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
         searchResult.add(generateAdHeadWithDates("3", LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(2), LocalDateTime.now().plusMonths(1))); // Existing
         searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
-        when(mockedConnector.fetchSearchResult("TEST")).thenReturn(searchResult);
+        when(mockedConnector.fetchSearchResult()).thenReturn(searchResult);
 
         when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
 
-        finnService.saveAndUpdateFromCollection("TEST");
+        finnService.saveAndUpdateFromCollection();
 
         verify(mockedConnector).fetchFullAds(searchResult);
     }

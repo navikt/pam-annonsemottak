@@ -13,7 +13,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import jakarta.inject.Named;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
@@ -31,16 +30,19 @@ public class FinnConnector {
 
     private final HttpClientProvider clientProvider;
     private final String serviceDocumentUrl;
+    private final String jobFullTimeUrl;
     private final String apiKey;
     private final int politeRequestDelayInMillis;
 
     public FinnConnector(
             final HttpClientProvider clientProvider,
             @Value("${finn.url}") final String serviceDocumentUrl,
+            @Value("${finn.job-fulltime-url}") final String jobFullTimeUrl,
             @Value("${finn.api.password}") final String apiKey,
             @Value("${finn.polite.delay.millis:200}") final int politeRequestDelayInMillis) {
         this.clientProvider = clientProvider;
         this.serviceDocumentUrl = serviceDocumentUrl;
+        this.jobFullTimeUrl = jobFullTimeUrl;
         this.apiKey = apiKey;
         this.politeRequestDelayInMillis = politeRequestDelayInMillis;
     }
@@ -60,22 +62,14 @@ public class FinnConnector {
         }
     }
 
-    /**
-     * Retrieves all the currently active job ad heads from the search result
-     */
-    public Set<FinnAdHead> fetchSearchResult(String... collections)
+    public Set<FinnAdHead> fetchSearchResult()
             throws FinnConnectorException {
         try {
-            // 1. Parse service document (using XPath), as recommended by documentation.
-            FinnServiceDocument serviceDocument = getServiceDocument();
-
-            // 2. Parse multi-page search results (using SAX) for all workspaces and collections we're interested in.
-            HttpUrl[] initialUrls = new HttpUrl[collections.length];
-            for (int i = 0; i < collections.length; i++) {
-                initialUrls[i] = serviceDocument.getHrefFromCollectionInWorkspace("searches", collections[i]);
-            }
-
-            return collectAdHeads(initialUrls);
+            // Default får man et paginert treff med 30 rader om gangen. Da virker det som det blir for mange treff og resultatet kuttes.
+            // Med mer en 100 rader virker det som vi får alt, og 400 virker som et OK antall
+            String initialUrl = jobFullTimeUrl + "?rows=400";
+            HttpUrl httpUrl = HttpUrl.parse(initialUrl);
+            return collectAdHeads(httpUrl);
         } catch (Exception e) {
             throw new FinnConnectorException(e);
         }
@@ -101,6 +95,7 @@ public class FinnConnector {
                 parseReaderWithHandler(response.body().charStream(), searchResultsHandler);
             }
             collectedAdHeads.addAll(searchResultsHandler.getFinnAdHeads());
+            LOG.info("Found {} FINN heads - all {}", searchResultsHandler.getFinnAdHeads().size(), collectedAdHeads.size());
             searchResultsHandler.getNextPageUrl().ifPresent(pendingUrls::push);
         }
 
@@ -110,7 +105,7 @@ public class FinnConnector {
     /**
      * Retrieves a list of fully detailed ads from a given list of ad heads
      */
-    public Set<FinnAd> fetchFullAds(Set<FinnAdHead> finnAdHeadList) throws FinnConnectorException {
+    public Set<FinnAd> fetchFullAds(Set<FinnAdHead> finnAdHeadList) {
         Set<FinnAd> fullAdSet = new HashSet<>();
 
         for (FinnAdHead head : finnAdHeadList) {
@@ -122,18 +117,6 @@ public class FinnConnector {
         }
 
         return fullAdSet;
-    }
-
-    private FinnServiceDocument getServiceDocument()
-            throws ParserConfigurationException, SAXException, IOException {
-        return new FinnServiceDocument(
-                parseReaderToDocument(
-                        executeRequest(
-                                createRequest(HttpUrl.parse(serviceDocumentUrl)))
-                                .body()
-                                .charStream()
-                )
-        );
     }
 
     Document parseReaderToDocument(Reader reader)
