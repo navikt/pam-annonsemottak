@@ -146,6 +146,10 @@
             <finn:value>Rosenholmveien 25</finn:value>
             <finn:value>1414 Trollåsen</finn:value>
         </finn:field>
+        <finn:field name="working_language">
+            <finn:value>Engelsk</finn:value>
+            <finn:value>Norsk</finn:value>
+        </finn:field>
     </finn:adata>
     undefined
 </entry>

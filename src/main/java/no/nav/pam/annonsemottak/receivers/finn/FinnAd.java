@@ -59,7 +59,7 @@ public class FinnAd {
     private final GeoLocation geoLocation;
     private final List<String> logoUrlList;
     private final Set<String> occupations;
-
+    private final List<String> workingLanguage;
 
     FinnAd(Document document)
             throws XPathExpressionException, FinnConnectorException {
@@ -124,6 +124,7 @@ public class FinnAd {
         extent = getString(document, "/entry/adata/field[@name='extent']/@value");
         externalAdId = getString(document, "/entry/adata/field[@name='external_ad_id']/@value");
         logoUrlList = getListOfStrings(document, "/entry/content[category='LOGO']/@url");
+        workingLanguage = getListOfStrings(document, "/entry/adata/field[@name='working_language']/value");
     }
 
     private GeoLocation buildGeoLocation(Node node) throws XPathExpressionException, FinnConnectorException {
@@ -361,6 +362,10 @@ public class FinnAd {
 
     public Set<String> getOccupations() {
         return occupations;
+    }
+
+    List<String> getWorkingLanguage() {
+        return workingLanguage;
     }
 
     static class Location {

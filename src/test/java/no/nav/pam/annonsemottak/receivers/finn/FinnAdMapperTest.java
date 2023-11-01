@@ -167,4 +167,23 @@ public class FinnAdMapperTest {
             assertEquals("2017-11-10", stilling.getExpires().format(DateTimeFormatter.ISO_DATE));
         }
     }
+
+    @Test
+    public void working_language_should_be_mapped() throws Exception {
+        try (Reader reader = FinnConnectorTest.getReader(AD1)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Engelsk,Norsk", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+        }
+        try (Reader reader = FinnConnectorTest.getReader(AD2)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Norsk", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+        }
+        try (Reader reader = FinnConnectorTest.getReader(AD3)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals(null, stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+        }
+    }
 }
