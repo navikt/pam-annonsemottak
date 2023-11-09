@@ -132,6 +132,9 @@
         </finn:field>
         <finn:field name="provider_id" value="0"/>
         <finn:field name="sector" value="Offentlig"/>
+        <finn:field name="working_language">
+            <finn:value>Norsk</finn:value>
+        </finn:field>
         <finn:field name="workplaces">
             <finn:value>Postboks 156</finn:value>
             <finn:value>4358 Kleppe</finn:value>
