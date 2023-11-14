@@ -10,6 +10,7 @@ import org.mockito.Mock;
 
 import java.io.Reader;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -173,17 +174,17 @@ public class FinnAdMapperTest {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("Engelsk,Norsk", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+            assertEquals("[\"Engelsk\",\"Norsk\"]", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
         }
         try (Reader reader = FinnConnectorTest.getReader(AD2)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals("Norsk", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+            assertEquals("[\"Norsk\"]", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
         }
         try (Reader reader = FinnConnectorTest.getReader(AD3)) {
             Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
             assertNotNull(stilling);
-            assertEquals(null, stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
+            assertEquals("[]", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
         }
     }
 }
