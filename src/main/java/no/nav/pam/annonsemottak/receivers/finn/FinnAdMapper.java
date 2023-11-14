@@ -119,7 +119,7 @@ class FinnAdMapper {
         keyValueMap.put(PropertyNames.EMPLOYER_URL, ad.getCompany().getUrl());
         keyValueMap.put(PropertyNames.KEYWORDS, concatenate(ad.getKeywords()));
         keyValueMap.put(PropertyNames.OCCUPATIONS, concatenate(ad.getOccupations(), ";"));
-        keyValueMap.put(PropertyNames.ARBEIDSPRAAK, concatenate(ad.getWorkingLanguage()));
+        keyValueMap.put(PropertyNames.ARBEIDSPRAAK, toJsonString(ad.getWorkingLanguage()));
         keyValueMap.put("managerRole", ad.getManagerRole());
         keyValueMap.put("providerId", ad.getProviderId());
         keyValueMap.put("situation", ad.getSituation());
