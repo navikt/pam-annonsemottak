@@ -88,6 +88,13 @@ public class FinnService {
             retrievedAds = connector.fetchFullAds(searchResult);
         }
 
+        int antallJobSourceDirect = retrievedAds.stream().filter(it -> "direct".equals(it.getJobSource())).toList().size();
+        int antallJobSourceDirectOrNotSpecified = retrievedAds.stream().filter(FinnAd::isJobSourceDirectOrNotSpecified).toList().size();
+        int antallJobSourceBlank = retrievedAds.stream().filter(it -> StringUtils.isBlank(it.getJobSource())).toList().size();
+        LOG.info("Antall annonser med jobSource 'direct': {} / {}", antallJobSourceDirect, retrievedAds.size());
+        LOG.info("Antall annonser med jobSource blank: {} / {}", antallJobSourceBlank, retrievedAds.size());
+        LOG.info("Antall annonser med jobSource 'direct' eller ikke spesifisert: {} / {}", antallJobSourceDirectOrNotSpecified, retrievedAds.size());
+
         // Retrieve filtered ads in detail
         List<Stilling> filteredStillingList = retrievedAds.stream()
                 .map(FinnAdMapper::toStilling)

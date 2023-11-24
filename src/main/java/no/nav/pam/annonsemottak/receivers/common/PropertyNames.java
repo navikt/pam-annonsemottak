@@ -47,4 +47,6 @@ public class PropertyNames {
     public static final String KONTAKTPERSON_TELEFON = "kontaktPersonTelefon";
     public static final String ARBEIDSTID = "arbeidstid";
     public static final String EMPLOYER_ORGNR = "orgnr";
+
+    public static final String FINN_KILDE = "finnKilde";
 }
