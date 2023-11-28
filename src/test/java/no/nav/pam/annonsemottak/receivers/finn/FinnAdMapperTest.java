@@ -209,7 +209,7 @@ public class FinnAdMapperTest {
             assertTrue(ad.isJobSourceDirectOrNotSpecified());
             Stilling stilling = FinnAdMapper.toStilling(ad);
             assertNotNull(stilling);
-            assertEquals("", stilling.getProperties().get(PropertyNames.FINN_KILDE));
+            assertEquals("not-direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
         }
     }
 }
