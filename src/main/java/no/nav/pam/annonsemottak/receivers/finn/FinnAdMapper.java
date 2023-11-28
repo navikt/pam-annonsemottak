@@ -162,7 +162,7 @@ class FinnAdMapper {
                 keyValueMap.put(PropertyNames.ANTALL_STILLINGER, "1");
         }
 
-        keyValueMap.put(PropertyNames.FINN_KILDE, ad.getJobSource());
+        keyValueMap.put(PropertyNames.FINN_KILDE, StringUtils.isNotBlank(ad.getJobSource()) ? ad.getJobSource() : "not-direct");
 
         return keyValueMap;
     }
