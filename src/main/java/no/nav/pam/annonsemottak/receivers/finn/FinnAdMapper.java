@@ -27,7 +27,7 @@ class FinnAdMapper {
      * @return A {@link Stilling}, or {@code null} if the {@link FinnAd} representation was incomplete.
      */
     static Stilling toStilling(FinnAd ad) {
-        LOG.debug("Mapping finn ad "+ad.getId());
+        LOG.debug("Mapping finn ad " + ad.getId());
         if (hasIncompleteInformation(ad)) {
             return null;
         }
@@ -47,7 +47,7 @@ class FinnAdMapper {
                 .expires(GenericDateParser.parse(ad.getApplicationDeadline())
                         .orElse(FinnDateConverter.convertDate(ad.getExpires())))
                 .build();
-        LOG.debug("Mapping finished ad "+stilling.getExternalId());
+        LOG.debug("Mapping finished ad " + stilling.getExternalId());
         return stilling;
     }
 
@@ -161,6 +161,8 @@ class FinnAdMapper {
         if (!keyValueMap.containsKey(PropertyNames.ANTALL_STILLINGER)) {
                 keyValueMap.put(PropertyNames.ANTALL_STILLINGER, "1");
         }
+
+        keyValueMap.put(PropertyNames.FINN_KILDE, StringUtils.isNotBlank(ad.getJobSource()) ? ad.getJobSource() : "not-direct");
 
         return keyValueMap;
     }

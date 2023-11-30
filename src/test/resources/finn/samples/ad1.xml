@@ -126,6 +126,7 @@
             <finn:value>IT - maskinvare</finn:value>
         </finn:field>
         <finn:field name="job_title" value ="GPS montør, Servicetekniker, bilelektriker, lastebilmekaniker" />
+        <finn:field name="job_source" value="direct"/>
         <finn:field name="keywords">
             <finn:value>Bilelektro</finn:value>
             <finn:value>GPS</finn:value>

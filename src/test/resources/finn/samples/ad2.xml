@@ -117,6 +117,7 @@
             <finn:value>Telekommunikasjon</finn:value>
         </finn:field>
         <finn:field name="job_title" value="Avdelingsleder bredbånd"/>
+        <finn:field name="job_source" value="annen"/>
         <finn:field name="keywords">
             <finn:value>Bredbånd</finn:value>
             <finn:value>Telecom</finn:value>

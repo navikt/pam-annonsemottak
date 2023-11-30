@@ -187,4 +187,29 @@ public class FinnAdMapperTest {
             assertEquals("[]", stilling.getProperties().get(PropertyNames.ARBEIDSPRAAK));
         }
     }
+
+    @Test
+    public void jobSource_should_be_mapped() throws Exception {
+        try (Reader reader = FinnConnectorTest.getReader(AD1)) {
+            FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
+            assertEquals("direct", ad.getJobSource());
+            Stilling stilling = FinnAdMapper.toStilling(ad);
+            assertNotNull(stilling);
+            assertEquals("direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
+        }
+        try (Reader reader = FinnConnectorTest.getReader(AD2)) {
+            FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
+            assertEquals("annen", ad.getJobSource());
+            Stilling stilling = FinnAdMapper.toStilling(ad);
+            assertNotNull(stilling);
+             assertEquals("annen", stilling.getProperties().get(PropertyNames.FINN_KILDE));
+        }
+        try (Reader reader = FinnConnectorTest.getReader(AD3)) {
+            FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
+            assertEquals("", ad.getJobSource());
+            Stilling stilling = FinnAdMapper.toStilling(ad);
+            assertNotNull(stilling);
+            assertEquals("not-direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
+        }
+    }
 }
