@@ -192,21 +192,21 @@ public class FinnAdMapperTest {
     public void jobSource_should_be_mapped() throws Exception {
         try (Reader reader = FinnConnectorTest.getReader(AD1)) {
             FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
-            assertTrue(ad.isJobSourceDirectOrNotSpecified());
+            assertEquals("direct", ad.getJobSource());
             Stilling stilling = FinnAdMapper.toStilling(ad);
             assertNotNull(stilling);
             assertEquals("direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
         }
         try (Reader reader = FinnConnectorTest.getReader(AD2)) {
             FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
-            assertFalse(ad.isJobSourceDirectOrNotSpecified());
+            assertEquals("annen", ad.getJobSource());
             Stilling stilling = FinnAdMapper.toStilling(ad);
             assertNotNull(stilling);
              assertEquals("annen", stilling.getProperties().get(PropertyNames.FINN_KILDE));
         }
         try (Reader reader = FinnConnectorTest.getReader(AD3)) {
             FinnAd ad = new FinnAd(connector.parseReaderToDocument(reader));
-            assertTrue(ad.isJobSourceDirectOrNotSpecified());
+            assertEquals("", ad.getJobSource());
             Stilling stilling = FinnAdMapper.toStilling(ad);
             assertNotNull(stilling);
             assertEquals("not-direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
