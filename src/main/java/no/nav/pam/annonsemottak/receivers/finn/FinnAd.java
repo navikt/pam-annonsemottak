@@ -206,10 +206,6 @@ public class FinnAd {
         return list;
     }
 
-    public boolean isJobSourceDirectOrNotSpecified() {
-        return "direct".equals(jobSource) || StringUtils.isBlank(jobSource);
-    }
-
     String getId() {
         return id;
     }
