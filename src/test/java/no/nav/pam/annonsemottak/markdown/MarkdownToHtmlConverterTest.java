@@ -135,4 +135,35 @@ public class MarkdownToHtmlConverterTest {
                 "<ul><li>Personal, resultat og budsjettansvar</li>"));
     }
 
+    @Test
+    public void parse_markdownWithSection() {
+        String markdown = "Seksjoner\n" +
+                "<section id=\"en\">\n" +
+                "\n" +
+                "## Seksjon 1\n" +
+                "*Ting i seksjon* - cool!\n" +
+                "\n" +
+                "</section>\n" +
+                "Utenfor seksjon\n" +
+                "\n" +
+                "<section id=\"to\">\n" +
+                "\n" +
+                "### Seksjon 2\n" +
+                "\n" +
+                "</section>\n";
+
+        String expected = "<p>Seksjoner</p>\n" +
+                "<section id=\"en\">\n" +
+                "<h2>Seksjon 1</h2>\n" +
+                "<p><em>Ting i seksjon</em> - cool!</p>\n" +
+                "</section>\n" +
+                "Utenfor seksjon\n" +
+                "<section id=\"to\">\n" +
+                "<h3>Seksjon 2</h3>\n" +
+                "</section>\n";
+
+        assertEquals(expected, MarkdownToHtmlConverter.parse(markdown));
+    }
+
+
 }
