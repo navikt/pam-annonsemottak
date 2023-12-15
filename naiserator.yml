@@ -17,7 +17,7 @@ spec:
   replicas:
     min: 2
     max: 2
-  cpuThresholdPercentage: 50
+    cpuThresholdPercentage: 50
   resources:
     limits:
       cpu: 2000m
@@ -44,8 +44,7 @@ spec:
         highAvailability: true
         diskSize: 30
         diskAutoresize: true
-        autoBackupTime: "03:30"
-        maintenanceWindow:
+        maintenance:
           day: 7
           hour: 23
         databases:
@@ -58,23 +57,15 @@ spec:
         - host: cache.api.finn.no
           ports:
             - port: 443
-              name: https
-              protocol: HTTPS
         - host: api.dexi.io
           ports:
             - port: 443
-              name: https
-              protocol: HTTPS
         - host: services.api.no
           ports:
             - port: 443
-              name: https
-              protocol: HTTPS
         - host: stilling.adresseavisen.no
           ports:
             - port: 443
-              name: https
-              protocol: HTTPS
     inbound:
       rules:
         - application: pam-ad
