@@ -111,8 +111,11 @@ public class FinnConnector {
         for (FinnAdHead head : finnAdHeadList) {
             try (Response response = executeRequest(createRequest(head.getLink()))) {
                 fullAdSet.add(new FinnAd(parseReaderToDocument(response.body().charStream())));
+            } catch (IOException ioe) {
+                LOG.info("Failed to parse ad from URL {}", head.getLink(), ioe);
+
             } catch (Exception e) {
-                LOG.error("Failed to parse ad from URL {}", head.getLink(), e);
+                LOG.error("An unexpected failure occurred while parsing ad from URL {}", head.getLink(), e);
             }
         }
 

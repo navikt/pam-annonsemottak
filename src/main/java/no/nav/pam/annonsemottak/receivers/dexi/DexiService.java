@@ -58,8 +58,11 @@ public class DexiService {
                 LOG.debug("Got {} entries from robot {}, new {} entries", results.getReceived(), currentRobotName, results.getSaved());
                 received += results.getReceived();
                 saved += results.getSaved();
+            } catch (IOException ioe) {
+                LOG.warn("Failed to get entries from robot " + currentRobotName, ioe);
+
             } catch (Exception e) {
-                LOG.error("Failed to get entries from robot " + currentRobotName, e);
+                LOG.error("An unexpected failure occurred while fetching entries from robot " + currentRobotName, e);
                 probe.newFailedPoint(Kilde.DEXI.toString(), currentRobotName);
             }
         }
