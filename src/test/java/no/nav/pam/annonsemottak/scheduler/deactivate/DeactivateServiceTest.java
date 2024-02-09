@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.scheduler.deactivate;
 
 
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -34,9 +35,10 @@ public class DeactivateServiceTest {
 //        ads.add(nullExpiry);
 
         StillingRepository mockedStillingRepository = mock(StillingRepository.class);
+        StillingOutboxService mockedStillingOutboxService = mock(StillingOutboxService.class);
         when(mockedStillingRepository.findByAnnonseStatus(AnnonseStatus.AKTIV)).thenReturn(ads);
 
-        DeactivateService service = new DeactivateService(mockedStillingRepository);
+        DeactivateService service = new DeactivateService(mockedStillingRepository, mockedStillingOutboxService);
 
         service.deactivateExpired();
 

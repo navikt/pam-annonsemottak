@@ -47,3 +47,15 @@ solr:
   core: 'maincore'
 xmlstilling:
   url: http://pam-xml-stilling
+kafka:
+  brokers: ${KAFKA_BROKERS:http://localhost:1337}
+  credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}
+  truststorepath: ${KAFKA_TRUSTSTORE_PATH:}
+  keystorepath: ${KAFKA_KEYSTORE_PATH:}
+appname: ${NAIS_APP_NAME:}
+outbox:
+  kafka:
+    enabled: ${OUTBOX_KAFKA_ENABLED:false}
+    topic: ${ANNONSEMOTTAK_TOPIC:teampam.annonsemottak-1}
+  scheduler:
+    enabled: ${OUTBOX_SCHEDULER_ENABLED:false}

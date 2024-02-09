@@ -1,4 +1,7 @@
 {
   "ingress": ["https://pam-annonsemottak.intern.nav.no"],
-  "scheduler_enabled": "true"
+  "scheduler_enabled": "true",
+  "annonsemottak_topic": "teampam.annonsemottak-v1",
+  "outbox_scheduler_enabled": "false",
+  "outbox_kafka_enabled": "false"
 }

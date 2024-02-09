@@ -73,3 +73,9 @@ spec:
   env:
     - name: SCHEDULER_ENABLED
       value: "{{ scheduler_enabled }}"
+    - name: ANNONSEMOTTAK_TOPIC
+      value: "{{ annonsemottak_topic }}"
+    - name: OUTBOX_KAFKA_ENABLED
+      value: "{{ outbox_kafka_enabled }}"
+    - name: OUTBOX_SCHEDULER_ENABLED
+      value: "{{ outbox_scheduler_enabled }}"

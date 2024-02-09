@@ -2,13 +2,12 @@ package no.nav.pam.annonsemottak.receivers.dexi;
 
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.stilling.Stilling;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.stilling;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
+@SpringBootTest(classes = Application.class)
 @Rollback
 @Transactional
 @ContextConfiguration(classes = Application.class)

@@ -2,6 +2,7 @@ package no.nav.pam.annonsemottak.receivers.polaris;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
@@ -11,7 +12,6 @@ import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.polaris.model.PolarisAd;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-import org.junit.After;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

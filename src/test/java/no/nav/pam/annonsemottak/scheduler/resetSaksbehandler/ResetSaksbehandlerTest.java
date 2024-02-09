@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.scheduler.resetSaksbehandler;
 
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Status;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -28,8 +29,9 @@ public class ResetSaksbehandlerTest {
         ads.get(1).setUpdated(LocalDateTime.now().minusDays(8));
 
         StillingRepository mockedStillingRepository = mock(StillingRepository.class);
+        StillingOutboxService mockedStillingOutboxService = mock(StillingOutboxService.class);
         when(mockedStillingRepository.findBySaksbehandlingStatusAndAnnonseStatus(Status.UNDER_ARBEID, AnnonseStatus.AKTIV)).thenReturn(ads);
-        ResetSaksbehandlerService service = new ResetSaksbehandlerService(mockedStillingRepository);
+        ResetSaksbehandlerService service = new ResetSaksbehandlerService(mockedStillingRepository, mockedStillingOutboxService);
 
         List<Stilling> beforeReset = filterStillingWithNoSaksbehandlerAndStatus(ads);
         Assertions.assertEquals(1, beforeReset.size());
