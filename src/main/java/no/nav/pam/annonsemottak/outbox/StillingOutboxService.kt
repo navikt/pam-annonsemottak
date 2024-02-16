@@ -28,10 +28,10 @@ open class StillingOutboxService(
             .setTimeZone(TimeZone.getTimeZone("Europe/Oslo"))
     }
 
-    private fun Stilling.tilPayload() = jacksonMapper.writeValueAsString(this.let {
+    private fun Stilling.tilPayload() = this.apply {
         jobDescription = MarkdownToHtmlConverter.parse(jobDescription)
         employerDescription = MarkdownToHtmlConverter.parse(employerDescription)
-    })
+    }.let { jacksonMapper.writeValueAsString(it) }
 
     fun lagreTilOutbox(stilling: Stilling) = stillingOutboxRepository.lagre(StillingOutbox(uuid = stilling.uuid, payload = stilling.tilPayload()))
 
