@@ -41,7 +41,7 @@ spec:
     - secret: pam-annonsemottak-env-secret
       mountPath: /var/run/secrets/nais.io/vault
   kafka:
-    pool: { { kafka_pool } }
+    pool: {{ kafka_pool }}
   gcp:
     sqlInstances:
       - name: pam-annonsemottak
