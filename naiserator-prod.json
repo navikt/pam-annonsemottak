@@ -1,5 +1,6 @@
 {
   "ingress": ["https://pam-annonsemottak.intern.nav.no"],
+  "kafka_pool": "nav-prod",
   "scheduler_enabled": "true",
   "annonsemottak_topic": "teampam.annonsemottak-v1",
   "outbox_scheduler_enabled": "false",
