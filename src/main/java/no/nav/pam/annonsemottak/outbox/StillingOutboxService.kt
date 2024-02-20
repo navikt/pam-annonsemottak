@@ -1,10 +1,6 @@
 package no.nav.pam.annonsemottak.outbox
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.databind.ObjectMapper
 import no.nav.pam.annonsemottak.kafka.MessageProducer
 import no.nav.pam.annonsemottak.markdown.MarkdownToHtmlConverter
 import no.nav.pam.annonsemottak.stilling.Stilling
@@ -12,22 +8,15 @@ import org.apache.kafka.common.KafkaException
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
-import java.util.*
 
 @Service
 open class StillingOutboxService(
     private val stillingOutboxMessageProducer: MessageProducer,
     private val stillingOutboxRepository: StillingOutboxRepository,
+    private val jacksonMapper: ObjectMapper
 ) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingOutboxService::class.java)
-        private val jacksonMapper = jacksonObjectMapper()
-            .registerModule(JavaTimeModule())
-            .registerModules(Jdk8Module())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE)
-            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .setTimeZone(TimeZone.getTimeZone("Europe/Oslo"))
     }
 
     private fun Stilling.tilPayload() = this.apply {

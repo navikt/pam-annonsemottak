@@ -25,7 +25,7 @@ open class StillingOutboxServiceTest(
 ) {
     @Test
     fun `StillingOutboxService prosesserer og markerer outboxelementer riktig`() {
-        val stilling = StillingTestdataBuilder.stilling().build()
+        val stilling = StillingTestdataBuilder.stilling().arbeidsgiver("Test").build()
 
         stillingOutboxService.lagreTilOutbox(stilling)
 
