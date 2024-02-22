@@ -15,8 +15,8 @@ spec:
     path: /isReady
     initialDelay: 20
   replicas:
-    min: 1
-    max: 1
+    min: 2
+    max: 2
     cpuThresholdPercentage: 50
   resources:
     limits:
@@ -40,6 +40,8 @@ spec:
   filesFrom:
     - secret: pam-annonsemottak-env-secret
       mountPath: /var/run/secrets/nais.io/vault
+  kafka:
+    pool: {{ kafka_pool }}
   gcp:
     sqlInstances:
       - name: pam-annonsemottak
@@ -78,3 +80,9 @@ spec:
   env:
     - name: SCHEDULER_ENABLED
       value: "{{ scheduler_enabled }}"
+    - name: ANNONSEMOTTAK_TOPIC
+      value: "{{ annonsemottak_topic }}"
+    - name: OUTBOX_KAFKA_ENABLED
+      value: "{{ outbox_kafka_enabled }}"
+    - name: OUTBOX_SCHEDULER_ENABLED
+      value: "{{ outbox_scheduler_enabled }}"

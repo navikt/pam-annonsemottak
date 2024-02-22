@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.scheduler.deactivate;
 
 
-import no.nav.pam.annonsemottak.receivers.Kilde;
-import no.nav.pam.annonsemottak.receivers.Medium;
+import jakarta.inject.Inject;
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +24,12 @@ public class DeactivateService {
 
     private final StillingRepository repository;
 
+    private final StillingOutboxService stillingOutboxService;
+
     @Inject
-    public DeactivateService(StillingRepository repository) {
+    public DeactivateService(StillingRepository repository, StillingOutboxService stillingOutboxService) {
         this.repository = repository;
+        this.stillingOutboxService = stillingOutboxService;
     }
 
     @Transactional
@@ -51,6 +53,7 @@ public class DeactivateService {
 
         LOG.info("Deactivated {} ads that have passed their expiry date", expiredAds.size());
         repository.saveAll(expiredAds);
+        stillingOutboxService.lagreFlereTilOutbox(expiredAds);
     }
 
     @Transactional
@@ -63,6 +66,7 @@ public class DeactivateService {
         }
         activeAds.forEach(Stilling::stopBySystem);
         repository.saveAll(activeAds);
+        stillingOutboxService.lagreFlereTilOutbox(activeAds);
     }
 
 }

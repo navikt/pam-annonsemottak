@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -21,12 +22,14 @@ import java.util.stream.Collectors;
 public class AnnonseFangstService {
 
     private final StillingRepository stillingRepository;
+    private final StillingOutboxService stillingOutboxService;
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
     @Inject
-    public AnnonseFangstService(StillingRepository repository) {
+    public AnnonseFangstService(StillingRepository repository,  StillingOutboxService stillingOutboxService) {
         this.stillingRepository = repository;
+        this.stillingOutboxService = stillingOutboxService;
     }
 
     @Transactional(readOnly = true)
@@ -86,6 +89,7 @@ public class AnnonseFangstService {
     private void saveOne(Stilling s) {
         try {
             stillingRepository.save(s);
+            stillingOutboxService.lagreTilOutbox(s);
         } catch (Exception e) {
             LOG.error("Error while saving ad {} from source {}. Error: {}", s.getUuid(), s.getKilde(), e.getMessage());
         }

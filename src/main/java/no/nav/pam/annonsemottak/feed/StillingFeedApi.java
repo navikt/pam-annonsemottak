@@ -5,6 +5,7 @@ import no.nav.pam.annonsemottak.PathDefinition;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,9 @@ public class StillingFeedApi {
             @RequestParam(value = "updatedSince", required = false) String timestamp,
             Pageable pageable) {
 
+        return ResponseEntity.ok(objectMapper.valueToTree(Page.empty()));
+
+        /* TODO: Legg tilbake dette muligens
         if (StringUtils.isNotBlank(timestamp)) {
             return getFeedByTimestamp(timestamp, pageable);
         } else if (millis > 0) {
@@ -53,6 +57,7 @@ public class StillingFeedApi {
                     stillingFeedService.findAllActive(pageable).map(objectMapper::valueToTree)
             );
         }
+        */
     }
 
     @Deprecated

@@ -6,7 +6,6 @@ import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,12 +15,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -35,6 +34,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 @MockBean(StillingRepository.class)
 @AutoConfigureMockMvc
+@Transactional
+@Rollback
 @ActiveProfiles("test")
 public class AmediaApiTest {
 

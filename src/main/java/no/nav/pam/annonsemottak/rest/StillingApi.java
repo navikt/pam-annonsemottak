@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.rest;
 
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.PathDefinition;
@@ -38,7 +39,7 @@ public class StillingApi {
     private static final Logger LOG = LoggerFactory.getLogger(StillingApi.class);
 
     private final StillingRepository stillingRepository;
-    private final AnnonseFangstService annonseFangstService;
+    private final StillingOutboxService stillingOutboxService;
     private final AnnonseMottakProbe probe;
 
 
@@ -46,9 +47,10 @@ public class StillingApi {
     public StillingApi(
             StillingRepository stillingRepository,
             AnnonseFangstService annonseFangstService,
+            StillingOutboxService stillingOutboxService,
             AnnonseMottakProbe probe) {
         this.stillingRepository = stillingRepository;
-        this.annonseFangstService = annonseFangstService;
+        this.stillingOutboxService = stillingOutboxService;
         this.probe = probe;
     }
 
@@ -117,6 +119,7 @@ public class StillingApi {
                 s.oppdaterMed(new OppdaterSaksbehandlingCommand(keyValueMap));
 
                 stillingRepository.save(s);
+                stillingOutboxService.lagreTilOutbox(s);
                 return ResponseEntity.noContent().build();
             }
 
@@ -195,6 +198,7 @@ public class StillingApi {
                 probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 1, 0, 0, 0);
             }
             Stilling adEntity = stillingRepository.save(nyStilling);
+            stillingOutboxService.lagreTilOutbox(nyStilling);
             Link linkToCreatedResouce = WebMvcLinkBuilder.linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();
 
             LOG.info("Created ad as resource {}", linkToCreatedResouce.getHref());

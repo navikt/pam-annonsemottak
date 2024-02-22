@@ -1,14 +1,17 @@
 package no.nav.pam.annonsemottak.app.rest;
 
 
+import no.nav.pam.annonsemottak.kafka.HealthService;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.receivers.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
 import no.nav.pam.annonsemottak.receivers.polaris.PolarisConnector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -25,18 +28,22 @@ public class StatusController {
 
     private final PolarisConnector polarisConnector;
 
+    private final HealthService healthService;
+
     @Autowired
-    public StatusController(FinnConnector finnConnector, DexiConnector dexiConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector) {
+    public StatusController(FinnConnector finnConnector, DexiConnector dexiConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector, HealthService healthService) {
         this.finnConnector = finnConnector;
         this.dexiConnector = dexiConnector;
         this.amediaConnector = amediaConnector;
         this.polarisConnector = polarisConnector;
+        this.healthService = healthService;
     }
 
 
     @GetMapping(path = "/isAlive")
-    public String isAlive() {
-        return "OK";
+    public String isAlive() throws InternalException {
+        if (isKafkaOk()) return "OK";
+        else throw new InternalException("NOT OK!");
     }
 
     @GetMapping(path = "/isReady")
@@ -51,7 +58,8 @@ public class StatusController {
                 && isAmediaOK()
                 && isFinnOK()
                 && isPolarisOK()
-                ) {
+                && isKafkaOk()
+        ) {
             return "OK";
         }
 
@@ -86,5 +94,18 @@ public class StatusController {
         return amediaConnector.isPingSuccessful();
     }
 
-    private boolean isPolarisOK() { return polarisConnector.isPingSuccessful(); }
+    private boolean isPolarisOK() {
+        return polarisConnector.isPingSuccessful();
+    }
+
+    private boolean isKafkaOk() {
+        return healthService.isHealthy();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public static class InternalException extends RuntimeException {
+        public InternalException(String message) {
+            super(message);
+        }
+    }
 }

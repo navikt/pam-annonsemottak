@@ -2,19 +2,19 @@ package no.nav.pam.annonsemottak.receivers.fangst;
 
 
 import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +23,21 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
+@SpringBootTest(classes = Application.class)
 @Rollback
 @Transactional
 @ContextConfiguration(classes = Application.class)
 public class DexiAnnonseFangstServiceTest {
 
-    @Inject
+    @Autowired
     private StillingRepository stillingRepository;
 
+    @Autowired
+    private StillingOutboxService stillingOutboxService;
 
     @Test
     public void stop_modify_new_annonseListss_should_be_correct() {
-        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository);
+        DexiAnnonseFangstService fangstService = new DexiAnnonseFangstService(stillingRepository, stillingOutboxService);
         String kilde = "KILDE";
         String medium = "MEDIUM";
         // we have 3 annonse in database

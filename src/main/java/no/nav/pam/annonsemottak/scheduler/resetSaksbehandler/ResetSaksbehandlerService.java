@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.scheduler.resetSaksbehandler;
 
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Status;
 import no.nav.pam.annonsemottak.stilling.Stilling;
@@ -22,10 +23,12 @@ public class ResetSaksbehandlerService {
     private static final int RESET_AFTER_DAYS = 7;
 
     private final StillingRepository repository;
+    private final StillingOutboxService stillingOutboxService;
 
     @Inject
-    public ResetSaksbehandlerService(StillingRepository repository) {
+    public ResetSaksbehandlerService(StillingRepository repository, StillingOutboxService stillingOutboxService) {
         this.repository = repository;
+        this.stillingOutboxService = stillingOutboxService;
     }
 
     @Transactional
@@ -43,6 +46,7 @@ public class ResetSaksbehandlerService {
 
             LOG.info("Reset status and saksbehandler for {} ads", resetList.size());
             repository.saveAll(resetList);
+            stillingOutboxService.lagreFlereTilOutbox(resetList);
         }
     }
 }

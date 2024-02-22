@@ -68,3 +68,15 @@ solr:
   core: 'maincore'
 xmlstilling:
   url: http://localhost:9020
+kafka:
+  brokers: ${KAFKA_BROKERS:kafka:29092}
+  credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}
+  truststorepath: ${KAFKA_TRUSTSTORE_PATH:}
+  keystorepath: ${KAFKA_KEYSTORE_PATH:}
+appname: ${NAIS_APP_NAME:}
+outbox:
+  kafka:
+    enabled: ${OUTBOX_KAFKA_ENABLED:false}
+    topic: ${ANNONSEMOTTAK_TOPIC:teampam.annonsemottak-1}
+  scheduler:
+    enabled: ${OUTBOX_SCHEDULER_ENABLED:false}

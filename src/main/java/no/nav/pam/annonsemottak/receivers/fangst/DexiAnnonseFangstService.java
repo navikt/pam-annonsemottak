@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.fangst;
 
+import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
@@ -18,13 +19,15 @@ import java.util.stream.Collectors;
 public class DexiAnnonseFangstService {
 
     private final StillingRepository stillingRepository;
+    private final StillingOutboxService stillingOutboxService;
 
 
     private static final Logger LOG = LoggerFactory.getLogger(DexiAnnonseFangstService.class);
 
     @Inject
-    public DexiAnnonseFangstService(StillingRepository repository) {
+    public DexiAnnonseFangstService(StillingRepository repository, StillingOutboxService stillingOutboxService) {
         this.stillingRepository = repository;
+        this.stillingOutboxService = stillingOutboxService;
     }
 
     public AnnonseResult retrieveAnnonseLists(List<Stilling> receiveList, String kilde, String medium) {
@@ -83,6 +86,7 @@ public class DexiAnnonseFangstService {
     @Transactional
     public void saveAll(AnnonseResult annonseResult) {
         stillingRepository.saveAll(annonseResult.getAll());
+        stillingOutboxService.lagreFlereTilOutbox(annonseResult.getAll());
         LOG.info("Persisted: {}", annonseResult);
     }
 }
