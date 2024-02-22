@@ -19,7 +19,7 @@
         <flexmark.version>0.50.50</flexmark.version>
         <httpclient.version>4.5.13</httpclient.version>
         <wiremock.version>3.0.0-beta-10</wiremock.version>
-        <guava.version>31.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <assertj.version>3.24.2</assertj.version>
         <shedlock.version>2.2.0</shedlock.version>
         <logstash-logback-encoder.version>6.1</logstash-logback-encoder.version>
