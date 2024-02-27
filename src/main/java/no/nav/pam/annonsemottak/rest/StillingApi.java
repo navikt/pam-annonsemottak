@@ -118,8 +118,8 @@ public class StillingApi {
                 Stilling s = stilling.get();
                 s.oppdaterMed(new OppdaterSaksbehandlingCommand(keyValueMap));
 
-                stillingRepository.save(s);
-                stillingOutboxService.lagreTilOutbox(s);
+                Stilling lagretStilling = stillingRepository.save(s);
+                stillingOutboxService.lagreTilOutbox(lagretStilling);
                 return ResponseEntity.noContent().build();
             }
 
@@ -198,7 +198,7 @@ public class StillingApi {
                 probe.addMetricsCounters(Kilde.SBL.toString(), Kilde.SBL.toString(), 1, 0, 0, 0);
             }
             Stilling adEntity = stillingRepository.save(nyStilling);
-            stillingOutboxService.lagreTilOutbox(nyStilling);
+            stillingOutboxService.lagreTilOutbox(adEntity);
             Link linkToCreatedResouce = WebMvcLinkBuilder.linkTo(methodOn(StillingApi.class).getAnnonse(adEntity.getUuid())).withSelfRel();
 
             LOG.info("Created ad as resource {}", linkToCreatedResouce.getHref());

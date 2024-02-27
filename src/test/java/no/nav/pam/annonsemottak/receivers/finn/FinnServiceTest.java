@@ -7,13 +7,14 @@ import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRun;
 import no.nav.pam.annonsemottak.receivers.externalRun.ExternalRunService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
+import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -77,10 +78,14 @@ public class FinnServiceTest {
         searchResult.add(generateAdHeadWithDates("4", LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now().plusMonths(1))); // New ad
         when(mockedConnector.fetchSearchResult()).thenReturn(searchResult);
 
-        when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult());
+        ArrayList<Stilling> nyeStillinger = new ArrayList<>();
 
+        for (int i = 0; i < 4; i++) {
+            nyeStillinger.add(StillingTestdataBuilder.enkelStilling().properties(Map.of("arbeidsdag", "[\"Ukedager\"]", "orgnummer", "1234567")).build());
+        }
+
+        when(mockedAnnonseFangstService.retrieveAnnonseLists(anyList(), anySet(), eq(Kilde.FINN.toString()), eq(Medium.FINN.toString()))).thenReturn(new AnnonseResult(List.of(), List.of(), List.of(), nyeStillinger, List.of()));
         finnService.saveAndUpdateFromCollection();
-
         verify(mockedConnector).fetchFullAds(searchResult);
     }
 
