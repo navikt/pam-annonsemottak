@@ -86,13 +86,13 @@ public class AnnonseFangstService {
         LOG.info("Annonsefangstservice, etter save,  annonseresult: {}", annonseResult.toString());
     }
 
-    private void saveOne(Stilling s) {
+    @Transactional
+    public void saveOne(Stilling s) {
         try {
-            stillingRepository.save(s);
-            stillingOutboxService.lagreTilOutbox(s);
+            Stilling lagretStilling = stillingRepository.save(s);
+            stillingOutboxService.lagreTilOutbox(lagretStilling);
         } catch (Exception e) {
-            LOG.error("Error while saving ad {} from source {}. Error: {}", s.getUuid(), s.getKilde(), e.getMessage());
+            LOG.error("Error while saving ad {} from source {}. Error: {} - Full error: {}", s.getUuid(), s.getKilde(), e.getMessage(), e.toString());
         }
     }
-
 }
