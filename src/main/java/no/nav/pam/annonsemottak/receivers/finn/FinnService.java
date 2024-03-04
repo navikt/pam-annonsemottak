@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import jakarta.inject.Inject;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +53,7 @@ public class FinnService {
     /**
      * Will retrieve all the active job ads from finn, and save new or changed ads.
      */
+    @Transactional
     public ResultsOnSave saveAndUpdateFromCollection() throws FinnConnectorException {
 
         //Retrieve the date for last successful run
