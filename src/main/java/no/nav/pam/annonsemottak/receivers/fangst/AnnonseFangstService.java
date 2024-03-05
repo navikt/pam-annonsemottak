@@ -80,6 +80,7 @@ public class AnnonseFangstService {
     }
 
 
+    @Transactional
     public void saveAll(AnnonseResult annonseResult) {
         LOG.info("Annonsefangstservice, før save,  annonseresult: {}", annonseResult.toString());
         annonseResult.getAll().forEach(this::saveOne);
