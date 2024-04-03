@@ -1,4 +1,4 @@
-FROM ghcr.io/navikt/baseimages/temurin:17
+FROM ghcr.io/navikt/baseimages/temurin:21
 COPY target/pam-annonsemottak-*.jar /app/app.jar
 EXPOSE 9016
 COPY scripts/init-env.sh /init-scripts/init-env.sh

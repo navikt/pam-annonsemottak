@@ -4,7 +4,6 @@ package no.nav.pam.annonsemottak.app.rest;
 import no.nav.pam.annonsemottak.kafka.HealthService;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
-import no.nav.pam.annonsemottak.receivers.dexi.DexiConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
 import no.nav.pam.annonsemottak.receivers.polaris.PolarisConnector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ public class StatusController {
 
     private final FinnConnector finnConnector;
 
-    private final DexiConnector dexiConnector;
-
     private final AmediaConnector amediaConnector;
 
     private final PolarisConnector polarisConnector;
@@ -31,9 +28,8 @@ public class StatusController {
     private final HealthService healthService;
 
     @Autowired
-    public StatusController(FinnConnector finnConnector, DexiConnector dexiConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector, HealthService healthService) {
+    public StatusController(FinnConnector finnConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector, HealthService healthService) {
         this.finnConnector = finnConnector;
-        this.dexiConnector = dexiConnector;
         this.amediaConnector = amediaConnector;
         this.polarisConnector = polarisConnector;
         this.healthService = healthService;
@@ -54,8 +50,7 @@ public class StatusController {
     @GetMapping(path = "/amIOK")
     public String amIOk() {
 
-        if (isDexiOK()
-                && isAmediaOK()
+        if (isAmediaOK()
                 && isFinnOK()
                 && isPolarisOK()
                 && isKafkaOk()
@@ -70,7 +65,6 @@ public class StatusController {
     public ResponseEntity pingSourcesAndGetStatus() {
 
         Map<String, String> statusMap = new HashMap<>();
-        statusMap.put(Kilde.DEXI.value(), statusToString(isDexiOK()));
         statusMap.put(Kilde.FINN.value(), statusToString(isFinnOK()));
         statusMap.put(Kilde.AMEDIA.value(), statusToString(isAmediaOK()));
         statusMap.put(Kilde.POLARIS.value(), statusToString(isPolarisOK()));
@@ -84,10 +78,6 @@ public class StatusController {
 
     private boolean isFinnOK() {
         return finnConnector.isPingSuccessful();
-    }
-
-    private boolean isDexiOK() {
-        return dexiConnector.isPingSuccessful();
     }
 
     private boolean isAmediaOK() {
