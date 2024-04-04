@@ -29,11 +29,6 @@ management:
         include: ["prometheus", "metrics"]
 scheduler:
   enabled: false
-dexi:
-  url: http://localhost.dexi
-  api:
-    username: dexi_username
-    password: dexi_password
 amedia:
   url: http://localhost:7010/api/prophecy/external/nav/jobs
 polaris:
@@ -42,11 +37,6 @@ finn:
   url: https://localhost:7011
   api:
     password: finn_api_key
-solr:
-  url: http://localhost.solr
-  core: 'maincore'
-xmlstilling:
-  url: http://pam-xml-stilling
 kafka:
   brokers: ${KAFKA_BROKERS:http://localhost:1337}
   credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}

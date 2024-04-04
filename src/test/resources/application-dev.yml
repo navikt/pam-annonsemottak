@@ -47,11 +47,6 @@ management:
         include: ["prometheus", "metrics", "mappings"]
 scheduler:
   enabled: false
-dexi:
-  url: http://localhost/api.dexi.io
-  api:
-    username: dexi_username
-    password: dexi_password
 amedia:
   url: http://services.api.no/api/prophecy/external/nav/jobs
   apikey: ${AMEDIA_API_KEY:need-to-set-token}
@@ -63,11 +58,6 @@ finn:
     password: finn_api_key
 proxy:
   url: null
-solr:
-  url: https://itjenester-q0.oera.no/stilling-solr/
-  core: 'maincore'
-xmlstilling:
-  url: http://localhost:9020
 kafka:
   brokers: ${KAFKA_BROKERS:kafka:29092}
   credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}

@@ -64,9 +64,6 @@ spec:
         - host: cache.api.finn.no
           ports:
             - port: 443
-        - host: api.dexi.io
-          ports:
-            - port: 443
         - host: services.api.no
           ports:
             - port: 443

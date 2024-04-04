@@ -3,11 +3,11 @@ package no.nav.pam.annonsemottak.receivers;
 public enum Kilde {
     SBL("Stillingsregistrering"),
     FINN("FINN"),
-    DEXI("webcrawl"),
+    @Deprecated DEXI("webcrawl"), // deprecated
     AMEDIA("AMEDIA"),
-    STILLINGSOLR("stillingsolr"),
+    @Deprecated STILLINGSOLR("stillingsolr"), // deprecated
     POLARIS("POLARIS"),
-    XML_STILLING("xmlstilling");
+    @Deprecated XML_STILLING("xmlstilling"); // deprecated
 
     private final String kilde;
 

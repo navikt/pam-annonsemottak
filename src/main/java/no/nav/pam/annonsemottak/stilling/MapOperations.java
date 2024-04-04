@@ -1,7 +1,5 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import no.nav.pam.annonsemottak.receivers.dexi.Tuple;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -21,13 +19,6 @@ public class MapOperations {
 
     public void put(String key, int value) {
         map.put(key, String.valueOf(value));
-    }
-
-    @SuppressWarnings("unchecked")
-    public void put (Tuple<String, String>...tuples){
-        for (Tuple<String,String> tuple : tuples) {
-            map.put(tuple.x, tuple.y);
-        }
     }
 
     protected boolean contains(String key) {

@@ -39,13 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 public class AmediaApiTest {
 
-    static {
-        System.setProperty("PROXY_URL", "");
-        System.setProperty("DEXI_URL", "");
-        System.setProperty("DEXI_API_USERNAME", "");
-        System.setProperty("DEXI_API_PASSWORD", "");
-    }
-
     public static WireMockRule wireMockRule;
 
     @Autowired
