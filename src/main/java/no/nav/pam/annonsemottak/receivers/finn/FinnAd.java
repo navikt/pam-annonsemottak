@@ -362,6 +362,7 @@ public class FinnAd {
 
         if (adType.isPresent()) {
             return "job-full-time".equals(adType.get().term)
+                    || "job-management".equals(adType.get().term)
                     ? "Heltid"
                     : "Deltid";
         }
