@@ -39,6 +39,7 @@ public class FinnAd {
     private final String applicationDeadline;
     private final String applicationEmail;
     private final String applicationLabel;
+    private final List<MetaCategory> metaCategories;
     private final List<Category> categories;
     private final Company company;
     private final String duration;
@@ -100,6 +101,7 @@ public class FinnAd {
         applicationDeadline = getString(document, "/entry/adata/field[@name='application_deadline']/@value");
         applicationEmail = getString(document, "/entry/adata/field[@name='application_email']/@value");
         applicationLabel = getString(document, "/entry/adata/field[@name='application_label']/@value");
+        metaCategories = getListOfMetaCategories(getNodeList(document, "/entry/category"));
         categories = getListOfCategories(getNodeList(document, "/entry/adata/field[@name='categories']/value"));
         throwExceptionIfNonUniqueXpath(document, "/entry/field[@name='company']");
         company = new Company(
@@ -143,6 +145,17 @@ public class FinnAd {
 
     private List<Category> getListOfCategories(NodeList nodes) {
         return new ArrayList<>(0); // TODO: Work halted due to other coding, finish up and continue on other extension fields (see ad.json model).
+    }
+    private List<MetaCategory> getListOfMetaCategories(NodeList nodes) throws XPathExpressionException {
+        List<MetaCategory> metaCategories = new ArrayList<MetaCategory>();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            String scheme = getNonUniqueString(nodes.item(i), "./@scheme");
+            String term = getNonUniqueString(nodes.item(i), "./@term");
+            String label = getNonUniqueString(nodes.item(i), "./@label");
+            metaCategories.add(new MetaCategory(scheme, term, label));
+        }
+        return metaCategories;
     }
 
     private List<Contact> getListOfContacts(NodeList nodes) throws XPathExpressionException {
@@ -343,6 +356,16 @@ public class FinnAd {
     }
 
     String getExtent() {
+        var adType = metaCategories.stream()
+                .filter(c -> "urn:finn:ad:type".equals(c.scheme) )
+                .findFirst();
+
+        if (adType.isPresent()) {
+            return "job-full-time".equals(adType.get().term)
+                    || "job-management".equals(adType.get().term)
+                    ? "Heltid"
+                    : "Deltid";
+        }
         return extent;
     }
 
@@ -520,6 +543,22 @@ public class FinnAd {
             this.main = main;
             this.sub = sub;
         }
+    }
+
+    static class MetaCategory {
+        private final String scheme;
+        private final String term;
+        private final String label;
+
+        private MetaCategory(String scheme, String term, String label) {
+            this.scheme = scheme;
+            this.term = term;
+            this.label = label;
+        }
+
+        public String getScheme() { return scheme; }
+        public String getTerm() { return term; }
+        public String getLabel() { return label; }
     }
 
     static class Contact {
