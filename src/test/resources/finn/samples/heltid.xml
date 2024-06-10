@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:os="http://a9.com/-/spec/opensearch/1.1/" xmlns:age="http://purl.org/atompub/age/1.0" xmlns:finn="http://xmlns.finn.no/atom-ad-extensions/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" xmlns:f="http://xmlns.finn.no/opensearch/1.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:app="http://www.w3.org/2007/app">
+  <id>urn:uuid:DnZJpz0QLdhxrimGrthyiFRiXw02nMfo</id>
+  <title>Fulltidsjobb</title>
+  <subtitle>Ledige stillinger</subtitle>
+  <updated>2024-06-10T11:38:01.354Z</updated>
+  <author>
+    <name>FINN.no</name>
+  </author>
+  <link href="https://cache.api.finn.no/iad/search/job-full-time/?rows=10&amp;sort=0" rel="self"/>
+  <link href="https://cache.api.finn.no/iad/search/job-full-time/?rows=10&amp;sort=0" rel="first"/>
+  <link href="https://cache.api.finn.no/iad/search/job-full-time/?rows=10&amp;sort=0&amp;page=1990" rel="last"/>
+  <link href="https://cache.api.finn.no/iad/search/job-full-time/?rows=10&amp;sort=0&amp;page=2" rel="next"/>
+  <link href="https://cache.api.finn.no/iad/search/job-full-time//description" rel="search" type="application/opensearchdescription+xml"/>
+  <category scheme="urn:finn:search:type" label="Fulltidsjobb" term="job-full-time"/>
+  <f:filter name="occupation" title="Stilling" range="false">
+    <f:Query role="subset" totalResults="7" f:filter="0.79" title="Agronom"/>
+    <f:Query role="subset" totalResults="167" f:filter="0.1" title="Analyse"/>
+    <f:Query role="subset" totalResults="2991" f:filter="0.9999" title="Annet"/>
+    <f:Query role="subset" totalResults="42" f:filter="0.2" title="Arkitekt og planlegging">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="13" f:filter="1.2.303" title="Anleggsgartner"/>
+        <f:Query role="subset" totalResults="7" f:filter="1.2.304" title="Arealplanlegger"/>
+        <f:Query role="subset" totalResults="6" f:filter="1.2.305" title="Arkitekt"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.2.306" title="Interiørarkitekt"/>
+        <f:Query role="subset" totalResults="8" f:filter="1.2.307" title="Landskapsarkitekt"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="22" f:filter="0.3" title="Arkivar og bibliotekar"/>
+    <f:Query role="subset" totalResults="4" f:filter="0.69" title="Art director"/>
+    <f:Query role="subset" totalResults="1121" f:filter="0.77" title="Barnehage">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="554" f:filter="1.77.210" title="Barnehageassistent"/>
+        <f:Query role="subset" totalResults="817" f:filter="1.77.211" title="Barnehagelærer"/>
+        <f:Query role="subset" totalResults="565" f:filter="1.77.212" title="Pedagogisk leder"/>
+        <f:Query role="subset" totalResults="12" f:filter="1.77.213" title="Styrer"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="175" f:filter="0.70" title="Barnevernspedagog"/>
+    <f:Query role="subset" totalResults="17" f:filter="0.80" title="Biolog"/>
+    <f:Query role="subset" totalResults="23" f:filter="0.4" title="Brannvern"/>
+    <f:Query role="subset" totalResults="73" f:filter="0.5" title="Brukerstøtte/support"/>
+    <f:Query role="subset" totalResults="1843" f:filter="0.6" title="Butikkansatt"/>
+    <f:Query role="subset" totalResults="231" f:filter="0.78" title="Butikksjef"/>
+    <f:Query role="subset" totalResults="122" f:filter="0.7" title="Design">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="24" f:filter="1.7.313" title="Grafisk"/>
+        <f:Query role="subset" totalResults="1" f:filter="1.7.314" title="Illustrasjon"/>
+        <f:Query role="subset" totalResults="36" f:filter="1.7.315" title="Industri"/>
+        <f:Query role="subset" totalResults="14" f:filter="1.7.242" title="Interaksjonsdesign"/>
+        <f:Query role="subset" totalResults="10" f:filter="1.7.316" title="Interiør"/>
+        <f:Query role="subset" totalResults="10" f:filter="1.7.317" title="Klær"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.7.318" title="Layout"/>
+        <f:Query role="subset" totalResults="8" f:filter="1.7.319" title="Møbel"/>
+        <f:Query role="subset" totalResults="13" f:filter="1.7.320" title="Web"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="59" f:filter="0.8" title="Dokumentasjon"/>
+    <f:Query role="subset" totalResults="146" f:filter="0.9" title="Driftsoperatør/vaktmester"/>
+    <f:Query role="subset" totalResults="49" f:filter="0.11" title="Forhandling"/>
+    <f:Query role="subset" totalResults="177" f:filter="0.12" title="Forretningsutvikling og strategi"/>
+    <f:Query role="subset" totalResults="236" f:filter="0.13" title="Forskning/Stipendiat/Postdoktor"/>
+    <f:Query role="subset" totalResults="21" f:filter="0.82" title="Foto, lyd og lys"/>
+    <f:Query role="subset" totalResults="16" f:filter="0.81" title="Franchise"/>
+    <f:Query role="subset" totalResults="73" f:filter="0.14" title="Frisør"/>
+    <f:Query role="subset" totalResults="15" f:filter="0.15" title="Geologi/Fysikk/Kjemi"/>
+    <f:Query role="subset" totalResults="3765" f:filter="0.16" title="Helsepersonell">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="2" f:filter="1.16.330" title="Alternativ medisin"/>
+        <f:Query role="subset" totalResults="6" f:filter="1.16.241" title="Apotektekniker"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.16.331" title="Audiograf"/>
+        <f:Query role="subset" totalResults="35" f:filter="1.16.357" title="Bioingeniør"/>
+        <f:Query role="subset" totalResults="23" f:filter="1.16.332" title="Ergoterapeut"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.16.204" title="Ernæringsfysiolog"/>
+        <f:Query role="subset" totalResults="11" f:filter="1.16.323" title="Farmasøyt"/>
+        <f:Query role="subset" totalResults="73" f:filter="1.16.333" title="Fysioterapeut"/>
+        <f:Query role="subset" totalResults="757" f:filter="1.16.334" title="Helsefagarbeider/hjelpepleier"/>
+        <f:Query role="subset" totalResults="121" f:filter="1.16.196" title="Helsesekretær"/>
+        <f:Query role="subset" totalResults="21" f:filter="1.16.336" title="Optiker"/>
+        <f:Query role="subset" totalResults="125" f:filter="1.16.337" title="Psykolog"/>
+        <f:Query role="subset" totalResults="15" f:filter="1.16.338" title="Radiograf"/>
+        <f:Query role="subset" totalResults="181" f:filter="1.16.339" title="Tannhelse"/>
+        <f:Query role="subset" totalResults="972" f:filter="1.16.340" title="Vernepleier/miljøterapeut"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="109" f:filter="0.17" title="HMS"/>
+    <f:Query role="subset" totalResults="140" f:filter="0.76" title="Hotell og overnatting">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="11" f:filter="1.76.207" title="Booking"/>
+        <f:Query role="subset" totalResults="8" f:filter="1.76.205" title="Husøkonom"/>
+        <f:Query role="subset" totalResults="7" f:filter="1.76.208" title="Konferanse"/>
+        <f:Query role="subset" totalResults="66" f:filter="1.76.206" title="Resepsjon"/>
+        <f:Query role="subset" totalResults="64" f:filter="1.76.209" title="Service/servering"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="176" f:filter="0.41" title="HR, personal og rekruttering"/>
+    <f:Query role="subset" totalResults="18" f:filter="0.18" title="Hudpleie og Massasje"/>
+    <f:Query role="subset" totalResults="2004" f:filter="0.19" title="Håndverker">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="233" f:filter="1.19.222" title="Andre montører"/>
+        <f:Query role="subset" totalResults="9" f:filter="1.19.215" title="Asfaltarbeid"/>
+        <f:Query role="subset" totalResults="45" f:filter="1.19.220" title="Betongarbeider"/>
+        <f:Query role="subset" totalResults="18" f:filter="1.19.344" title="Blikkenslager/tak"/>
+        <f:Query role="subset" totalResults="101" f:filter="1.19.345" title="Bygg/Anleggsleder"/>
+        <f:Query role="subset" totalResults="349" f:filter="1.19.346" title="Elektriker"/>
+        <f:Query role="subset" totalResults="97" f:filter="1.19.214" title="Elektronikkmontør"/>
+        <f:Query role="subset" totalResults="15" f:filter="1.19.217" title="Forskalingssnekker"/>
+        <f:Query role="subset" totalResults="46" f:filter="1.19.347" title="Grunnarbeid"/>
+        <f:Query role="subset" totalResults="50" f:filter="1.19.216" title="Hjelpearbeider"/>
+        <f:Query role="subset" totalResults="7" f:filter="1.19.243" title="Låsesmed"/>
+        <f:Query role="subset" totalResults="54" f:filter="1.19.348" title="Maler/Tapeserer"/>
+        <f:Query role="subset" totalResults="549" f:filter="1.19.349" title="Mekaniker"/>
+        <f:Query role="subset" totalResults="26" f:filter="1.19.350" title="Murer/Flislegger"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.19.351" title="Murmester"/>
+        <f:Query role="subset" totalResults="103" f:filter="1.19.352" title="Rørlegger"/>
+        <f:Query role="subset" totalResults="315" f:filter="1.19.353" title="Snekker/Tømrer"/>
+        <f:Query role="subset" totalResults="27" f:filter="1.19.218" title="Stillasmontør"/>
+        <f:Query role="subset" totalResults="56" f:filter="1.19.219" title="Sveiser"/>
+        <f:Query role="subset" totalResults="24" f:filter="1.19.221" title="Ventilasjonstekniker"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="1626" f:filter="0.20" title="Ingeniør">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="5" f:filter="1.20.355" title="Akustikk"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.20.224" title="Asfaltingeniør"/>
+        <f:Query role="subset" totalResults="202" f:filter="1.20.56" title="Automasjon og instrument"/>
+        <f:Query role="subset" totalResults="21" f:filter="1.20.359" title="Boreteknikk/drilling"/>
+        <f:Query role="subset" totalResults="9" f:filter="1.20.360" title="Brannsikkerhet"/>
+        <f:Query role="subset" totalResults="115" f:filter="1.20.361" title="Bygge- og anleggsteknikk"/>
+        <f:Query role="subset" totalResults="13" f:filter="1.20.362" title="Bygningsfysikk"/>
+        <f:Query role="subset" totalResults="266" f:filter="1.20.363" title="Elektroingeniør"/>
+        <f:Query role="subset" totalResults="10" f:filter="1.20.364" title="Geomatikk"/>
+        <f:Query role="subset" totalResults="7" f:filter="1.20.365" title="Geoteknikk og ingeniørgeologi"/>
+        <f:Query role="subset" totalResults="16" f:filter="1.20.366" title="HVAC"/>
+        <f:Query role="subset" totalResults="26" f:filter="1.20.240" title="Kjemiingeniør"/>
+        <f:Query role="subset" totalResults="27" f:filter="1.20.10000" title="Kybernetikk"/>
+        <f:Query role="subset" totalResults="31" f:filter="1.20.367" title="Marinteknikk / Naval architecture"/>
+        <f:Query role="subset" totalResults="17" f:filter="1.20.368" title="Materialteknologi"/>
+        <f:Query role="subset" totalResults="144" f:filter="1.20.369" title="Mekanisk"/>
+        <f:Query role="subset" totalResults="10" f:filter="1.20.370" title="Oppmåling og kartlegging"/>
+        <f:Query role="subset" totalResults="45" f:filter="1.20.371" title="Rør/struktur"/>
+        <f:Query role="subset" totalResults="13" f:filter="1.20.372" title="Samferdselsteknikk og arealplanlegging"/>
+        <f:Query role="subset" totalResults="31" f:filter="1.20.223" title="Strukturingeniør"/>
+        <f:Query role="subset" totalResults="26" f:filter="1.20.358" title="Subsea"/>
+        <f:Query role="subset" totalResults="3" f:filter="1.20.373" title="Taksering"/>
+        <f:Query role="subset" totalResults="39" f:filter="1.20.374" title="Teknisk sikkerhet/QHSE"/>
+        <f:Query role="subset" totalResults="29" f:filter="1.20.75" title="Vann- og miljøteknikk"/>
+        <f:Query role="subset" totalResults="6" f:filter="1.20.376" title="VAR-teknikk"/>
+        <f:Query role="subset" totalResults="5" f:filter="1.20.377" title="Vassdrag"/>
+        <f:Query role="subset" totalResults="43" f:filter="1.20.378" title="VVS- og klimateknikk"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="134" f:filter="0.21" title="Innkjøp/forhandling"/>
+    <f:Query role="subset" totalResults="244" f:filter="0.22" title="IT drift og vedlikehold">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="209" f:filter="1.22.380" title="Drift/Operations"/>
+        <f:Query role="subset" totalResults="102" f:filter="1.22.381" title="IT-support"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="476" f:filter="0.23" title="IT utvikling">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="45" f:filter="1.23.246" title="AI / Maskinlæring"/>
+        <f:Query role="subset" totalResults="24" f:filter="1.23.245" title="App utvikler"/>
+        <f:Query role="subset" totalResults="56" f:filter="1.23.382" title="Database"/>
+        <f:Query role="subset" totalResults="53" f:filter="1.23.383" title="Front-end"/>
+        <f:Query role="subset" totalResults="118" f:filter="1.23.244" title="Full stack utvikler"/>
+        <f:Query role="subset" totalResults="61" f:filter="1.23.384" title="IT-sikkerhet"/>
+        <f:Query role="subset" totalResults="22" f:filter="1.23.87" title="QA/Testing"/>
+        <f:Query role="subset" totalResults="95" f:filter="1.23.385" title="Systemarkitekt"/>
+        <f:Query role="subset" totalResults="298" f:filter="1.23.86" title="Utvikler (generell)"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="29" f:filter="0.71" title="Journalist"/>
+    <f:Query role="subset" totalResults="139" f:filter="0.24" title="Jurist">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="36" f:filter="1.24.89" title="Advokat"/>
+        <f:Query role="subset" totalResults="22" f:filter="1.24.90" title="Advokatfullmektig"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="803" f:filter="0.25" title="Konsulent"/>
+    <f:Query role="subset" totalResults="767" f:filter="0.26" title="Kontor og administrasjon">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="83" f:filter="1.26.96" title="Kontorarbeid"/>
+        <f:Query role="subset" totalResults="14" f:filter="1.26.225" title="Personlig assistent"/>
+        <f:Query role="subset" totalResults="35" f:filter="1.26.97" title="Resepsjon"/>
+        <f:Query role="subset" totalResults="22" f:filter="1.26.98" title="Sekretær"/>
+        <f:Query role="subset" totalResults="6" f:filter="1.26.99" title="Sentralbord"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="304" f:filter="0.27" title="Koordinering"/>
+    <f:Query role="subset" totalResults="1691" f:filter="0.28" title="Kundeservice"/>
+    <f:Query role="subset" totalResults="46" f:filter="0.29" title="Kurs og opplæring"/>
+    <f:Query role="subset" totalResults="162" f:filter="0.30" title="Kvalitetssikring"/>
+    <f:Query role="subset" totalResults="1477" f:filter="0.32" title="Ledelse"/>
+    <f:Query role="subset" totalResults="404" f:filter="0.33" title="Lege">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="95" f:filter="1.33.107" title="Allmennmedisin"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.33.108" title="Barnesykdommer"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.33.110" title="Indremedisin"/>
+        <f:Query role="subset" totalResults="1" f:filter="1.33.111" title="Kirurgi"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.33.112" title="Kreft/onkologi"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.33.113" title="Laboratoriemedisin"/>
+        <f:Query role="subset" totalResults="30" f:filter="1.33.114" title="LIS"/>
+        <f:Query role="subset" totalResults="122" f:filter="1.33.115" title="Overlege"/>
+        <f:Query role="subset" totalResults="26" f:filter="1.33.116" title="Psykiater"/>
+        <f:Query role="subset" totalResults="12" f:filter="1.33.117" title="Spesiallege"/>
+        <f:Query role="subset" totalResults="2" f:filter="1.33.119" title="Øye"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="648" f:filter="0.31" title="Logistikk og lager">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="258" f:filter="1.31.227" title="Lagermedarbeider"/>
+        <f:Query role="subset" totalResults="33" f:filter="1.31.229" title="Post- og budtjenester"/>
+        <f:Query role="subset" totalResults="46" f:filter="1.31.226" title="SCM og logistikk"/>
+        <f:Query role="subset" totalResults="187" f:filter="1.31.228" title="Truckfører"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="201" f:filter="0.34" title="Markedsfører"/>
+    <f:Query role="subset" totalResults="170" f:filter="0.35" title="Maskinfører og -operatør"/>
+    <f:Query role="subset" totalResults="1149" f:filter="0.36" title="Mat og servering">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="27" f:filter="1.36.123" title="Bartender"/>
+        <f:Query role="subset" totalResults="17" f:filter="1.36.202" title="Catering"/>
+        <f:Query role="subset" totalResults="18" f:filter="1.36.125" title="Hovmester"/>
+        <f:Query role="subset" totalResults="35" f:filter="1.36.127" title="Kjøkkensjef"/>
+        <f:Query role="subset" totalResults="97" f:filter="1.36.201" title="Kjøkken- og kantinemedarbeider"/>
+        <f:Query role="subset" totalResults="355" f:filter="1.36.126" title="Kokk"/>
+        <f:Query role="subset" totalResults="24" f:filter="1.36.203" title="Restaurantsjef"/>
+        <f:Query role="subset" totalResults="73" f:filter="1.36.128" title="Servitør"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="22" f:filter="0.37" title="Megler"/>
+    <f:Query role="subset" totalResults="440" f:filter="0.38" title="Mekanikk og installasjon"/>
+    <f:Query role="subset" totalResults="7" f:filter="0.84" title="Menighetsarbeid"/>
+    <f:Query role="subset" totalResults="75" f:filter="0.39" title="Militært personell"/>
+    <f:Query role="subset" totalResults="763" f:filter="0.40" title="Omsorg og sosialt arbeid"/>
+    <f:Query role="subset" totalResults="1" f:filter="0.42" title="Pilot og flypersonell"/>
+    <f:Query role="subset" totalResults="83" f:filter="0.43" title="Planlegger"/>
+    <f:Query role="subset" totalResults="8" f:filter="0.44" title="Politi"/>
+    <f:Query role="subset" totalResults="1" f:filter="0.83" title="Prest"/>
+    <f:Query role="subset" totalResults="744" f:filter="0.46" title="Produksjon">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="112" f:filter="1.46.10001" title="Produksjonsteknikk/Prosessteknikk"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="55" f:filter="0.47" title="Produktledelse"/>
+    <f:Query role="subset" totalResults="587" f:filter="0.48" title="Prosjektledelse"/>
+    <f:Query role="subset" totalResults="62" f:filter="0.45" title="PR og informasjon"/>
+    <f:Query role="subset" totalResults="397" f:filter="0.49" title="Renhold"/>
+    <f:Query role="subset" totalResults="57" f:filter="0.50" title="Revisjon og kontroll"/>
+    <f:Query role="subset" totalResults="977" f:filter="0.51" title="Rådgivning"/>
+    <f:Query role="subset" totalResults="324" f:filter="0.52" title="Saksbehandler"/>
+    <f:Query role="subset" totalResults="1505" f:filter="0.53" title="Salg">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="241" f:filter="1.53.146" title="Løsningssalg"/>
+        <f:Query role="subset" totalResults="439" f:filter="1.53.147" title="Produktsalg"/>
+        <f:Query role="subset" totalResults="31" f:filter="1.53.148" title="Stands- og dørsalg"/>
+        <f:Query role="subset" totalResults="173" f:filter="1.53.149" title="Teknisk salg"/>
+        <f:Query role="subset" totalResults="75" f:filter="1.53.150" title="Telefonsalg"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="130" f:filter="0.54" title="Salgsledelse"/>
+    <f:Query role="subset" totalResults="14" f:filter="0.55" title="Samfunnsviter"/>
+    <f:Query role="subset" totalResults="154" f:filter="0.57" title="Sikkerhet"/>
+    <f:Query role="subset" totalResults="99" f:filter="0.85" title="Sjøfart">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="48" f:filter="1.85.237" title="Dekksoffiser"/>
+        <f:Query role="subset" totalResults="43" f:filter="1.85.239" title="Maskinist"/>
+        <f:Query role="subset" totalResults="21" f:filter="1.85.238" title="Matros"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="145" f:filter="0.72" title="Sosionom"/>
+    <f:Query role="subset" totalResults="2035" f:filter="0.59" title="Sykepleier">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="10" f:filter="1.59.157" title="Anestesi"/>
+        <f:Query role="subset" totalResults="5" f:filter="1.59.158" title="Barn/nyfødt"/>
+        <f:Query role="subset" totalResults="63" f:filter="1.59.159" title="Eldreomsorg"/>
+        <f:Query role="subset" totalResults="13" f:filter="1.59.160" title="Helsesykepleier"/>
+        <f:Query role="subset" totalResults="16" f:filter="1.59.161" title="Intensiv"/>
+        <f:Query role="subset" totalResults="14" f:filter="1.59.162" title="Jordmor"/>
+        <f:Query role="subset" totalResults="9" f:filter="1.59.163" title="Kreft/onkologi"/>
+        <f:Query role="subset" totalResults="14" f:filter="1.59.164" title="Operasjon"/>
+        <f:Query role="subset" totalResults="47" f:filter="1.59.165" title="Psykiatri"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="517" f:filter="0.60" title="Teknisk personell"/>
+    <f:Query role="subset" totalResults="278" f:filter="0.61" title="Teknisk service"/>
+    <f:Query role="subset" totalResults="18" f:filter="0.62" title="Teknisk tegner"/>
+    <f:Query role="subset" totalResults="5" f:filter="0.73" title="Tekstforfatter"/>
+    <f:Query role="subset" totalResults="7" f:filter="0.74" title="Tolk/oversetter"/>
+    <f:Query role="subset" totalResults="546" f:filter="0.58" title="Transport og sjåfør"/>
+    <f:Query role="subset" totalResults="78" f:filter="0.63" title="Trener / Personlig trener"/>
+    <f:Query role="subset" totalResults="2084" f:filter="0.64" title="Undervisning og pedagogikk">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="158" f:filter="1.64.171" title="Allmennlærer/kontaktlærer"/>
+        <f:Query role="subset" totalResults="48" f:filter="1.64.178" title="Andre pedagoger"/>
+        <f:Query role="subset" totalResults="26" f:filter="1.64.173" title="Faglærer(IT, idrett, kunst)"/>
+        <f:Query role="subset" totalResults="11" f:filter="1.64.174" title="Førskolelærer"/>
+        <f:Query role="subset" totalResults="9" f:filter="1.64.175" title="Inspektør"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.64.177" title="Logoped"/>
+        <f:Query role="subset" totalResults="133" f:filter="1.64.176" title="Lærer/Lektor"/>
+        <f:Query role="subset" totalResults="9" f:filter="1.64.179" title="Professor/Førsteamanuensis"/>
+        <f:Query role="subset" totalResults="17" f:filter="1.64.180" title="Rektor / Ass. Rektor"/>
+        <f:Query role="subset" totalResults="65" f:filter="1.64.172" title="Skoleassistent"/>
+        <f:Query role="subset" totalResults="4" f:filter="1.64.181" title="Sosiallærer"/>
+        <f:Query role="subset" totalResults="36" f:filter="1.64.182" title="Spesialpedagog"/>
+        <f:Query role="subset" totalResults="34" f:filter="1.64.183" title="Veileder"/>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="13" f:filter="0.65" title="Utøvende kunst"/>
+    <f:Query role="subset" totalResults="96" f:filter="0.66" title="Vakt og sikkerhet"/>
+    <f:Query role="subset" totalResults="8" f:filter="0.67" title="Veterinær og dyrepleier"/>
+    <f:Query role="subset" totalResults="751" f:filter="0.68" title="Økonomi og regnskap">
+      <f:filter name="occupation" title="Stilling" range="false">
+        <f:Query role="subset" totalResults="260" f:filter="1.68.188" title="Controller"/>
+        <f:Query role="subset" totalResults="85" f:filter="1.68.189" title="Lønn"/>
+        <f:Query role="subset" totalResults="308" f:filter="1.68.190" title="Regnskap"/>
+        <f:Query role="subset" totalResults="77" f:filter="1.68.191" title="Revisjon"/>
+        <f:Query role="subset" totalResults="13" f:filter="1.68.10002" title="Samfunnsøkonomi"/>
+        <f:Query role="subset" totalResults="191" f:filter="1.68.192" title="Økonomistyring og budsjettering"/>
+      </f:filter>
+    </f:Query>
+  </f:filter>
+  <f:filter name="industry" title="Bransje" range="false">
+    <f:Query role="subset" totalResults="612" f:filter="9999" title="Annet"/>
+    <f:Query role="subset" totalResults="28" f:filter="1" title="Arbeidstaker- og arbeidsgiverorganisasjoner"/>
+    <f:Query role="subset" totalResults="58" f:filter="12" title="Arkitektur, areal og interiør"/>
+    <f:Query role="subset" totalResults="17" f:filter="13" title="Arkiv og bibliotek"/>
+    <f:Query role="subset" totalResults="308" f:filter="2" title="Bank, finans og forsikring"/>
+    <f:Query role="subset" totalResults="667" f:filter="14" title="Barn, skole og undervisning"/>
+    <f:Query role="subset" totalResults="559" f:filter="16" title="Bil, kjøretøy og verksted"/>
+    <f:Query role="subset" totalResults="171" f:filter="15" title="Bil- og bildelproduksjon"/>
+    <f:Query role="subset" totalResults="1565" f:filter="3" title="Butikk og varehandel"/>
+    <f:Query role="subset" totalResults="1231" f:filter="4" title="Bygg og anlegg"/>
+    <f:Query role="subset" totalResults="541" f:filter="17" title="Drift og vedlikeholdstjenester"/>
+    <f:Query role="subset" totalResults="41" f:filter="18" title="Dyr og dyrehelse"/>
+    <f:Query role="subset" totalResults="196" f:filter="19" title="Eiendom"/>
+    <f:Query role="subset" totalResults="322" f:filter="20" title="Elektronikk"/>
+    <f:Query role="subset" totalResults="76" f:filter="21" title="Event og arrangementer"/>
+    <f:Query role="subset" totalResults="72" f:filter="5" title="Farmasi og legemiddel"/>
+    <f:Query role="subset" totalResults="142" f:filter="25" title="Fiskeri og oppdrett"/>
+    <f:Query role="subset" totalResults="7" f:filter="7" title="Forlag og trykkeri"/>
+    <f:Query role="subset" totalResults="239" f:filter="22" title="Forskning, utdanning og vitenskap"/>
+    <f:Query role="subset" totalResults="159" f:filter="23" title="Forsvar og militær"/>
+    <f:Query role="subset" totalResults="113" f:filter="24" title="Grossisthandel import/eksport"/>
+    <f:Query role="subset" totalResults="1696" f:filter="26" title="Helse og omsorg"/>
+    <f:Query role="subset" totalResults="171" f:filter="27" title="Hotell og overnatting"/>
+    <f:Query role="subset" totalResults="138" f:filter="28" title="HR, organisasjonsutvikling og rekruttering"/>
+    <f:Query role="subset" totalResults="474" f:filter="29" title="Håndverkstjenester"/>
+    <f:Query role="subset" totalResults="236" f:filter="30" title="Ideelle organisasjoner"/>
+    <f:Query role="subset" totalResults="111" f:filter="31" title="Idrett og trening"/>
+    <f:Query role="subset" totalResults="1213" f:filter="70" title="Industri og produksjon"/>
+    <f:Query role="subset" totalResults="134" f:filter="32" title="Internettbaserte tjenester"/>
+    <f:Query role="subset" totalResults="602" f:filter="65" title="IT"/>
+    <f:Query role="subset" totalResults="117" f:filter="33" title="IT - maskinvare"/>
+    <f:Query role="subset" totalResults="383" f:filter="8" title="IT - programvare"/>
+    <f:Query role="subset" totalResults="68" f:filter="9" title="Jordbruk og skogbruk"/>
+    <f:Query role="subset" totalResults="73" f:filter="10" title="Juridiske tjenester"/>
+    <f:Query role="subset" totalResults="13" f:filter="68" title="Kirke og menighet"/>
+    <f:Query role="subset" totalResults="81" f:filter="11" title="Kjemisk industri"/>
+    <f:Query role="subset" totalResults="620" f:filter="34" title="Konsulent og rådgivning"/>
+    <f:Query role="subset" totalResults="560" f:filter="35" title="Kraft og energi"/>
+    <f:Query role="subset" totalResults="62" f:filter="36" title="Kunst og kultur"/>
+    <f:Query role="subset" totalResults="43" f:filter="37" title="Luftfart"/>
+    <f:Query role="subset" totalResults="716" f:filter="69" title="Maritim og offshore"/>
+    <f:Query role="subset" totalResults="25" f:filter="38" title="Markedsanalyse"/>
+    <f:Query role="subset" totalResults="200" f:filter="39" title="Markedsføring og annonsering"/>
+    <f:Query role="subset" totalResults="248" f:filter="40" title="Matvareproduksjon og -industri"/>
+    <f:Query role="subset" totalResults="81" f:filter="41" title="Medie- og innholdsproduksjon"/>
+    <f:Query role="subset" totalResults="45" f:filter="42" title="Medisinsk utstyr og rekvisita"/>
+    <f:Query role="subset" totalResults="36" f:filter="43" title="Metaller og mineraler"/>
+    <f:Query role="subset" totalResults="84" f:filter="44" title="Miljøtjenester"/>
+    <f:Query role="subset" totalResults="18" f:filter="67" title="Museer, gallerier og kulturminne"/>
+    <f:Query role="subset" totalResults="14" f:filter="45" title="Musikk"/>
+    <f:Query role="subset" totalResults="431" f:filter="66" title="Offentlig administrasjon"/>
+    <f:Query role="subset" totalResults="977" f:filter="46" title="Olje og gass"/>
+    <f:Query role="subset" totalResults="71" f:filter="48" title="Organisasjoner"/>
+    <f:Query role="subset" totalResults="166" f:filter="49" title="Politi og sikkerhet"/>
+    <f:Query role="subset" totalResults="117" f:filter="50" title="PR, informasjon og kommunikasjon"/>
+    <f:Query role="subset" totalResults="137" f:filter="51" title="Reise og turisme"/>
+    <f:Query role="subset" totalResults="128" f:filter="52" title="Renovasjon og renhold"/>
+    <f:Query role="subset" totalResults="439" f:filter="53" title="Restaurant, mat og uteliv"/>
+    <f:Query role="subset" totalResults="67" f:filter="55" title="Shipping"/>
+    <f:Query role="subset" totalResults="81" f:filter="56" title="Storhusholdning og catering"/>
+    <f:Query role="subset" totalResults="127" f:filter="57" title="Tekstil"/>
+    <f:Query role="subset" totalResults="193" f:filter="58" title="Telekommunikasjon"/>
+    <f:Query role="subset" totalResults="769" f:filter="59" title="Transport og logistikk"/>
+    <f:Query role="subset" totalResults="45" f:filter="60" title="Trevareindustri"/>
+    <f:Query role="subset" totalResults="25" f:filter="6" title="Underholdning"/>
+    <f:Query role="subset" totalResults="61" f:filter="61" title="Velvære"/>
+    <f:Query role="subset" totalResults="116" f:filter="62" title="Verksindustri"/>
+    <f:Query role="subset" totalResults="147" f:filter="63" title="VVS"/>
+    <f:Query role="subset" totalResults="447" f:filter="64" title="Økonomi og regnskap"/>
+  </f:filter>
+  <f:filter name="job_sector" title="Sektor" range="false">
+    <f:Query role="subset" totalResults="48" f:filter="1816" title="Franchise/Selvstendig næringsdrivende"/>
+    <f:Query role="subset" totalResults="6048" f:filter="1812" title="Offentlig"/>
+    <f:Query role="subset" totalResults="160" f:filter="1814" title="Organisasjoner"/>
+    <f:Query role="subset" totalResults="12771" f:filter="1813" title="Privat"/>
+    <f:Query role="subset" totalResults="127" f:filter="1815" title="Samvirke"/>
+  </f:filter>
+  <f:filter name="published" title="Publisert" range="false">
+    <f:Query role="subset" totalResults="735" f:filter="1" title="Nye i dag"/>
+  </f:filter>
+  <f:filter name="extent" title="Heltid/deltid" range="false">
+    <f:Query role="subset" totalResults="4155" f:filter="3942" title="Deltid"/>
+    <f:Query role="subset" totalResults="14207" f:filter="3947" title="Heltid"/>
+  </f:filter>
+  <f:filter name="manager_role" title="Lederkategori" range="false">
+    <f:Query role="subset" totalResults="45" f:filter="6701" title="Direktør"/>
+    <f:Query role="subset" totalResults="44" f:filter="6719" title="Fagleder"/>
+    <f:Query role="subset" totalResults="411" f:filter="6702" title="Leder"/>
+  </f:filter>
+  <f:filter name="working_language" title="Arbeidsspråk" range="false">
+    <f:Query role="subset" totalResults="4864" f:filter="1" title="1"/>
+    <f:Query role="subset" totalResults="1230" f:filter="2" title="2"/>
+  </f:filter>
+  <f:filter name="location" title="Område" range="false">
+    <f:Query role="subset" totalResults="19413" f:filter="0.20001" title="Norge">
+      <f:filter name="location" title="Område" range="false">
+        <f:Query role="subset" totalResults="839" f:filter="1.20001.22042" title="Agder">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="140" f:filter="2.20001.22042.20166" title="Arendal"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22042.20172" title="Birkenes"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.22042.20176" title="Bygland"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22042.20178" title="Bykle"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22042.20175" title="Evje og Hornnes"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22042.20181" title="Farsund"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.22042.20182" title="Flekkefjord"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.22042.20170" title="Froland"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22042.20167" title="Gjerstad"/>
+            <f:Query role="subset" totalResults="48" f:filter="2.20001.22042.20165" title="Grimstad"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22042.20191" title="Hægebostad"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22042.20174" title="Iveland"/>
+            <f:Query role="subset" totalResults="369" f:filter="2.20001.22042.20179" title="Kristiansand"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22042.20192" title="Kvinesdal"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.22042.20171" title="Lillesand"/>
+            <f:Query role="subset" totalResults="59" f:filter="2.20001.22042.20189" title="Lindesnes"/>
+            <f:Query role="subset" totalResults="37" f:filter="2.20001.22042.20190" title="Lyngdal"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.22042.20164" title="Risør"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.22042.20193" title="Sirdal"/>
+            <f:Query role="subset" totalResults="18" f:filter="2.20001.22042.20169" title="Tvedestrand"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22042.20177" title="Valle"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22042.20168" title="Vegårshei"/>
+            <f:Query role="subset" totalResults="19" f:filter="2.20001.22042.20183" title="Vennesla"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22042.20173" title="Åmli"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22042.20187" title="Åseral"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="2206" f:filter="1.20001.20003" title="Akershus">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="321" f:filter="2.20001.20003.20046" title="Asker"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.20003.20047" title="Aurskog-Høland"/>
+            <f:Query role="subset" totalResults="547" f:filter="2.20001.20003.20045" title="Bærum"/>
+            <f:Query role="subset" totalResults="57" f:filter="2.20001.20003.20058" title="Eidsvoll"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20003.20051" title="Enebakk"/>
+            <f:Query role="subset" totalResults="35" f:filter="2.20001.20003.20042" title="Frogn - Drøbak"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20003.20055" title="Gjerdrum"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20003.20060" title="Hurdal"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.20003.20099" title="Jevnaker"/>
+            <f:Query role="subset" totalResults="300" f:filter="2.20001.20003.22105" title="Lillestrøm"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.20003.20100" title="Lunner"/>
+            <f:Query role="subset" totalResults="146" f:filter="2.20001.20003.20052" title="Lørenskog"/>
+            <f:Query role="subset" totalResults="29" f:filter="2.20001.20003.20059" title="Nannestad"/>
+            <f:Query role="subset" totalResults="41" f:filter="2.20001.20003.20057" title="Nes"/>
+            <f:Query role="subset" totalResults="40" f:filter="2.20001.20003.20043" title="Nesodden"/>
+            <f:Query role="subset" totalResults="64" f:filter="2.20001.20003.20054" title="Nittedal"/>
+            <f:Query role="subset" totalResults="195" f:filter="2.20001.20003.22104" title="Nordre Follo"/>
+            <f:Query role="subset" totalResults="27" f:filter="2.20001.20003.20050" title="Rælingen"/>
+            <f:Query role="subset" totalResults="195" f:filter="2.20001.20003.20056" title="Ullensaker"/>
+            <f:Query role="subset" totalResults="78" f:filter="2.20001.20003.20039" title="Vestby"/>
+            <f:Query role="subset" totalResults="72" f:filter="2.20001.20003.20041" title="Ås"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="871" f:filter="1.20001.20007" title="Buskerud">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="356" f:filter="2.20001.20007.20110" title="Drammen"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20007.20128" title="Flesberg"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20007.20114" title="Flå"/>
+            <f:Query role="subset" totalResults="30" f:filter="2.20001.20007.20116" title="Gol"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.20007.20117" title="Hemsedal"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.20007.20119" title="Hol"/>
+            <f:Query role="subset" totalResults="20" f:filter="2.20001.20007.20113" title="Hole"/>
+            <f:Query role="subset" totalResults="149" f:filter="2.20001.20007.20111" title="Kongsberg"/>
+            <f:Query role="subset" totalResults="19" f:filter="2.20001.20007.20121" title="Krødsherad"/>
+            <f:Query role="subset" totalResults="93" f:filter="2.20001.20007.20125" title="Lier"/>
+            <f:Query role="subset" totalResults="27" f:filter="2.20001.20007.20122" title="Modum"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20007.20115" title="Nesbyen"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20007.20130" title="Nore og Uvdal"/>
+            <f:Query role="subset" totalResults="84" f:filter="2.20001.20007.20112" title="Ringerike"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20007.20129" title="Rollag"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20007.20120" title="Sigdal"/>
+            <f:Query role="subset" totalResults="36" f:filter="2.20001.20007.20123" title="Øvre Eiker"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.20007.20118" title="Ål"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="449" f:filter="1.20001.20020" title="Finnmark">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="123" f:filter="2.20001.20020.20441" title="Alta"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20020.20451" title="Berlevåg"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20020.20454" title="Båtsfjord"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20020.20450" title="Gamvik"/>
+            <f:Query role="subset" totalResults="72" f:filter="2.20001.20020.20439" title="Hammerfest"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20020.20443" title="Hasvik"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.20020.20448" title="Karasjok"/>
+            <f:Query role="subset" totalResults="22" f:filter="2.20001.20020.20440" title="Kautokeino"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.20020.20449" title="Lebesby"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20020.20442" title="Loppa"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20020.20445" title="Måsøy"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.20020.20453" title="Nesseby"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.20020.20446" title="Nordkapp"/>
+            <f:Query role="subset" totalResults="25" f:filter="2.20001.20020.20447" title="Porsanger"/>
+            <f:Query role="subset" totalResults="61" f:filter="2.20001.20020.20455" title="Sør-Varanger"/>
+            <f:Query role="subset" totalResults="19" f:filter="2.20001.20020.20452" title="Tana"/>
+            <f:Query role="subset" totalResults="24" f:filter="2.20001.20020.20438" title="Vadsø"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20020.20437" title="Vardø"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1092" f:filter="1.20001.22034" title="Innlandet">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.22034.20081" title="Alvdal"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22034.20086" title="Dovre"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22034.20069" title="Eidskog"/>
+            <f:Query role="subset" totalResults="58" f:filter="2.20001.22034.20073" title="Elverum"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22034.20078" title="Engerdal"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22034.20105" title="Etnedal"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22034.20082" title="Folldal"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22034.20096" title="Gausdal"/>
+            <f:Query role="subset" totalResults="136" f:filter="2.20001.22034.20085" title="Gjøvik"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.22034.20101" title="Gran"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22034.20070" title="Grue"/>
+            <f:Query role="subset" totalResults="157" f:filter="2.20001.22034.20063" title="Hamar"/>
+            <f:Query role="subset" totalResults="62" f:filter="2.20001.22034.20062" title="Kongsvinger"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22034.20087" title="Lesja"/>
+            <f:Query role="subset" totalResults="133" f:filter="2.20001.22034.20084" title="Lillehammer"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.22034.20089" title="Lom"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.22034.20065" title="Løten"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.22034.20103" title="Nordre Land"/>
+            <f:Query role="subset" totalResults="19" f:filter="2.20001.22034.20106" title="Nord-Aurdal"/>
+            <f:Query role="subset" totalResults="24" f:filter="2.20001.22034.20091" title="Nord-Fron"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.22034.20067" title="Nord-Odal"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22034.20083" title="Os (Innlandet)"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22034.20077" title="Rendalen"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22034.20094" title="Ringebu"/>
+            <f:Query role="subset" totalResults="80" f:filter="2.20001.22034.20064" title="Ringsaker"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22034.20092" title="Sel"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22034.20088" title="Skjåk"/>
+            <f:Query role="subset" totalResults="44" f:filter="2.20001.22034.20066" title="Stange"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.22034.20076" title="Stor-Elvdal"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.22034.20102" title="Søndre Land"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22034.20104" title="Sør-Aurdal"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.22034.20093" title="Sør-Fron"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.22034.20068" title="Sør-Odal"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22034.20079" title="Tolga"/>
+            <f:Query role="subset" totalResults="22" f:filter="2.20001.22034.20074" title="Trysil"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.22034.20080" title="Tynset"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.22034.20109" title="Vang"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22034.20107" title="Vestre Slidre"/>
+            <f:Query role="subset" totalResults="41" f:filter="2.20001.22034.20098" title="Vestre Toten"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22034.20090" title="Vågå"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22034.20072" title="Våler (Innlandet)"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.22034.20097" title="Østre Toten"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.22034.20095" title="Øyer"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22034.20108" title="Øystre Slidre"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22034.20075" title="Åmot"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.22034.20071" title="Åsnes"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="964" f:filter="1.20001.20015" title="Møre og Romsdal">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.20015.20304" title="Aukra"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.20015.20314" title="Aure"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.20015.20307" title="Averøy"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20015.22101" title="Fjord"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20015.20297" title="Giske"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20015.20309" title="Gjemnes"/>
+            <f:Query role="subset" totalResults="34" f:filter="2.20001.20015.20298" title="Haram"/>
+            <f:Query role="subset" totalResults="20" f:filter="2.20001.20015.20287" title="Hareid"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20015.20285" title="Herøy (M.R.)"/>
+            <f:Query role="subset" totalResults="29" f:filter="2.20001.20015.22102" title="Hustadvika"/>
+            <f:Query role="subset" totalResults="86" f:filter="2.20001.20015.20281" title="Kristiansund"/>
+            <f:Query role="subset" totalResults="127" f:filter="2.20001.20015.20280" title="Molde"/>
+            <f:Query role="subset" totalResults="26" f:filter="2.20001.20015.20300" title="Rauma"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20015.20284" title="Sande (M.R.)"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20015.20317" title="Smøla"/>
+            <f:Query role="subset" totalResults="20" f:filter="2.20001.20015.20292" title="Stranda"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20015.20296" title="Sula"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20015.20311" title="Sunndal"/>
+            <f:Query role="subset" totalResults="18" f:filter="2.20001.20015.20312" title="Surnadal"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20015.20294" title="Sykkylven"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20015.20310" title="Tingvoll"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.20015.20286" title="Ulstein"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20015.20283" title="Vanylven"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20015.20299" title="Vestnes"/>
+            <f:Query role="subset" totalResults="38" f:filter="2.20001.20015.20288" title="Volda"/>
+            <f:Query role="subset" totalResults="36" f:filter="2.20001.20015.20289" title="Ørsta"/>
+            <f:Query role="subset" totalResults="341" f:filter="2.20001.20015.20282" title="Ålesund"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1066" f:filter="1.20001.20018" title="Nordland">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="46" f:filter="2.20001.20018.20375" title="Alstahaug"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.20018.20410" title="Andøy"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20018.20389" title="Beiarn"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20018.20369" title="Bindal"/>
+            <f:Query role="subset" totalResults="282" f:filter="2.20001.20018.20367" title="Bodø"/>
+            <f:Query role="subset" totalResults="29" f:filter="2.20001.20018.20371" title="Brønnøy"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.20018.20407" title="Bø (Nordland)"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20018.20399" title="Evenes"/>
+            <f:Query role="subset" totalResults="49" f:filter="2.20001.20018.20391" title="Fauske"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20018.20403" title="Flakstad"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20018.20388" title="Gildeskål"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20018.20378" title="Grane"/>
+            <f:Query role="subset" totalResults="32" f:filter="2.20001.20018.20406" title="Hadsel"/>
+            <f:Query role="subset" totalResults="24" f:filter="2.20001.20018.20395" title="Hamarøy"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20018.20379" title="Hattfjelldal"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20018.20382" title="Hemnes"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20018.20374" title="Herøy (Nordland)"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20018.20376" title="Leirfjord"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.20018.20384" title="Lurøy"/>
+            <f:Query role="subset" totalResults="9" f:filter="2.20001.20018.20397" title="Lødingen"/>
+            <f:Query role="subset" totalResults="36" f:filter="2.20001.20018.20387" title="Meløy"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20018.20411" title="Moskenes"/>
+            <f:Query role="subset" totalResults="103" f:filter="2.20001.20018.20368" title="Narvik"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20018.20381" title="Nesna"/>
+            <f:Query role="subset" totalResults="101" f:filter="2.20001.20018.20383" title="Rana"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20018.20386" title="Rødøy"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20018.20401" title="Røst"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.20018.20390" title="Saltdal"/>
+            <f:Query role="subset" totalResults="56" f:filter="2.20001.20018.20409" title="Sortland"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.20018.20394" title="Steigen"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20018.20370" title="Sømna"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20018.20393" title="Sørfold"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20018.20385" title="Træna"/>
+            <f:Query role="subset" totalResults="67" f:filter="2.20001.20018.20377" title="Vefsn"/>
+            <f:Query role="subset" totalResults="47" f:filter="2.20001.20018.20404" title="Vestvågøy"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20018.20402" title="Værøy"/>
+            <f:Query role="subset" totalResults="56" f:filter="2.20001.20018.20405" title="Vågan"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.20018.20408" title="Øksnes"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="3519" f:filter="1.20001.20061" title="Oslo">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="217" f:filter="2.20001.20061.20528" title="Bjerke"/>
+            <f:Query role="subset" totalResults="186" f:filter="2.20001.20061.20507" title="Bygdøy - Frogner"/>
+            <f:Query role="subset" totalResults="30" f:filter="2.20001.20061.20519" title="Bøler"/>
+            <f:Query role="subset" totalResults="34" f:filter="2.20001.20061.20515" title="Ekeberg - Bekkelaget"/>
+            <f:Query role="subset" totalResults="89" f:filter="2.20001.20061.20524" title="Furuset"/>
+            <f:Query role="subset" totalResults="253" f:filter="2.20001.20061.20512" title="Gamle Oslo"/>
+            <f:Query role="subset" totalResults="56" f:filter="2.20001.20061.20529" title="Grefsen - Kjelsås"/>
+            <f:Query role="subset" totalResults="75" f:filter="2.20001.20061.20527" title="Grorud"/>
+            <f:Query role="subset" totalResults="145" f:filter="2.20001.20061.20511" title="Grünerløkka - Sofienberg"/>
+            <f:Query role="subset" totalResults="83" f:filter="2.20001.20061.20523" title="Hellerud"/>
+            <f:Query role="subset" totalResults="236" f:filter="2.20001.20061.20522" title="Helsfyr - Sinsen"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20061.20518" title="Lambertseter"/>
+            <f:Query role="subset" totalResults="54" f:filter="2.20001.20061.20520" title="Manglerud"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20061.20514" title="Marka"/>
+            <f:Query role="subset" totalResults="26" f:filter="2.20001.20061.20516" title="Nordstrand"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20061.20526" title="Romsås"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.20061.20532" title="Røa"/>
+            <f:Query role="subset" totalResults="195" f:filter="2.20001.20061.20510" title="Sagene - Torshov"/>
+            <f:Query role="subset" totalResults="785" f:filter="2.20001.20061.20513" title="Sentrum"/>
+            <f:Query role="subset" totalResults="101" f:filter="2.20001.20061.20530" title="Sogn"/>
+            <f:Query role="subset" totalResults="36" f:filter="2.20001.20061.20525" title="Stovner"/>
+            <f:Query role="subset" totalResults="201" f:filter="2.20001.20061.20509" title="St.Hanshaugen - Ullevål"/>
+            <f:Query role="subset" totalResults="83" f:filter="2.20001.20061.20517" title="Søndre Nordstrand"/>
+            <f:Query role="subset" totalResults="369" f:filter="2.20001.20061.20533" title="Ullern"/>
+            <f:Query role="subset" totalResults="140" f:filter="2.20001.20061.20508" title="Uranienborg - Majorstuen"/>
+            <f:Query role="subset" totalResults="138" f:filter="2.20001.20061.20531" title="Vinderen"/>
+            <f:Query role="subset" totalResults="96" f:filter="2.20001.20061.20521" title="Østensjø"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1948" f:filter="1.20001.20012" title="Rogaland">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20012.20200" title="Bjerkreim"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20012.20215" title="Bokn"/>
+            <f:Query role="subset" totalResults="50" f:filter="2.20001.20012.20194" title="Eigersund"/>
+            <f:Query role="subset" totalResults="23" f:filter="2.20001.20012.20204" title="Gjesdal"/>
+            <f:Query role="subset" totalResults="272" f:filter="2.20001.20012.20197" title="Haugesund"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20012.20209" title="Hjelmeland"/>
+            <f:Query role="subset" totalResults="49" f:filter="2.20001.20012.20201" title="Hå"/>
+            <f:Query role="subset" totalResults="101" f:filter="2.20001.20012.20217" title="Karmøy"/>
+            <f:Query role="subset" totalResults="70" f:filter="2.20001.20012.20202" title="Klepp"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20012.20199" title="Lund"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.20012.20206" title="Randaberg"/>
+            <f:Query role="subset" totalResults="293" f:filter="2.20001.20012.20195" title="Sandnes"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.20012.20211" title="Sauda"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20012.20198" title="Sokndal"/>
+            <f:Query role="subset" totalResults="112" f:filter="2.20001.20012.20205" title="Sola"/>
+            <f:Query role="subset" totalResults="760" f:filter="2.20001.20012.20196" title="Stavanger"/>
+            <f:Query role="subset" totalResults="23" f:filter="2.20001.20012.20208" title="Strand"/>
+            <f:Query role="subset" totalResults="18" f:filter="2.20001.20012.20210" title="Suldal"/>
+            <f:Query role="subset" totalResults="52" f:filter="2.20001.20012.20203" title="Time"/>
+            <f:Query role="subset" totalResults="45" f:filter="2.20001.20012.20216" title="Tysvær"/>
+            <f:Query role="subset" totalResults="38" f:filter="2.20001.20012.20219" title="Vindafjord"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="6" f:filter="1.20001.20506" title="Svalbard"/>
+        <f:Query role="subset" totalResults="479" f:filter="1.20001.20009" title="Telemark">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="27" f:filter="2.20001.20009.20150" title="Bamble"/>
+            <f:Query role="subset" totalResults="20" f:filter="2.20001.20009.20152" title="Drangedal"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20009.20161" title="Fyresdal"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20009.20157" title="Hjartdal"/>
+            <f:Query role="subset" totalResults="18" f:filter="2.20001.20009.20151" title="Kragerø"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20009.20159" title="Kviteseid"/>
+            <f:Query role="subset" totalResults="44" f:filter="2.20001.20009.22106" title="Midt-Telemark"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20009.20160" title="Nissedal"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.20009.20153" title="Nome"/>
+            <f:Query role="subset" totalResults="39" f:filter="2.20001.20009.20148" title="Notodden"/>
+            <f:Query role="subset" totalResults="117" f:filter="2.20001.20009.20146" title="Porsgrunn"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20009.20158" title="Seljord"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20009.20149" title="Siljan"/>
+            <f:Query role="subset" totalResults="146" f:filter="2.20001.20009.20147" title="Skien"/>
+            <f:Query role="subset" totalResults="23" f:filter="2.20001.20009.20156" title="Tinn"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20009.20162" title="Tokke"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.20009.20163" title="Vinje"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1006" f:filter="1.20001.20019" title="Troms">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="33" f:filter="2.20001.20019.20429" title="Balsfjord"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.20019.20420" title="Bardu"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20019.20424" title="Dyrøy"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20019.20418" title="Gratangen"/>
+            <f:Query role="subset" totalResults="163" f:filter="2.20001.20019.20412" title="Harstad"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20019.20417" title="Ibestad"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20019.20430" title="Karlsøy"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20019.20414" title="Kvæfjord"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20019.20436" title="Kvænangen"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20019.20433" title="Kåfjord"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20019.20419" title="Lavangen"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20019.20431" title="Lyngen"/>
+            <f:Query role="subset" totalResults="51" f:filter="2.20001.20019.20422" title="Målselv"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20019.20435" title="Nordreisa"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20019.20421" title="Salangen"/>
+            <f:Query role="subset" totalResults="73" f:filter="2.20001.20019.22115" title="Senja"/>
+            <f:Query role="subset" totalResults="22" f:filter="2.20001.20019.20434" title="Skjervøy"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20019.20432" title="Storfjord"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.20019.20423" title="Sørreisa"/>
+            <f:Query role="subset" totalResults="24" f:filter="2.20001.20019.20398" title="Tjeldsund"/>
+            <f:Query role="subset" totalResults="550" f:filter="2.20001.20019.20413" title="Tromsø"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="1531" f:filter="1.20001.20016" title="Trøndelag">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20363" title="Flatanger"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20016.20347" title="Frosta"/>
+            <f:Query role="subset" totalResults="19" f:filter="2.20001.20016.20322" title="Frøya"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20016.20359" title="Grong"/>
+            <f:Query role="subset" totalResults="15" f:filter="2.20001.20016.22112" title="Heim"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.20016.20321" title="Hitra"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20335" title="Holtålen"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20016.20360" title="Høylandet"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20016.20354" title="Inderøy"/>
+            <f:Query role="subset" totalResults="11" f:filter="2.20001.20016.20325" title="Indre Fosen"/>
+            <f:Query role="subset" totalResults="51" f:filter="2.20001.20016.20349" title="Levanger"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20016.20356" title="Lierne"/>
+            <f:Query role="subset" totalResults="18" f:filter="2.20001.20016.20340" title="Malvik"/>
+            <f:Query role="subset" totalResults="27" f:filter="2.20001.20016.20337" title="Melhus"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20016.20345" title="Meråker"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.20016.20336" title="Midtre Gauldal"/>
+            <f:Query role="subset" totalResults="61" f:filter="2.20001.20016.20344" title="Namsos"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.20016.20358" title="Namsskogan"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.20016.22114" title="Nærøysund"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.20016.20330" title="Oppdal"/>
+            <f:Query role="subset" totalResults="48" f:filter="2.20001.20016.22113" title="Orkland"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20329" title="Osen"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.20016.20361" title="Overhalla"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20016.20331" title="Rennebu"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20016.20313" title="Rindal"/>
+            <f:Query role="subset" totalResults="22" f:filter="2.20001.20016.20334" title="Røros"/>
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20016.20357" title="Røyrvik"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20016.20341" title="Selbu"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.20016.20338" title="Skaun"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20016.20355" title="Snåsa"/>
+            <f:Query role="subset" totalResults="69" f:filter="2.20001.20016.20343" title="Steinkjer"/>
+            <f:Query role="subset" totalResults="88" f:filter="2.20001.20016.20346" title="Stjørdal"/>
+            <f:Query role="subset" totalResults="913" f:filter="2.20001.20016.20318" title="Trondheim"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.20016.20342" title="Tydal"/>
+            <f:Query role="subset" totalResults="30" f:filter="2.20001.20016.20350" title="Verdal"/>
+            <f:Query role="subset" totalResults="29" f:filter="2.20001.20016.20323" title="Ørland"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.20016.20327" title="Åfjord"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="737" f:filter="1.20001.20008" title="Vestfold">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="31" f:filter="2.20001.20008.20143" title="Færder"/>
+            <f:Query role="subset" totalResults="74" f:filter="2.20001.20008.20132" title="Holmestrand"/>
+            <f:Query role="subset" totalResults="95" f:filter="2.20001.20008.20131" title="Horten"/>
+            <f:Query role="subset" totalResults="129" f:filter="2.20001.20008.20135" title="Larvik"/>
+            <f:Query role="subset" totalResults="182" f:filter="2.20001.20008.20134" title="Sandefjord"/>
+            <f:Query role="subset" totalResults="247" f:filter="2.20001.20008.20133" title="Tønsberg"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="2425" f:filter="1.20001.22046" title="Vestland">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="58" f:filter="2.20001.22046.22109" title="Alver"/>
+            <f:Query role="subset" totalResults="16" f:filter="2.20001.22046.20267" title="Askvoll"/>
+            <f:Query role="subset" totalResults="73" f:filter="2.20001.22046.20243" title="Askøy"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.22046.20263" title="Aurland"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.22046.20240" title="Austevoll"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22046.20251" title="Austrheim"/>
+            <f:Query role="subset" totalResults="1295" f:filter="2.20001.22046.20220" title="Bergen"/>
+            <f:Query role="subset" totalResults="68" f:filter="2.20001.22046.22108" title="Bjørnafjorden"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.22046.20273" title="Bremanger"/>
+            <f:Query role="subset" totalResults="23" f:filter="2.20001.22046.20224" title="Bømlo"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22046.20232" title="Eidfjord"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.22046.20221" title="Etne"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22046.20226" title="Fitjar"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22046.20268" title="Fjaler"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22046.20278" title="Gloppen"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.22046.20255" title="Gulen"/>
+            <f:Query role="subset" totalResults="14" f:filter="2.20001.22046.20257" title="Hyllestad"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22046.20258" title="Høyanger"/>
+            <f:Query role="subset" totalResults="55" f:filter="2.20001.22046.22107" title="Kinn"/>
+            <f:Query role="subset" totalResults="21" f:filter="2.20001.22046.20236" title="Kvam"/>
+            <f:Query role="subset" totalResults="39" f:filter="2.20001.22046.20228" title="Kvinnherad"/>
+            <f:Query role="subset" totalResults="28" f:filter="2.20001.22046.20266" title="Luster"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.22046.20264" title="Lærdal"/>
+            <f:Query role="subset" totalResults="2" f:filter="2.20001.22046.20253" title="Masfjorden"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22046.20245" title="Modalen"/>
+            <f:Query role="subset" totalResults="23" f:filter="2.20001.22046.20246" title="Osterøy"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22046.20238" title="Samnanger"/>
+            <f:Query role="subset" totalResults="52" f:filter="2.20001.22046.20262" title="Sogndal"/>
+            <f:Query role="subset" totalResults="10" f:filter="2.20001.22046.20256" title="Solund"/>
+            <f:Query role="subset" totalResults="43" f:filter="2.20001.22046.22111" title="Stad"/>
+            <f:Query role="subset" totalResults="75" f:filter="2.20001.22046.20225" title="Stord"/>
+            <f:Query role="subset" totalResults="25" f:filter="2.20001.22046.20279" title="Stryn"/>
+            <f:Query role="subset" totalResults="98" f:filter="2.20001.22046.22110" title="Sunnfjord"/>
+            <f:Query role="subset" totalResults="8" f:filter="2.20001.22046.20223" title="Sveio"/>
+            <f:Query role="subset" totalResults="6" f:filter="2.20001.22046.20227" title="Tysnes"/>
+            <f:Query role="subset" totalResults="90" f:filter="2.20001.22046.20231" title="Ullensvang"/>
+            <f:Query role="subset" totalResults="3" f:filter="2.20001.22046.20233" title="Ulvik"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.22046.20244" title="Vaksdal"/>
+            <f:Query role="subset" totalResults="4" f:filter="2.20001.22046.20259" title="Vik"/>
+            <f:Query role="subset" totalResults="57" f:filter="2.20001.22046.20235" title="Voss"/>
+            <f:Query role="subset" totalResults="101" f:filter="2.20001.22046.20248" title="Øygarden"/>
+            <f:Query role="subset" totalResults="13" f:filter="2.20001.22046.20265" title="Årdal"/>
+          </f:filter>
+        </f:Query>
+        <f:Query role="subset" totalResults="694" f:filter="1.20001.20002" title="Østfold">
+          <f:filter name="location" title="Område" range="false">
+            <f:Query role="subset" totalResults="1" f:filter="2.20001.20002.20026" title="Aremark"/>
+            <f:Query role="subset" totalResults="207" f:filter="2.20001.20002.20024" title="Fredrikstad"/>
+            <f:Query role="subset" totalResults="60" f:filter="2.20001.20002.20021" title="Halden"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.20002.20025" title="Hvaler"/>
+            <f:Query role="subset" totalResults="88" f:filter="2.20001.20002.22103" title="Indre Østfold"/>
+            <f:Query role="subset" totalResults="5" f:filter="2.20001.20002.20027" title="Marker"/>
+            <f:Query role="subset" totalResults="142" f:filter="2.20001.20002.20022" title="Moss"/>
+            <f:Query role="subset" totalResults="17" f:filter="2.20001.20002.20034" title="Rakkestad"/>
+            <f:Query role="subset" totalResults="24" f:filter="2.20001.20002.20035" title="Råde"/>
+            <f:Query role="subset" totalResults="129" f:filter="2.20001.20002.20023" title="Sarpsborg"/>
+            <f:Query role="subset" totalResults="12" f:filter="2.20001.20002.20033" title="Skiptvet"/>
+            <f:Query role="subset" totalResults="7" f:filter="2.20001.20002.20037" title="Våler (Østfold)"/>
+          </f:filter>
+        </f:Query>
+      </f:filter>
+    </f:Query>
+    <f:Query role="subset" totalResults="46" f:filter="0.20534" title="Utlandet"/>
+  </f:filter>
+  <f:filter name="home_office" title="Hjemmekontor" range="false">
+    <f:Query role="subset" totalResults="819" f:filter="1" title="1"/>
+    <f:Query role="subset" totalResults="34" f:filter="2" title="2"/>
+  </f:filter>
+  <f:filter name="job_duration" title="Ansettelsesform" range="false">
+    <f:Query role="subset" totalResults="433" f:filter="8901" title="Bemanningsbyrå"/>
+    <f:Query role="subset" totalResults="888" f:filter="3952" title="Engasjement"/>
+    <f:Query role="subset" totalResults="13359" f:filter="3951" title="Fast"/>
+    <f:Query role="subset" totalResults="50" f:filter="8900" title="Lærling"/>
+    <f:Query role="subset" totalResults="593" f:filter="8099" title="Prosjekt"/>
+    <f:Query role="subset" totalResults="59" f:filter="3954" title="Selvstendig næringsdrivende"/>
+    <f:Query role="subset" totalResults="881" f:filter="1816" title="Sommer/Sesong"/>
+    <f:Query role="subset" totalResults="16" f:filter="8098" title="Trainee"/>
+    <f:Query role="subset" totalResults="2407" f:filter="3659" title="Vikariat"/>
+  </f:filter>
+  <f:filter name="applicationdeadline" title="Søknadsfrist" range="false">
+    <f:Query role="subset" totalResults="2217" f:filter="1" title="Siste frist"/>
+    <f:Query role="subset" totalResults="6202" f:filter="7" title="Under en uke"/>
+    <f:Query role="subset" totalResults="3250" f:filter="3" title="Under tre døgn"/>
+  </f:filter>
+  <f:sort template="https://cache.api.finn.no/iad/search/job-full-time/?rows=10&amp;sort={f:sort?}&amp;lat={geo:lat?}&amp;lon={geo:lon?}">
+    <os:Query role="f:sort" f:sort="0" title="Mest relevant" f:selected="true"/>
+    <os:Query role="f:sort" f:sort="1" title="Publisert"/>
+    <os:Query role="f:sort" f:sort="99" title="Nærmest"/>
+  </f:sort>
+  <os:totalResults>19893</os:totalResults>
+  <finn:stats name="NOOFJOBPOSITIONS">
+    <finn:stat type="sum">39363.0</finn:stat>
+    <finn:stat type="count">19893</finn:stat>
+    <finn:stat type="min">1.0</finn:stat>
+    <finn:stat type="max">100.0</finn:stat>
+    <finn:stat type="missing">0</finn:stat>
+    <finn:stat type="mean">1.9787362388779972</finn:stat>
+    <finn:stat type="stddev">3.269007015676534</finn:stat>
+  </finn:stats>
+  <entry>
+    <id>urn:id:356641384</id>
+    <title>Undervisningsstilling </title>
+    <updated>2024-06-10T11:36:21.666Z</updated>
+    <published>2024-06-10T11:36:21.666Z</published>
+    <dc:identifier>356641384</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="1"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356641384" rel="self"/>
+    <link href="https://www.finn.no/356641384" rel="alternate" type="text/html"/>
+    <finn:location>
+      <finn:city>Kleppestø</finn:city>
+    </finn:location>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>urn:id:356641310</id>
+    <title>Exciting opportunities on Frøya</title>
+    <updated>2024-06-10T11:36:20.805Z</updated>
+    <published>2024-06-10T11:36:20.805Z</published>
+    <dc:identifier>356641310</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="2"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356641310" rel="self"/>
+    <link href="https://www.finn.no/356641310" rel="alternate" type="text/html"/>
+    <finn:location>
+      <finn:city>Sistranda</finn:city>
+    </finn:location>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>urn:id:356639552</id>
+    <title>Safety / Technical Working Environment Senior Engineer (BH-272665)</title>
+    <updated>2024-06-10T11:36:00.000Z</updated>
+    <published>2024-06-10T11:36:14.338Z</published>
+    <age:expires>2024-07-22T11:36:00.000Z</age:expires>
+    <dc:identifier>356639552</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:list:index" term="3"/>
+    <category scheme="urn:finn:search:flags" term="job-easy-apply"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/356639552" rel="self"/>
+    <link href="https://www.finn.no/356639552" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="5">59.83409770443917 10.41289408858307</georss:point>
+    <finn:location>
+      <finn:city>Asker</finn:city>
+    </finn:location>
+    <media:content height="237" url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png" type="image/jpeg" width="575" medium="image"/>
+    <author>
+      <name>NES Fircroft Norge AS</name>
+      <uri>https://cache.api.finn.no/iad/organization/287337461</uri>
+      <media:content url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png" type="image/png" medium="image">
+        <media:category scheme="urn:finn:logo:type">LIST</media:category>
+      </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+      <finn:field name="job_title">Safety / Technical Working Environment Senior Engineer</finn:field>
+      <finn:field name="company">
+        <finn:field name="name" value="NES FIRCROFT NORGE AS"/>
+        <finn:field name="logo">https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png</finn:field>
+      </finn:field>
+      <finn:field name="no_of_positions" value="1"/>
+      <finn:field name="occupations">
+        <finn:value>
+          <finn:field name="general" value="Ingeniør"/>
+          <finn:field name="specialization" value="Ingeniør, Teknisk sikkerhet, QHSE"/>
+        </finn:value>
+      </finn:field>
+      <finn:field name="industry">
+        <finn:value>Olje og gass</finn:value>
+      </finn:field>
+      <finn:field name="flags">
+        <finn:value>job-easy-apply</finn:value>
+      </finn:field>
+    </finn:adata>
+  </entry>
+  <entry>
+    <id>urn:id:356641155</id>
+    <title>Er du spesialsykepleier innen  rus/psyk og ønsker å jobbe i spesialisthelsetjenesten?</title>
+    <updated>2024-06-10T11:34:19.877Z</updated>
+    <published>2024-06-10T11:34:19.877Z</published>
+    <dc:identifier>356641155</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="4"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356641155" rel="self"/>
+    <link href="https://www.finn.no/356641155" rel="alternate" type="text/html"/>
+    <finn:location>
+      <finn:city>Ski</finn:city>
+    </finn:location>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>urn:id:356644302</id>
+    <title>Er du en tallknuser, med et øye for detaljer og erfaring fra regnskap? Da er du kandidaten vi er på jakt etter!</title>
+    <updated>2024-06-10T11:37:00.000Z</updated>
+    <published>2024-06-10T11:34:19.877Z</published>
+    <age:expires>2024-07-22T21:59:00.000Z</age:expires>
+    <dc:identifier>356644302</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:list:index" term="5"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/356644302" rel="self"/>
+    <link href="https://www.finn.no/356644302" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="9">59.90476273433524 10.488610790463664</georss:point>
+    <finn:location>
+      <finn:city>Rud</finn:city>
+    </finn:location>
+    <media:content height="125" url="https://images.finncdn.no/dynamic/default/2024/6/vertical-1/10/2/356/644/302_0b47b25d-c944-4a83-94ca-725cf506cf55.jpg" type="image/jpeg" width="627" medium="image"/>
+    <author>
+      <name>Bjørg Fjell Rekruttering</name>
+      <uri>https://cache.api.finn.no/iad/organization/1754181767</uri>
+      <media:content url="https://images.finncdn.no/dynamic/default/2024/6/vertical-1/10/2/356/644/302_0b47b25d-c944-4a83-94ca-725cf506cf55.jpg" type="image/jpeg" medium="image">
+        <media:category scheme="urn:finn:logo:type">LIST</media:category>
+      </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+      <finn:field name="job_title" value="Regnskapskonsulent"/>
+      <finn:field name="company">
+        <finn:field name="name" value="Regnskapsmakeren AS"/>
+        <finn:field name="logo">https://images.finncdn.no/dynamic/default/2024/6/vertical-1/10/2/356/644/302_0b47b25d-c944-4a83-94ca-725cf506cf55.jpg</finn:field>
+      </finn:field>
+      <finn:field name="application_deadline" value="2024-07-21"/>
+      <finn:field name="no_of_positions" value="1"/>
+      <finn:field name="occupations">
+        <finn:value>
+          <finn:field name="general" value="Økonomi og regnskap"/>
+          <finn:field name="specialization" value="Økonomi og regnskap, Regnskap"/>
+        </finn:value>
+      </finn:field>
+      <finn:field name="industry">
+        <finn:value>Økonomi og regnskap, Konsulent og rådgivning</finn:value>
+      </finn:field>
+    </finn:adata>
+  </entry>
+  <entry>
+    <id>urn:id:356641156</id>
+    <title>Sourcing Manager</title>
+    <updated>2024-06-10T11:34:12.833Z</updated>
+    <published>2024-06-10T11:34:12.833Z</published>
+    <dc:identifier>356641156</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="6"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356641156" rel="self"/>
+    <link href="https://www.finn.no/356641156" rel="alternate" type="text/html"/>
+    <finn:location/>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>urn:id:356641069</id>
+    <title>KIWI Ole Olsen søker etter assisterende butikksjef - vikariat til 31.3.25</title>
+    <updated>2024-06-10T11:34:12.608Z</updated>
+    <published>2024-06-10T11:34:12.608Z</published>
+    <dc:identifier>356641069</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="7"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356641069" rel="self"/>
+    <link href="https://www.finn.no/356641069" rel="alternate" type="text/html"/>
+    <finn:location>
+      <finn:city>Lillesand</finn:city>
+    </finn:location>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+  <entry>
+    <id>urn:id:356640977</id>
+    <title>Psykologspesialist/psykolog</title>
+    <updated>2024-06-10T11:34:00.000Z</updated>
+    <published>2024-06-10T11:34:00.000Z</published>
+    <age:expires>2024-07-22T11:34:00.000Z</age:expires>
+    <dc:identifier>356640977</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:list:index" term="8"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/356640977" rel="self"/>
+    <link href="https://www.finn.no/356640977" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="5">59.9110801524064 10.772301163806794</georss:point>
+    <finn:location>
+      <finn:city>Oslo</finn:city>
+    </finn:location>
+    <author>
+      <name>Oslo universitetssykehus (OUS)</name>
+      <uri>https://cache.api.finn.no/iad/organization/798225499</uri>
+      <media:content url="https://images.finncdn.no/dynamic/default/logo/result/798225499/sykehus_7637190194870020544.png" type="image/png" medium="image">
+        <media:category scheme="urn:finn:logo:type">LIST</media:category>
+      </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+      <finn:field name="job_title" value="Psykologspesialist/psykolog"/>
+      <finn:field name="company">
+        <finn:field name="name" value="Oslo universitetssykehus HF"/>
+        <finn:field name="logo">https://images.finncdn.no/dynamic/default/logo/result/798225499/sykehus_7637190194870020544.png</finn:field>
+      </finn:field>
+      <finn:field name="application_deadline" value="2024-06-20"/>
+      <finn:field name="no_of_positions" value="1"/>
+      <finn:field name="occupations">
+        <finn:value>
+          <finn:field name="general" value="Helsepersonell"/>
+          <finn:field name="specialization" value="Helsepersonell, Psykolog"/>
+        </finn:value>
+      </finn:field>
+      <finn:field name="industry">
+        <finn:value>Helse og omsorg</finn:value>
+      </finn:field>
+    </finn:adata>
+  </entry>
+  <entry>
+    <id>urn:id:356644133</id>
+    <title>DOKUMENT CONTROLLER MOSS</title>
+    <updated>2024-06-10T11:33:00.000Z</updated>
+    <published>2024-06-10T11:33:22.833Z</published>
+    <age:expires>2024-07-11T21:59:00.000Z</age:expires>
+    <dc:identifier>356644133</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:list:index" term="9"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/356644133" rel="self"/>
+    <link href="https://www.finn.no/356644133" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="5">59.437703487527116 10.666892911741568</georss:point>
+    <finn:location>
+      <finn:city>Moss</finn:city>
+    </finn:location>
+    <author>
+      <name>MATCH REKRUTTERING AS</name>
+      <uri>https://cache.api.finn.no/iad/organization/1010955</uri>
+      <media:content url="https://images.finncdn.no/dynamic/default/logo/logo/1010955/20230927/f5c6ff5d-6a06-49cb-ae0a-6ab51801c67f" type="application/octet-stream" medium="image">
+        <media:category scheme="urn:finn:logo:type">LIST</media:category>
+      </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+      <finn:field name="job_title" value="DOKUMENT CONTROLLER MOSS"/>
+      <finn:field name="company">
+        <finn:field name="name" value="Match Rekruttering AS"/>
+        <finn:field name="logo">https://images.finncdn.no/dynamic/default/logo/logo/1010955/20230927/f5c6ff5d-6a06-49cb-ae0a-6ab51801c67f</finn:field>
+      </finn:field>
+      <finn:field name="no_of_positions" value="1"/>
+      <finn:field name="occupations">
+        <finn:value>
+          <finn:field name="general" value="Økonomi og regnskap, Saksbehandler"/>
+          <finn:field name="specialization">Økonomi og regnskap, Controller, Saksbehandler, Økonomistyring og budsjettering</finn:field>
+        </finn:value>
+      </finn:field>
+      <finn:field name="industry">
+        <finn:value>Annet</finn:value>
+      </finn:field>
+    </finn:adata>
+  </entry>
+  <entry>
+    <id>urn:id:356640864</id>
+    <title>Hero Norge søker vaktmester/teknisk miljøarbeider</title>
+    <updated>2024-06-10T11:32:19.514Z</updated>
+    <published>2024-06-10T11:32:19.514Z</published>
+    <dc:identifier>356640864</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="true"/>
+    <category scheme="urn:finn:ad:disposed" label="Solgt" term="false"/>
+    <category scheme="urn:finn:search:list:index" term="10"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/356640864" rel="self"/>
+    <link href="https://www.finn.no/356640864" rel="alternate" type="text/html"/>
+    <finn:location>
+      <finn:city>Breistein</finn:city>
+    </finn:location>
+    <author>
+      <name>Privat</name>
+    </author>
+  </entry>
+</feed>

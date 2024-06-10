@@ -31,6 +31,7 @@ public class FinnConnector {
     private final HttpClientProvider clientProvider;
     private final String serviceDocumentUrl;
     private final String jobFullTimeUrl;
+    private final String jobPartTimeUrl;
     private final String apiKey;
     private final int politeRequestDelayInMillis;
 
@@ -38,11 +39,13 @@ public class FinnConnector {
             final HttpClientProvider clientProvider,
             @Value("${finn.url}") final String serviceDocumentUrl,
             @Value("${finn.job-fulltime-url}") final String jobFullTimeUrl,
+            @Value("${finn.job-parttime-url}") final String jobPartTimeUrl,
             @Value("${finn.api.password}") final String apiKey,
             @Value("${finn.polite.delay.millis:200}") final int politeRequestDelayInMillis) {
         this.clientProvider = clientProvider;
         this.serviceDocumentUrl = serviceDocumentUrl;
         this.jobFullTimeUrl = jobFullTimeUrl;
+        this.jobPartTimeUrl = jobPartTimeUrl;
         this.apiKey = apiKey;
         this.politeRequestDelayInMillis = politeRequestDelayInMillis;
     }
@@ -62,12 +65,32 @@ public class FinnConnector {
         }
     }
 
-    public Set<FinnAdHead> fetchSearchResult()
+    public Set<FinnAdHead> fetchSearchResult() throws FinnConnectorException {
+        Set<FinnAdHead> adHeads = new HashSet<>();
+        adHeads.addAll(fetchFullTimeSearchResult());
+        adHeads.addAll(fetchPartTimeSearchResult());
+
+        return adHeads;
+    }
+
+    public Set<FinnAdHead> fetchFullTimeSearchResult()
             throws FinnConnectorException {
         try {
             // Default får man et paginert treff med 30 rader om gangen. Da virker det som det blir for mange treff og resultatet kuttes.
             // Med mer en 100 rader virker det som vi får alt, og 400 virker som et OK antall
             String initialUrl = jobFullTimeUrl + "?rows=400";
+            HttpUrl httpUrl = HttpUrl.parse(initialUrl);
+            return collectAdHeads(httpUrl);
+        } catch (Exception e) {
+            throw new FinnConnectorException(e);
+        }
+    }
+    public Set<FinnAdHead> fetchPartTimeSearchResult()
+            throws FinnConnectorException {
+        try {
+            // Default får man et paginert treff med 30 rader om gangen. Da virker det som det blir for mange treff og resultatet kuttes.
+            // Med mer en 100 rader virker det som vi får alt, og 400 virker som et OK antall
+            String initialUrl = jobPartTimeUrl + "?rows=400";
             HttpUrl httpUrl = HttpUrl.parse(initialUrl);
             return collectAdHeads(httpUrl);
         } catch (Exception e) {

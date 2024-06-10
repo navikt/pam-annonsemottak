@@ -23,8 +23,10 @@ public class FinnAdMapperTest {
     private static final String AD1 = "src/test/resources/finn/samples/ad1.xml";
     private static final String AD2 = "src/test/resources/finn/samples/ad2.xml";
     private static final String AD3 = "src/test/resources/finn/samples/ad3.xml";
+    private static final String HELTID = "src/test/resources/finn/samples/heltidstilling.xml";
+    private static final String DELTID = "src/test/resources/finn/samples/deltidstilling.xml";
 
-    private final FinnConnector connector = new FinnConnector(null, null,null, null, 0);
+    private final FinnConnector connector = new FinnConnector(null, null,null, null, null, 0);
 
     @Mock
     private FinnAd ad = mock(FinnAd.class);
@@ -150,6 +152,20 @@ public class FinnAdMapperTest {
             assertNotNull(stilling);
             assertEquals("10.787223815917969", stilling.getProperties().get(PropertyNames.GEO_LONGITUDE));
             assertEquals("59.821956634521484", stilling.getProperties().get(PropertyNames.GEO_LATITUDE));
+        }
+    }
+
+    @Test
+    public void heltid_deltid_should_be_mapped() throws Exception {
+        try (Reader reader = FinnConnectorTest.getReader(DELTID)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Deltid", stilling.getProperties().get(PropertyNames.HELTIDDELTID));
+        }
+        try (Reader reader = FinnConnectorTest.getReader(HELTID)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Heltid", stilling.getProperties().get(PropertyNames.HELTIDDELTID));
         }
     }
 

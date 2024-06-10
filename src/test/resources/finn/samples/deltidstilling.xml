@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<entry>
+    <id>urn:id:356641833</id>
+    <title>Fast helgestilling i hjemmetjenesten</title>
+    <updated>2024-06-10T11:39:00.000Z</updated>
+    <published>2024-06-10T11:39:15.896Z</published>
+    <age:expires>2024-07-22T11:39:00.000Z</age:expires>
+    <dc:identifier>356641833</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Deltidsstilling" term="job-part-time"/>
+    <category scheme="urn:finn:search:list:index" term="1"/>
+    <category scheme="urn:finn:search:flags" term=""/>
+    <link href="https://cache.api.finn.no/iad/ad/job-part-time/356641833" rel="self"/>
+    <link href="https://www.finn.no/356641833" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="9">59.9463828277107 10.744157684853992</georss:point>
+    <finn:location>
+        <finn:city>Oslo</finn:city>
+    </finn:location>
+    <media:content height="300" url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/3/356/641/833_ab5a90bc-e77a-49af-9c20-23c26cecc3ae.jpg" type="image/jpeg" width="400" medium="image"/>
+    <author>
+        <name>Bydel 8: Nordre Aker</name>
+        <uri>https://cache.api.finn.no/iad/organization/630643696</uri>
+        <media:content url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/3/356/641/833_ab5a90bc-e77a-49af-9c20-23c26cecc3ae.jpg" type="image/jpeg" medium="image">
+            <media:category scheme="urn:finn:logo:type">LIST</media:category>
+        </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-part-time">
+        <finn:field name="job_title">Helsefagarbeidere, sykepleiestudenter og vernepleiestudenter søkes til fast helgestilling</finn:field>
+        <finn:field name="company">
+            <finn:field name="name" value="Oslo kommune"/>
+            <finn:field name="logo">https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/3/356/641/833_ab5a90bc-e77a-49af-9c20-23c26cecc3ae.jpg</finn:field>
+        </finn:field>
+        <finn:field name="application_deadline" value="2024-06-25"/>
+        <finn:field name="no_of_positions" value="1"/>
+        <finn:field name="occupations">
+            <finn:value>
+                <finn:field name="general" value="Sykepleier"/>
+                <finn:field name="specialization" value="Sykepleier"/>
+            </finn:value>
+        </finn:field>
+        <finn:field name="industry">
+            <finn:value>Helse og omsorg</finn:value>
+        </finn:field>
+        <finn:field name="general_text">
+            <finn:value>
+                <finn:field name="value">&lt;p>&lt;b>Arbeidsoppgaver:&lt;/b>&lt;/p> Litt forskjellig
+                </finn:field>
+            </finn:value>
+        </finn:field>
+    </finn:adata>
+</entry>

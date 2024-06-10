@@ -1,0 +1,53 @@
+<entry>
+    <id>urn:id:356639552</id>
+    <title>Safety / Technical Working Environment Senior Engineer (BH-272665)</title>
+    <updated>2024-06-10T11:36:00.000Z</updated>
+    <published>2024-06-10T11:36:14.338Z</published>
+    <age:expires>2024-07-22T11:36:00.000Z</age:expires>
+    <dc:identifier>356639552</dc:identifier>
+    <category scheme="urn:finn:ad:private" term="false"/>
+    <category scheme="urn:finn:ad:disposed" label="Besatt" term="false"/>
+    <category scheme="urn:finn:ad:type" label="Fulltidsstilling" term="job-full-time"/>
+    <category scheme="urn:finn:search:list:index" term="3"/>
+    <category scheme="urn:finn:search:flags" term="job-easy-apply"/>
+    <link href="https://cache.api.finn.no/iad/ad/job-full-time/356639552" rel="self"/>
+    <link href="https://www.finn.no/356639552" rel="alternate" type="text/html"/>
+    <georss:point finn:accuracy="5">59.83409770443917 10.41289408858307</georss:point>
+    <finn:location>
+        <finn:city>Asker</finn:city>
+    </finn:location>
+    <media:content height="237" url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png" type="image/jpeg" width="575" medium="image"/>
+    <author>
+        <name>NES Fircroft Norge AS</name>
+        <uri>https://cache.api.finn.no/iad/organization/287337461</uri>
+        <media:content url="https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png" type="image/png" medium="image">
+            <media:category scheme="urn:finn:logo:type">LIST</media:category>
+        </media:content>
+    </author>
+    <finn:adata model="https://cache.api.finn.no/iad/ad/model/job-full-time">
+        <finn:field name="job_title">Safety / Technical Working Environment Senior Engineer</finn:field>
+        <finn:field name="company">
+            <finn:field name="name" value="NES FIRCROFT NORGE AS"/>
+            <finn:field name="logo">https://images.finncdn.no/dynamic/default/2024/6/vertical-0/10/2/356/639/552_18279db8-a58c-429c-9c34-5c516aa4e9d5.png</finn:field>
+        </finn:field>
+        <finn:field name="no_of_positions" value="1"/>
+        <finn:field name="occupations">
+            <finn:value>
+                <finn:field name="general" value="Ingeniør"/>
+                <finn:field name="specialization" value="Ingeniør, Teknisk sikkerhet, QHSE"/>
+            </finn:value>
+        </finn:field>
+        <finn:field name="industry">
+            <finn:value>Olje og gass</finn:value>
+        </finn:field>
+        <finn:field name="flags">
+            <finn:value>job-easy-apply</finn:value>
+        </finn:field>
+        <finn:field name="general_text">
+            <finn:value>
+                <finn:field name="value">&lt;p>&lt;b>Arbeidsoppgaver:&lt;/b>&lt;/p> Litt forskjellig
+                </finn:field>
+            </finn:value>
+        </finn:field>
+    </finn:adata>
+</entry>

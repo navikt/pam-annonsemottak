@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class FinnConnectorTest {
 
-    private FinnConnector connector = new FinnConnector(null, null, null, null, 0);
+    private FinnConnector connector = new FinnConnector(null, null,null, null, null, 0);
 
     static Reader getReader(String filename)
             throws UnsupportedEncodingException, FileNotFoundException {

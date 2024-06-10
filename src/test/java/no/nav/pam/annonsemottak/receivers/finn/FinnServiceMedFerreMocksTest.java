@@ -102,7 +102,7 @@ public class FinnServiceMedFerreMocksTest {
     }
 
     private FinnAd generateFinnAd() throws Exception {
-        FinnConnector finnConnector = new FinnConnector(null, null,null, null, 0);
+        FinnConnector finnConnector = new FinnConnector(null, null, null,null, null, 0);
         try (Reader reader = FinnConnectorTest.getReader("src/test/resources/finn/samples/ad1.xml")) {
             Document document = finnConnector.parseReaderToDocument(reader);
             return new FinnAd(document);

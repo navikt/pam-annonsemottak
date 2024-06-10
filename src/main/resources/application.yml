@@ -58,6 +58,7 @@ polaris:
 finn:
   url: https://cache.api.finn.no/iad/
   job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
+  job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}
 kafka:
