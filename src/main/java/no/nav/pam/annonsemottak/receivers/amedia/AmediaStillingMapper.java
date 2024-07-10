@@ -151,7 +151,7 @@ class AmediaStillingMapper {
                         PropertyNames.CREATED_DATE, text(source.get("created_time")),
                         "system_modified", text(source.get("system_modified_time")),
                         PropertyNames.UPDATED_DATE, text(source.get("modified_time")),
-                        PropertyNames.EXTERNAL_PUBLISH_DATE, published.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT),
+                        PropertyNames.EXTERNAL_PUBLISH_DATE, published != null ? published.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT) : null,
                         PropertyNames.LOCATION_ADDRESS, text(address.get("primary_address")),
                         "secondary_address", text(address.get("secondary_address")),
                         PropertyNames.LOCATION_POSTCODE, text(address.get("post_code")),
