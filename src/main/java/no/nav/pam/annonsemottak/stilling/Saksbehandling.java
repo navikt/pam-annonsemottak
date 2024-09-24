@@ -27,10 +27,6 @@ public class Saksbehandling {
         this.status = Status.MOTTATT;
     }
 
-    void oppdatert() {
-        this.status = Status.OPPDATERT;
-    }
-
     public Status getStatus() {
         return status;
     }

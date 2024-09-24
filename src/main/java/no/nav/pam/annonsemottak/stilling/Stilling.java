@@ -271,12 +271,7 @@ public class Stilling extends ModelEntity {
     }
 
     public Stilling merge(Stilling stilling) {
-        Status oldStatus = stilling.getSaksbehandling().getStatus();
-
         this.saksbehandling = stilling.getSaksbehandling();
-        if ((oldStatus == Status.GODKJENT || oldStatus == Status.FJERNET) && this.annonseStatus != AnnonseStatus.STOPPET) {
-            this.getSaksbehandling().oppdatert();
-        }
         this.setId(stilling.getId());
         this.uuid = stilling.getUuid();
         this.setCreated(stilling.getCreated());
