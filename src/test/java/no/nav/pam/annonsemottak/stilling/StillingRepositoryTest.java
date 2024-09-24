@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
+import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.Application;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -12,11 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.stream.StreamSupport.stream;
@@ -87,47 +85,6 @@ public class StillingRepositoryTest {
         assertThat(stream(alleStillinger.spliterator(), false).findFirst().get().getTitle(), is(equalTo("Første stilling")));
     }
 
-    @Test
-    public void stilling_skal_støtte_lagring_og_henting_med_saksbehandler_som_verditype() {
-        stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Første stilling").saksbehandler("Truls").externalId("ID1").build());
-        stillingRepository.save(StillingTestdataBuilder.enkelStilling().tittel("Andre stilling").externalId("ID2").build());
-
-        Iterable<Stilling> alleStillinger = stillingRepository.findAll(Sort.by(Sort.Direction.ASC, "created"));
-
-        assertThat(stream(alleStillinger.spliterator(), false).count(), is(equalTo(2L)));
-        Stilling hentetStilling = stream(alleStillinger.spliterator(), false).findFirst().get();
-        assertThat(hentetStilling.getTitle(), is(equalTo("Første stilling")));
-        assertThat(hentetStilling.getSaksbehandling().getSaksbehandler(), is(equalTo(Saksbehandler.ofNullable("Truls"))));
-    }
-
-    @Test
-    public void saksbehandling_skal_bevares_ved_oppdateringer() throws IllegalSaksbehandlingCommandException {
-        final String externalID = java.util.UUID.randomUUID().toString();
-        Stilling brandNew = StillingTestdataBuilder.enkelStilling().externalId(externalID).build();
-
-        final String uuid = brandNew.getUuid();
-
-        Map<String, String> updateMap = new HashMap<>();
-        updateMap.put("status", "2");
-        updateMap.put("saksbehandler", "System");
-        OppdaterSaksbehandlingCommand saksbehandlingCommand = new OppdaterSaksbehandlingCommand(updateMap);
-        brandNew.oppdaterMed(saksbehandlingCommand); // Approve ad as "System"
-
-        stillingRepository.save(brandNew);
-
-        // Simulate update on existing ad
-        Stilling externallyUpdated = StillingTestdataBuilder.enkelStilling().externalId(externalID).tittel("Oppdatert tittel").build();
-
-        Stilling inDb = stillingRepository.findByUuid(uuid).orElse(null);
-        assertNotNull(inDb);
-        assertEquals(Status.GODKJENT, inDb.getStatus());
-
-        Stilling merged = externallyUpdated.merge(inDb);
-
-        assertEquals("System", merged.getSaksbehandler().get().asString());
-        assertEquals(Status.OPPDATERT, merged.getStatus());
-        assertEquals(AnnonseStatus.AKTIV, merged.getAnnonseStatus());
-    }
 
     @Test
     public void kilde_og_medium_skal_lagres() {

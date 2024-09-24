@@ -19,17 +19,8 @@ public class DeactivateController {
         this.service = service;
     }
 
-    @PostMapping("/deactivateExpired")
-    public void deactivateExpiredActiveAds() {
-        LOG.info("REST request for deactivating expired active ads in the database.");
-
-        try {
-            service.deactivateExpired();
-        } catch (Exception e) {
-            LOG.error("Exception while running deactivateExpiredActiveAds from REST", e);
-        }
-    }
-
+    // Denne er ikke i bruk. Den kan brukes som en slags administrativ dødmannsknapp for å deaktivere alle
+    // stillingsannonser fra en kilde, men mest sannsynlig så kan den slettes
     @PutMapping("/stopAds/{source}/{medium}")
     public void stopAdsBySourceMedium(@PathVariable String source, @PathVariable String medium,
                                       @RequestParam(required = false, name = "dryRun", defaultValue = "false") Boolean dryRun) {

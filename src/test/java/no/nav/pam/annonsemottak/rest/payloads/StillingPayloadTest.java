@@ -11,18 +11,6 @@ import static org.hamcrest.collection.IsMapContaining.hasEntry;
 public class StillingPayloadTest {
 
     @Test
-    public void skal_mappe_manglene_saksbehandler_til_null() {
-        Map<String, String> stilling = StillingPayload.fromStilling(enkelStilling().build());
-        assertThat(stilling, hasEntry("saksbehandler", null));
-    }
-
-    @Test
-    public void skal_mappe_saksbehandler() {
-        Map<String, String> stilling = StillingPayload.fromStilling(enkelStilling().saksbehandler("Navn på saksbehandler").build());
-        assertThat(stilling, hasEntry("saksbehandler", "Navn på saksbehandler"));
-    }
-
-    @Test
     public void skal_mappe_medium() {
         Map<String, String> stilling = StillingPayload.fromStilling(enkelStilling().medium("Bergen kommune").build());
         assertThat(stilling, hasEntry("medium", "Bergen kommune"));

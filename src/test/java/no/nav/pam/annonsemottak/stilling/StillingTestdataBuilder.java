@@ -7,8 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import static no.nav.pam.annonsemottak.stilling.OppdaterSaksbehandlingCommand.*;
-
 public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
 
     private String arbeidsgiver;
@@ -65,25 +63,6 @@ public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {
                 .expires(GenericDateParser.parse(utløpsdato).orElse(null))
                 .systemModifiedDate(systemModifiedDate)
                 .build();
-
-        Map map = new HashMap();
-        if (status != null) {
-            map.put(STATUS, status.getKodeAsString());
-        }
-        if (saksbehandler != null) {
-            map.put(SAKSBEHANDLER, saksbehandler);
-        }
-        if (merknader != null) {
-            map.put(MERKNADER, merknader.asString());
-        }
-
-        if (!map.isEmpty()) {
-            try {
-                stilling.oppdaterMed(new OppdaterSaksbehandlingCommand(map));
-            } catch (IllegalSaksbehandlingCommandException e) {
-                throw new RuntimeException(e); // Parent doesn't declare exception.
-            }
-        }
 
         return stilling;
     }

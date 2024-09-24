@@ -1,7 +1,6 @@
 package no.nav.pam.annonsemottak.stilling;
 
 import com.google.common.hash.Hashing;
-import no.nav.pam.annonsemottak.receivers.Kilde;
 import org.hibernate.annotations.BatchSize;
 
 import jakarta.persistence.*;
@@ -254,12 +253,6 @@ public class Stilling extends ModelEntity {
         return externalId;
     }
 
-
-    public void oppdaterMed(OppdaterSaksbehandlingCommand command)
-            throws IllegalSaksbehandlingCommandException {
-        this.saksbehandling.oppdaterMed(command, this);
-    }
-
     public Stilling stop() {
         this.annonseStatus = AnnonseStatus.STOPPET;
         return this;
@@ -277,15 +270,6 @@ public class Stilling extends ModelEntity {
         return this;
     }
 
-    public Stilling reset() {
-        this.saksbehandling.resetSaksbehandler();
-        return this;
-    }
-
-    public void rejectAsDuplicate(Integer id) {
-        this.saksbehandling.rejectAsDuplicate(id);
-    }
-
     public Stilling merge(Stilling stilling) {
         Status oldStatus = stilling.getSaksbehandling().getStatus();
 
@@ -298,28 +282,6 @@ public class Stilling extends ModelEntity {
         this.setCreated(stilling.getCreated());
 
         return this;
-    }
-
-    public Stilling stopIfExpired(Stilling stilling) {
-
-        if(!kilde.equals(Kilde.XML_STILLING.toString())) {
-            return this;
-        }
-
-        if(stilling.getExpires().equals(expires)) {
-            return this;
-        }
-
-        if(stilling.getAnnonseStatus() != AnnonseStatus.AKTIV) {
-            return this;
-        }
-
-        if(expires.isBefore(now())) {
-            annonseStatus = AnnonseStatus.STOPPET;
-        }
-
-        return this;
-
     }
 
     @Override
