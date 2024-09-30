@@ -108,35 +108,6 @@ public class StillingApi {
         }
     }
 
-    @PatchMapping(value = "/{uuid}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity updateSingle(@PathVariable("uuid") String uuid, @RequestBody Map<String, String> keyValueMap) {
-        LOG.info("PATCH: {}", uuid);
-        try {
-
-            Optional<Stilling> stilling = stillingRepository.findByUuid(uuid);
-            if (stilling.isPresent()) {
-                Stilling s = stilling.get();
-                s.oppdaterMed(new OppdaterSaksbehandlingCommand(keyValueMap));
-
-                Stilling lagretStilling = stillingRepository.save(s);
-                stillingOutboxService.lagreTilOutbox(lagretStilling);
-                return ResponseEntity.noContent().build();
-            }
-
-            return ResponseEntity.status(NOT_FOUND).build();
-
-        } catch (IllegalSaksbehandlingCommandException e) {
-            LOG.warn("Refused to patch Stilling with UUID={}", uuid, e);
-            return ResponseEntity
-                    .status(BAD_REQUEST)
-                    .body(new ErrorPayload(ErrorPayload.DefinedErrors.CLIENT_ILLEGAL_UPDATE));
-        } catch (Exception e) {
-            LOG.error("Failed to patch Stilling with UUID={}", uuid, e);
-            return ResponseEntity
-                    .status(INTERNAL_SERVER_ERROR)
-                    .body(new ErrorPayload(ErrorPayload.DefinedErrors.SERVER_INTERNAL));
-        }
-    }
 
     @GetMapping(value = "/uuids", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity getAllKnownUuids() {
