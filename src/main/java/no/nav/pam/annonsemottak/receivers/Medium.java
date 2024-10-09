@@ -3,9 +3,9 @@ package no.nav.pam.annonsemottak.receivers;
 public enum Medium {
     SBL("Stillingsregistrering"),
     FINN("FINN"),
-    DEXI("DEXI"),
+    @Deprecated DEXI("DEXI"),
     AMEDIA("AMEDIA"),
-    POLARIS("POLARIS"),
+    @Deprecated POLARIS("POLARIS"),
     UNKNOWN("UNKNOWN");
 
     private final String kilde;

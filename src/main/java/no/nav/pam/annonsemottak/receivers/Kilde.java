@@ -6,7 +6,7 @@ public enum Kilde {
     @Deprecated DEXI("webcrawl"), // deprecated
     AMEDIA("AMEDIA"),
     @Deprecated STILLINGSOLR("stillingsolr"), // deprecated
-    POLARIS("POLARIS"),
+    @Deprecated POLARIS("POLARIS"), // deprecated
     @Deprecated XML_STILLING("xmlstilling"); // deprecated
 
     private final String kilde;
