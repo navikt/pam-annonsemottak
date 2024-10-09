@@ -5,7 +5,6 @@ import no.nav.pam.annonsemottak.kafka.HealthService;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
-import no.nav.pam.annonsemottak.receivers.polaris.PolarisConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +22,13 @@ public class StatusController {
 
     private final AmediaConnector amediaConnector;
 
-    private final PolarisConnector polarisConnector;
 
     private final HealthService healthService;
 
     @Autowired
-    public StatusController(FinnConnector finnConnector, AmediaConnector amediaConnector, PolarisConnector polarisConnector, HealthService healthService) {
+    public StatusController(FinnConnector finnConnector, AmediaConnector amediaConnector, HealthService healthService) {
         this.finnConnector = finnConnector;
         this.amediaConnector = amediaConnector;
-        this.polarisConnector = polarisConnector;
         this.healthService = healthService;
     }
 
@@ -52,7 +49,6 @@ public class StatusController {
 
         if (isAmediaOK()
                 && isFinnOK()
-                && isPolarisOK()
                 && isKafkaOk()
         ) {
             return "OK";
@@ -67,7 +63,6 @@ public class StatusController {
         Map<String, String> statusMap = new HashMap<>();
         statusMap.put(Kilde.FINN.value(), statusToString(isFinnOK()));
         statusMap.put(Kilde.AMEDIA.value(), statusToString(isAmediaOK()));
-        statusMap.put(Kilde.POLARIS.value(), statusToString(isPolarisOK()));
 
         return ResponseEntity.ok(statusMap);
     }
@@ -82,10 +77,6 @@ public class StatusController {
 
     private boolean isAmediaOK() {
         return amediaConnector.isPingSuccessful();
-    }
-
-    private boolean isPolarisOK() {
-        return polarisConnector.isPingSuccessful();
     }
 
     private boolean isKafkaOk() {

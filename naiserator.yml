@@ -67,9 +67,6 @@ spec:
         - host: services.api.no
           ports:
             - port: 443
-        - host: stilling.adresseavisen.no
-          ports:
-            - port: 443
     inbound:
       rules:
         - application: pam-ad

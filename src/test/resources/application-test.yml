@@ -31,8 +31,6 @@ scheduler:
   enabled: false
 amedia:
   url: http://localhost:7010/api/prophecy/external/nav/jobs
-polaris:
-  url: http://localhost:7012/api/nav.json
 finn:
   url: https://localhost:7011
   api:

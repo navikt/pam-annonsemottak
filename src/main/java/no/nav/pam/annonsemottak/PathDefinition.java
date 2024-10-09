@@ -8,5 +8,4 @@ public class PathDefinition {
     public static final String STILLINGER = API+"/stillinger";
     public static final String FINN = ANNONSEMOTTAK+"/finn";
     public static final String AMEDIA = ANNONSEMOTTAK+"/amedia";
-    public static final String POLARIS = ANNONSEMOTTAK+"/polaris";
 }
