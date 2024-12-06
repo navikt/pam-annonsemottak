@@ -57,6 +57,8 @@ finn:
   job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
   api:
     password: ${FINN_API_PASSWORD:<finn api key>}
+  cron:
+    schedule: "${FINN_CRON_SCHEDULE:0 0 7 * * *}"
 kafka:
   brokers: ${KAFKA_BROKERS:http://localhost:1337}
   credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}

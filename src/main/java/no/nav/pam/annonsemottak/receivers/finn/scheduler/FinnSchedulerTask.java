@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.inject.Inject;
 
@@ -19,13 +20,16 @@ public class FinnSchedulerTask {
     private static final Logger LOG = LoggerFactory.getLogger(FinnSchedulerTask.class);
 
     private final FinnService finnService;
+    private final String cronSchedule;
 
     @Inject
-    public FinnSchedulerTask(FinnService finnService) {
+    public FinnSchedulerTask(FinnService finnService, @Value("${finn.cron.schedule}") String cronSchedule) {
         this.finnService = finnService;
+        this.cronSchedule = cronSchedule;
+        LOG.info("The scheduled task will run at: {}", cronSchedule);
     }
 
-    @Scheduled(cron = "0 0 7 * * *")
+    @Scheduled(cron = "#{@finnSchedulerTask.cronSchedule}")
     @SchedulerLock(name = "saveLatestAdsFromFinn")
     public void saveLatestAdsFromFinn() {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Finn.");
@@ -36,4 +40,9 @@ public class FinnSchedulerTask {
             LOG.error("Unable to save results from Finn using specified collections", e);
         }
     }
+
+    public String getCronSchedule() {
+        return cronSchedule;
+    }
+
 }
