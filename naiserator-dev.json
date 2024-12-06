@@ -4,6 +4,5 @@
   "scheduler_enabled": "true",
   "annonsemottak_topic": "teampam.annonsemottak-v1",
   "outbox_scheduler_enabled": "true",
-  "outbox_kafka_enabled": "true",
-  "finn_cron_schedule" : "0 0 6 * * *"
+  "outbox_kafka_enabled": "true"
 }

@@ -80,5 +80,3 @@ spec:
       value: "{{ outbox_kafka_enabled }}"
     - name: OUTBOX_SCHEDULER_ENABLED
       value: "{{ outbox_scheduler_enabled }}"
-    - name: FINN_CRON_SCHEDULE
-      value: "{{ finn_cron_schedule }}"
