@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.outbox.StillingOutbox;
@@ -16,6 +15,7 @@ import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,7 +27,6 @@ import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -39,12 +38,15 @@ import static org.mockito.Mockito.*;
 @ContextConfiguration(classes = Application.class)
 public class FinnServiceMedFerreMocksTest {
 
-    @Inject
+    @Autowired
     private StillingRepository stillingRepository;
-    @Inject
+
+    @Autowired
     private StillingOutboxService stillingOutboxService;
-    @Inject
+
+    @Autowired
     private StillingOutboxRepository stillingOutboxRepository;
+
     private FinnService finnService;
 
     private FinnConnector mockFinnConnector;

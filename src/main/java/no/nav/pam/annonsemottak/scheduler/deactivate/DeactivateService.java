@@ -1,13 +1,13 @@
 package no.nav.pam.annonsemottak.scheduler.deactivate;
 
 
-import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.outbox.StillingOutboxService;
 import no.nav.pam.annonsemottak.stilling.AnnonseStatus;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +26,7 @@ public class DeactivateService {
 
     private final StillingOutboxService stillingOutboxService;
 
-    @Inject
+    @Autowired
     public DeactivateService(StillingRepository repository, StillingOutboxService stillingOutboxService) {
         this.repository = repository;
         this.stillingOutboxService = stillingOutboxService;

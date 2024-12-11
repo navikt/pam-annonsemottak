@@ -1,11 +1,11 @@
 package no.nav.pam.annonsemottak.receivers.finn.rest;
 
-import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.receivers.common.rest.payloads.ResultsOnSave;
 import no.nav.pam.annonsemottak.receivers.finn.FinnService;
 import no.nav.pam.annonsemottak.PathDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class FinnApi {
 
     private final FinnService service;
 
-    @Inject
+    @Autowired
     public FinnApi(FinnService service) {
         this.service = service;
     }

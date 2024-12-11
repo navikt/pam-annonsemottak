@@ -4,12 +4,11 @@ import net.javacrumbs.shedlock.core.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import jakarta.inject.Inject;
 
 @Component
 @Profile("prod")
@@ -21,7 +20,7 @@ public class AmediaSchedulerTask {
 
     private final AmediaService amediaService;
 
-    @Inject
+    @Autowired
     public AmediaSchedulerTask(AmediaService amediaService) {
         this.amediaService = amediaService;
     }

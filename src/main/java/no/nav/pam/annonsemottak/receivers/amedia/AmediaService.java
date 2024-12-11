@@ -12,9 +12,9 @@ import no.nav.pam.annonsemottak.receivers.fangst.AnnonseResult;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class AmediaService {
     private final AnnonseMottakProbe probe;
 
 
-    @Inject
+    @Autowired
     public AmediaService(
             AmediaConnector amediaConnector,
             AnnonseFangstService annonseFangstService,

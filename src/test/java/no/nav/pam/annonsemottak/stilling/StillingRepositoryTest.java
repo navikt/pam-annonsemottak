@@ -1,10 +1,10 @@
 package no.nav.pam.annonsemottak.stilling;
 
-import jakarta.inject.Inject;
 import no.nav.pam.annonsemottak.Application;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = Application.class)
 public class StillingRepositoryTest {
 
-    @Inject
+    @Autowired
     private StillingRepository stillingRepository;
 
     @Test

@@ -29,7 +29,6 @@
         <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <jakarta.validation.version>3.1.0</jakarta.validation.version>
         <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
-        <jakarta.inject.version>2.0.1</jakarta.inject.version>
         <java.version>21</java.version>
         <kotlin.version>2.1.0</kotlin.version>
         <owasp.version>20240325.1</owasp.version>
@@ -100,11 +99,6 @@
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>${jakarta.validation.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-            <version>${jakarta.inject.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
