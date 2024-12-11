@@ -11,26 +11,34 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.4</version>
+        <version>3.4.0</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.50.50</flexmark.version>
+        <flyway.version>10.22.0</flyway.version>
         <httpclient.version>4.5.14</httpclient.version>
-        <wiremock.version>3.5.2</wiremock.version>
-        <guava.version>33.1.0-jre</guava.version>
-        <assertj.version>3.24.2</assertj.version>
-        <shedlock.version>2.2.0</shedlock.version>
-        <logstash-logback-encoder.version>6.1</logstash-logback-encoder.version>
+        <wiremock.version>3.10.0</wiremock.version>
+        <assertj.version>3.26.3</assertj.version>
+        <guava.version>33.3.1-jre</guava.version>
+        <shedlock.version>2.6.0</shedlock.version> <!-- TODO: Siste versjon er 6.0.2 men kompilerer ikke - så ikke mer på hvorfor  -->
+        <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
         <okhttp.version>4.12.0</okhttp.version>
-        <snakeyaml.version>2.2</snakeyaml.version>
-        <junit.jupiter.version>5.10.2</junit.jupiter.version>
-        <jakarta.validation.version>3.0.2</jakarta.validation.version>
+        <snakeyaml.version>2.3</snakeyaml.version>
+        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+        <jakarta.validation.version>3.1.0</jakarta.validation.version>
         <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
         <jakarta.inject.version>2.0.1</jakarta.inject.version>
         <java.version>21</java.version>
-        <kotlin.version>1.9.23</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
+        <owasp.version>20240325.1</owasp.version>
+        <testcontainers.version>1.20.4</testcontainers.version>
+        <postgresql.version>42.7.4</postgresql.version>
+        <kotlinx-serialization.version>1.7.3</kotlinx-serialization.version>
+        <kafka-client.version>3.9.0</kafka-client.version>
+        <jsoup.version>1.18.3</jsoup.version>
+        <commons-text.version>1.12.0</commons-text.version>
     </properties>
 
 
@@ -70,13 +78,13 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <scope>runtime</scope>
-            <version>10.10.0</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
             <scope>runtime</scope>
-            <version>10.10.0</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -86,7 +94,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.2</version>
+            <version>${postgresql.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -118,7 +126,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json</artifactId>
-            <version>1.4.1</version>
+            <version>${kotlinx-serialization.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -129,7 +137,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>3.6.1</version>
+            <version>${kafka-client.version}</version>
         </dependency>
 
 
@@ -208,20 +216,12 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.15.3</version>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
             <artifactId>owasp-java-html-sanitizer</artifactId>
-            <version>20211018.2</version>
-        </dependency>
-
-        <!-- JUnit Toolbox -->
-        <dependency>
-            <groupId>com.googlecode.junit-toolbox</groupId>
-            <artifactId>junit-toolbox</artifactId>
-            <version>2.2</version>
-            <scope>test</scope>
+            <version>${owasp.version}</version>
         </dependency>
 
         <dependency>
@@ -248,7 +248,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
-            <version>1.4</version>
+            <version>${commons-text.version}</version>
         </dependency>
 
         <dependency>
@@ -266,13 +266,13 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>kafka</artifactId>
-            <version>1.19.4</version>
+            <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>1.19.4</version>
+            <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
 
