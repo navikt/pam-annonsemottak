@@ -1,5 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.finn.scheduler;
 
+import jakarta.inject.Inject;
 import net.javacrumbs.shedlock.core.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.finn.FinnService;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class FinnSchedulerTask {
         this.finnService = finnService;
     }
 
-    @Scheduled(cron = "0 0 7 * * *")
+    @Scheduled(cron = "${finn.cron.schedule}")
     @SchedulerLock(name = "saveLatestAdsFromFinn")
     public void saveLatestAdsFromFinn() {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Finn.");
@@ -35,4 +36,5 @@ public class FinnSchedulerTask {
             LOG.error("Unable to save results from Finn using specified collections", e);
         }
     }
+
 }
