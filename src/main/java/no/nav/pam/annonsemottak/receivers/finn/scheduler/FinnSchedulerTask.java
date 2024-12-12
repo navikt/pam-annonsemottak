@@ -4,12 +4,11 @@ import net.javacrumbs.shedlock.core.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.finn.FinnService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import jakarta.inject.Inject;
 
 @Component
 @Profile("prod")
@@ -20,7 +19,7 @@ public class FinnSchedulerTask {
 
     private final FinnService finnService;
 
-    @Inject
+    @Autowired
     public FinnSchedulerTask(FinnService finnService) {
         this.finnService = finnService;
     }

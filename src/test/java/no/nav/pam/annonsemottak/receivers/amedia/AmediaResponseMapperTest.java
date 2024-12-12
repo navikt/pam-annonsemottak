@@ -106,6 +106,7 @@ public class AmediaResponseMapperTest {
         s.assertThat(properties.get(PropertyNames.GEO_LONGITUDE)).isEqualTo("5.34445174400657");
         s.assertThat(properties.get(PropertyNames.KONTAKTINFO)).isEqualTo("[]");
         s.assertThat(properties.get(PropertyNames.SOKNADSLENKE)).isEqualTo("https://karriere.no/jobb/tankbilsjafor-572920.html");
+        s.assertThat(properties.get(PropertyNames.APPLICATION_EMAIL)).isEqualTo("test@nav.no");
         s.assertThat(properties.get("publications")).isEqualTo("\"www.fremover.no\",\"www.an.no\",\"www.ta.no\",\"www.tb.no\",\"www.ba.no\",\"www.ranablad.no\",\"www.hardanger-folkeblad.no\",\"www.lofot-tidende.no\",\"www.oa.no\",\"www.tk.no\",\"www.nordhordland.no\",\"www.ifinnmark.no\",\"www.nordlys.no\",\"www.lofotposten.no\",\"www.rb.no\",\"www.helg.no\",\"www.dt.no\"");
 
         s.assertAll();

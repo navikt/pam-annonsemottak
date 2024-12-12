@@ -1,10 +1,8 @@
 package no.nav.pam.annonsemottak.app.metrics;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jakarta.inject.Inject;
-import java.util.Map;
 
 import static no.nav.pam.annonsemottak.app.metrics.MetricNames.*;
 
@@ -13,7 +11,7 @@ public class AnnonseMottakProbe {
 
     private final MeterRegistry meterRegistry;
 
-    @Inject
+    @Autowired
     AnnonseMottakProbe(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
     }
