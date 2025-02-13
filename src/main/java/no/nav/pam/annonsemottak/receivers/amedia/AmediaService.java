@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Amedia operasjoner
@@ -32,6 +34,27 @@ public class AmediaService {
     private final ExternalRunService externalRunService;
     private final AnnonseMottakProbe probe;
 
+    private void logFeltlengder(Stilling s) {
+        var felter = new HashMap<String, Integer>();
+        felter.put("createdby", s.getCreatedBy().length());
+        felter.put("updatedby", s.getUpdatedBy().length());
+        felter.put("createdbydisplayname", s.getCreatedByDisplayName().length());
+        felter.put("updatedbydisplayname", s.getUpdatedByDisplayName().length());
+        felter.put("externalid", s.getExternalId().length());
+        felter.put("place", s.getPlace().length());
+        felter.put("title", s.getTitle().length());
+        felter.put("duedate", s.getDueDate().length());
+        felter.put("employer", s.getEmployerDescription().length());
+        felter.put("hash", s.getHash().length());
+        felter.put("merknader", s.getMerknader().isPresent() ? s.getMerknader().get().asString().length() : 0);
+
+        // hvis et felt er over 254 tegn, logg det
+        felter.entrySet().stream()
+                .filter(e -> e.getValue() > 254)
+                .forEach(e -> LOG.warn("Annonnse med externalid {} og id {} har feltet {} lengde {}",
+                        s.getExternalId(), s.getId(), e.getKey(), e.getValue()));
+
+    }
 
     @Autowired
     public AmediaService(
@@ -57,6 +80,10 @@ public class AmediaService {
         List<Stilling> returnerteStillingerFraAmedia = amediaConnector.hentData(modifisertDatoMedBuffertid(getLastRun(externalRun)));
 
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
+
+        for (Stilling returnertStilling : returnerteStillingerFraAmedia) {
+            logFeltlengder(returnertStilling);
+        }
 
         List<Stilling> filtrert = new StillingFilterchain()
                 .doFilter(returnerteStillingerFraAmedia);
