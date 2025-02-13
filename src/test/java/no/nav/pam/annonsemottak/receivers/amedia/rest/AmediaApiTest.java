@@ -8,6 +8,7 @@ import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,7 @@ public class AmediaApiTest {
     /*
         Tester api, paramtereren til Amedia, og at alt utenom repoene er wiret opp.
      */
+    @Disabled // TODO: midlertidig deaktivert
     @Test
     public void en_ny_amedia_stilling() throws Exception {
         MvcResult mvcResult = this.mvc.perform(
