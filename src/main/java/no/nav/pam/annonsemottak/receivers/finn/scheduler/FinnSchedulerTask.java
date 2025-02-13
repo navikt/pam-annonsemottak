@@ -1,6 +1,5 @@
 package no.nav.pam.annonsemottak.receivers.finn.scheduler;
 
-import jakarta.inject.Inject;
 import net.javacrumbs.shedlock.core.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.finn.FinnService;
 import org.slf4j.Logger;
