@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,6 +46,9 @@ public class AmediaApiTest {
 
     @Autowired
     protected MockMvc mvc;
+
+    @Autowired
+    private AmediaService amediaService;
 
     @BeforeAll
     public static void initStubs() {
@@ -96,7 +100,7 @@ public class AmediaApiTest {
     }
 
     @Test
-    public void logg_hvis_har_for_langt_felt() {
+    public void valider_feltlengder_paa_255_tegn() {
         String forLangtFelt = "A".repeat(300);
         String akkuratForLang = "B".repeat(255);
         String akkuratPasse = "C".repeat(254);
@@ -112,7 +116,7 @@ public class AmediaApiTest {
                 "http://mock.url",
                 "MockExternalId"
         );
-        AmediaService.logFeltlengder(stilling);
+        assertFalse(amediaService.erFelteneInnenForTillatLengde(stilling));
     }
 
 }

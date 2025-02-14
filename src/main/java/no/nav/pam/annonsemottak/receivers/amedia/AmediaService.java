@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Amedia operasjoner
@@ -32,32 +32,6 @@ public class AmediaService {
     private final AnnonseFangstService annonseFangstService;
     private final ExternalRunService externalRunService;
     private final AnnonseMottakProbe probe;
-
-    public static void logFeltlengder(Stilling s) {
-        var felter = new HashMap<String, String>();
-        felter.put("createdby", s.getCreatedBy());
-        felter.put("updatedby", s.getUpdatedBy());
-        felter.put("createdbydisplayname", s.getCreatedByDisplayName());
-        felter.put("updatedbydisplayname", s.getUpdatedByDisplayName());
-        felter.put("externalid", s.getExternalId());
-        felter.put("place", s.getPlace());
-        felter.put("title", s.getTitle());
-        felter.put("duedate", s.getDueDate());
-        if(s.getArbeidsgiver().isPresent()) {
-            felter.put("employer", s.getArbeidsgiver().get().asString());
-        }
-        felter.put("hash", s.getHash());
-        if (s.getMerknader().isPresent()) {
-            felter.put("merknader", s.getMerknader().get().asString());
-        }
-
-        // hvis et felt er over 254 tegn, logg det
-        felter.entrySet().stream()
-                .filter(e -> e.getValue() != null && e.getValue().length() > 254)
-                .forEach(e -> LOG.warn("Annonnse med externalid '{}' og id '{}' har feltet '{}' lengde {} verdi: '{}'",
-                        s.getExternalId(), s.getId(), e.getKey(), e.getValue().length(), e.getValue()));
-
-    }
 
     @Autowired
     public AmediaService(
@@ -84,14 +58,28 @@ public class AmediaService {
 
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
 
-        for (Stilling returnertStilling : returnerteStillingerFraAmedia) {
-            logFeltlengder(returnertStilling);
-        }
+        // TODO: Flytte denne filtreringslogikken inn som en del av StillingFilterchain()
+        List<Stilling> validerteStillinger = returnerteStillingerFraAmedia.stream().filter(this::erFelteneInnenForTillatLengde).toList();
+        LOG.info("Antall stillinger som ble filtrert bort pga for lange felter: {}", returnerteStillingerFraAmedia.size() - validerteStillinger.size());
 
         List<Stilling> filtrert = new StillingFilterchain()
-                .doFilter(returnerteStillingerFraAmedia);
+                .doFilter(validerteStillinger);
 
         return save(start, externalRun, alleStillingIDerFraAmedia, filtrert);
+    }
+
+    public boolean erFelteneInnenForTillatLengde(Stilling stilling) {
+        List<Map.Entry<String, String>> felterSomErForlange = stilling.felterSomOverstigerGrensenPaa255Tegn();
+
+        if(!felterSomErForlange.isEmpty()) {
+            LOG.warn("Annonse med externalid '{}' mist et felt som er for langt, se neste logginnslag. Komplett stilling {}", stilling.getExternalId(), stilling);
+            for(Map.Entry<String, String> felt : felterSomErForlange) {
+                LOG.warn("Annonse med externalid '{}' og har feltet '{}' lengde {} verdi: '{}'",
+                        stilling.getExternalId(), felt.getKey(), felt.getValue().length(), felt.getValue());
+            }
+        }
+
+        return felterSomErForlange.isEmpty();
     }
 
     /**
@@ -164,6 +152,5 @@ public class AmediaService {
 
         return sisteModifiserteDato.minusMinutes(MODIFISERT_DATO_BUFFER_MINUTT);
     }
-
 
 }

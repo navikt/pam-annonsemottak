@@ -126,7 +126,7 @@ public class Stilling extends ModelEntity {
     }
 
     void addProperties(Map<String, String> properties) {
-        if(properties != null) {
+        if (properties != null) {
             this.properties.putAll(properties);
         }
     }
@@ -279,10 +279,39 @@ public class Stilling extends ModelEntity {
         return this;
     }
 
+    public List<Map.Entry<String, String>> felterSomOverstigerGrensenPaa255Tegn() {
+        var felter = new HashMap<String, String>();
+        felter.put("createdby", getCreatedBy());
+        felter.put("updatedby", getUpdatedBy());
+        felter.put("createdbydisplayname", getCreatedByDisplayName());
+        felter.put("updatedbydisplayname", getUpdatedByDisplayName());
+        felter.put("externalid", getExternalId());
+        felter.put("place", getPlace());
+        felter.put("title", getTitle());
+        felter.put("duedate", getDueDate());
+        if (getArbeidsgiver().isPresent()) {
+            felter.put("employer", getArbeidsgiver().get().asString());
+        }
+        felter.put("hash", getHash());
+        if (getMerknader().isPresent()) {
+            felter.put("merknader", getMerknader().get().asString());
+        }
+
+        return finnFelterSomOverstigerFeltlengden(felter, 255);
+    }
+
+    private List<Map.Entry<String, String>> finnFelterSomOverstigerFeltlengden(HashMap<String, String> felter, int feltlengde) {
+        return felter.entrySet().stream()
+                .filter(e -> e.getValue() != null && e.getValue().length() >= feltlengde)
+                .toList();
+    }
+
     @Override
     public String toString() {
         return "[UUID: " + uuid + "]" +
                 "[Arbeidsgiver: " + employer + "]" +
-                "[Annonsetittel: " + title + "]";
+                "[Annonsetittel: " + title + "]" +
+                "[Kilde: " + kilde + "]" +
+                "[Medium: " + medium + "]";
     }
 }
