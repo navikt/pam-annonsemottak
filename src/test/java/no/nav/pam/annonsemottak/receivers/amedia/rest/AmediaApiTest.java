@@ -4,6 +4,8 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
+import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
+import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterAll;
@@ -27,6 +29,7 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,6 +46,9 @@ public class AmediaApiTest {
 
     @Autowired
     protected MockMvc mvc;
+
+    @Autowired
+    private AmediaService amediaService;
 
     @BeforeAll
     public static void initStubs() {
@@ -92,4 +98,25 @@ public class AmediaApiTest {
 
         s.assertAll();
     }
+
+    @Test
+    public void valider_feltlengder_paa_255_tegn() {
+        String forLangtFelt = "A".repeat(300);
+        String akkuratForLang = "B".repeat(255);
+        String akkuratPasse = "C".repeat(254);
+        Stilling stilling = new Stilling(
+                forLangtFelt,
+                akkuratForLang,
+                forLangtFelt,
+                akkuratPasse,
+                "Mock Job Description",
+                "2023-12-31",
+                "Mock Kilde",
+                "Mock Medium",
+                "http://mock.url",
+                "MockExternalId"
+        );
+        assertFalse(amediaService.erFelteneInnenForTillatLengde(stilling));
+    }
+
 }
