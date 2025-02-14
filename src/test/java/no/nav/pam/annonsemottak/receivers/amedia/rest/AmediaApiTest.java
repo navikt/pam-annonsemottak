@@ -4,11 +4,12 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
+import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
+import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,6 @@ public class AmediaApiTest {
     /*
         Tester api, paramtereren til Amedia, og at alt utenom repoene er wiret opp.
      */
-    @Disabled // TODO: midlertidig deaktivert
     @Test
     public void en_ny_amedia_stilling() throws Exception {
         MvcResult mvcResult = this.mvc.perform(
@@ -94,4 +94,25 @@ public class AmediaApiTest {
 
         s.assertAll();
     }
+
+    @Test
+    public void logg_hvis_har_for_langt_felt() {
+        String forLangtFelt = "A".repeat(300);
+        String akkuratForLang = "B".repeat(255);
+        String akkuratPasse = "C".repeat(254);
+        Stilling stilling = new Stilling(
+                forLangtFelt,
+                akkuratForLang,
+                "Mock Employer",
+                akkuratPasse,
+                "Mock Job Description",
+                "2023-12-31",
+                "Mock Kilde",
+                "Mock Medium",
+                "http://mock.url",
+                "MockExternalId"
+        );
+        AmediaService.logFeltlengder(stilling);
+    }
+
 }
