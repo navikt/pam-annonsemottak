@@ -103,7 +103,7 @@ public class AmediaApiTest {
         Stilling stilling = new Stilling(
                 forLangtFelt,
                 akkuratForLang,
-                "Mock Employer",
+                forLangtFelt,
                 akkuratPasse,
                 "Mock Job Description",
                 "2023-12-31",

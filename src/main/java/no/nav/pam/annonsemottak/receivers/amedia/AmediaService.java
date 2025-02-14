@@ -43,7 +43,9 @@ public class AmediaService {
         felter.put("place", s.getPlace());
         felter.put("title", s.getTitle());
         felter.put("duedate", s.getDueDate());
-        felter.put("employer", s.getEmployerDescription());
+        if(s.getArbeidsgiver().isPresent()) {
+            felter.put("employer", s.getArbeidsgiver().get().asString());
+        }
         felter.put("hash", s.getHash());
         if (s.getMerknader().isPresent()) {
             felter.put("merknader", s.getMerknader().get().asString());
