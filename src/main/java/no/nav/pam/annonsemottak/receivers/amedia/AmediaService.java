@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Amedia operasjoner
@@ -58,28 +57,10 @@ public class AmediaService {
 
         LOG.info("Amediameldinger hentet fra api: {}", returnerteStillingerFraAmedia.size());
 
-        // TODO: Flytte denne filtreringslogikken inn som en del av StillingFilterchain()
-        List<Stilling> validerteStillinger = returnerteStillingerFraAmedia.stream().filter(this::erFelteneInnenForTillatLengde).toList();
-        LOG.info("Antall stillinger som ble filtrert bort pga for lange felter: {}", returnerteStillingerFraAmedia.size() - validerteStillinger.size());
-
         List<Stilling> filtrert = new StillingFilterchain()
-                .doFilter(validerteStillinger);
+                .doFilter(returnerteStillingerFraAmedia);
 
         return save(start, externalRun, alleStillingIDerFraAmedia, filtrert);
-    }
-
-    public boolean erFelteneInnenForTillatLengde(Stilling stilling) {
-        List<Map.Entry<String, String>> felterSomErForlange = stilling.felterSomOverstigerGrensenPaa255Tegn();
-
-        if(!felterSomErForlange.isEmpty()) {
-            LOG.warn("Annonse med externalid '{}' mist et felt som er for langt, se neste logginnslag. Komplett stilling {}", stilling.getExternalId(), stilling);
-            for(Map.Entry<String, String> felt : felterSomErForlange) {
-                LOG.warn("Annonse med externalid '{}' og har feltet '{}' lengde {} verdi: '{}'",
-                        stilling.getExternalId(), felt.getKey(), felt.getValue().length(), felt.getValue());
-            }
-        }
-
-        return felterSomErForlange.isEmpty();
     }
 
     /**
