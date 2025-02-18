@@ -61,7 +61,7 @@ public class AmediaApiTest {
                 ".*?\\?modified=.*?"))
                 .willReturn(aResponse().withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody(getMockResponse("toResultaterEtMedForLangtFelt"))));
+                        .withBody(getMockResponse("enkeltResultat"))));
         wireMockRule.start();
     }
 
