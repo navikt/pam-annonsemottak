@@ -7,18 +7,24 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class FeltelengdeFilter extends StillingFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(FeltelengdeFilter.class);
 
-    private static final Predicate<Stilling> FILTER_FELTERLENGDE =
+    private static final Predicate<Stilling> HAR_TILLATTE_FELTLENGDER =
             stilling -> stilling.felterSomOverstigerGrensenPaa255Tegn().isEmpty();
 
     @Override
     protected List<Stilling> doFilter(List<Stilling> stillinger) {
-        List<Stilling> stillingerOk = stillinger.stream().filter(FILTER_FELTERLENGDE).toList();
-        List<Stilling> stillingerAvvist = stillinger.stream().filter(FILTER_FELTERLENGDE.negate()).toList();
+        List<Stilling> stillingerOk = stillinger.stream()
+                .filter(HAR_TILLATTE_FELTLENGDER)
+                .collect(Collectors.toList());
+        List<Stilling> stillingerAvvist = stillinger.stream()
+                .filter(HAR_TILLATTE_FELTLENGDER.negate())
+                .collect(Collectors.toList());
+
         logFilter(
                 stillinger.size(),
                 stillingerOk.size(),
