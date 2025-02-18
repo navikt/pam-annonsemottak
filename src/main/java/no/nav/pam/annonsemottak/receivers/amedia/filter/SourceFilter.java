@@ -19,6 +19,17 @@ class SourceFilter extends StillingFilter {
         List<Stilling> notSource = stillinger.stream()
             .filter(FILTER_SOURCE.negate())
             .collect(Collectors.toList());
+
+        List<Stilling> excluded = stillinger.stream()
+                .filter(FILTER_SOURCE)
+                .collect(Collectors.toList());
+
+        logFilter(
+                stillinger.size(),
+                notSource.size(),
+                excluded,
+                FilterAarsak.EKSKLUDERT_KILDE);
+
         return notSource;
     }
 
