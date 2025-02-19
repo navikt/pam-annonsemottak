@@ -24,7 +24,8 @@ public class StillingFilterchain extends StillingFilter {
                     new ReferertLenkeManglerFilter(),
                     new SokeknappFilter(),
                     new ArbeidsgiverFilter(),
-                    new SourceFilter()
+                    new SourceFilter(),
+                    new FeltelengdeFilter()
             );
 
     @Override
