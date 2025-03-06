@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty(value = ["outbox.scheduler.enabled"], havingValue = "true")
-class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxService: StillingOutboxService) {
+open class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxService: StillingOutboxService) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingOutboxSchedulerTask::class.java)
     }
