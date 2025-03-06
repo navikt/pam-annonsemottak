@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia.scheduler;
 
-import net.javacrumbs.shedlock.core.SchedulerLock;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

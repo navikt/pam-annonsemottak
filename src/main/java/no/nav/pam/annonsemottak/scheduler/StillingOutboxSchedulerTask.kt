@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.scheduler
 
-import net.javacrumbs.shedlock.core.SchedulerLock
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock
 import no.nav.pam.annonsemottak.outbox.StillingOutboxService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty(value = ["outbox.scheduler.enabled"], havingValue = "true")
-class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxService: StillingOutboxService) {
+open class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxService: StillingOutboxService) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingOutboxSchedulerTask::class.java)
     }
