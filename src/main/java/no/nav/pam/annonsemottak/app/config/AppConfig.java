@@ -13,6 +13,7 @@ import no.nav.pam.annonsemottak.app.rest.HeaderFilter;
 import no.nav.pam.annonsemottak.feed.OptionalValueMixIn;
 import no.nav.pam.annonsemottak.feed.StillingMixIn;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
+import no.nav.pam.annonsemottak.scheduler.SchedulerErrorHandler;
 import no.nav.pam.annonsemottak.stilling.*;
 import okhttp3.OkHttpClient;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
@@ -145,6 +146,7 @@ public class AppConfig {
     public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setPoolSize(10);
+        scheduler.setErrorHandler(new SchedulerErrorHandler());
         return scheduler;
     }
 
