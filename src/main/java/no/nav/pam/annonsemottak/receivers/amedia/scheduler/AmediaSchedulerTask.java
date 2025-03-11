@@ -27,7 +27,7 @@ public class AmediaSchedulerTask {
 
     @Scheduled(cron = CRON)
     @SchedulerLock(name = "saveLatestAdsFromAmedia")
-    public void saveLatestAdsFromFinn() {
+    public void saveLatestAdsFromAmedia() {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Amedia.");
 
         try {
