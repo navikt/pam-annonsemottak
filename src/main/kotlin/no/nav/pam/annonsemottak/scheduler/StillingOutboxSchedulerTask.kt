@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty(value = ["outbox.scheduler.enabled"], havingValue = "true")
-open class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxService: StillingOutboxService) {
+open class StillingOutboxSchedulerTask @Autowired constructor(
+    private val stillingOutboxService: StillingOutboxService
+) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingOutboxSchedulerTask::class.java)
     }
@@ -18,7 +20,12 @@ open class StillingOutboxSchedulerTask(@Autowired private val stillingOutboxServ
     @Scheduled(cron = "*/15 * * * * *")
     @SchedulerLock(name = "processStillingOutbox")
     fun prosesserStillingOutboxMeldinger() {
-        LOG.info("Prosesserer StillingOutbox-meldinger")
-        stillingOutboxService.prosesserAdOutboxMeldinger()
+        try {
+            LOG.info("Prosesserer StillingOutbox-meldinger")
+            stillingOutboxService.prosesserAdOutboxMeldinger()
+
+        } catch (e: Exception) {
+            LOG.error("Uventet feil ved utføring av jobben", e)
+        }
     }
 }
