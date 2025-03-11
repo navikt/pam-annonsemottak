@@ -18,10 +18,7 @@ import okhttp3.OkHttpClient;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -43,6 +40,7 @@ import java.util.concurrent.TimeUnit;
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "PT60S")
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 @ComponentScan(basePackageClasses = {Application.class})
 public class AppConfig {
 

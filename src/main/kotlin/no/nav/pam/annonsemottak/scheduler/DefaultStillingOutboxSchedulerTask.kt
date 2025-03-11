@@ -14,7 +14,7 @@ interface StillingOutboxSchedulerTask {
 
 @Component
 @ConditionalOnProperty(value = ["outbox.scheduler.enabled"], havingValue = "true")
-class DefaultStillingOutboxSchedulerTask @Autowired constructor(
+open class DefaultStillingOutboxSchedulerTask @Autowired constructor(
     private val stillingOutboxService: StillingOutboxService
 ) : StillingOutboxSchedulerTask {
     companion object {
