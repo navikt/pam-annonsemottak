@@ -1,5 +1,6 @@
-package no.nav.pam.annonsemottak
+package no.nav.pam.annonsemottak.outbox
 
+import no.nav.pam.annonsemottak.Application
 import no.nav.pam.annonsemottak.kafka.StillingOutboxMessageProducer
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

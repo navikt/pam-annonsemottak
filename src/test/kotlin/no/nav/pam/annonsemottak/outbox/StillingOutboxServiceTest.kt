@@ -1,7 +1,6 @@
-package no.nav.pam.annonsemottak
+package no.nav.pam.annonsemottak.outbox
 
-import no.nav.pam.annonsemottak.outbox.StillingOutboxRepository
-import no.nav.pam.annonsemottak.outbox.StillingOutboxService
+import no.nav.pam.annonsemottak.Application
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
