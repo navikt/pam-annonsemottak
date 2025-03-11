@@ -8,18 +8,22 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
+interface StillingOutboxSchedulerTask {
+    fun prosesserStillingOutboxMeldinger()
+}
+
 @Component
 @ConditionalOnProperty(value = ["outbox.scheduler.enabled"], havingValue = "true")
-open class StillingOutboxSchedulerTask @Autowired constructor(
+class DefaultStillingOutboxSchedulerTask @Autowired constructor(
     private val stillingOutboxService: StillingOutboxService
-) {
+) : StillingOutboxSchedulerTask {
     companion object {
-        private val LOG = LoggerFactory.getLogger(StillingOutboxSchedulerTask::class.java)
+        private val LOG = LoggerFactory.getLogger(DefaultStillingOutboxSchedulerTask::class.java)
     }
 
     @Scheduled(cron = "*/15 * * * * *")
     @SchedulerLock(name = "processStillingOutbox")
-    fun prosesserStillingOutboxMeldinger() {
+    override fun prosesserStillingOutboxMeldinger() {
         try {
             LOG.info("Prosesserer StillingOutbox-meldinger")
             stillingOutboxService.prosesserAdOutboxMeldinger()
