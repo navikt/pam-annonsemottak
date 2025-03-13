@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia.scheduler;
 
-import net.javacrumbs.shedlock.core.SchedulerLock;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ public class AmediaSchedulerTask {
 
     @Scheduled(cron = CRON)
     @SchedulerLock(name = "saveLatestAdsFromAmedia")
-    public void saveLatestAdsFromFinn() {
+    public void saveLatestAdsFromAmedia() {
         LOG.info("Running scheduled job for saving the latest job ads fetched from Amedia.");
 
         try {

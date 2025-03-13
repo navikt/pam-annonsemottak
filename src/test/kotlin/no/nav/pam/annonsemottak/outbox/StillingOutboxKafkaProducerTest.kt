@@ -1,4 +1,4 @@
-package no.nav.arbeidsplassen.importapi.adoutbox
+package no.nav.pam.annonsemottak.outbox
 
 import no.nav.pam.annonsemottak.Application
 import no.nav.pam.annonsemottak.kafka.StillingOutboxMessageProducer

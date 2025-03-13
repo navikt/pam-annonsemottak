@@ -22,7 +22,7 @@
         <wiremock.version>3.10.0</wiremock.version>
         <assertj.version>3.26.3</assertj.version>
         <guava.version>33.3.1-jre</guava.version>
-        <shedlock.version>2.6.0</shedlock.version> <!-- TODO: Siste versjon er 6.0.2 - kompilerer ikke men så ikke mer på hvorfor  -->
+        <shedlock.version>6.3.0</shedlock.version>
         <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
         <okhttp.version>4.12.0</okhttp.version>
         <snakeyaml.version>2.3</snakeyaml.version>
@@ -286,6 +286,13 @@
                         <goals>
                             <goal>compile</goal>
                         </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>src/main/kotlin</sourceDir>
+                                <sourceDir>src/main/java</sourceDir>
+                            </sourceDirs>
+                            <jvmTarget>${java.version}</jvmTarget>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>test-compile</id>
@@ -296,6 +303,10 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <sourceDirs>
+                        <sourceDir>src/test/kotlin</sourceDir>
+                        <sourceDir>src/test/java</sourceDir>
+                    </sourceDirs>
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
             </plugin>
