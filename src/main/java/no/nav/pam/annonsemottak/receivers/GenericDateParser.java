@@ -64,7 +64,7 @@ public class GenericDateParser {
         try {
             return LocalDate.parse(dateString, formatter).atStartOfDay();
         } catch (DateTimeParseException e) {
-            LOG.error("Couldn't parse date {} returning null", rawDate);
+            LOG.warn("Couldn't parse date {} returning null", rawDate);
             return  null;
         }
     }
