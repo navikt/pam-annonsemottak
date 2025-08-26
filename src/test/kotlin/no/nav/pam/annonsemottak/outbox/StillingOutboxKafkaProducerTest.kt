@@ -28,7 +28,7 @@ import java.util.*
 class StillingOutboxKafkaProducerTest(@Autowired private val stillingOutboxMessageProducer: StillingOutboxMessageProducer) {
     companion object {
         @JvmStatic
-        val kafkaContainer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka")).also { it.start() }
+        val kafkaContainer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.8.3")).also { it.start() }
 
         @DynamicPropertySource
         @JvmStatic
