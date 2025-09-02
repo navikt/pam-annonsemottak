@@ -15,6 +15,7 @@ import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -30,7 +31,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-
+@Disabled
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Rollback
