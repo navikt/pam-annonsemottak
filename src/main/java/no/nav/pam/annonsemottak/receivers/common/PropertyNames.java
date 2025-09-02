@@ -23,6 +23,9 @@ public class PropertyNames {
     public static final String KEYWORDS = "keywords";
     public static final String OCCUPATIONS = "occupations";
 
+    // Property som angir om stillingen skal behandles som direktemeldt
+    public static final String REKRUTTERINGSHJELP = "rekrutteringshjelp";
+
     public static final String LOCATION_POSTCODE = "location.postalCode";
     public static final String LOCATION_ADDRESS = "location.address";
     public static final String LOCATION_CITY = "location.city";
