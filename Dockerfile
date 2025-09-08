@@ -7,4 +7,4 @@ COPY scripts/init-env.sh /init-scripts/init-env.sh
 ENV JAVA_OPTS="-Xms768m -Xmx1024m"
 ENV LANG='nb_NO.UTF-8' LANGUAGE='nb_NO:nb' LC_ALL='nb:NO.UTF-8' TZ="Europe/Oslo"
 
-CMD ["-jar", "/app/app.jar"]
+CMD ["-jar","/app/app.jar", "-Dspring.profiles.active=prod"]
