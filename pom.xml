@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.9</version>
     </parent>
 
     <properties>
@@ -33,9 +33,9 @@
         <kotlin.version>2.1.0</kotlin.version>
         <owasp.version>20240325.1</owasp.version>
         <testcontainers.version>1.20.4</testcontainers.version>
-        <postgresql.version>42.7.4</postgresql.version>
+        <postgresql.version>42.7.7</postgresql.version>
         <kotlinx-serialization.version>1.7.3</kotlinx-serialization.version>
-        <kafka-client.version>3.9.0</kafka-client.version>
+        <kafka-client.version>3.9.1</kafka-client.version>
         <jsoup.version>1.18.3</jsoup.version>
         <commons-text.version>1.12.0</commons-text.version>
     </properties>
