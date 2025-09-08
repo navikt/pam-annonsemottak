@@ -8,6 +8,7 @@ spring:
     url: jdbc:h2:mem:testdb;Mode=PostgreSQL
     platform: h2
     continue-on-error: true
+    driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
