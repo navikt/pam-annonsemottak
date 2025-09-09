@@ -32,6 +32,7 @@ scheduler:
   enabled: false
 amedia:
   url: http://localhost:7010/api/prophecy/external/nav/jobs
+  apikey: amedia_api_key
 finn:
   url: https://localhost:7011
   api:
