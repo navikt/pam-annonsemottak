@@ -37,9 +37,6 @@ spec:
   {{#each ingress as |url|}}
      - {{url}}
   {{/each}}
-  filesFrom:
-    - secret: pam-annonsemottak-env-secret
-      mountPath: /var/run/secrets/nais.io/vault
   kafka:
     pool: {{ kafka_pool }}
   gcp:
@@ -71,6 +68,8 @@ spec:
       rules:
         - application: pam-ad
         - application: pam-stillingsregistrering-api
+  envFrom:
+    - secret: pam-annonsemottak-secret
   env:
     - name: SCHEDULER_ENABLED
       value: "{{ scheduler_enabled }}"

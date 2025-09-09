@@ -49,13 +49,13 @@ scheduler:
 amedia:
   # url: https://bed.api.no/api/pipek/v2/classified/search
   url: https://services.api.no/api/prophecy/external/nav/jobs
-  apikey: ${AMEDIA_API_KEY:<amedia api key>}
+  apikey: ${AMEDIA_API_KEY}
 finn:
   url: https://cache.api.finn.no/iad/
   job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
   job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
   api:
-    password: ${FINN_API_PASSWORD:<finn api key>}
+    password: ${FINN_API_PASSWORD}
   cron:
     schedule: ${FINN_CRON_SCHEDULE}
 kafka:
