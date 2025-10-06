@@ -25,6 +25,7 @@ public class PropertyNames {
 
     // Property som angir om stillingen skal behandles som direktemeldt
     public static final String REKRUTTERINGSHJELP = "rekrutteringshjelp";
+    public static final String REKRUTTERINGSHJELP_TELEFONNUMMER = "rekrutteringshjelpTelefonnummer";
 
     public static final String LOCATION_POSTCODE = "location.postalCode";
     public static final String LOCATION_ADDRESS = "location.address";
