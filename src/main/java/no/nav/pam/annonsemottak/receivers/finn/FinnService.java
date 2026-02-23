@@ -108,49 +108,20 @@ public class FinnService {
         LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
 
-        // Filter out adecco, webcruiter and other sources
-        List<Stilling> rest = annonseResult.getNewList().stream().filter(st -> !ifOneOfFilteredAds(st)).collect(Collectors.toList());
-        LOG.info("Excluded {} webcruiter ads ", annonseResult.getNewList().size() - rest.size());
-
         LOG.debug("Saving Finn ads");
+        List<Stilling> newList = annonseResult.getNewList();
         finnAnnonseFangstService.saveAll(new AnnonseResult(annonseResult.getModifyList(), annonseResult.getStopList(),
-                annonseResult.getExpiredList(), rest, annonseResult.getDuplicateList()));
+                annonseResult.getExpiredList(), annonseResult.getNewList(), annonseResult.getDuplicateList()));
 
         //Save new or update last run time
         externalRunService.save(externalRun);
 
-        LOG.info("Saved {} new, {} changed, {} stopped ads from FINN", rest.size(),
+        LOG.info("Saved {} new, {} changed, {} stopped ads from FINN", newList.size(),
                 annonseResult.getModifyList().size(),
                 annonseResult.getStopList().size());
 
-        probe.addMetricsCounters(Kilde.FINN.toString(), "FINN", rest.size(), annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
+        probe.addMetricsCounters(Kilde.FINN.toString(), "FINN", newList.size(), annonseResult.getStopList().size(), annonseResult.getDuplicateList().size(), annonseResult.getModifyList().size());
 
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
-    }
-
-
-    // TODO: Should be removed when temporary exclusion of filtered ads is not necessary
-    private boolean ifOneOfFilteredAds(Stilling stilling) {
-        return (adEmployerContainsName(stilling, "adecco")
-                || adEmployerContainsName(stilling, "bane nor")
-                || adEmployerContainsName(stilling, "oslomet")
-                || adLinkSContainsName(stilling, "webcruiter")
-                || adLinkSContainsName(stilling, "jobbnorge")
-                || adLinkSContainsName(stilling, "recman")
-                || adLinkSContainsName(stilling, "easycruit"));
-    }
-
-    private boolean adEmployerContainsName(Stilling stilling, String employerName) {
-        if (stilling.getArbeidsgiver().isPresent()) {
-            return StringUtils.containsIgnoreCase(stilling.getArbeidsgiver().get().asString(), employerName);
-        }
-        return false;
-    }
-
-    private boolean adLinkSContainsName(Stilling stilling, String name) {
-        if (stilling.getProperties().containsKey(PropertyNames.SOKNADSLENKE)) {
-            return stilling.getProperties().get(PropertyNames.SOKNADSLENKE).contains(name);
-        }
-        return false;
     }
 }
