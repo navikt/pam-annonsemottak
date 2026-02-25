@@ -69,7 +69,6 @@ public class FinnConnector {
         Set<FinnAdHead> adHeads = new HashSet<>();
         adHeads.addAll(fetchFullTimeSearchResult());
         adHeads.addAll(fetchPartTimeSearchResult());
-
         return adHeads;
     }
 
@@ -80,7 +79,9 @@ public class FinnConnector {
             // Med mer en 100 rader virker det som vi får alt, og 400 virker som et OK antall
             String initialUrl = jobFullTimeUrl + "?rows=400";
             HttpUrl httpUrl = HttpUrl.parse(initialUrl);
-            return collectAdHeads(httpUrl);
+            Set<FinnAdHead> finnAdHeads = collectAdHeads(httpUrl);
+            LOG.info("Found {} ad heads for full time jobs from Finn", finnAdHeads.size());
+            return finnAdHeads;
         } catch (Exception e) {
             throw new FinnConnectorException(e);
         }
@@ -92,7 +93,9 @@ public class FinnConnector {
             // Med mer en 100 rader virker det som vi får alt, og 400 virker som et OK antall
             String initialUrl = jobPartTimeUrl + "?rows=400";
             HttpUrl httpUrl = HttpUrl.parse(initialUrl);
-            return collectAdHeads(httpUrl);
+            Set<FinnAdHead> finnAdHeads = collectAdHeads(httpUrl);
+            LOG.info("Found {} ad heads for part time jobs from Finn", finnAdHeads.size());
+            return finnAdHeads;
         } catch (Exception e) {
             throw new FinnConnectorException(e);
         }
