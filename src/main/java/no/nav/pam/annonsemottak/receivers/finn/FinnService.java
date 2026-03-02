@@ -114,7 +114,7 @@ public class FinnService {
         LOG.debug("Saving Finn ads");
         List<Stilling> newList = annonseResult.getNewList();
         finnAnnonseFangstService.saveAll(new AnnonseResult(annonseResult.getModifyList(), annonseResult.getStopList(),
-                annonseResult.getExpiredList(), annonseResult.getNewList(), annonseResult.getDuplicateList()));
+                annonseResult.getExpiredList(), newList, annonseResult.getDuplicateList()));
 
         //Save new or update last run time
         externalRunService.save(externalRun);
