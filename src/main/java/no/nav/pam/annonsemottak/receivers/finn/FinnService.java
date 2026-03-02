@@ -108,8 +108,8 @@ public class FinnService {
         LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
 
-        List<String> previouslyExcludedAds = annonseResult.getNewList().stream().filter(this::ifOneOfFilteredAds).map(Stilling::getExternalId).toList();
-        LOG.info("Previously excluded the following ads ({}) with ids {}", previouslyExcludedAds.size(), previouslyExcludedAds);
+        // TODO: Fjern dette når NKS ser at vi ikke får for mange duplikater
+        loggAnnonserSomTidligereBleFiltrertUt(annonseResult);
 
         LOG.debug("Saving Finn ads");
         List<Stilling> newList = annonseResult.getNewList();
@@ -128,7 +128,11 @@ public class FinnService {
         return new ResultsOnSave(filteredStillingList.size(), annonseResult.getNewList().size(), System.currentTimeMillis() - start);
     }
 
-     // TODO: Should be removed when temporary exclusion of filtered ads is not necessary
+    private void loggAnnonserSomTidligereBleFiltrertUt(AnnonseResult annonseResult) {
+        List<String> previouslyExcludedAds = annonseResult.getNewList().stream().filter(this::ifOneOfFilteredAds).map(Stilling::getExternalId).toList();
+        LOG.info("Previously excluded the following ads ({}) with ids {}", previouslyExcludedAds.size(), previouslyExcludedAds);
+    }
+
     private boolean ifOneOfFilteredAds(Stilling stilling) {
         return (adEmployerContainsName(stilling, "adecco")
                 || adEmployerContainsName(stilling, "bane nor")
