@@ -192,7 +192,11 @@ class AmediaStillingMapper {
             String key = keyvalues[i];
             String value = keyvalues[i + 1];
             if (!StringUtils.isEmpty(value)) {
-                builder.put(key, value);
+                if(value.length() >= 4000) {
+                    builder.put(key, value.substring(0, 3999));
+                } else {
+                    builder.put(key, value);
+                }
             }
         }
         return builder;
