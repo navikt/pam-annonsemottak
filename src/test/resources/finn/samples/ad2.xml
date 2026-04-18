@@ -136,6 +136,9 @@
         <finn:field name="working_language">
             <finn:value>Norsk</finn:value>
         </finn:field>
+        <finn:field name="remote_options">
+            <finn:value>På kontoret</finn:value>
+        </finn:field>
         <finn:field name="workplaces">
             <finn:value>Postboks 156</finn:value>
             <finn:value>4358 Kleppe</finn:value>

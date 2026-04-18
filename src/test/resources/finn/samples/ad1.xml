@@ -151,6 +151,10 @@
             <finn:value>Engelsk</finn:value>
             <finn:value>Norsk</finn:value>
         </finn:field>
+        <finn:field name="remote_options">
+            <finn:value>Delvis hjemmekontor</finn:value>
+            <finn:value>Kun hjemmekontor</finn:value>
+        </finn:field>
     </finn:adata>
     undefined
 </entry>

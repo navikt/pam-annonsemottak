@@ -53,4 +53,6 @@ public class PropertyNames {
     public static final String EMPLOYER_ORGNR = "orgnr";
 
     public static final String FINN_KILDE = "finnKilde";
+
+    public static final String REMOTE = "remote";
 }
