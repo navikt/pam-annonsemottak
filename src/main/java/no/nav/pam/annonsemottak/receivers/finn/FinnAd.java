@@ -61,6 +61,7 @@ public class FinnAd {
     private final List<String> logoUrlList;
     private final Set<String> occupations;
     private final List<String> workingLanguage;
+    private final List<String> remoteOptions;
     private final String jobSource;
 
     FinnAd(Document document)
@@ -128,6 +129,7 @@ public class FinnAd {
         externalAdId = getString(document, "/entry/adata/field[@name='external_ad_id']/@value");
         logoUrlList = getListOfStrings(document, "/entry/content[category='LOGO']/@url");
         workingLanguage = getListOfStrings(document, "/entry/adata/field[@name='working_language']/value");
+        remoteOptions = getListOfStrings(document, "/entry/adata/field[@name='remote_options']/value");
         jobSource = getString(document, "/entry/adata/field[@name='job_source']/@value");
     }
 
@@ -391,6 +393,25 @@ public class FinnAd {
 
     List<String> getWorkingLanguage() {
         return workingLanguage;
+    }
+
+    /**
+     * Finn.no hjemmekontor data kan være flervalg og vi aksepterer bare en verdi
+     * vi mapper da til den som er mest "hjemmekontor-vennlig" da det er mest sannsynlig
+     * det en bruker vil filtrere for
+     */
+    String getRemote() {
+        if (remoteOptions == null || remoteOptions.isEmpty()) {
+            return null;
+        }
+        if (remoteOptions.contains("Kun hjemmekontor")) {
+            return "Hjemmekontor";
+        } else if (remoteOptions.contains("Delvis hjemmekontor")) {
+            return "Hybridkontor";
+        } else if (remoteOptions.contains("På kontoret")) {
+            return "Hjemmekontor ikke mulig";
+        }
+        return null;
     }
 
     public String getJobSource() {

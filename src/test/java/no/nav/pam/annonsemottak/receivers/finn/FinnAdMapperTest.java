@@ -10,7 +10,6 @@ import org.mockito.Mock;
 
 import java.io.Reader;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -226,6 +225,28 @@ public class FinnAdMapperTest {
             Stilling stilling = FinnAdMapper.toStilling(ad);
             assertNotNull(stilling);
             assertEquals("not-direct", stilling.getProperties().get(PropertyNames.FINN_KILDE));
+        }
+    }
+
+    @Test
+    public void remote_should_be_mapped() throws Exception {
+        // ad1 har "Delvis hjemmekontor" og "Kun hjemmekontor" burde reduseres til "Hjemmekontor"
+        try (Reader reader = FinnConnectorTest.getReader(AD1)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Hjemmekontor", stilling.getProperties().get(PropertyNames.REMOTE));
+        }
+        // ad2 har "På kontoret", bør bli mappet til "Hjemmekontor ikke mulig"
+        try (Reader reader = FinnConnectorTest.getReader(AD2)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertEquals("Hjemmekontor ikke mulig", stilling.getProperties().get(PropertyNames.REMOTE));
+        }
+        // ad3 har ikke hjemmekontor data
+        try (Reader reader = FinnConnectorTest.getReader(AD3)) {
+            Stilling stilling = FinnAdMapper.toStilling(new FinnAd(connector.parseReaderToDocument(reader)));
+            assertNotNull(stilling);
+            assertNull(stilling.getProperties().get(PropertyNames.REMOTE));
         }
     }
 }
