@@ -101,7 +101,7 @@ public class FinnService {
         List<Stilling> stillingerSomIkkeErExpired = filteredStillingList.stream()
                         .filter(stilling ->  stilling.getExpires().isAfter(LocalDateTime.now()))
                         .toList();
-        LOG.debug("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(Stilling::getExternalId).toList());
+        LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(Stilling::getExternalId).toList());
 
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         LOG.debug("Collecting externalIds");
