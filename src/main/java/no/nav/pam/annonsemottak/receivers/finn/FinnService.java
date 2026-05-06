@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -50,10 +48,11 @@ public class FinnService {
         this.probe = probe;
     }
 
+    private static final int BATCH_SIZE = 500;
+
     /**
      * Will retrieve all the active job ads from finn, and save new or changed ads.
      */
-    @Transactional
     public ResultsOnSave saveAndUpdateFromCollection() throws FinnConnectorException {
 
         //Retrieve the date for last successful run
@@ -113,8 +112,16 @@ public class FinnService {
 
         LOG.debug("Saving Finn ads");
         List<Stilling> newList = annonseResult.getNewList();
-        finnAnnonseFangstService.saveAll(new AnnonseResult(annonseResult.getModifyList(), annonseResult.getStopList(),
-                annonseResult.getExpiredList(), newList, annonseResult.getDuplicateList()));
+        AnnonseResult fullResult = new AnnonseResult(annonseResult.getModifyList(), annonseResult.getStopList(),
+                annonseResult.getExpiredList(), newList, annonseResult.getDuplicateList());
+
+        List<Stilling> allStillinger = fullResult.getAll();
+        int totalBatches = (int) Math.ceil((double) allStillinger.size() / BATCH_SIZE);
+        for (int i = 0; i < allStillinger.size(); i += BATCH_SIZE) {
+            List<Stilling> batch = allStillinger.subList(i, Math.min(i + BATCH_SIZE, allStillinger.size()));
+            LOG.info("Saving batch {}/{} ({} ads)", (i / BATCH_SIZE) + 1, totalBatches, batch.size());
+            finnAnnonseFangstService.saveBatch(batch);
+        }
 
         //Save new or update last run time
         externalRunService.save(externalRun);
