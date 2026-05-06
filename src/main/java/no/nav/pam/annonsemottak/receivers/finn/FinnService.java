@@ -85,7 +85,7 @@ public class FinnService {
                             || adHead.getUpdated().toLocalDate().isAfter(lastRun.minusDays(1).toLocalDate()))
                     .collect(Collectors.toSet());
             LOG.info("Filtered search results from Finn. Found {} new and changed ads since last run on {}",
-                    filteredAdHeads.size(), lastRun.toString());
+                    filteredAdHeads.size(), lastRun);
             retrievedAds = connector.fetchFullAds(filteredAdHeads);
         } else {
             retrievedAds = connector.fetchFullAds(searchResult);
@@ -96,14 +96,13 @@ public class FinnService {
                 .map(FinnAdMapper::toStilling)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        LOG.info("Antall stillinger funnet hos Finn {}",  filteredStillingList.size());
 
-        List<Stilling> stillingerSomIkkeErExpired = filteredStillingList.stream()
+        List<FinnAdHead> stillingerSomIkkeErExpired = searchResult.stream()
                         .filter(stilling ->  stilling.getExpires().isAfter(LocalDateTime.now()))
                         .toList();
-        LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(Stilling::getExternalId).toList());
+        LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(FinnAdHead::getId).toList());
 
-        List<Stilling> stillingerSortertEtterExpiredDesc = filteredStillingList.stream()
+        List<FinnAdHead> stillingerSortertEtterExpiredDesc = searchResult.stream()
                         .sorted((s1, s2) -> {
                             if (s1.getExpires() == null && s2.getExpires() == null) {
                                 return 0;

@@ -29,6 +29,7 @@ class FinnAdMapper {
     static Stilling toStilling(FinnAd ad) {
         LOG.debug("Mapping finn ad " + ad.getId());
         if (hasIncompleteInformation(ad)) {
+            LOG.info("Incomplete finn ad " + ad.getId());
             return null;
         }
 
