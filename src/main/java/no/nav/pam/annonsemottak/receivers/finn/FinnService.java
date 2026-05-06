@@ -107,21 +107,23 @@ public class FinnService {
                         .sorted(Comparator.comparing(FinnAdHead::getExpires, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterExpiredDesc.isEmpty()) {
-            LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
+            LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.getFirst().getExpires(), stillingerSortertEtterExpiredDesc.getFirst());
         }
 
         List<FinnAdHead> stillingerSortertEtterUpdatedDesc = searchResult.stream()
                         .sorted(Comparator.comparing(FinnAdHead::getUpdated, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterUpdatedDesc.isEmpty()) {
-            LOG.info("Siste updated dato {}: {} ", stillingerSortertEtterUpdatedDesc.get(0).getUpdated(), stillingerSortertEtterUpdatedDesc.get(0));
+            LOG.info("Siste updated dato {}: {} ", stillingerSortertEtterUpdatedDesc.getFirst().getUpdated(), stillingerSortertEtterUpdatedDesc.getFirst());
+            LOG.info("Første updated dato {}: {} ", stillingerSortertEtterUpdatedDesc.getLast().getUpdated(), stillingerSortertEtterUpdatedDesc.getLast());
         }
 
         List<FinnAdHead> stillingerSortertEtterPublishedDesc = searchResult.stream()
                         .sorted(Comparator.comparing(FinnAdHead::getPublished, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterPublishedDesc.isEmpty()) {
-            LOG.info("Siste published dato {}: {} ", stillingerSortertEtterPublishedDesc.get(0).getPublished(), stillingerSortertEtterPublishedDesc.get(0));
+            LOG.info("Siste published dato {}: {} ", stillingerSortertEtterPublishedDesc.getFirst().getPublished(), stillingerSortertEtterPublishedDesc.getFirst());
+            LOG.info("Første published dato {}: {} ", stillingerSortertEtterPublishedDesc.getLast().getPublished(), stillingerSortertEtterPublishedDesc.getLast());
         }
 
 
