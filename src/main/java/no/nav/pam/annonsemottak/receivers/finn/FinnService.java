@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -103,51 +104,21 @@ public class FinnService {
         LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(FinnAdHead::getId).toList());
 
         List<FinnAdHead> stillingerSortertEtterExpiredDesc = searchResult.stream()
-                        .sorted((s1, s2) -> {
-                            if (s1.getExpires() == null && s2.getExpires() == null) {
-                                return 0;
-                            } else if (s1.getExpires() == null) {
-                                return 1;
-                            } else if (s2.getExpires() == null) {
-                                return -1;
-                            } else {
-                                return s2.getExpires().compareTo(s1.getExpires());
-                            }
-                        })
+                        .sorted(Comparator.comparing(FinnAdHead::getExpires, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterExpiredDesc.isEmpty()) {
             LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
         }
 
         List<FinnAdHead> stillingerSortertEtterUpdatedDesc = searchResult.stream()
-                        .sorted((s1, s2) -> {
-                            if (s1.getUpdated() == null && s2.getUpdated() == null) {
-                                return 0;
-                            } else if (s1.getUpdated() == null) {
-                                return 1;
-                            } else if (s2.getUpdated() == null) {
-                                return -1;
-                            } else {
-                                return s2.getUpdated().compareTo(s1.getUpdated());
-                            }
-                        })
+                        .sorted(Comparator.comparing(FinnAdHead::getUpdated, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterUpdatedDesc.isEmpty()) {
             LOG.info("Siste updated dato {}: {} ", stillingerSortertEtterUpdatedDesc.get(0).getUpdated(), stillingerSortertEtterUpdatedDesc.get(0));
         }
 
         List<FinnAdHead> stillingerSortertEtterPublishedDesc = searchResult.stream()
-                        .sorted((s1, s2) -> {
-                            if (s1.getPublished() == null && s2.getPublished() == null) {
-                                return 0;
-                            } else if (s1.getPublished() == null) {
-                                return 1;
-                            } else if (s2.getPublished() == null) {
-                                return -1;
-                            } else {
-                                return s2.getPublished().compareTo(s1.getPublished());
-                            }
-                        })
+                        .sorted(Comparator.comparing(FinnAdHead::getPublished, Comparator.nullsLast(Comparator.reverseOrder())))
                         .toList();
         if (!stillingerSortertEtterPublishedDesc.isEmpty()) {
             LOG.info("Siste published dato {}: {} ", stillingerSortertEtterPublishedDesc.get(0).getPublished(), stillingerSortertEtterPublishedDesc.get(0));
