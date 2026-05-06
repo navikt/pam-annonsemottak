@@ -69,7 +69,7 @@ public class FinnService {
             lastRun = null;
             externalRun = new ExternalRun(Kilde.FINN.toString(), Medium.FINN.toString(), LocalDateTime.now());
         }
-
+        LOG.info("Last run for FINN was at {}", lastRun);
 
         // Retrieve the search result from finn
         Set<FinnAdHead> searchResult = connector.fetchSearchResult();
@@ -91,17 +91,20 @@ public class FinnService {
             retrievedAds = connector.fetchFullAds(searchResult);
         }
 
-        int antallJobSourceDirect = retrievedAds.stream().filter(it -> "direct".equals(it.getJobSource())).toList().size();
-        LOG.info("Antall annonser med jobSource 'direct': {} / {}", antallJobSourceDirect, retrievedAds.size());
-
         // Retrieve filtered ads in detail
         List<Stilling> filteredStillingList = retrievedAds.stream()
                 .map(FinnAdMapper::toStilling)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        LOG.debug("Collecting externalIds");
+
+
+        List<Stilling> stillingerSomIkkeErExpired = filteredStillingList.stream()
+                        .filter(stilling ->  stilling.getExpires().isAfter(LocalDateTime.now()))
+                        .toList();
+        LOG.debug("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(Stilling::getExternalId).toList());
 
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
+        LOG.debug("Collecting externalIds");
         Set<String> allExternalIds = searchResult.stream().map(FinnAdHead::getId).collect(Collectors.toSet());
         LOG.info("allExternalIds size: {}", allExternalIds);
 
