@@ -116,8 +116,9 @@ public class FinnService {
                             }
                         })
                         .toList();
-        LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
-
+        if (!stillingerSortertEtterExpiredDesc.isEmpty()) {
+            LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
+        }
 
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         LOG.debug("Collecting externalIds");
