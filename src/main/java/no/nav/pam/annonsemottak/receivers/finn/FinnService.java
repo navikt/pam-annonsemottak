@@ -98,7 +98,7 @@ public class FinnService {
                 .collect(Collectors.toList());
 
         List<FinnAdHead> stillingerSomIkkeErExpired = searchResult.stream()
-                        .filter(stilling ->  stilling.getExpires().isAfter(LocalDateTime.now()))
+                        .filter(stilling ->  stilling.getExpires() == null || stilling.getExpires().isAfter(LocalDateTime.now()))
                         .toList();
         LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(FinnAdHead::getId).toList());
 
