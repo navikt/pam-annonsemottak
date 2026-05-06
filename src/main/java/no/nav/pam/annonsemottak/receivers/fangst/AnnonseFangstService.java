@@ -88,6 +88,12 @@ public class AnnonseFangstService {
     }
 
     @Transactional
+    public void saveBatch(List<Stilling> stillinger) {
+        LOG.info("Saving batch of {} ads", stillinger.size());
+        stillinger.forEach(this::saveOne);
+    }
+
+    @Transactional
     public void saveOne(Stilling s) {
         try {
             Stilling lagretStilling = stillingRepository.save(s);
