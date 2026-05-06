@@ -96,17 +96,34 @@ public class FinnService {
                 .map(FinnAdMapper::toStilling)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-
+        LOG.info("Antall stillinger funnet hos Finn {}",  filteredStillingList.size());
 
         List<Stilling> stillingerSomIkkeErExpired = filteredStillingList.stream()
                         .filter(stilling ->  stilling.getExpires().isAfter(LocalDateTime.now()))
                         .toList();
         LOG.info("Stillinger som ikke er expired ({}): {} ", stillingerSomIkkeErExpired.size(), stillingerSomIkkeErExpired.stream().map(Stilling::getExternalId).toList());
 
+        List<Stilling> stillingerSortertEtterExpiredDesc = filteredStillingList.stream()
+                        .sorted((s1, s2) -> {
+                            if (s1.getExpires() == null && s2.getExpires() == null) {
+                                return 0;
+                            } else if (s1.getExpires() == null) {
+                                return 1;
+                            } else if (s2.getExpires() == null) {
+                                return -1;
+                            } else {
+                                return s2.getExpires().compareTo(s1.getExpires());
+                            }
+                        })
+                        .toList();
+        LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
+
+
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         LOG.debug("Collecting externalIds");
         Set<String> allExternalIds = searchResult.stream().map(FinnAdHead::getId).collect(Collectors.toSet());
         LOG.info("allExternalIds size: {}", allExternalIds);
+
 
         LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
