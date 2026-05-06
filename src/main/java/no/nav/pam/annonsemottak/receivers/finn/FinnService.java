@@ -90,9 +90,6 @@ public class FinnService {
             retrievedAds = connector.fetchFullAds(searchResult);
         }
 
-        int antallJobSourceDirect = retrievedAds.stream().filter(it -> "direct".equals(it.getJobSource())).toList().size();
-        LOG.info("Antall annonser med jobSource 'direct': {} / {}", antallJobSourceDirect, retrievedAds.size());
-
         // Retrieve filtered ads in detail
         List<Stilling> filteredStillingList = retrievedAds.stream()
                 .map(FinnAdMapper::toStilling)
@@ -106,9 +103,6 @@ public class FinnService {
 
         LOG.debug("Process finn result");
         AnnonseResult annonseResult = finnAnnonseFangstService.retrieveAnnonseLists(filteredStillingList, allExternalIds, Kilde.FINN.toString(), Medium.FINN.toString());
-
-        // TODO: Fjern dette når NKS ser at vi ikke får for mange duplikater
-        loggAnnonserSomTidligereBleFiltrertUt(annonseResult);
 
         LOG.debug("Saving Finn ads");
         List<Stilling> newList = annonseResult.getNewList();
