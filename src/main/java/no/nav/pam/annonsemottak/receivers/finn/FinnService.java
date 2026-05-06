@@ -119,6 +119,41 @@ public class FinnService {
             LOG.info("Siste expired dato {}: {} ", stillingerSortertEtterExpiredDesc.get(0).getExpires(), stillingerSortertEtterExpiredDesc.get(0));
         }
 
+        List<FinnAdHead> stillingerSortertEtterUpdatedDesc = searchResult.stream()
+                        .sorted((s1, s2) -> {
+                            if (s1.getUpdated() == null && s2.getUpdated() == null) {
+                                return 0;
+                            } else if (s1.getUpdated() == null) {
+                                return 1;
+                            } else if (s2.getUpdated() == null) {
+                                return -1;
+                            } else {
+                                return s2.getUpdated().compareTo(s1.getUpdated());
+                            }
+                        })
+                        .toList();
+        if (!stillingerSortertEtterUpdatedDesc.isEmpty()) {
+            LOG.info("Siste updated dato {}: {} ", stillingerSortertEtterUpdatedDesc.get(0).getUpdated(), stillingerSortertEtterUpdatedDesc.get(0));
+        }
+
+        List<FinnAdHead> stillingerSortertEtterPublishedDesc = searchResult.stream()
+                        .sorted((s1, s2) -> {
+                            if (s1.getPublished() == null && s2.getPublished() == null) {
+                                return 0;
+                            } else if (s1.getPublished() == null) {
+                                return 1;
+                            } else if (s2.getPublished() == null) {
+                                return -1;
+                            } else {
+                                return s2.getPublished().compareTo(s1.getPublished());
+                            }
+                        })
+                        .toList();
+        if (!stillingerSortertEtterPublishedDesc.isEmpty()) {
+            LOG.info("Siste published dato {}: {} ", stillingerSortertEtterPublishedDesc.get(0).getPublished(), stillingerSortertEtterPublishedDesc.get(0));
+        }
+
+
         // Create a set of externalIds for all active ads from Finn. Used to determine stopped ads
         LOG.debug("Collecting externalIds");
         Set<String> allExternalIds = searchResult.stream().map(FinnAdHead::getId).collect(Collectors.toSet());
