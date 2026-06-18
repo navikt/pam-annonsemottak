@@ -7,7 +7,6 @@ import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.io.Reader;
 import java.time.format.DateTimeFormatter;
@@ -28,10 +27,7 @@ public class FinnAdMapperTest {
 
     private final FinnConnector connector = new FinnConnector(null, null,null, null, null, 0);
 
-    @Mock
     private FinnAd ad = mock(FinnAd.class);
-
-    @Mock
     private FinnAd.GeneralText text = mock(FinnAd.GeneralText.class);
 
     @Test

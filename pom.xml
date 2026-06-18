@@ -18,14 +18,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.50.50</flexmark.version>
         <wiremock.version>3.13.1</wiremock.version>
-        <guava.version>33.3.1-jre</guava.version>
+        <guava.version>33.6.0-jre</guava.version>
         <shedlock.version>6.3.0</shedlock.version>
         <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
         <okhttp.version>4.12.0</okhttp.version>
         <java.version>21</java.version>
-        <owasp.version>20240325.1</owasp.version>
-        <jsoup.version>1.18.3</jsoup.version>
-        <commons-text.version>1.12.0</commons-text.version>
+        <owasp.version>20260313.1</owasp.version>
+        <jsoup.version>1.22.2</jsoup.version>
+        <commons-text.version>1.15.0</commons-text.version>
     </properties>
 
 
@@ -45,15 +45,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tools.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
         </dependency>
 
         <dependency>
@@ -120,11 +111,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webmvc-test</artifactId>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.wiremock</groupId>
@@ -138,28 +129,8 @@
             <version>${guava.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-data-jpa-test</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa-test</artifactId>
             <scope>test</scope>
         </dependency>
 
