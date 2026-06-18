@@ -10,31 +10,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Locks down the JSON serialization (output) and deserialization (input) contract for "Ad"
- * (Stilling / StillingDTO) data so that the Jackson 2 -> Jackson 3 upgrade on the spring-boot-4.1
- * branch does not silently change the wire format, with particular attention to how
- * dates/timestamps are written.
- *
- * The golden files in {@code src/test/resources/serialization/} were captured from the master
- * branch (Jackson 2). This exact same test source runs unchanged on the spring-boot-4.1 branch
- * (Jackson 3); if the upgrade changes the output (e.g. dates serialized as arrays or epoch numbers
- * instead of ISO-8601 strings) the golden comparison fails.
- *
- * The test exercises the production-configured mapper from {@link AppConfig#jacksonMapper()} (the
- * same bean used by the Kafka outbox and the REST ETag generation) and deliberately avoids
- * importing any Jackson type, so the identical source compiles on both the Jackson 2 (master) and
- * Jackson 3 (spring-boot-4.1) branches.
- */
-public class AdSerializationCompatibilityTest {
+class AdSerializationCompatibilityTest {
 
-    // Fixed, deterministic timestamps. 'expires' is in the past relative to "now" so that
-    // Stilling.setExpires does not cap it to now()+6 months, keeping the value stable over time.
     private static final LocalDateTime PUBLISHED = LocalDateTime.of(2021, 3, 10, 8, 0, 0);
     private static final LocalDateTime EXPIRES = LocalDateTime.of(2021, 9, 1, 12, 30, 45);
     private static final LocalDateTime CREATED = LocalDateTime.of(2021, 3, 15, 10, 20, 30);
@@ -42,10 +23,7 @@ public class AdSerializationCompatibilityTest {
     private static final LocalDateTime SYSTEM_MODIFIED = LocalDateTime.of(2021, 3, 17, 12, 24, 36);
 
     private Stilling fixedStilling() {
-        Map<String, String> properties = new LinkedHashMap<>();
-        properties.put("antallStillinger", "3");
-
-        Stilling stilling = new StillingBuilder()
+        var stilling = new StillingBuilder()
                 .uuid("11111111-2222-3333-4444-555555555555")
                 .title("Stillingstittel")
                 .place("Oslo")
@@ -57,7 +35,7 @@ public class AdSerializationCompatibilityTest {
                 .medium("MEDIUM")
                 .url("https://example.test/stilling/1")
                 .externalId("ext-1")
-                .withProperties(properties)
+                .withProperties(Map.of("antallStillinger", "3"))
                 .expires(EXPIRES)
                 .published(PUBLISHED)
                 .systemModifiedDate(SYSTEM_MODIFIED)
@@ -74,7 +52,7 @@ public class AdSerializationCompatibilityTest {
     }
 
     private StillingDTO fixedStillingDto() {
-        StillingDTO dto = new StillingDTO();
+        var dto = new StillingDTO();
         dto.setUuid("uuid-1");
         dto.setEmployerName("Arbeidsgiver AS");
         dto.setJobTitle("Tittel");
@@ -92,20 +70,14 @@ public class AdSerializationCompatibilityTest {
     }
 
     private String readGolden(String name) throws Exception {
-        Path path = Path.of("src/test/resources/serialization", name);
-        return Files.readString(path, StandardCharsets.UTF_8).trim();
+        return Files.readString(Path.of("src/test/resources/serialization", name), StandardCharsets.UTF_8).trim();
     }
 
-    /**
-     * Output: a full Stilling (the object published verbatim to the Kafka outbox) must serialize to
-     * the same JSON as on master. LocalDateTime fields must stay ISO-8601 strings, not arrays or
-     * epoch numbers.
-     */
     @Test
-    void stilling_serializes_to_same_json_as_master() throws Exception {
+    void stilling_serializes_to_json() throws Exception {
         var mapper = new AppConfig().jacksonMapper();
 
-        String actual = mapper.writeValueAsString(fixedStilling());
+        var actual = mapper.writeValueAsString(fixedStilling());
 
         // Explicit, human-readable date-format expectations (this is the main upgrade risk).
         assertThat(actual)
@@ -122,15 +94,11 @@ public class AdSerializationCompatibilityTest {
         assertThat(actualTree).isEqualTo(expectedTree);
     }
 
-    /**
-     * Output: StillingDTO uses an explicit {@code @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")}.
-     * The upgrade must keep producing that exact string format.
-     */
     @Test
-    void stillingDto_serializes_to_same_json_as_master() throws Exception {
+    void stillingDto_serializes_to_json() throws Exception {
         var mapper = new AppConfig().jacksonMapper();
 
-        String actual = mapper.writeValueAsString(fixedStillingDto());
+        var actual = mapper.writeValueAsString(fixedStillingDto());
 
         assertThat(actual)
                 .contains("\"publiserFra\":\"10-03-2021 08:00:00\"")
@@ -141,15 +109,11 @@ public class AdSerializationCompatibilityTest {
         assertThat(actualTree).isEqualTo(expectedTree);
     }
 
-    /**
-     * Input: the REST PUT endpoint deserializes incoming JSON into a StillingDTO. The patterned date
-     * fields must still parse to the same LocalDateTime values after the Jackson upgrade.
-     */
     @Test
-    void stillingDto_deserializes_dates_from_master_json() throws Exception {
+    void stillingDto_deserializes_dates_json() throws Exception {
         var mapper = new AppConfig().jacksonMapper();
 
-        StillingDTO dto = mapper.readValue(readGolden("expected-stillingdto.json"), StillingDTO.class);
+        var dto = mapper.readValue(readGolden("expected-stillingdto.json"), StillingDTO.class);
 
         assertThat(dto.getUuid()).isEqualTo("uuid-1");
         assertThat(dto.getEmployerName()).isEqualTo("Arbeidsgiver AS");
@@ -163,16 +127,12 @@ public class AdSerializationCompatibilityTest {
         assertThat(dto.getStatus()).isEqualTo("MOTTATT");
     }
 
-    /**
-     * Input/Output round-trip: serializing then deserializing a StillingDTO must preserve the date
-     * values exactly.
-     */
     @Test
     void stillingDto_date_roundtrip_is_lossless() throws Exception {
         var mapper = new AppConfig().jacksonMapper();
 
-        String json = mapper.writeValueAsString(fixedStillingDto());
-        StillingDTO roundTripped = mapper.readValue(json, StillingDTO.class);
+        var json = mapper.writeValueAsString(fixedStillingDto());
+        var roundTripped = mapper.readValue(json, StillingDTO.class);
 
         assertThat(roundTripped.getPubliserFra()).isEqualTo(PUBLISHED);
         assertThat(roundTripped.getSistePubliseringsDato()).isEqualTo(EXPIRES);
