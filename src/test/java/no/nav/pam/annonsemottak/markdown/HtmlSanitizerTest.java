@@ -3,7 +3,7 @@ package no.nav.pam.annonsemottak.markdown;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class HtmlSanitizerTest {
@@ -11,16 +11,18 @@ public class HtmlSanitizerTest {
     @Test
     public void knownVulnerability1() {
 
-        String markdown = "This is a regular paragraph.\n" +
-                "\n" +
-                "<script>alert('xss');</script>\n" +
-                "\n" +
-                "This is another regular paragraph.";
-        String expected = "This is a regular paragraph.\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "This is another regular paragraph.";
+        String markdown = """
+                This is a regular paragraph.
+                
+                <script>alert('xss');</script>
+                
+                This is another regular paragraph.""";
+        String expected = """
+                This is a regular paragraph.
+                
+                
+                
+                This is another regular paragraph.""";
 
         assertEquals(expected, HtmlSanitizer.sanitize(markdown));
     }
@@ -83,13 +85,15 @@ public class HtmlSanitizerTest {
 
     @Test
     public void sanitize_links_properly(){
-        String fragment = "<br>Søk via vårt <a href=\"https://soknad.kvam.kommune.no/\" target=\"_blank\">digitale søknadssenter</a>" +
-                "\n<a id=\"myLink\" href=\"javascript:MyFunction();\">link with js in href</a>" +
-                "\n<a id=\"myLink\" href=\"#\" onclick=\"MyFunction();return false;\">link with onclick</a>";
+        String fragment = """
+                <br>Søk via vårt <a href="https://soknad.kvam.kommune.no/" target="_blank">digitale søknadssenter</a>
+                <a id="myLink" href="javascript:MyFunction();">link with js in href</a>
+                <a id="myLink" href="#" onclick="MyFunction();return false;">link with onclick</a>""";
 
-        String expected = "<br />Søk via vårt <a href=\"https://soknad.kvam.kommune.no/\" rel=\"nofollow\">digitale søknadssenter</a>\n" +
-                "link with js in href\n" +
-                "<a href=\"#\" rel=\"nofollow\">link with onclick</a>";
+        String expected = """
+                <br />Søk via vårt <a href="https://soknad.kvam.kommune.no/" rel="nofollow">digitale søknadssenter</a>
+                link with js in href
+                <a href="#" rel="nofollow">link with onclick</a>""";
 
         assertEquals(expected, HtmlSanitizer.sanitize(fragment));
     }

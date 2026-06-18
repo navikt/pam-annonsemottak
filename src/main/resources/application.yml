@@ -29,21 +29,18 @@ spring:
     enabled: true
     baseline-on-migrate: true
 management:
-  metrics:
-    export:
-      prometheus:
-        enabled: true
   endpoint:
     prometheus:
-      enabled: true
+      access: read-only
     metrics:
-      enabled: true
+      access: read-only
     mappings:
-      enabled: true
+      access: read-only
   endpoints:
     web:
       exposure:
         include: ["prometheus", "metrics", "mappings"]
+  prometheus.metrics.export.enabled: true
 scheduler:
   enabled: ${SCHEDULER_ENABLED:false}
 amedia:

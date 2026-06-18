@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import no.nav.pam.annonsemottak.receivers.GenericDateParser;

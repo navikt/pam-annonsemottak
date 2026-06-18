@@ -51,7 +51,7 @@ public class GenericDateParser {
         }
         String dateString = sanitize(rawDate);
         Optional<String> format = dateFormatMap.keySet().stream().filter(regex -> Pattern.matches(regex, dateString)).findFirst();
-        if (!format.isPresent()) {
+        if (format.isEmpty()) {
             return null;
         }
 

@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.stilling;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 

@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.rest.payloads;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ErrorPayload extends BasicPayload<String> {
@@ -39,6 +40,7 @@ public class ErrorPayload extends BasicPayload<String> {
 
         private final ErrorMetaContents error;
 
+        @JsonCreator
         private ErrorMeta(DefinedErrors cause) {
             this.error = new ErrorMetaContents(cause);
         }
@@ -51,6 +53,7 @@ public class ErrorPayload extends BasicPayload<String> {
         public class ErrorMetaContents {
             private final String code;
 
+            @JsonCreator
             private ErrorMetaContents(DefinedErrors error) {
                 this.code = error.getCode();
             }

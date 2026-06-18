@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.scheduler.deactivate;
 import no.nav.pam.annonsemottak.PathDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +13,6 @@ public class DeactivateController {
 
     private final DeactivateService service;
 
-    @Autowired
     public DeactivateController(DeactivateService service) {
         this.service = service;
     }

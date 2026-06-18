@@ -6,7 +6,6 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,6 @@ public class AnnonseFangstService {
 
     private static final Logger LOG = LoggerFactory.getLogger(AnnonseFangstService.class);
 
-    @Autowired
     public AnnonseFangstService(StillingRepository repository,  StillingOutboxService stillingOutboxService) {
         this.stillingRepository = repository;
         this.stillingOutboxService = stillingOutboxService;

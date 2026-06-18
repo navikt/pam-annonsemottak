@@ -12,9 +12,11 @@ public class ArbeidsgiverTest {
 
     @Test
     public void skal_trimme_arbeidsgiver_ved_opprettelse() {
-        Optional<Arbeidsgiver> arbeidsgiver = Arbeidsgiver.ofNullable("\n" +
-                "                                    Skanska Teknikk\n" +
-                "                                ");
+        Optional<Arbeidsgiver> arbeidsgiver = Arbeidsgiver.ofNullable("""
+                
+                                                    Skanska Teknikk
+                                               \s\
+                """);
 
         assertThat(arbeidsgiver.get().asString(), is(equalTo("Skanska Teknikk")));
     }

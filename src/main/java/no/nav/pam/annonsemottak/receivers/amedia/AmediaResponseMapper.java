@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 
@@ -34,7 +34,7 @@ class AmediaResponseMapper {
     }
 
     static String text(JsonNode node) {
-        return node == null || node.asText().equals("null") ? "" : node.asText();
+        return node == null || node.asString().equals("null") ? "" : node.asString();
     }
 
 }

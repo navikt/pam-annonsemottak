@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.rest.payloads;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -14,6 +15,7 @@ public class BasicPayload<T> {
 
     private final T data;
 
+    @JsonCreator
     BasicPayload(T data) {
         this.data = data;
     }

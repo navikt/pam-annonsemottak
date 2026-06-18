@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.receivers.externalRun;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,7 +14,6 @@ public class ExternalRunService {
 
     private final ExternalRunRepository externalRunRepository;
 
-    @Autowired
     public ExternalRunService(ExternalRunRepository externalRunRepository){
         this.externalRunRepository = externalRunRepository;
     }
