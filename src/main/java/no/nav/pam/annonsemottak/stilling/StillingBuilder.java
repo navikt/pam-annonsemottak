@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.stilling;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 public class StillingBuilder {

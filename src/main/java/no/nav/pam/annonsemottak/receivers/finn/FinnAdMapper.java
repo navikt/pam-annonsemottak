@@ -1,7 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
@@ -12,13 +12,14 @@ import no.nav.pam.annonsemottak.stilling.StillingBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tools.jackson.core.JacksonException;
 
 import java.util.*;
 
 class FinnAdMapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinnAdMapper.class);
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new JsonMapper();
 
     /**
      * Create a {@link Stilling} based on a {@link FinnAd}.
@@ -184,7 +185,7 @@ class FinnAdMapper {
 
         try {
             return objectMapper.writeValueAsString(o);
-        } catch (JsonProcessingException e) {
+        } catch (JacksonException e) {
             return null;
         }
     }

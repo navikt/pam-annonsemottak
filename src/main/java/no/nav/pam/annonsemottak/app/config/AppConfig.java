@@ -1,9 +1,6 @@
 package no.nav.pam.annonsemottak.app.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import tools.jackson.databind.json.JsonMapper;
 import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
@@ -15,8 +12,8 @@ import no.nav.pam.annonsemottak.feed.StillingMixIn;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.stilling.*;
 import okhttp3.OkHttpClient;
-import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
-import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
+import org.springframework.boot.webmvc.autoconfigure.DispatcherServletPath;
+import org.springframework.boot.webmvc.autoconfigure.DispatcherServletRegistrationBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -65,25 +62,18 @@ public class AppConfig {
 
     @Primary
     @Bean
-    public ObjectMapper jacksonMapper() {
+    public JsonMapper jacksonMapper() {
 
-        ObjectMapper objectMapper = new ObjectMapper()
-                .registerModule(new Jdk8Module())
-                .registerModule(new JavaTimeModule())
-                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-
-        //Renames selected Stilling field names for the feed
-        objectMapper.addMixIn(Stilling.class, StillingMixIn.class);
-
-        // Following classes are wrapped in an Optional and result in nested objects in JSON
-        // Removes nesting and assigns String value directly to the property
-        objectMapper.addMixIn(Arbeidsgiver.class, OptionalValueMixIn.class);
-        objectMapper.addMixIn(Kommentarer.class, OptionalValueMixIn.class);
-        objectMapper.addMixIn(Merknader.class, OptionalValueMixIn.class);
-        objectMapper.addMixIn(Saksbehandler.class, OptionalValueMixIn.class);
-
-        return objectMapper;
+        return JsonMapper.builder()
+                //Renames selected Stilling field names for the feed
+                .addMixIn(Stilling.class, StillingMixIn.class)
+                // Following classes are wrapped in an Optional and result in nested objects in JSON
+                // Removes nesting and assigns String value directly to the property
+                .addMixIn(Arbeidsgiver.class, OptionalValueMixIn.class)
+                .addMixIn(Kommentarer.class, OptionalValueMixIn.class)
+                .addMixIn(Merknader.class, OptionalValueMixIn.class)
+                .addMixIn(Saksbehandler.class, OptionalValueMixIn.class)
+                .build();
     }
 
     private SSLContext getSslContext(X509TrustManager trustAllX509Manager)

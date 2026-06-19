@@ -1,7 +1,8 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.Medium;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
@@ -27,7 +28,7 @@ public class AmediaResponseMapperTest {
     private final static InputStream enkeltResultatUtenUrl;
     private final static InputStream enkeltResultatButikkategori;
     private final static InputStream enkeltResultatGenerellKategori;
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new JsonMapper();
 
     static {
         enkeltResultat = AmediaResponseMapperTest.class.getClassLoader()

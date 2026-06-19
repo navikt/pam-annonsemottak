@@ -5,7 +5,6 @@ import no.nav.pam.annonsemottak.kafka.HealthService;
 import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaConnector;
 import no.nav.pam.annonsemottak.receivers.finn.FinnConnector;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ public class StatusController {
 
     private final HealthService healthService;
 
-    @Autowired
     public StatusController(FinnConnector finnConnector, AmediaConnector amediaConnector, HealthService healthService) {
         this.finnConnector = finnConnector;
         this.amediaConnector = amediaConnector;

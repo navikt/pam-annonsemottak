@@ -3,8 +3,6 @@ server:
 spring:
   datasource:
     url: jdbc:h2:mem:testdb;Mode=PostgreSQL
-    platform: h2
-    continue-on-error: true
     driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -14,20 +12,19 @@ spring:
       ddl-auto: none
   main:
     allow-bean-definition-overriding: true
+  sql.init.continue-on-error: true
+  sql.init.platform: h2
 management:
-  metrics:
-    export:
-      prometheus:
-        enabled: true
   endpoint:
     prometheus:
-      enabled: true
+      access: read-only
     metrics:
-      enabled: true
+      access: read-only
   endpoints:
     web:
       exposure:
         include: ["prometheus", "metrics"]
+  prometheus.metrics.export.enabled: true
 scheduler:
   enabled: false
 amedia:

@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.receivers.amedia.rest;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import no.nav.pam.annonsemottak.Application;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.receivers.amedia.AmediaResponseMapperTest;
@@ -10,15 +11,13 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,16 +30,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
-@MockBean(StillingRepository.class)
+@MockitoBean(types = StillingRepository.class)
 @AutoConfigureMockMvc
 @Transactional
 @Rollback
 @ActiveProfiles("test")
 public class AmediaApiTest {
 
-    public static WireMockRule wireMockRule;
+    public static WireMockServer wireMockRule;
 
     @Autowired
     protected MockMvc mvc;
@@ -50,7 +48,7 @@ public class AmediaApiTest {
 
     @BeforeAll
     public static void initStubs() {
-        wireMockRule = new WireMockRule(7010);
+        wireMockRule = new WireMockServer(WireMockConfiguration.options().port(7010));
         wireMockRule.stubFor(get(urlMatching(
                 ".*?all"))
                 .willReturn(aResponse().withStatus(200)

@@ -3,7 +3,6 @@ package no.nav.pam.annonsemottak.scheduler.deactivate;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,6 @@ public class DeactivateScheduledTask {
 
     private final DeactivateService service;
 
-    @Autowired
     public DeactivateScheduledTask(DeactivateService service){
         this.service = service;
     }

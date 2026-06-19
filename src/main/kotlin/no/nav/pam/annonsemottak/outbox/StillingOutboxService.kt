@@ -1,6 +1,6 @@
 package no.nav.pam.annonsemottak.outbox
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import no.nav.pam.annonsemottak.kafka.MessageProducer
 import no.nav.pam.annonsemottak.markdown.MarkdownToHtmlConverter
 import no.nav.pam.annonsemottak.stilling.Stilling

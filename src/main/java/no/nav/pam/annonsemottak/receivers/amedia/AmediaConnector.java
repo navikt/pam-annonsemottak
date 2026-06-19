@@ -1,8 +1,8 @@
 package no.nav.pam.annonsemottak.receivers.amedia;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.receivers.HttpClientProvider;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import okhttp3.OkHttpClient;

@@ -4,7 +4,6 @@ import no.nav.pam.annonsemottak.receivers.GenericDateParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Map;
 
 public class StillingTestdataBuilder implements TestdataBuilder<Stilling> {

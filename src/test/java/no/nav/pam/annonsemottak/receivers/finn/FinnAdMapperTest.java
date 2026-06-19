@@ -1,12 +1,12 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.io.Reader;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class FinnAdMapperTest {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new JsonMapper();
     private static final String AD1 = "src/test/resources/finn/samples/ad1.xml";
     private static final String AD2 = "src/test/resources/finn/samples/ad2.xml";
     private static final String AD3 = "src/test/resources/finn/samples/ad3.xml";
@@ -27,10 +27,7 @@ public class FinnAdMapperTest {
 
     private final FinnConnector connector = new FinnConnector(null, null,null, null, null, 0);
 
-    @Mock
     private FinnAd ad = mock(FinnAd.class);
-
-    @Mock
     private FinnAd.GeneralText text = mock(FinnAd.GeneralText.class);
 
     @Test
@@ -120,10 +117,10 @@ public class FinnAdMapperTest {
             String contactInfoJson = stilling.getProperties().get(PropertyNames.KONTAKTINFO);
             JsonNode jsonNode = objectMapper.readTree(contactInfoJson);
 
-            assertEquals("Thomas Tvetbråten", jsonNode.path(0).path("name").asText());
-            assertEquals("+47 916 75 001", jsonNode.path(0).path("phone_mobile").asText());
-            assertEquals("thomas.tvetbraaten@zeekit.no", jsonNode.path(0).path("email").asText());
-            assertEquals("Teknisk Sjef", jsonNode.path(0).path("title").asText());
+            assertEquals("Thomas Tvetbråten", jsonNode.path(0).path("name").asString());
+            assertEquals("+47 916 75 001", jsonNode.path(0).path("phone_mobile").asString());
+            assertEquals("thomas.tvetbraaten@zeekit.no", jsonNode.path(0).path("email").asString());
+            assertEquals("Teknisk Sjef", jsonNode.path(0).path("title").asString());
         }
     }
 

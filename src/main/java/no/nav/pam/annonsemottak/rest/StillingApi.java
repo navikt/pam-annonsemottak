@@ -6,12 +6,14 @@ import no.nav.pam.annonsemottak.receivers.Kilde;
 import no.nav.pam.annonsemottak.receivers.common.PropertyNames;
 import no.nav.pam.annonsemottak.PathDefinition;
 import no.nav.pam.annonsemottak.receivers.fangst.AnnonseFangstService;
-import no.nav.pam.annonsemottak.stilling.*;
+import no.nav.pam.annonsemottak.stilling.Status;
+import no.nav.pam.annonsemottak.stilling.Stilling;
+import no.nav.pam.annonsemottak.stilling.StillingBuilder;
+import no.nav.pam.annonsemottak.stilling.StillingRepository;
 import no.nav.pam.annonsemottak.rest.dto.StillingDTO;
 import no.nav.pam.annonsemottak.rest.payloads.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,8 @@ import java.util.stream.Collectors;
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodePageRequest.withPageRequest;
 import static no.nav.pam.annonsemottak.stilling.AnnonsehodeSpecification.withSpecification;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
@@ -43,7 +46,6 @@ public class StillingApi {
     private final AnnonseMottakProbe probe;
 
 
-    @Autowired
     public StillingApi(
             StillingRepository stillingRepository,
             AnnonseFangstService annonseFangstService,

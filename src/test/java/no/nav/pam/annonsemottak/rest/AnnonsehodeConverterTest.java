@@ -6,7 +6,7 @@ import no.nav.pam.annonsemottak.stilling.Stilling;
 import org.junit.jupiter.api.Test;
 
 import static no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder.enkelStilling;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnnonsehodeConverterTest {
 
