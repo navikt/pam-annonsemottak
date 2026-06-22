@@ -8,4 +8,4 @@ ENV SPRING_PROFILES_ACTIVE=prod
 
 EXPOSE 9016
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+CMD ["-jar", "/app/app.jar"]
