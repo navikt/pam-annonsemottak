@@ -69,51 +69,33 @@ class AdSerializationCompatibilityTest {
         return dto;
     }
 
-    private String readGolden(String name) throws Exception {
-        return Files.readString(Path.of("src/test/resources/serialization", name), StandardCharsets.UTF_8).trim();
-    }
-
     @Test
-    void stilling_serializes_to_json() throws Exception {
+    void stilling_serializes_to_json() {
         var mapper = new AppConfig().jacksonMapper();
 
         var actual = mapper.writeValueAsString(fixedStilling());
 
-        // Explicit, human-readable date-format expectations (this is the main upgrade risk).
-        assertThat(actual)
-                .contains("\"created\":\"2021-03-15T10:20:30\"")
-                .contains("\"updated\":\"2021-03-16T11:22:33\"")
-                .contains("\"published\":\"2021-03-10T08:00:00\"")
-                .contains("\"expires\":\"2021-09-01T12:30:45\"")
-                .contains("\"systemModifiedDate\":\"2021-03-17T12:24:36\"");
-
-        // Full output contract, compared as a tree so JSON key ordering differences are tolerated
-        // but any value/shape change (including date format) fails.
-        var expectedTree = mapper.readTree(readGolden("expected-stilling.json"));
+        var expectedTree = mapper.readTree(read("expected-stilling.json"));
         var actualTree = mapper.readTree(actual);
         assertThat(actualTree).isEqualTo(expectedTree);
     }
 
     @Test
-    void stillingDto_serializes_to_json() throws Exception {
+    void stillingDto_serializes_to_json() {
         var mapper = new AppConfig().jacksonMapper();
 
         var actual = mapper.writeValueAsString(fixedStillingDto());
 
-        assertThat(actual)
-                .contains("\"publiserFra\":\"10-03-2021 08:00:00\"")
-                .contains("\"sistePubliseringsDato\":\"01-09-2021 12:30:45\"");
-
-        var expectedTree = mapper.readTree(readGolden("expected-stillingdto.json"));
+        var expectedTree = mapper.readTree(read("expected-stillingdto.json"));
         var actualTree = mapper.readTree(actual);
         assertThat(actualTree).isEqualTo(expectedTree);
     }
 
     @Test
-    void stillingDto_deserializes_dates_json() throws Exception {
+    void stillingDto_deserializes_dates_json() {
         var mapper = new AppConfig().jacksonMapper();
 
-        var dto = mapper.readValue(readGolden("expected-stillingdto.json"), StillingDTO.class);
+        var dto = mapper.readValue(read("expected-stillingdto.json"), StillingDTO.class);
 
         assertThat(dto.getUuid()).isEqualTo("uuid-1");
         assertThat(dto.getEmployerName()).isEqualTo("Arbeidsgiver AS");
@@ -128,7 +110,7 @@ class AdSerializationCompatibilityTest {
     }
 
     @Test
-    void stillingDto_date_roundtrip_is_lossless() throws Exception {
+    void stillingDto_date_roundtrip_is_lossless() {
         var mapper = new AppConfig().jacksonMapper();
 
         var json = mapper.writeValueAsString(fixedStillingDto());
@@ -136,5 +118,13 @@ class AdSerializationCompatibilityTest {
 
         assertThat(roundTripped.getPubliserFra()).isEqualTo(PUBLISHED);
         assertThat(roundTripped.getSistePubliseringsDato()).isEqualTo(EXPIRES);
+    }
+
+    private static String read(String name) {
+        try {
+            return Files.readString(Path.of("src/test/resources/serialization", name), StandardCharsets.UTF_8).trim();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

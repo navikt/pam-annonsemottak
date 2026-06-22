@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}?user=${DB_USERNAME}&password=${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 0
+      max-lifetime: 45000
+      connection-timeout: 30000
+      idle-timeout: 35000
+amedia:
+  # url: https://bed.api.no/api/pipek/v2/classified/search
+  url: https://services.api.no/api/prophecy/external/nav/jobs
+  apikey: ${AMEDIA_API_KEY}
+finn:
+  url: https://cache.api.finn.no/iad/
+  job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
+  job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
+  api:
+    password: ${FINN_API_PASSWORD}
+  cron:
+    schedule: ${FINN_CRON_SCHEDULE}

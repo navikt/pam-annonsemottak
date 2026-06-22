@@ -1,48 +1,12 @@
-server:
-  port: 9016
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb;Mode=PostgreSQL
-    driver-class-name: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: none
   main:
     allow-bean-definition-overriding: true
-  sql.init.continue-on-error: true
-  sql.init.platform: h2
-management:
-  endpoint:
-    prometheus:
-      access: read-only
-    metrics:
-      access: read-only
-  endpoints:
-    web:
-      exposure:
-        include: ["prometheus", "metrics"]
-  prometheus.metrics.export.enabled: true
-scheduler:
-  enabled: false
 amedia:
   url: http://localhost:7010/api/prophecy/external/nav/jobs
   apikey: amedia_api_key
 finn:
   url: https://localhost:7011
+  job-fulltime-url: https://localhost:7011/search/job-full-time/
+  job-parttime-url: https://localhost:7011/search/job-part-time/
   api:
     password: finn_api_key
-kafka:
-  brokers: ${KAFKA_BROKERS:http://localhost:1337}
-  credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}
-  truststorepath: ${KAFKA_TRUSTSTORE_PATH:}
-  keystorepath: ${KAFKA_KEYSTORE_PATH:}
-appname: ${NAIS_APP_NAME:}
-outbox:
-  kafka:
-    enabled: ${OUTBOX_KAFKA_ENABLED:false}
-    topic: ${ANNONSEMOTTAK_TOPIC:teampam.annonsemottak-1}
-  scheduler:
-    enabled: ${OUTBOX_SCHEDULER_ENABLED:false}

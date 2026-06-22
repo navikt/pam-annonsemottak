@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.outbox
 
 import no.nav.pam.annonsemottak.Application
+import no.nav.pam.annonsemottak.TestcontainersConfiguration
 import no.nav.pam.annonsemottak.kafka.StillingOutboxMessageProducer
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.Disabled
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
@@ -19,6 +21,7 @@ import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = [Application::class])
+@Import(TestcontainersConfiguration::class)
 @Rollback
 @Testcontainers
 @Disabled

@@ -1,6 +1,8 @@
 package no.nav.pam.annonsemottak.receivers.finn;
 
 import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.TestcontainersConfiguration;
+import org.springframework.context.annotation.Import;
 import no.nav.pam.annonsemottak.app.metrics.AnnonseMottakProbe;
 import no.nav.pam.annonsemottak.outbox.StillingOutbox;
 import no.nav.pam.annonsemottak.outbox.StillingOutboxRepository;
@@ -35,6 +37,7 @@ import static org.mockito.Mockito.*;
 @Rollback
 @Transactional
 @ContextConfiguration(classes = Application.class)
+@Import(TestcontainersConfiguration.class)
 public class FinnServiceMedFerreMocksTest {
 
     @Autowired

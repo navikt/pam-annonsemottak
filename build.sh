@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -e
-./mvnw clean install -Dspring.profiles.active=test
+./mvnw clean verify -T 1C
