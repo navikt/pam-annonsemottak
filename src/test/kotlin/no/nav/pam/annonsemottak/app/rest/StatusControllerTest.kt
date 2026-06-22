@@ -1,6 +1,7 @@
 package no.nav.pam.annonsemottak.app.rest
 
 import no.nav.pam.annonsemottak.Application
+import no.nav.pam.annonsemottak.TestcontainersConfiguration
 import no.nav.pam.annonsemottak.app.rest.StatusController.InternalException
 import no.nav.pam.annonsemottak.kafka.HealthService
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -18,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext
 
 
 @SpringBootTest(classes = [Application::class])
+@Import(TestcontainersConfiguration::class)
 @Transactional
 @Rollback
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

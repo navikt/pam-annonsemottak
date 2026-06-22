@@ -3,28 +3,13 @@ server:
 application:
   version: @project.version@
 spring:
-  datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}?user=${DB_USERNAME}&password=${DB_PASSWORD}
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 5
-      minimum-idle: 0
-      max-lifetime: 45000
-      connection-timeout: 30000
-      idle-timeout: 35000
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
-        generate_statistics: true
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: none
   profiles:
-    active: prod
+    default: local
   flyway:
     enabled: true
     baseline-on-migrate: true
@@ -40,21 +25,8 @@ management:
     web:
       exposure:
         include: ["prometheus", "metrics", "mappings"]
-  prometheus.metrics.export.enabled: true
 scheduler:
   enabled: ${SCHEDULER_ENABLED:false}
-amedia:
-  # url: https://bed.api.no/api/pipek/v2/classified/search
-  url: https://services.api.no/api/prophecy/external/nav/jobs
-  apikey: ${AMEDIA_API_KEY}
-finn:
-  url: https://cache.api.finn.no/iad/
-  job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
-  job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
-  api:
-    password: ${FINN_API_PASSWORD}
-  cron:
-    schedule: ${FINN_CRON_SCHEDULE}
 kafka:
   brokers: ${KAFKA_BROKERS:http://localhost:1337}
   credstorepass: ${KAFKA_CREDSTORE_PASSWORD:}

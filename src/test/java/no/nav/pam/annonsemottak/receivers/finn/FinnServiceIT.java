@@ -3,15 +3,16 @@ package no.nav.pam.annonsemottak.receivers.finn;
 
 import tools.jackson.databind.ObjectMapper;
 import no.nav.pam.annonsemottak.Application;
+import no.nav.pam.annonsemottak.TestcontainersConfiguration;
+import org.springframework.context.annotation.Import;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Set;
 
 @SpringBootTest(classes = Application.class)
-@ActiveProfiles("test")
+@Import(TestcontainersConfiguration.class)
 public class FinnServiceIT {
 
 

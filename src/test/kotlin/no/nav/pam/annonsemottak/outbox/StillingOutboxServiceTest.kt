@@ -1,16 +1,19 @@
 package no.nav.pam.annonsemottak.outbox
 
 import no.nav.pam.annonsemottak.Application
+import no.nav.pam.annonsemottak.TestcontainersConfiguration
 import no.nav.pam.annonsemottak.stilling.StillingTestdataBuilder
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.annotation.Rollback
 import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest(classes = [Application::class])
+@Import(TestcontainersConfiguration::class)
 @Transactional
 @Rollback
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
