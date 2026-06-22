@@ -1,0 +1,13 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      file: compose.yml
+      lifecycle-management: start-and-stop
+kafka:
+  brokers: localhost:9092
+outbox:
+  kafka:
+    enabled: true
+  scheduler:
+    enabled: true

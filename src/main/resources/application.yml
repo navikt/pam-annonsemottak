@@ -3,6 +3,11 @@ server:
 application:
   version: @project.version@
 spring:
+  profiles:
+    default: local
+  docker:
+    compose:
+      enabled: false
   jpa:
     hibernate:
       naming:
@@ -37,3 +42,12 @@ outbox:
     topic: ${ANNONSEMOTTAK_TOPIC:teampam.annonsemottak-1}
   scheduler:
     enabled: ${OUTBOX_SCHEDULER_ENABLED:false}
+amedia:
+  url: https://services.api.no/api/prophecy/external/nav/jobs
+  apikey: ${AMEDIA_API_KEY:}
+finn:
+  url: https://cache.api.finn.no/iad/
+  job-fulltime-url: https://cache.api.finn.no/iad/search/job-full-time/
+  job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
+  api:
+    password: ${FINN_API_PASSWORD:}
