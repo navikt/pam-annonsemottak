@@ -1,0 +1,18 @@
+# Spring Boot's Docker Compose support (compose.yml) auto-configures the Postgres
+# datasource from the running container, so no spring.datasource config is needed here.
+# The custom KafkaConfig reads kafka.brokers directly, so that must be set explicitly.
+spring:
+  docker:
+    compose:
+      enabled: true
+      file: compose.yml
+      lifecycle-management: start-and-stop
+scheduler:
+  enabled: false
+kafka:
+  brokers: localhost:9092
+outbox:
+  kafka:
+    enabled: true
+  scheduler:
+    enabled: true
