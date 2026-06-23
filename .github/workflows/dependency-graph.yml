@@ -1,0 +1,16 @@
+name: Submit dependency graph
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "pom.xml"
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Maven Dependency Tree Dependency Submission
+        uses: advanced-security/maven-dependency-submission-action@v5.0.0
