@@ -21,7 +21,7 @@
         <wiremock.version>3.13.1</wiremock.version>
         <guava.version>33.6.0-jre</guava.version>
         <shedlock.version>6.3.0</shedlock.version>
-        <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
+        <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
         <okhttp.version>4.12.0</okhttp.version>
         <owasp.version>20260313.1</owasp.version>
         <jsoup.version>1.22.2</jsoup.version>
