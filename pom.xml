@@ -18,7 +18,7 @@
         <java.version>25</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.50.50</flexmark.version>
-        <wiremock.version>3.13.1</wiremock.version>
+        <wiremock.version>3.13.2</wiremock.version>
         <guava.version>33.6.0-jre</guava.version>
         <shedlock.version>6.3.0</shedlock.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
