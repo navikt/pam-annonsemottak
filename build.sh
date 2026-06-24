@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -e
-./mvnw clean verify -T 1C
+./mvnw clean verify --batch-mode --no-transfer-progress -T 1C
