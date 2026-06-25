@@ -51,3 +51,7 @@ finn:
   job-parttime-url: https://cache.api.finn.no/iad/search/job-part-time/
   api:
     password: ${FINN_API_PASSWORD:}
+
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
