@@ -5,6 +5,7 @@
     </appender>
 
     <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="OFF" />
+    <logger name="org.hibernate.orm.connections.pooling" level="warn"/>
 
     <root level="INFO">
         <appender-ref ref="stdout_json" />
