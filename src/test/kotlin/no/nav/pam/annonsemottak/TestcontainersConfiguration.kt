@@ -10,5 +10,5 @@ class TestcontainersConfiguration {
 
     @Bean
     @ServiceConnection
-    fun postgresContainer(): PostgreSQLContainer = PostgreSQLContainer("postgres:14-alpine")
+    fun postgresContainer(): PostgreSQLContainer = PostgreSQLContainer("postgres:18-alpine")
 }

@@ -42,7 +42,7 @@ spec:
   gcp:
     sqlInstances:
       - name: pam-annonsemottak
-        type: POSTGRES_14
+        type: POSTGRES_18
         tier: db-custom-1-3840
         diskType: SSD
         highAvailability: true
