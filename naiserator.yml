@@ -20,11 +20,10 @@ spec:
     cpuThresholdPercentage: 50
   resources:
     limits:
-      cpu: 2000m
       memory: 1500Mi
     requests:
-      cpu: 500m
-      memory: 500Mi
+      cpu: 113m
+      memory: 768Mi
   prometheus:
     enabled: true
     path: /actuator/prometheus
