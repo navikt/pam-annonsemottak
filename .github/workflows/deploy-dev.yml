@@ -11,7 +11,7 @@ on:
       - feature/*
 jobs:
   call-workflow:
-    uses: navikt/pam-deploy/.github/workflows/deploy-dev.yml@v9
+    uses: navikt/pam-deploy/.github/workflows/deploy-dev.yml@test-pr48-breaking-v9
     permissions:
       actions: read
       contents: write
