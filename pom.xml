@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.0</version>
+        <version>4.1.1</version>
     </parent>
 
     <properties>
@@ -19,8 +19,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.50.50</flexmark.version>
         <wiremock.version>3.13.2</wiremock.version>
-        <guava.version>33.7.0-jre</guava.version>
-        <shedlock.version>7.8.0</shedlock.version>
+        <guava.version>33.7.1-jre</guava.version>
+        <shedlock.version>7.9.0</shedlock.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
         <okhttp.version>5.5.0</okhttp.version>
         <owasp.version>20260313.1</owasp.version>
