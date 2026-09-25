@@ -23,7 +23,7 @@
         <shedlock.version>7.10.1</shedlock.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
         <okhttp.version>5.5.0</okhttp.version>
-        <owasp.version>20260313.1</owasp.version>
+        <owasp.version>20260921.1</owasp.version>
         <jsoup.version>1.23.2</jsoup.version>
         <commons-text.version>1.15.0</commons-text.version>
     </properties>
