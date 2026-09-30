@@ -1,12 +1,11 @@
-apiVersion: "nais.io/v1alpha1"
-kind: "Application"
+apiVersion: nais.io/v1alpha1
+kind: Application
 metadata:
   name: pam-annonsemottak
   namespace: teampam
   labels:
     team: teampam
 spec:
-  image: {{ image }}
   port: 9016
   liveness:
     path: /isAlive
@@ -35,12 +34,6 @@ spec:
       destinations:
         - id: loki
         - id: elastic
-  ingresses:
-  {{#each ingress as |url|}}
-     - {{url}}
-  {{/each}}
-  kafka:
-    pool: {{ kafka_pool }}
   gcp:
     sqlInstances:
       - name: pam-annonsemottak
@@ -74,12 +67,10 @@ spec:
     - secret: pam-annonsemottak-secret
   env:
     - name: SCHEDULER_ENABLED
-      value: "{{ scheduler_enabled }}"
+      value: "true"
     - name: ANNONSEMOTTAK_TOPIC
-      value: "{{ annonsemottak_topic }}"
+      value: teampam.annonsemottak-v1
     - name: OUTBOX_KAFKA_ENABLED
-      value: "{{ outbox_kafka_enabled }}"
+      value: "true"
     - name: OUTBOX_SCHEDULER_ENABLED
-      value: "{{ outbox_scheduler_enabled }}"
-    - name: FINN_CRON_SCHEDULE
-      value: "{{ finn_cron_schedule }}"
+      value: "true"

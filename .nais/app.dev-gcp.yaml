@@ -1,0 +1,8 @@
+spec:
+  ingresses:
+    - https://pam-annonsemottak.intern.dev.nav.no
+  kafka:
+    pool: nav-dev
+  env:
+    - name: FINN_CRON_SCHEDULE
+      value: "0 0 6 * * *"
