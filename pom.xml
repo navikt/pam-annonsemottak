@@ -19,12 +19,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flexmark.version>0.50.50</flexmark.version>
         <wiremock.version>3.13.2</wiremock.version>
-        <guava.version>33.7.2-jre</guava.version>
-        <shedlock.version>7.10.1</shedlock.version>
+        <guava.version>33.8.0-jre</guava.version>
+        <shedlock.version>7.11.0</shedlock.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
         <okhttp.version>5.5.1</okhttp.version>
-        <owasp.version>20261031.1</owasp.version>
-        <jsoup.version>1.23.2</jsoup.version>
+        <owasp.version>20261107.1</owasp.version>
+        <jsoup.version>1.24.1</jsoup.version>
         <commons-text.version>1.15.0</commons-text.version>
     </properties>
 
